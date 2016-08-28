@@ -1,11 +1,9 @@
-
 var path = require("path");
 
 module.exports = {
-  context: __dirname,
   entry: "./frontend/futon_surfing.jsx",
   output: {
-    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    path: "./app/assets/javascripts/bundle.js",
     filename: "bundle.js"
   },
   module: {
