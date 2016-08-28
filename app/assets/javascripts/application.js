@@ -10,6 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// This is a manifest file that'll be compiled into application.js,
+// which will include all the files listed below.
+//
+// Any JavaScript/Coffee file within:
+//
+// * app/assets/javascripts
+// * lib/assets/javascripts
+// * vendor/assets/javascripts
+// * vendor/assets/javascripts of a Gem
+//
+// can be referenced here using a relative path.
+//
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
