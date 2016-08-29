@@ -1,7 +1,7 @@
 http://www.futonsurfing.site/
 
 
- ## MVP 
+## MVP 
 - [ ] Heroku
 - [ ] new Acc,log in, guest
 - [ ] user profile
@@ -11,7 +11,6 @@ http://www.futonsurfing.site/
 - [ ] bookings
 - [ ] production readme
 - [ ] Bonus -references/reviews
-- 
 
 ## Design Docs
 * [React Components][components]
