@@ -5,11 +5,11 @@
 * [API endpoints][api-endpoints]
 * [DB schema][schema]
 
-[views]: docs/wireframe
-[components]: docs/components.md
-[redux-cycles]: docs/redux-cycles.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
+[views]: ./wireframe
+[components]: ./components.md
+[redux-cycles]: ./redux-cycles.md
+[api-endpoints]: ./api-endpoints.md
+[schema]: ./schema.md
 
 ## Implementation Timeline
 
