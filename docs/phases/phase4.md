@@ -11,7 +11,7 @@
 
 ### Views
 
-## Flux
+## redux
 ### Views (React Components)
 * ReferenceIndex
 * ReferenceIndexItem

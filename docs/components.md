@@ -8,19 +8,20 @@
     * HostItem
     * HostFilter
   * HostProfile
+    * HostMap
     * ReferenceIndex
       * ReferenceItem
     * ReferenceForm
-    * Map
+    * BookingIndex
+      * BookingItem
     * BookingForm
-  * HostListing
 
 
 
 ## Routes
 
 * **component:** `App` **path:** `/`
-  * **component:** `HostIndex` **path:** index
+  * **component:** `HostIndex` **path:** `index`
   * **component:** `HostIndex` **path:** `hosts`
     * **component:** `HostDetail` **path:** `hosts/:hostId`
   * **component:** `HostListing` **path:** `/editHostlisting`
