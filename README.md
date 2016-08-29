@@ -22,7 +22,7 @@ http://www.futonsurfing.site/
 - [ ] host on Heroku
 - [ ] create new project
 - [ ] authentication backend setup
-- [ ] set up flux cycle for frontend auth
+- [ ] set up Redux cycle for frontend auth
 - [ ] user signup/signin components
 - [ ] blank landing component after signin
 - [ ] style front end auth
