@@ -1,6 +1,17 @@
 http://www.futonsurfing.site/
 
 
+## MVP 
+- [ ] Heroku
+- [ ] new Acc,log in, guest
+- [ ] user profile
+- [ ] Futons
+- [ ] Search
+- [ ] filters
+- [ ] bookings
+- [ ] production readme
+- [ ] Bonus -references/reviews
+
 ## Design Docs
 * [View Wireframes][views]
 * [React Components][components]
