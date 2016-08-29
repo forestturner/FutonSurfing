@@ -2,11 +2,13 @@ http://www.futonsurfing.site/
 
 
 ## Design Docs
+* [View Wireframes][views]
 * [React Components][components]
 * [Redux Cycles][redux-cycles]
 * [API endpoints][api-endpoints]
 * [DB schema][schema]
 
+[views]: docs/Wireframes
 [components]: docs/components.md
 [redux-cycles]: docs/redux-cycles.md
 [api-endpoints]: docs/api-endpoints.md
