@@ -1,7 +1,7 @@
 http://www.futonsurfing.site/
 
 
-## MVP 
+## MVP
 - [ ] Heroku
 - [ ] new Acc,log in, guest
 - [ ] user profile
@@ -19,7 +19,7 @@ http://www.futonsurfing.site/
 * [API endpoints][api-endpoints]
 * [DB schema][schema]
 
-[views]: docs/Wireframes
+[views]: docs/wireframes
 [components]: docs/components.md
 [redux-cycles]: docs/redux-cycles.md
 [api-endpoints]: docs/api-endpoints.md
