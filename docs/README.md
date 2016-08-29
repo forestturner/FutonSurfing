@@ -7,7 +7,7 @@
 
 [views]: docs/views.md
 [components]: docs/components.md
-[flux-cycles]: docs/redux-cycles.md
+[redux-cycles]: docs/redux-cycles.md
 [api-endpoints]: docs/api-endpoints.md
 [schema]: docs/schema.md
 
