@@ -5,7 +5,7 @@
 * [API endpoints][api-endpoints]
 * [DB schema][schema]
 
-[views]: docs/wireframes
+[views]: docs/wireframe
 [components]: docs/components.md
 [redux-cycles]: docs/redux-cycles.md
 [api-endpoints]: docs/api-endpoints.md
