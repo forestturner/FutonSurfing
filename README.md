@@ -1,71 +1,87 @@
-api-endpoints.md
-component-heirarchy.md
-redux-structure.md
-sample-state.md
-schema.md
+http://www.futonsurfing.site/
 
 
-home page/splash page
-Spots/cities
-Bookings/request to stay with host
-Spots search (by location & availability) & Google Maps on search
-Reviews/references
-Bonus: Messaging
-Bonus: User/host profiles
+## Design Docs
+* [View Wireframes][views]
+* [React Components][components]
+* [Redux Cycles][redux-cycles]
+* [API endpoints][api-endpoints]
+* [DB schema][schema]
+
+[views]: docs/views.md
+[components]: docs/components.md
+[flux-cycles]: docs/redux-cycles.md
+[api-endpoints]: docs/api-endpoints.md
+[schema]: docs/schema.md
+
+## Implementation Timeline
+
+### Phase 1: Backend setup and Front End User Authentication (2 days, W1 W 6pm)
+
+**Objective:** Functioning rails project with front-end Authentication
+- [ ] host on Heroku
+- [ ] create new project
+- [ ] authentication backend setup
+- [ ] set up flux cycle for frontend auth
+- [ ] user signup/signin components
+- [ ] blank landing component after signin
+- [ ] style front end auth
 
 
+### Phase 2: Hosts Model, API, and components (1 days, W1 Th 6pm)
+
+**Objective:** Hosts can be created, read, edited and destroyed through
+the API.
+
+- [ ] Hosts CRUD API
+- [ ] Hosts seed
+- [ ] Hosts index
+- [ ] Host item detail
 
 
-Heroku Link
+### Phase 3: Map, Filters, NavBar, and Search Components (2 day, W2 Mon 6pm)
 
-At the end of the first day of full-stack projects, you should have a link to the live version of your site. It doesn't have to be pretty, but it has to be there. Push to Heroku ASAP!
+**Objective:** Hosts can be searched by location, availability, and filtered.
 
-Minimum Viable Product
+- [ ] Maps component
+- [ ] Filters Component
+- [ ] Style Map and Filters
+- [ ] NavBar Component
+- [ ] Search Component
 
-Write a one-sentence summary of the project and a list of the features that would be absolutely necessary for the app to be marketable. Your MVP section must follow the format outlined here.
 
-Wireframes
+### Phase 4: Profile, Booking, Review, and ReviewIndex Components (1 day, W2 Tu 6pm)
 
-/wireframes
-Links to wireframes of your application's UI views. Each wireframe should be a basic representation of the layout and information presented in a view. If you plan to use nested React components, clearly indicate the hierarchy in your wireframes. We should be able to see every view of your website using your wireframes, and how each view is reached.
+**Objective:** Hosts can be booked and referenced. Profiles can be viewed.
 
-NB: You can use any tool you like to create your wireframes (pen and paper are completely acceptable). If your writing looks like chicken scratches, try draw.io.
+- [ ] Profile component
+- [ ] Style the Profile
+- [ ] Booking Component
+- [ ] Style the Bookings
+- [ ] Review Component
+- [ ] ReviewIndex Component
+- [ ] Style the Reference
 
-React Components
+### Phase 5: Landing Page (1 day, W2 We 6pm)
 
-component-heirarchy.md
-In addition to the wireframes, you should diagram a tree indicating your application's overall component structure.
+**objective:** Landing page will have car visuals and a guest login button.
 
-Discuss how you will nest your components. If components will need containers, indicate what state and dispatch props they will need. For presentational components, discuss what props and state they will need.
+- [ ] Landing Page
+- [ ] Style Landing Page
 
-Map out your React Routes with their respective components and paths.
+### Phase 6: - Host Hosts (1 day, W2 Th 6pm)
 
-See the sample project proposal for an example of this.
+**objective:** Hosts can be hosted by the user
 
-Sample State
+- [ ] Style profile page
+- [ ] Polish the user experience
 
-sample-state.md
-Create a basic illustration of your state shape. Think about what information you need to store for your app to work, and how best to organize it to minimize duplication and maximize ease of access.
 
-Redux Architecture
-
-redux-structure.md
-Discuss how information will move through your application state and where it will be stored.
-
-Organize your discussion around each slice (i.e. reducer) of state that will be needed. You should be able to use this document to trace an action starting with where it was dispatched, through any middlewares and API utils involved, through the reducer, and finally to the components that update as a result. This is important because once you start implementing your redux loops, that's precisely what you'll need to do.
-
-DB Schema
-
-schema.md
-Link to a document outlining the database schema for your app. Build up the schema by walking through your app's wireframes. Think carefully about what data will be needed for each view and the best way to store that data. Make note of any database-level validations and foreign key relationships.
-
-API Endpoints
-
-api-endpoints.md
-Link to a page that lists your Rails API endpoints. Break these up between HTML and JSON endpoints. Discuss what params, if any, will be needed for each endpoint, and what information will be returned.
-
-Implementation Timeline
-
-Create a section in your proposal README for each phase of your project to develop an implementation timeline.
-
-Refer back to your MVP and group the features into logical phases with detailed lists of each task necessary to develop the feature. This will be the road map for your application. Rather than building the entire project all at once, you're going to implement one feature at a time. You should have a working app at the end of each phase (even if not all of your features are in yet). For each phase, write a brief game plan and list out any third-party APIs, front-end and back-end components you will need to implement.
+### Bonus Features (TBD)
+- [ ] Dashboard
+- [ ] Messaging
+- [ ] Events
+- [ ] Friends
+- [ ] search by name
+- [ ] boring about selections
+- [ ] House Photos

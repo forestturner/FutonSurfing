@@ -10,15 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828014046) do
+ActiveRecord::Schema.define(version: 20160829055406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "guest_id",   null: false
+    t.integer  "host_id",    null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hosts", force: :cascade do |t|
+    t.float    "lat",         null: false
+    t.float    "lng",         null: false
+    t.text     "description", null: false
+    t.string   "firstname",   null: false
+    t.string   "lastname",    null: false
+    t.string   "email",       null: false
+    t.string   "image_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "references", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "host_id",     null: false
+    t.text     "description", null: false
+    t.integer  "rating",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
+    t.string   "firstname",       null: false
+    t.string   "lastname",        null: false
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
+    t.string   "email",           null: false
+    t.string   "profile_img_url"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
