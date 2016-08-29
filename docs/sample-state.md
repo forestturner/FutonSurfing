@@ -18,9 +18,17 @@
   references: {
     1: {
       user_id: 1,
-      description: "wow ! Great guy!",
       host_id: 1,
+      description: "wow ! Great guy!",
       rating: 5
+    }
+  },
+  bookings: {
+    1: {
+      user_id: 1,
+      host_id: 1,
+      start_date: 10/12/16,
+      end_date: 11/9/16
     }
   },
 }
