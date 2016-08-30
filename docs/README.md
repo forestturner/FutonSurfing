@@ -25,20 +25,20 @@
 - [ ] style front end auth
 
 
-### Phase 2: Hosts Model, API, and components (1 days, W1 Th 6pm)
+### Phase 2: Futons Model, API, and components (1 days, W1 Th 6pm)
 
-**Objective:** Hosts can be created, read, edited and destroyed through
+**Objective:** Futons can be created, read, edited and destroyed through
 the API.
 
-- [ ] Hosts CRUD API
-- [ ] Hosts seed
-- [ ] Hosts index
-- [ ] Host item detail
+- [ ] Futons CRUD API
+- [ ] Futons seed
+- [ ] Futons index
+- [ ] Futon item details
 
 
 ### Phase 3: Map, Filters, NavBar, and Search Components (2 day, W2 Mon 6pm)
 
-**Objective:** Hosts can be searched by location, availability, and filtered.
+**Objective:** Futons can be searched by location, availability, and filtered.
 
 - [ ] Maps component
 - [ ] Filters Component
@@ -47,17 +47,15 @@ the API.
 - [ ] Search Component
 
 
-### Phase 4: Profile, Booking, Review, and ReviewIndex Components (1 day, W2 Tu 6pm)
+### Phase 4: Profile, Booking, Reference, and ReferenceIndex Components (1 day, W2 Tu 6pm)
 
-**Objective:** Hosts can be booked and referenced. Profiles can be viewed.
+**Objective:** Futons can be booked. Profiles can be viewed.
 
 - [ ] Profile component
 - [ ] Style the Profile
 - [ ] Booking Component
 - [ ] Style the Bookings
-- [ ] Review Component
-- [ ] ReviewIndex Component
-- [ ] Style the Reference
+
 
 ### Phase 5: Landing Page (1 day, W2 We 6pm)
 
@@ -66,15 +64,20 @@ the API.
 - [ ] Landing Page
 - [ ] Style Landing Page
 
-### Phase 6: - Host Hosts (1 day, W2 Th 6pm)
+### Phase 6: - Beautify website (1 day, W2 Th 6pm)
 
-**objective:** Hosts can be hosted by the user
+**objective:** Beautify website.
 
 - [ ] Style profile page
 - [ ] Polish the user experience
 
 
 ### Bonus Features (TBD)
+- [ ] Reference Component
+- [ ] ReferenceIndex Component
+- [ ] Style the Reference
+
+
 - [ ] Dashboard
 - [ ] Messaging
 - [ ] Events

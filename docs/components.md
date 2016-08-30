@@ -1,27 +1,28 @@
 ## Component Hierarchy
 
 * **App**
-  * Navbar
+  * FutonForm
+  * FutonMap
+  * FutonShow
+    * BookingContainer
+     * BookingButton
+     * BookingShow
+     * BookingForm
   * Search
-  * HostIndex
-    * HostMap
-    * HostItem
-    * HostFilter
-  * HostProfile
-    * HostMap
-    * ReferenceIndex
-      * ReferenceItem
-    * ReferenceForm
-    * BookingIndex
-      * BookingItem
-    * BookingForm
+  * sessionForm
+  * UserProfile
+
 
 
 
 ## Routes
 
-* **component:** `App` **path:** `/`
-  * **component:** `HostIndex` **path:** `index`
-  * **component:** `HostIndex` **path:** `hosts`
-    * **component:** `HostDetail` **path:** `hosts/:hostId`
-  * **component:** `HostListing` **path:** `/editHostlisting`
+* **component:** `Root` **path:** `/`
+  * **component:** `FutonShow` **path:** `futon_show`
+    * **component:** `BookingContainer` **path:** `futon_show/booking_container`
+      * **component:** `BookingShow` **path:** `futon_show/booking_show`
+      * **component:** `BookingButton` **path:** `futon_show/booking_button`
+      * **component:** `BookingForm` **path:** `futon_show/booking_form`
+  * **component:** `Search` **path:** `search`
+  * **component:** `sessiongForm` **path:** `session_form`
+  * **component:** `UserProfile` **path:** `users/:userId`

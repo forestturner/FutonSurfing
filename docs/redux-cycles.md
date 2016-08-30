@@ -40,103 +40,63 @@
   0. invoked from API callbacks on success for actions that generate POST requests
   0. removes `_errors` for a given `form` in the `ErrorStore`
 
-## Host Cycles
+## Futon Cycles
 
-### Host API Request Actions
+### Futon API Request Actions
 
-* `fetchAllHosts`
-  0. invoked from `HostsIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/hosts` is called.
-  0. `receiveAllHosts` is set as the success callback.
+* `fetchAllFutons`
+  0. invoked from `FutonsIndex` `didMount`/`willReceiveProps`
+  0. `GET /api/futons` is called.
+  0. `receiveAllFutons` is set as the success callback.
 
 
-* `fetchSingleHost`
-  0. invoked from `HostDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/hosts/:id` is called.
-  0. `receiveSingleHost` is set as the success callback.
+* `fetchSingleFuton`
+  0. invoked from `FutonDetail` `didMount`/`willReceiveProps`
+  0. `GET /api/futons/:id` is called.
+  0. `receiveSingleFuton` is set as the success callback.
 
-* `createHost`
-  0. invoked from new host button `onClick`
-  0. `POST /api/hosts` is called.
-  0. `receiveSingleHost` is set as the success callback.
+* `createFuton`
+  0. invoked from new futon button `onClick`
+  0. `POST /api/futons` is called.
+  0. `receiveSingleFuton` is set as the success callback.
 
-* `updateHost`
-  0. invoked from `HostForm` `onSubmit`
-  0. `POST /api/hosts` is called.
-  0. `receiveSingleHost` is set as the success callback.
+* `updateFuton`
+  0. invoked from `FutonForm` `onSubmit`
+  0. `POST /api/futons` is called.
+  0. `receiveSingleFuton` is set as the success callback.
 
-* `destroyHost`
-  0. invoked from delete host button `onClick`
-  0. `DELETE /api/hosts/:id` is called.
-  0. `removeHost` is set as the success callback.
+* `destroyFuton`
+  0. invoked from delete futon button `onClick`
+  0. `DELETE /api/futons/:id` is called.
+  0. `removeFuton` is set as the success callback.
 
-### Hosts API Response Actions
+### Futons API Response Actions
 
-* `receiveAllHosts`
+* `receiveAllFutons`
   0. invoked from an API callback.
-  0. `Host` store updates `_hosts` and emits change.
+  0. `Futon` store updates `_futons` and emits change.
 
-* `receiveSingleHost`
+* `receiveSingleFuton`
   0. invoked from an API callback.
-  0. `Host` store updates `_hosts[id]` and emits change.
+  0. `Futon` store updates `_futons[id]` and emits change.
 
-* `removeHost`
+* `removeFuton`
   0. invoked from an API callback.
-  0. `Host` store removes `_hosts[id]` and emits change.
+  0. `Futon` store removes `_futons[id]` and emits change.
 
 ### Store Listeners
 
-* `HostsIndex` component listens to `Host` store.
-* `HostDetail` component listens to `Host` store.
+* `FutonsIndex` component listens to `Futon` store.
+* `FutonDetail` component listens to `Futon` store.
 
 
-## Reference Cycles
-
-### Reference API Request Actions
-
-* `fetchAllReferences`
-  0. invoked from `ReferencesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/reviews` is called.
-  0. `receiveAllReferences` is set as the success callback.
-
-
-* `createReference`
-  0. invoked from new review button `onClick`
-  0. `POST /api/reviews` is called.
-  0. `receiveSingleReference` is set as the callback.
-
-
-
-* `destroyReference`
-  0. invoked from delete review button `onClick`
-  0. `DELETE /api/reviews/:reviewId` is called.
-  0. `removeReference` is set as the success callback.
-
-### References API Response Actions
-
-* `receiveAllReferences`
-  0. invoked from an API callback.
-  0. `Reference` store updates `_reviews` and emits change.
-
-* `receiveSingleReference`
-  0. invoked from an API callback.
-  0. `Reference` store updates `_reviews[id]` and emits change.
-
-* `removeReference`
-  0. invoked from an API callback.
-  0. `Reference` store removes `_reviews[id]` and emits change.
-
-### Store Listeners
-
-* `ReferencesIndex` component listens to `Reference` Store
-* `ReferenceDetail` component listens to `Reference` Store
 
 
 ## SearchSuggestion Cycles
 
 * `fetchSearchSuggestions`
-  0. invoked from `HostSearchBar` `onChange` when there is text
-  0. `GET /api/hosts` is called with `text` param.
+  0. invoked from `FutonSearchBar` `onChange` when there is text
+  0. `GET /api/futons` is called with `text` param.
   0. `receiveSearchSuggestions` is set as the success callback.
 
 * `receiveSearchSuggestions`
@@ -144,7 +104,7 @@
   0. `SearchSuggestion` store updates `_suggestions` and emits change.
 
 * `removeSearchSuggestions`
-  0. invoked from `HostSearchBar` `onChange` when empty
+  0. invoked from `FutonSearchBar` `onChange` when empty
   0. `SearchSuggestion` store resets `_suggestions` and emits change.
 
 ### Store Listeners
@@ -195,3 +155,51 @@
 
 * `BookingsIndex` component listens to `Booking` store.
 * `BookingsForm` component listens to `Booking` store.
+
+
+
+
+
+# Bonus
+
+
+## Reference Cycles
+
+### Reference API Request Actions
+
+* `fetchAllReferences`
+0. invoked from `ReferencesIndex` `didMount`/`willReceiveProps`
+0. `GET /api/reviews` is called.
+0. `receiveAllReferences` is set as the success callback.
+
+
+* `createReference`
+0. invoked from new review button `onClick`
+0. `POST /api/reviews` is called.
+0. `receiveSingleReference` is set as the callback.
+
+
+
+* `destroyReference`
+0. invoked from delete review button `onClick`
+0. `DELETE /api/reviews/:reviewId` is called.
+0. `removeReference` is set as the success callback.
+
+### References API Response Actions
+
+* `receiveAllReferences`
+0. invoked from an API callback.
+0. `Reference` store updates `_reviews` and emits change.
+
+* `receiveSingleReference`
+0. invoked from an API callback.
+0. `Reference` store updates `_reviews[id]` and emits change.
+
+* `removeReference`
+0. invoked from an API callback.
+0. `Reference` store removes `_reviews[id]` and emits change.
+
+### Store Listeners
+
+* `ReferencesIndex` component listens to `Reference` Store
+* `ReferenceDetail` component listens to `Reference` Store

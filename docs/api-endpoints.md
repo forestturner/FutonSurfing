@@ -20,22 +20,30 @@
 - `DELETE /session`
 - `GET /session/new`
 
-### Hosts
+### Futons
 
-- `GET /api/hosts`
-- `POST /api/hosts`
-- `GET /api/hosts/:id`
-- `PATCH /api/hosts/:id`
-- `DELETE /api/hosts/:id`
+- `GET /api/futons`
+- `POST /api/futons`
+- `GET /api/futons/:id`
+- `PATCH /api/futons/:id`
+- `DELETE /api/futons/:id`
+
+### Profile
+
+- `POST /api/profile`
+- `GET /api/profile/:id`
+- `PATCH /api/profile/:id`
+- `DELETE /api/profile/:id`
+
 
 ### Bookings
 
-- `GET /api/hosts/:host_Id/bookings`
-- `POST /api/hosts/:host_Id/bookings`
+- `GET /api/futons/:futon_Id/bookings`
+- `POST /api/futons/:futon_Id/bookings`
 - `PATCH /api/bookings/:booking_id`
 - `DELETE /api/bookings/:booking_id`
 
 ### Refernces
-- A host's references will be included in the host show template
-- `POST /api/hosts/:host_Id/references`
-- `DELETE /api/hosts/:host_Id/references/:reference_Id`
+- A futon's references will be included in the futon show template
+- `POST /api/futons/:futon_Id/references`
+- `DELETE /api/futons/:futon_Id/references/:reference_Id`
