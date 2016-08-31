@@ -1,28 +1,25 @@
 ## Component Hierarchy
 
 * **App**
+  * sessionFormContainer  
+  * UserProfile
   * FutonForm
-  * FutonMap
   * FutonShow
     * BookingContainer
-     * BookingButton
-     * BookingShow
-     * BookingForm
+  * FutonMap
   * Search
-  * sessionForm
-  * UserProfile
+
 
 
 
 
 ## Routes
 
-* **component:** `Root` **path:** `/`
-  * **component:** `FutonShow` **path:** `futon_show`
-    * **component:** `BookingContainer` **path:** `futon_show/booking_container`
-      * **component:** `BookingShow` **path:** `futon_show/booking_show`
-      * **component:** `BookingButton` **path:** `futon_show/booking_button`
-      * **component:** `BookingForm` **path:** `futon_show/booking_form`
-  * **component:** `Search` **path:** `search`
-  * **component:** `sessiongForm` **path:** `session_form`
-  * **component:** `UserProfile` **path:** `users/:userId`
+* **component:** `App` **path:** `/`
+* **component:** `SearchContainer` 
+* **component:** `UserProfileContainer`
+  * **component:** `SessionFormContainer` **path:** `./login`
+  * **component:** `SessionFormContainer` **path:** `./signup`
+  * **component:** `FotonFormContainer` **path:** `/futons/new`
+  * **component:** `FotonShowContainer` **path:** `./futons/:benchId"`
+    * **component:** `BookingContainer` **path:** `./futons/:benchId"/booking`

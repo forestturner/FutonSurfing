@@ -1,0 +1,2 @@
+class Futon < ApplicationRecord
+end
