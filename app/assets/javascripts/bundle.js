@@ -23133,10 +23133,30 @@
 	  function AppRouter(props) {
 	    _classCallCheck(this, AppRouter);
 	
-	    return _possibleConstructorReturn(this, (AppRouter.__proto__ || Object.getPrototypeOf(AppRouter)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (AppRouter.__proto__ || Object.getPrototypeOf(AppRouter)).call(this, props));
+	
+	    _this.ensureLoggedIn = _this.ensureLoggedIn.bind(_this);
+	    _this.redirectIfLoggedIn = _this.redirectIfLoggedIn.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(AppRouter, [{
+	    key: 'ensureLoggedIn',
+	    value: function ensureLoggedIn(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	      if (!currentUser) {
+	        replace('/login');
+	      }
+	    }
+	  }, {
+	    key: 'redirectIfLoggedIn',
+	    value: function redirectIfLoggedIn(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	      if (currentUser) {
+	        replace('/');
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -23145,8 +23165,8 @@
 	        _react2.default.createElement(
 	          _reactRouter.Route,
 	          { path: '/', component: _app2.default },
-	          _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _session_form_container2.default }),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _session_form_container2.default })
+	          _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _session_form_container2.default, onChange: this._redirectIfLoggedIn, onEnter: this._redirectIfLoggedIn }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn, onChange: this._redirectIfLoggedIn })
 	        )
 	      );
 	    }
@@ -23160,22 +23180,6 @@
 	// {/* <Route path="/navbar" component= { navbarContainer } /> */}
 	
 	
-	//   this.ensureLoggedIn = this.ensureLoggedIn.bind(this);
-	//   this.redirectIfLoggedIn = this.redirectIfLoggedIn.bind(this);
-	// }
-	//
-	// ensureLoggedIn(nextState, replace){
-	//   const currentUser = this.props.currentUser;
-	//   if (!currentUser) {
-	//     replace('/login');
-	//   }
-	// }
-	//
-	// redirectIfLoggedIn(nextState, replace){
-	//   const currentUser = this.props.currentUser;
-	//   if (currentUser) {
-	//     replace('/');
-	//   }
 	// }
 	
 	{} /* <Route path="/login" component={ SessionFormContainer }/> //onEnter={this.redirectIfLoggedIn}/>
@@ -47876,7 +47880,11 @@
 					'ul',
 					null,
 					this.props.errors.map(function (error, i) {
-						return _react2.default.createElement('li', { key: 'error-' + i });
+						return _react2.default.createElement(
+							'li',
+							{ key: 'error-' + i },
+							error
+						);
 					})
 				);
 			}
@@ -51499,22 +51507,19 @@
 	});
 	
 	var SessionReducer = function SessionReducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? { current_user: null, errors: [] } : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? _freshUser : arguments[0];
 	  var action = arguments[1];
 	
 	
 	  switch (action.type) {
 	
 	    case _session_actions.SessionConstants.RECEIVE_CURRENT_USER:
-	      debugger;
 	      var newUser = action.currentUser;
-	      return (0, _merge2.default)({}, _freshUser, { user: action.currentUser });
+	      return (0, _merge2.default)({}, state, { user: action.currentUser });
 	    case _session_actions.SessionConstants.RECEIVE_ERRORS:
-	      debugger;
-	      var newErrors = action.errors;
-	      return (0, _merge2.default)({}, _freshUser, { newErrors: newErrors });
+	      var errors = action.errors;
+	      return (0, _merge2.default)({}, state, { errors: errors });
 	    case _session_actions.SessionConstants.LOG_OUT:
-	      debugger;
 	      return (0, _merge2.default)({}, _freshUser);
 	    default:
 	      return state;
@@ -51662,6 +51667,7 @@
 	      var result = next(action);
 	      switch (action.type) {
 	        case _session_actions.SessionConstants.LOG_IN:
+	
 	          (0, _session_util.login)(action.user, loginSuccess, errorsCallback);
 	          return next(action);
 	        case _session_actions.SessionConstants.LOG_OUT:
@@ -51670,7 +51676,7 @@
 	          });
 	          break;
 	        case _session_actions.SessionConstants.SIGN_UP:
-	          debugger;
+	
 	          (0, _session_util.signup)(action.user, loginSuccess, errorsCallback);
 	          return next(action);
 	        default:

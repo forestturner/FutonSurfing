@@ -15,13 +15,14 @@ export default ({getState, dispatch}) => next => action => {
   const result = next(action);
   switch(action.type) {
     case SessionConstants.LOG_IN:
+
       login(action.user,loginSuccess,errorsCallback);
       return next(action);
     case SessionConstants.LOG_OUT:
       logout(() => next(action));
       break;
     case SessionConstants.SIGN_UP:
-      debugger;
+  
       signup(action.user, loginSuccess, errorsCallback);
       return next(action);
     default:
