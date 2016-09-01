@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+import { logOut } from '../../actions/session_actions';
 import NavBar from './navbar';
 
 const mapStateToProps = state => ({
@@ -7,10 +7,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logOut: () => dispatch(logOut())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(NavBar);
+
+
+// /home/forest/Development/FutonSurfing/frontend/actions/session_actions.js
+// /home/forest/Development/FutonSurfing/frontend/actions/session_actions.js
+// /home/forest/Development/FutonSurfing/frontend/components/navbar/navbar_container.js
