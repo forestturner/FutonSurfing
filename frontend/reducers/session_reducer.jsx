@@ -7,20 +7,17 @@ const _freshUser = Object.freeze({
 });
 
 
-const SessionReducer = function(state ={current_user: null,errors: []}, action){
+const SessionReducer = function(state =_freshUser, action){
 
   switch(action.type){
 
     case SessionConstants.RECEIVE_CURRENT_USER:
-      debugger;
       const newUser = action.currentUser;
-      return merge({},_freshUser,{user: action.currentUser});
+      return merge({},state,{user: action.currentUser});
     case SessionConstants.RECEIVE_ERRORS:
-      debugger;
-      const newErrors = action.errors;
-      return merge({},_freshUser,{newErrors});
+      const errors = action.errors;
+      return merge({},state,{errors});
     case SessionConstants.LOG_OUT:
-    debugger;
       return merge({},_freshUser);
     default:
       return state;
