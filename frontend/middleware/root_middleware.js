@@ -1,9 +1,9 @@
-import { applyMiddleware } from 'react-redux';
 
-import SessionMiddleware from '../middleware/session_middleware';
-
+import { applyMiddleware } from 'redux';
+import FutonMiddleware from './futon_middleware.js';
+import SessionMiddleware from './session_middleware.js';
 const RootMiddleware = applyMiddleware(
-  SessionMiddleware
+  SessionMiddleware,
+  FutonMiddleware
 );
-
 export default RootMiddleware;

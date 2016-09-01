@@ -41,19 +41,24 @@ import configureStore from './store/store';
 // export default navbarInstance;
 // ReactDOM.render(navbarInstance, mountNode);
 
-
+import {logIn,signUp} from './actions/session_actions.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+
   let store;
   if (window.currentUser) {
-    const initialState = {session: {currentUser: window.currentUser}};
+    const initialState = {session: {currentUser: window.currentUser,errors: []}};
     store = configureStore(initialState);
   }
   else {
     store = configureStore();
-    }
-
+  }
+  window.logIn = logIn;
+  window.signUp = signUp;
+  window.store = store;
+  // let store = configureStore();
   const root = document.getElementById('NavBar');
   ReactDOM.render(<Root store={store}/>, root);
    //ReactDOM.render(<h1>FUTON SURFING</h1>, root);
