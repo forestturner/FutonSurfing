@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, hashHistory } from 'react-router';
+	import React from 'react';
+import { Link} from 'react-router';
 
 class SessionForm extends React.Component {
 	constructor(props){
@@ -13,20 +13,13 @@ class SessionForm extends React.Component {
 			profile_img_url: ""
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
-
 		this.signupMethod = this.signupMethod.bind(this);
 		this.loginMethod = this.loginMethod.bind(this);
+		this.guestMethod = this.guestMethod.bind(this);
+
 	}
 
-	componentDidUpdate(){
-		this.redirectIfLoggedIn();
-	}
 
-	redirectIfLoggedIn(){
-		if (this.props.loggedIn){
-			hashHistory.push("/");
-		}
-	}
 
 	update(field){
 		return e => { this.setState({[field]: e.currentTarget.value }); };
@@ -68,7 +61,7 @@ class SessionForm extends React.Component {
 //
 	signupMethod(){
 		return(
-		<div className="login-form-container">
+		<div id="myModal" class="modal">
 			<form onSubmit={this.handleSubmit} className="login-form-box">
 				Futonsurfing
 				<br/>
@@ -90,10 +83,8 @@ class SessionForm extends React.Component {
 					<label> email:
 						<input type="text" value={this.state.email}	onChange={this.update("email")} className="login-input" />
 					</label>
-					<label> profile_img_url:
-						<input type="text" value={this.state.profile_img_url}	onChange={this.update("profile_img_url")} className="login-input" />
-					</label>
-					<input type="submit" value="Submit"/>
+
+					<input type="submit" value="sign-up"/>
 				</div>
 			</form>
 		</div>
@@ -102,7 +93,7 @@ class SessionForm extends React.Component {
 
 	loginMethod(){
 		return(
-		<div className="login-form-container">
+		<div id="myModal" class="modal">
 			<form onSubmit={this.handleSubmit} className="login-form-box">
 				Futonsurfing
 				<br/>
@@ -115,22 +106,50 @@ class SessionForm extends React.Component {
 					<label> Password:
 						<input type="password" value={this.state.password} onChange={this.update("password")} className="login-input" />
 					</label>
-					<input type="submit" value="Submit"/>
+					<input type="submit" value="login"/>
 				</div>
 			</form>
 		</div>
 	);
 	}
 
+	guestMethod() {
+		this.state.username = "Guest";
+		this.state.password = "password1";
+		return(
+			<div id="myModal" class="modal">
+				<form onSubmit={this.handleSubmit} className="login-form-box">
+					Futonsurfing
+					<br/>
+					Please { this.props.formType } or { this.navLink() }
+					{ this.renderErrors() }
+					<div className="login-form">
+						<label> Username:
+							<input type="text" value={this.state.username}	onChange={this.update("username")} className="login-input" />
+						</label>
+						<label> Password:
+							<input type="password" value={this.state.password} onChange={this.update("password")} className="login-input" />
+						</label>
+						<input type="submit" value="login"/>
+					</div>
+				</form>
+			</div>
+		)
+	}
 
 
 
 
 	render() {
 		let renderMethod;
-
+		// if(this.props.loggedIn){
+		// 	this.redirectIfLoggedIn();
+		// 	return;
+		// }
 		if (this.props.formType === "login") {
 			renderMethod = this.loginMethod();
+		} else if (this.props.formType === "guest") {
+			renderMethod = this.guestMethod();
 		} else {
 			renderMethod = this.signupMethod();
 		}

@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
   else {
     store = configureStore();
   }
-  window.logIn = logIn;
-  window.signUp = signUp;
+  // window.logIn = logIn;
+  // window.signUp = signUp;
   window.store = store;
   // let store = configureStore();
   const root = document.getElementById('NavBar');

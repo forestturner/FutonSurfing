@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
 
+
+
  group :production do
    gem 'newrelic_rpm'
    gem 'rails_12factor' # error feedback
@@ -41,6 +43,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'faker'
 end
 
 group :development do
