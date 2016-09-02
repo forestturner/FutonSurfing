@@ -22,7 +22,9 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   before_validation :ensure_session_token_uniqueness
 
-  has_many :futons
+  has_many :futons,
+  foreign_key: :user_id,
+  class_name: "Futon"
 
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)

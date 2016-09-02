@@ -27,9 +27,9 @@ class NavBar extends React.Component {
            </Navbar.Form>
           </Nav>
           <Nav pullRight>
-
-            <Link to="/signup">sign up </Link>;
-            <Link to="/login">log in</Link>;
+          <Link to="/login" className="btn btn-default login"> log in </Link>
+          <Link to="/signup" className="btn btn-primary join"> Join </Link>
+            <Link to="/guest" className="btn btn-warning guest"> Guest </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

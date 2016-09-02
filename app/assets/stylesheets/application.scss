@@ -18,7 +18,191 @@
  @import "bootstrap";
 
 
+ /* --- RESET --- */
+
+
+
+
 .navbar-inverse {
   background-color: #fff;
   border-color: #ffffff;
+}
+.login-form label {
+  display: -webkit-box;
+}
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+ .row.content {height: 1500px}
+
+ /* Set gray background color and 100% height */
+ .sidenav {
+   background-color: #f1f1f1;
+   height: 100%;
+ }
+
+ /* Set black background color, white text and some padding */
+ footer {
+   background-color: #555;
+   color: white;
+   padding: 15px;
+ }
+
+ /* On small screens, set height to 'auto' for sidenav and grid */
+ @media screen and (max-width: 767px) {
+   .sidenav {
+     height: auto;
+     padding: 15px;
+   }
+   .row.content {height: auto;}
+ }
+
+ /* --- CONTENT --- */
+
+ .content {
+   margin: 0 auto;
+   background: #fff;
+   width: 900px;
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+ }
+
+ .content-sidebar {
+   float: left;
+   width: 200px;
+   padding: 20px;
+ }
+
+ .content-main {
+   float: right;
+   width: 620px;
+   padding: 20px 20px 20px 19px;
+   border-left: 1px solid #ccc;
+ }
+
+ .content-header {
+   font-size: 36px;
+   text-align: right;
+ }
+
+ /* --- SIDEBAR --- */
+
+ .profile-picture {
+   display: block;
+   border: 1px solid #000;
+   position: relative;
+ }
+
+ .online {
+   display: block;
+   position: absolute;
+   top: 0;
+   left: 0;
+   font-weight: bold;
+   color: #fff;
+   background: #0c0;
+   padding: 5px 10px;
+   font-size: 12px;
+   text-transform: uppercase;
+   letter-spacing: 3px;
+ }
+
+ .profile-info {
+   margin: 20px 0;
+ }
+
+ .profile-info > h2 {
+   font-weight: bold;
+   font-size: 24px;
+ }
+
+ .profile-info > p {
+   margin: 20px 0 0 0;
+ }
+
+ .profile-nav {
+
+ }
+
+ .profile-nav > li {
+   border-bottom: 1px solid #ccc;
+ }
+
+ .profile-nav > li:first-child {
+   border-top: 1px solid #ccc;
+ }
+
+ .profile-nav a {
+   display: block;
+   padding: 5px;
+   font-weight: bold;
+ }
+ .group:after {
+   content: "";
+   clear: both;
+   display: block;
+ }
+
+ body {
+   box-sizing: content-box;
+   font-family: sans-serif;
+   font-size: 16px;
+   line-height: 1.1666666666;
+   background: #eee;
+   color: #000;
+ }
+
+ ul {
+   list-style: none;
+ }
+
+ img {
+   display: block;
+   width: 100%;
+   height: auto;
+ }
+
+.login {
+    margin:5px;
+}
+.join{
+  margin:5px;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
