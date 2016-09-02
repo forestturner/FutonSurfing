@@ -4,6 +4,7 @@ import App from '../app';
 import navbarContainer from '../navbar/navbar_container.js'
 import SessionFormContainer from '../session_form/session_form_container';
 import ProfileContainer from '../profile/profile_container';
+import splashPage from '../splashPage/IndexPage';
 class AppRouter extends React.Component{
   constructor(props){
     super(props);
@@ -29,6 +30,7 @@ class AppRouter extends React.Component{
     return(
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
+        <IndexRoute component= {splashPage}/>
           <Route path="login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>

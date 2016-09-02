@@ -23123,6 +23123,10 @@
 	
 	var _profile_container2 = _interopRequireDefault(_profile_container);
 	
+	var _IndexPage = __webpack_require__(636);
+	
+	var _IndexPage2 = _interopRequireDefault(_IndexPage);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23169,6 +23173,7 @@
 	        _react2.default.createElement(
 	          _reactRouter.Route,
 	          { path: '/', component: _app2.default },
+	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _IndexPage2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'guest', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
@@ -51913,6 +51918,55 @@
 			}
 		});
 	};
+
+/***/ },
+/* 636 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var IndexPage = function (_React$Component) {
+	  _inherits(IndexPage, _React$Component);
+	
+	  function IndexPage() {
+	    _classCallCheck(this, IndexPage);
+	
+	    return _possibleConstructorReturn(this, (IndexPage.__proto__ || Object.getPrototypeOf(IndexPage)).apply(this, arguments));
+	  }
+	
+	  _createClass(IndexPage, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement("img", { src: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775241/have-fun-with-FutonSurfing-4be6460989531efdc476a47756fc0d12_clqp2i.jpg", alt: "" })
+	      );
+	    }
+	  }]);
+	
+	  return IndexPage;
+	}(_react2.default.Component);
+	
+	exports.default = IndexPage;
 
 /***/ }
 /******/ ]);
