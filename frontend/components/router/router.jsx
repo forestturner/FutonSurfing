@@ -7,6 +7,8 @@ import ProfileContainer from '../profile/profile_container';
 import splashPage from '../splashPage/IndexPage';
 import FutonShowContainer from '../futon_show/futon_show_container';
 import FutonsShowContainer from '../futon_all/futons_show_container';
+import UserShowContainer from '../user_show/user_show_container';
+import UsersShowContainer from '../user_all/users_show_container';
 
 class AppRouter extends React.Component{
   constructor(props){
@@ -15,6 +17,8 @@ class AppRouter extends React.Component{
     this._redirectIfLoggedIn = this._redirectIfLoggedIn.bind(this);
     this.getFuton = this.getFuton.bind(this);
     this.getFutons = this.getFutons.bind(this);
+    this.getUser = this.getUser.bind(this);
+    this.getUsers = this.getUsers.bind(this);
   }
 
   _ensureLoggedIn(nextState, replace){
@@ -41,6 +45,18 @@ class AppRouter extends React.Component{
    this.props.requestFutons()
  }
 
+ getUser(nextState, replace) {
+   const currentUser = this.props.currentUser;
+
+   this.props.requestUser(currentUser.id);
+
+
+ }
+getUsers(nextState,replace) {
+  this.props.requestUsers()
+}
+
+
 
 
   render(){
@@ -53,7 +69,8 @@ class AppRouter extends React.Component{
           <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="futons" component={ FutonsShowContainer} onEnter ={this.getFutons }/>
           <Route path="futons/:futonId" component={FutonShowContainer} onEnter={this.getFuton}/>
-          {/* <Route path ="publicProfile/:userId" component={publicProfileContainer} /> */}
+          <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
+          <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
           <Route path="profile" component={ProfileContainer} onEnter ={this._ensureLoggedIn}/>
         </Route>
       </Router>
