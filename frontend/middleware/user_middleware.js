@@ -10,7 +10,7 @@ export default ({getState,dispatch}) => next => action => {
       fetchUsers(usersSuccess);
       break;
     case UserConstants.REQUEST_USER:
-      fetchUser(userSuccess);
+      fetchUser(action.id,userSuccess);
       break;
     default:
       break;

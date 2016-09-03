@@ -23081,6 +23081,8 @@
 	
 	var _futon_actions = __webpack_require__(522);
 	
+	var _user_actions = __webpack_require__(652);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
@@ -23097,6 +23099,12 @@
 	    },
 	    requestFutons: function requestFutons() {
 	      return dispatch((0, _futon_actions.requestFutons)());
+	    },
+	    requestUser: function requestUser(id) {
+	      return dispatch((0, _user_actions.requestUser)(id));
+	    },
+	    requestUsers: function requestUsers() {
+	      return dispatch((0, _user_actions.requestUsers)());
 	    }
 	  };
 	};
@@ -23164,6 +23172,14 @@
 	
 	var _futons_show_container2 = _interopRequireDefault(_futons_show_container);
 	
+	var _user_show_container = __webpack_require__(645);
+	
+	var _user_show_container2 = _interopRequireDefault(_user_show_container);
+	
+	var _users_show_container = __webpack_require__(648);
+	
+	var _users_show_container2 = _interopRequireDefault(_users_show_container);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23184,6 +23200,8 @@
 	    _this._redirectIfLoggedIn = _this._redirectIfLoggedIn.bind(_this);
 	    _this.getFuton = _this.getFuton.bind(_this);
 	    _this.getFutons = _this.getFutons.bind(_this);
+	    _this.getUser = _this.getUser.bind(_this);
+	    _this.getUsers = _this.getUsers.bind(_this);
 	    return _this;
 	  }
 	
@@ -23217,6 +23235,18 @@
 	      this.props.requestFutons();
 	    }
 	  }, {
+	    key: 'getUser',
+	    value: function getUser(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	
+	      this.props.requestUser(currentUser.id);
+	    }
+	  }, {
+	    key: 'getUsers',
+	    value: function getUsers(nextState, replace) {
+	      this.props.requestUsers();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -23231,6 +23261,8 @@
 	          _react2.default.createElement(_reactRouter.Route, { path: 'guest', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'futons', component: _futons_show_container2.default, onEnter: this.getFutons }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'futons/:futonId', component: _futon_show_container2.default, onEnter: this.getFuton }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _users_show_container2.default, onEnter: this.getUsers }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'users/:userId', component: _user_show_container2.default, onEnter: this.getUser }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default, onEnter: this._ensureLoggedIn })
 	        )
 	      );
@@ -48197,6 +48229,8 @@
 	      var currentUser = this.props.currentUser;
 	      var listedFuton = '/futons/' + currentUser.id;
 	      var allFutons = "/futons";
+	      var UserProfile = '/users/' + currentUser.id;
+	      var allUsers = "/users";
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -48245,6 +48279,24 @@
 	                  _reactRouter.Link,
 	                  { to: allFutons },
 	                  'All FUTONS IN YOUR AREA'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: UserProfile },
+	                  'YOUR PUBLIC PROFILE'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: allUsers },
+	                  'All USERS IN YOUR AREA'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -48588,11 +48640,16 @@
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
+	var _user_reducer = __webpack_require__(655);
+	
+	var _user_reducer2 = _interopRequireDefault(_user_reducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
 	  futons: _futon_reducer2.default,
-	  session: _session_reducer2.default
+	  session: _session_reducer2.default,
+	  users: _user_reducer2.default
 	});
 
 /***/ },
@@ -52018,9 +52075,13 @@
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
+	var _user_middleware = __webpack_require__(653);
+	
+	var _user_middleware2 = _interopRequireDefault(_user_middleware);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var RootMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default, _futon_middleware2.default);
+	var RootMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default, _futon_middleware2.default, _user_middleware2.default);
 	exports.default = RootMiddleware;
 
 /***/ },
@@ -52312,8 +52373,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'futon-details' },
-	      _react2.default.createElement(_futon_index2.default, { futons: futons }),
-	      '/>'
+	      _react2.default.createElement(_futon_index2.default, { futons: futons })
 	    )
 	  );
 	};
@@ -52454,6 +52514,534 @@
 	  {/*TODO remove the  || 0 below*/}
 	{} /*{futon.favorite_users.length || 0 }*/
 	// </span> */}
+
+/***/ },
+/* 645 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _user_show = __webpack_require__(646);
+	
+	var _user_show2 = _interopRequireDefault(_user_show);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var userId = parseInt(ownProps.params.userId);
+	  var user = state.users[userId] || {};
+	  return {
+	    userId: userId,
+	    user: user
+	  };
+	};
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_user_show2.default);
+
+/***/ },
+/* 646 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _user_details = __webpack_require__(647);
+	
+	var _user_details2 = _interopRequireDefault(_user_details);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserShow = function UserShow(_ref) {
+	  var currentUserId = _ref.currentUserId;
+	  var requestUser = _ref.requestUser;
+	  var children = _ref.children;
+	  var user = _ref.user;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'single-user-show' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'single-user-show' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/profile' },
+	        ' Back to Dashboard '
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'user-details' },
+	      _react2.default.createElement(_user_details2.default, { user: user })
+	    )
+	  );
+	};
+	exports.default = UserShow;
+
+/***/ },
+/* 647 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserDetail = function UserDetail(_ref) {
+	  var user = _ref.user;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'user-index-item-info' },
+	    _react2.default.createElement('img', { src: user.profile_img_url }),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'user-index-item-category' },
+	      'Name: '
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'index-item-copy' },
+	      user.firstname + " " + user.lastname
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'user-index-item-category' },
+	      'Username: '
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'index-item-copy' },
+	      user.username
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'user-index-item-category' },
+	      'email: '
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'index-item-copy' },
+	      user.email
+	    ),
+	    _react2.default.createElement('br', null)
+	  );
+	};
+	exports.default = UserDetail;
+	
+	//
+	// create_table "users", force: :cascade do |t|
+	//   t.string   "firstname",       null: false
+	//   t.string   "lastname",        null: false
+	//   t.string   "password_digest", null: false
+	//   t.string   "session_token",   null: false
+	//   t.string   "email",           null: false
+	//   t.string   "profile_img_url"
+	//   t.datetime "created_at",      null: false
+	//   t.datetime "updated_at",      null: false
+	//   t.string   "username"
+	// end
+
+/***/ },
+/* 648 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _users_show = __webpack_require__(649);
+	
+	var _users_show2 = _interopRequireDefault(_users_show);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var users = state.users;
+	  return {
+	    users: users
+	  };
+	};
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_users_show2.default);
+
+/***/ },
+/* 649 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _user_index = __webpack_require__(650);
+	
+	var _user_index2 = _interopRequireDefault(_user_index);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserShow = function UserShow(_ref) {
+	  var users = _ref.users;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'all-user-show' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'all-user-show' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/profile' },
+	        ' Back to Dashboard'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'user-details' },
+	      _react2.default.createElement(_user_index2.default, { users: users })
+	    )
+	  );
+	};
+	exports.default = UserShow;
+
+/***/ },
+/* 650 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _user_index_item = __webpack_require__(651);
+	
+	var _user_index_item2 = _interopRequireDefault(_user_index_item);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserIndex = function UserIndex(props) {
+	  var users = props.users;
+	  var userKeys = Object.keys(users);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Users: '
+	    ),
+	    userKeys.map(function (key) {
+	      return _react2.default.createElement(_user_index_item2.default, { user: users[key], key: key });
+	    })
+	  );
+	};
+	exports.default = UserIndex;
+
+/***/ },
+/* 651 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var IndexItem = function (_React$Component) {
+	  _inherits(IndexItem, _React$Component);
+	
+	  function IndexItem(props) {
+	    _classCallCheck(this, IndexItem);
+	
+	    var _this = _possibleConstructorReturn(this, (IndexItem.__proto__ || Object.getPrototypeOf(IndexItem)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	
+	    return _this;
+	  }
+	
+	  _createClass(IndexItem, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      var userID = this.props.user.id;
+	      _reactRouter.hashHistory.push("users/" + userID);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var user = this.props.user;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'user-index-item', onClick: this.handleClick },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'user-index-item-info' },
+	          _react2.default.createElement('img', { src: user.profile_img_url }),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'user-index-item-category' },
+	            'Name: '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            user.firstname + " " + user.lastname
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'user-index-item-category' },
+	            'Username: '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            user.username
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'user-index-item-category' },
+	            'email: '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            user.email
+	          ),
+	          _react2.default.createElement('br', null)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return IndexItem;
+	}(_react2.default.Component);
+	
+	exports.default = IndexItem;
+	//
+	//
+	// create_table "users", force: :cascade do |t|
+	//   t.string   "firstname",       null: false
+	//   t.string   "lastname",        null: false
+	//   t.string   "password_digest", null: false
+	//   t.string   "session_token",   null: false
+	//   t.string   "email",           null: false
+	//   t.string   "profile_img_url"
+	//   t.datetime "created_at",      null: false
+	//   t.datetime "updated_at",      null: false
+	//   t.string   "username"
+	// end
+
+/***/ },
+/* 652 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UserConstants = exports.UserConstants = {
+	  RECEIVE_USERS: "RECEIVE_USERS",
+	  RECEIVE_USER: "RECEIVE_USER",
+	  REQUEST_USERS: "REQUEST_USERS",
+	  REQUEST_USER: "REQUEST_USER",
+	  CREATE_USER: "CREATE_USER",
+	  CREATE_REVIEW: "CREATE_REVIEW"
+	};
+	
+	var requestUsers = exports.requestUsers = function requestUsers() {
+	  return {
+	    type: UserConstants.REQUEST_USERS
+	  };
+	};
+	
+	var requestUser = exports.requestUser = function requestUser(id) {
+	  return {
+	    type: UserConstants.REQUEST_USER,
+	    id: id
+	  };
+	};
+	
+	var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
+	  return {
+	    type: UserConstants.RECEIVE_USERS,
+	    users: users
+	  };
+	};
+	
+	var receiveUser = exports.receiveUser = function receiveUser(user) {
+	  return {
+	    type: UserConstants.RECEIVE_USER,
+	    user: user
+	  };
+	};
+
+/***/ },
+/* 653 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _user_util = __webpack_require__(654);
+	
+	var _user_actions = __webpack_require__(652);
+	
+	exports.default = function (_ref) {
+	  var getState = _ref.getState;
+	  var dispatch = _ref.dispatch;
+	  return function (next) {
+	    return function (action) {
+	      var usersSuccess = function usersSuccess(data) {
+	        return dispatch((0, _user_actions.receiveUsers)(data));
+	      };
+	      var userSuccess = function userSuccess(data) {
+	        return dispatch((0, _user_actions.receiveUser)(data));
+	      };
+	      var result = next(action);
+	      switch (action.type) {
+	        case _user_actions.UserConstants.REQUEST_USERS:
+	          (0, _user_util.fetchUsers)(usersSuccess);
+	          break;
+	        case _user_actions.UserConstants.REQUEST_USER:
+	          (0, _user_util.fetchUser)(action.id, userSuccess);
+	          break;
+	        default:
+	          break;
+	      }
+	      return result;
+	    };
+	  };
+	};
+
+/***/ },
+/* 654 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var fetchUsers = exports.fetchUsers = function fetchUsers(success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/users',
+	    success: success
+	  });
+	};
+	
+	var fetchUser = exports.fetchUser = function fetchUser(id, success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/users/' + id,
+	    success: success
+	  });
+	};
+
+/***/ },
+/* 655 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _user_actions = __webpack_require__(652);
+	
+	var _merge = __webpack_require__(526);
+	
+	var _merge2 = _interopRequireDefault(_merge);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	var UsersReducer = function UsersReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _user_actions.UserConstants.RECEIVE_USERS:
+	      return action.users;
+	    case _user_actions.UserConstants.RECEIVE_USER:
+	      var user = _defineProperty({}, action.user.id, action.user);
+	      return (0, _merge2.default)({}, state, user);
+	    default:
+	      return state;
+	
+	  }
+	};
+	
+	exports.default = UsersReducer;
 
 /***/ }
 /******/ ]);

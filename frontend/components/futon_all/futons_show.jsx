@@ -13,7 +13,7 @@ const FutonShow = function({ futons }) {
         <Link to="/profile"> Back to Dashboard </Link>
       </div>
       <div className="futon-details">
-        <FutonIndex futons={futons}/>/>
+        <FutonIndex futons={futons}/>
       </div>
     </div>
   );
