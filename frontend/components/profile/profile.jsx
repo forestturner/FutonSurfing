@@ -8,12 +8,14 @@ class Profile extends React.Component {
 
   render() {
      let currentUser = this.props.currentUser;
+     let listedFuton = `/futons/${currentUser.id}`
+     let allFutons =  "/futons"
     return (
-      <body>
+      <div>
         <main className="content group">
           <section className="content-sidebar">
             <a href="#" className="profile-picture">
-              <img src="http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775467/960_nmpq7n.jpg" alt=""></img>
+              <img src={currentUser.profile_img_url} alt=""></img>
             </a>
             <div className="profile-info">
             <h2> {currentUser.firstname +" "+ currentUser.lastname}</h2>
@@ -23,8 +25,9 @@ class Profile extends React.Component {
             </div>
 
         <ul className="profile-nav">
-          <li><a href="#">Futons</a></li>
-          <li><a href="#">Profile</a></li>
+          <li><Link to={listedFuton} >YOUR FUTON</Link></li>
+          <li><Link to={allFutons} >All FUTONS IN YOUR AREA</Link></li>
+          <li><Link to="/" >SPLASH</Link></li>
         </ul>
 
       </section>
@@ -42,7 +45,7 @@ class Profile extends React.Component {
     <script src="js/jquery.min.js"></script>
     <script src="js/overlay.js"></script>
 
-  </body>
+  </div>
     );
   }
 }

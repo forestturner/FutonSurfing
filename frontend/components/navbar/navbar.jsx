@@ -27,9 +27,10 @@ class NavBar extends React.Component {
            </Navbar.Form>
           </Nav>
           <Nav pullRight>
-          <Link to="/login" className="btn btn-default login"> log in </Link>
-          <Link to="/signup" className="btn btn-primary join"> Join </Link>
+            <Link to="/login" className="btn btn-default login"> log in </Link>
+            <Link to="/signup" className="btn btn-primary join"> Join </Link>
             <Link to="/guest" className="btn btn-warning guest"> Guest </Link>
+            <Link to="/futons" className="btn btn-info">Futons</Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -55,8 +56,12 @@ class NavBar extends React.Component {
            </Navbar.Form>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} >{currentUser.username}</NavItem>
-            <Button className="header-button" onClick={logout}>Log Out</Button>
+            {/* <NavItem eventKey={1} >{currentUser.username}</NavItem> */}
+            <img className="img-nav" src={currentUser.profile_img_url} alt=""></img>
+            <Link className="btn btn-primary join" to="/profile">Dashboard</Link>
+            <Link to="/" className="btn btn-warning join" onClick={logout}>Log Out</Link>
+            <Link to="/futons" className="btn btn-info join">Futons</Link>
+            {/* <Button className="header-button" onClick={logout}>Log Out</Button> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

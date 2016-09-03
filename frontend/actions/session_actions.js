@@ -4,7 +4,7 @@ export const SessionConstants = {
   SIGN_UP: "SIGN_UP",
   RECEIVE_CURRENT_USER: "RECEIVE_CURRENT_USER",
   RECEIVE_ERRORS: "RECEIVE_ERRORS",
-
+  EDIT_USER: "EDIT_USER"
 }
 
 export const logIn = (user) => ({
@@ -26,3 +26,7 @@ export const receiveErrors = (errors) => ({
   type: SessionConstants.RECEIVE_ERRORS,
   errors
 });
+export const editUser = (user) => ({
+  type: SessionConstants.EDIT_USER,
+  user
+})

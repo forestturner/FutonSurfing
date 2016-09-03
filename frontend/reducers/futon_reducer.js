@@ -6,8 +6,8 @@ const FutonsReducer = function(state = {}, action){
     case FutonConstants.RECEIVE_FUTONS:
       return action.futons;
     case FutonConstants.RECEIVE_FUTON:
-      const newFuton = {[action.futon.id]: action.futon};
-      return merge({}, state, newFuton);
+      const futon = {[action.futon.id]: action.futon};
+      return merge({}, state, futon);
     default:
       return state;
   }

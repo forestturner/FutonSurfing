@@ -20,7 +20,9 @@
 
  /* --- RESET --- */
 
-
+.navbar {
+  margin-bottom: 3px;
+}
 
 
 .navbar-inverse {
@@ -159,6 +161,10 @@
    width: 100%;
    height: auto;
  }
+ .futon_show {
+   width:50%;
+   height:auto;
+ }
 
 .login {
     margin:5px;
@@ -167,6 +173,15 @@
   margin:5px;
 }
 
+
+.img-nav {
+  height: auto;
+  width: auto;
+  max-width: 60px;
+  max-height: 105px;
+  display: inline;
+  border-radius: 50%;
+}
 
 
 /* The Modal (background) */
