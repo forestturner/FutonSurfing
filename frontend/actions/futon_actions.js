@@ -4,6 +4,7 @@ export const FutonConstants = {
   REQUEST_FUTONS: "REQUEST_FUTONS",
   REQUEST_FUTON: "REQUEST_FUTON",
   CREATE_FUTON: "CREATE_FUTON",
+  REQUEST_OWNER: "REQUEST_OWNER"
 };
 
 export const requestFutons = () => ({
@@ -15,7 +16,7 @@ export const requestFuton = id => ({
   id
 });
 
-export const receiveFutons = Futons => ({
+export const receiveFutons = futons => ({
   type: FutonConstants.RECEIVE_FUTONS,
   futons
 });
@@ -29,3 +30,7 @@ export const createFuton = futon => ({
   type: FutonConstants.CREATE_FUTON,
   futon
 });
+export const reciveOwner = owner => ({
+  type: FutonConstants.REQUEST_OWNER,
+  owner
+})

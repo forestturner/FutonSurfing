@@ -1,6 +1,6 @@
 class Futon < ApplicationRecord
 
-  validates :address, :lat, :lng, :description, :user_id presence: true
+  validates :address, :lat, :lng, :description, :user_id, presence: true
   belongs_to :owner, class_name: "User"
 
 end

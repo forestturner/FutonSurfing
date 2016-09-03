@@ -1,22 +1,23 @@
-import { receiveCurrentUser,
-         receiveErrors,
-         SessionConstants
-       } from '../actions/session_actions';
+import { receiveCurrentUser, receiveErrors, SessionConstants} from '../actions/session_actions';
 import { hashHistory } from 'react-router';
+import { login, signup, logout, editCurrentUser } from '../util/session_util';
 
-import { login, signup, logout } from '../util/session_util';
 
 export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
-    hashHistory.push("/profile");
     dispatch(receiveCurrentUser(data));
+
+    hashHistory.push("/profile");
+  }
+  const editSuccess = data => {
+    dispatch(receiveCurrentUser(data));
+    hashHistory.push("/profile");
   }
   // const successCallback = data => dispatch(signUp(data))
   const errorsCallback = xhr => {
     const errors  = xhr.responseJSON;
     dispatch(receiveErrors(errors));
   };
-  debugger;
   switch(action.type) {
     case SessionConstants.LOG_IN:
       login(action.user,loginSuccess,errorsCallback);
@@ -28,6 +29,10 @@ export default ({getState, dispatch}) => next => action => {
     case SessionConstants.SIGN_UP:
 
       signup(action.user, loginSuccess, errorsCallback);
+      return next(action);
+    case SessionConstants.EDIT_USER:
+  
+      editCurrentUser(action.user, editSuccess, errorsCallback);
       return next(action);
     default:
       return next(action);

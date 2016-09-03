@@ -9,6 +9,18 @@
 
 import { receiveCurrentUser, receiveErrors } from '../actions/session_actions';
 
+export const editCurrentUser = function(user,success,error) {
+	$.ajax({
+		method: 'PATCH',
+		url: `/api/user/${user.id}`,
+		data: user,
+		success,
+		error
+	})
+}
+
+
+
 export const login = function(user, success, error) {
 	$.ajax({
 		method: 'POST',

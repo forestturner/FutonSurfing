@@ -61,9 +61,9 @@ class SessionForm extends React.Component {
 //
 	signupMethod(){
 		return(
-		<div id="myModal" class="modal">
+		<div>
 			<form onSubmit={this.handleSubmit} className="login-form-box">
-				Futonsurfing
+				Futonsurfing sign up form
 				<br/>
 				Please { this.props.formType } or { this.navLink() }
 				{ this.renderErrors() }
@@ -93,9 +93,9 @@ class SessionForm extends React.Component {
 
 	loginMethod(){
 		return(
-		<div id="myModal" class="modal">
+		<div>
 			<form onSubmit={this.handleSubmit} className="login-form-box">
-				Futonsurfing
+				Futonsurfing log in form
 				<br/>
 				Please { this.props.formType } or { this.navLink() }
 				{ this.renderErrors() }
@@ -117,11 +117,11 @@ class SessionForm extends React.Component {
 		this.state.username = "Guest";
 		this.state.password = "password1";
 		return(
-			<div id="myModal" class="modal">
+			<div>
 				<form onSubmit={this.handleSubmit} className="login-form-box">
-					Futonsurfing
+					Futonsurfing log in form
 					<br/>
-					Please { this.props.formType } or { this.navLink() }
+					Please log in as a { this.props.formType } or { this.navLink() }
 					{ this.renderErrors() }
 					<div className="login-form">
 						<label> Username:

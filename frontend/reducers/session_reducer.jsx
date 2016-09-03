@@ -10,10 +10,12 @@ const _freshUser = Object.freeze({
 const SessionReducer = function(state =_freshUser, action){
 
   switch(action.type){
-
+    case SessionConstants.EDIT_USER:
+      const editedUser = action.user;
+      return merge({},state,{currentUser: editedUser});
     case SessionConstants.RECEIVE_CURRENT_USER:
       const newUser = action.currentUser;
-      return merge({},state,{current_user: newUser});
+      return merge({},state,{currentUser: newUser});
     case SessionConstants.RECEIVE_ERRORS:
       const errors = action.errors;
       return merge({},state,{errors});
