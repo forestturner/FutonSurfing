@@ -18138,3 +18138,687 @@ Processing by Api::FutonsController#index as JSON
 Completed 200 OK in 27ms (Views: 26.3ms | ActiveRecord: 0.7ms)
 
 
+Started DELETE "/api/session" for 127.0.0.1 at 2016-09-03 17:37:21 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "5zpxTBnQMFymlD6hHOGwMw=="], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "2UqJUM6OGRCuvxUPDUrOcQ=="], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "2UqJUM6OGRCuvxUPDUrOcQ=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "2UqJUM6OGRCuvxUPDUrOcQ=="], ["updated_at", 2016-09-04 00:37:21 UTC], ["id", 1]]
+  [1m[35m (58.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (1.6ms)
+Completed 200 OK in 73ms (Views: 3.9ms | ActiveRecord: 59.7ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 17:37:22 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.8ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (1.2ms)
+  Rendered api/futons/_futon.json.jbuilder (1.8ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/index.json.jbuilder (35.3ms)
+Completed 200 OK in 51ms (Views: 49.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2016-09-03 17:37:32 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Guest", "password"=>"[FILTERED]", "firstname"=>"", "lastname"=>"", "email"=>"", "profile_img_url"=>""}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Guest"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["updated_at", 2016-09-04 00:37:32 UTC], ["id", 1]]
+  [1m[35m (62.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (1.7ms)
+Completed 200 OK in 201ms (Views: 4.5ms | ActiveRecord: 64.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 17:37:35 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/index.json.jbuilder (11.2ms)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 19:14:53 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.5ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/index.json.jbuilder (71.4ms)
+Completed 200 OK in 298ms (Views: 296.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 19:15:18 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (47.0ms)
+Completed 200 OK in 64ms (Views: 63.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 19:15:25 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (112.4ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.8ms)
+  Rendered api/futons/show.json.jbuilder (43.4ms)
+Completed 200 OK in 171ms (Views: 45.9ms | ActiveRecord: 112.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-03 20:36:03 -0700
+Started GET "/" for 127.0.0.1 at 2016-09-03 20:36:03 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (42.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (43.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (64.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["LIMIT", 1]]
+  [1m[36mUser Load (64.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (31.0ms)
+  Rendered api/users/_user.json.jbuilder (16.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (386.0ms)
+  Rendered static_pages/root.html.erb within layouts/application (384.9ms)
+Started GET "/" for 127.0.0.1 at 2016-09-03 20:36:30 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 26068ms (Views: 25858.8ms | ActiveRecord: 174.6ms)
+
+
+Completed 200 OK in 26113ms (Views: 25905.8ms | ActiveRecord: 149.6ms)
+
+
+Completed 200 OK in 504ms (Views: 500.8ms | ActiveRecord: 1.6ms)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2016-09-03 20:36:36 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "tukJmsv1bpdQS0mlFOIjRg=="], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "cnqquL0I0OLwMlq8clvoEQ=="], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "cnqquL0I0OLwMlq8clvoEQ=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "cnqquL0I0OLwMlq8clvoEQ=="], ["updated_at", 2016-09-04 03:36:36 UTC], ["id", 1]]
+  [1m[35m (19.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/show.json.jbuilder (2.0ms)
+Completed 200 OK in 52ms (Views: 18.7ms | ActiveRecord: 21.2ms)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2016-09-03 20:36:39 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Guest", "password"=>"[FILTERED]", "firstname"=>"", "lastname"=>"", "email"=>"", "profile_img_url"=>""}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Guest"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "y12u8dBJNt2eEcj57bOttQ=="], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "y12u8dBJNt2eEcj57bOttQ=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "y12u8dBJNt2eEcj57bOttQ=="], ["updated_at", 2016-09-04 03:36:39 UTC], ["id", 1]]
+  [1m[35m (32.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered api/users/show.json.jbuilder (2.6ms)
+Completed 200 OK in 135ms (Views: 4.5ms | ActiveRecord: 34.5ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 20:36:41 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (19.8ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.4ms)
+  Rendered api/futons/show.json.jbuilder (9.3ms)
+Completed 200 OK in 113ms (Views: 12.2ms | ActiveRecord: 25.9ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 20:36:48 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.4ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.4ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/index.json.jbuilder (6.7ms)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2016-09-03 20:37:06 -0700
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered api/users/show.json.jbuilder (2.3ms)
+Completed 200 OK in 9ms (Views: 5.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 20:37:15 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (1.0ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (12.1ms)
+Completed 200 OK in 40ms (Views: 38.8ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2016-09-03 20:42:00 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "y12u8dBJNt2eEcj57bOttQ=="], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "I/8Il1372BO1Ous19Z08ZA=="], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "I/8Il1372BO1Ous19Z08ZA=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "I/8Il1372BO1Ous19Z08ZA=="], ["updated_at", 2016-09-04 03:42:00 UTC], ["id", 1]]
+  [1m[35m (20.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (1.8ms)
+Completed 200 OK in 33ms (Views: 4.6ms | ActiveRecord: 21.7ms)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2016-09-03 20:42:12 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Guest", "password"=>"[FILTERED]", "firstname"=>"", "lastname"=>"", "email"=>"", "profile_img_url"=>""}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Guest"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ft7+xAC+BwM4qpyPRMEbxg=="], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ft7+xAC+BwM4qpyPRMEbxg=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "ft7+xAC+BwM4qpyPRMEbxg=="], ["updated_at", 2016-09-04 03:42:12 UTC], ["id", 1]]
+  [1m[35m (14.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/show.json.jbuilder (1.0ms)
+Completed 200 OK in 118ms (Views: 2.5ms | ActiveRecord: 16.6ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 20:42:20 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (2.5ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.4ms)
+  Rendered api/futons/show.json.jbuilder (1.6ms)
+Completed 200 OK in 13ms (Views: 7.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 20:42:38 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.6ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/index.json.jbuilder (17.9ms)
+Completed 200 OK in 22ms (Views: 21.1ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2016-09-03 20:43:04 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ft7+xAC+BwM4qpyPRMEbxg=="], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "T/k3c2E4yJM7xArjP+rvSw=="], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "T/k3c2E4yJM7xArjP+rvSw=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "T/k3c2E4yJM7xArjP+rvSw=="], ["updated_at", 2016-09-04 03:43:04 UTC], ["id", 1]]
+  [1m[35m (15.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (1.7ms)
+Completed 200 OK in 40ms (Views: 4.6ms | ActiveRecord: 17.8ms)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2016-09-03 20:43:53 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Guest", "password"=>"[FILTERED]", "firstname"=>"", "lastname"=>"", "email"=>"", "profile_img_url"=>""}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Guest"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/ZrKfERvH6pIVgT/9uVeAg=="], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/ZrKfERvH6pIVgT/9uVeAg=="], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "/ZrKfERvH6pIVgT/9uVeAg=="], ["updated_at", 2016-09-04 03:43:53 UTC], ["id", 1]]
+  [1m[35m (12.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/show.json.jbuilder (1.1ms)
+Completed 200 OK in 138ms (Views: 2.9ms | ActiveRecord: 14.9ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 20:43:55 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.6ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (1.1ms)
+  Rendered api/futons/show.json.jbuilder (3.7ms)
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 20:44:01 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.8ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.8ms)
+  Rendered api/futons/show.json.jbuilder (3.7ms)
+Completed 200 OK in 31ms (Views: 23.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 20:44:09 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.6ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (3.7ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (3.1ms)
+  Rendered api/futons/_futon.json.jbuilder (1.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.8ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/index.json.jbuilder (32.1ms)
+Completed 200 OK in 37ms (Views: 35.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2016-09-03 20:44:30 -0700
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (1.3ms)
+  Rendered api/users/show.json.jbuilder (4.1ms)
+Completed 200 OK in 20ms (Views: 11.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 20:44:45 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (0.8ms)
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/index.json.jbuilder (30.8ms)
+Completed 200 OK in 36ms (Views: 35.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2016-09-03 20:44:49 -0700
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (2.0ms)
+  Rendered api/users/show.json.jbuilder (4.0ms)
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 20:44:56 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (14.2ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2016-09-03 20:45:03 -0700
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (1.3ms)
+  Rendered api/users/show.json.jbuilder (3.8ms)
+Completed 200 OK in 16ms (Views: 11.8ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2016-09-03 20:56:26 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/ZrKfERvH6pIVgT/9uVeAg=="], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "bY1gTdBlleV37q9LOcpidw=="], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "bY1gTdBlleV37q9LOcpidw=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "bY1gTdBlleV37q9LOcpidw=="], ["updated_at", 2016-09-04 03:56:26 UTC], ["id", 1]]
+  [1m[35m (14.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (1.8ms)
+Completed 200 OK in 30ms (Views: 4.6ms | ActiveRecord: 16.0ms)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2016-09-03 20:56:36 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Guest", "password"=>"[FILTERED]", "firstname"=>"", "lastname"=>"", "email"=>"", "profile_img_url"=>""}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Guest"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["updated_at", 2016-09-04 03:56:36 UTC], ["id", 1]]
+  [1m[35m (20.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/show.json.jbuilder (1.1ms)
+Completed 200 OK in 129ms (Views: 2.7ms | ActiveRecord: 21.6ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 20:56:39 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (1.0ms)
+  Rendered api/futons/show.json.jbuilder (4.2ms)
+Completed 200 OK in 11ms (Views: 7.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 20:56:47 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.9ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (1.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.4ms)
+  Rendered api/futons/index.json.jbuilder (18.3ms)
+Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 20:57:12 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (9.9ms)
+Completed 200 OK in 14ms (Views: 13.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2016-09-03 20:57:43 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (9.9ms)
+Completed 200 OK in 14ms (Views: 13.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2016-09-03 20:59:55 -0700
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (1.7ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 21:01:58 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.7ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (1.0ms)
+  Rendered api/futons/show.json.jbuilder (3.5ms)
+Completed 200 OK in 13ms (Views: 9.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 21:03:45 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.4ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.6ms)
+  Rendered api/futons/show.json.jbuilder (2.5ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2016-09-03 21:03:55 -0700
+Processing by Api::UsersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered api/users/show.json.jbuilder (2.1ms)
+Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 21:09:49 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.7ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/index.json.jbuilder (10.8ms)
+Completed 200 OK in 16ms (Views: 14.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-03 21:20:31 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+  Rendered static_pages/root.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 1964ms (Views: 1963.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-03 21:20:36 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (1.1ms)
+  Rendered static_pages/root.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 57ms (Views: 55.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-03 21:20:45 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 1385ms (Views: 1382.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-03 21:21:06 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 1426ms (Views: 1425.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 21:21:25 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (1.0ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (1.2ms)
+  Rendered api/futons/show.json.jbuilder (2.9ms)
+Completed 200 OK in 8ms (Views: 5.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 21:21:29 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (1.0ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.8ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/index.json.jbuilder (17.5ms)
+Completed 200 OK in 24ms (Views: 22.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 21:33:06 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.6ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (1.0ms)
+  Rendered api/futons/show.json.jbuilder (3.4ms)
+Completed 200 OK in 14ms (Views: 9.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 21:33:10 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/index.json.jbuilder (5.1ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 21:41:41 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.3ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/show.json.jbuilder (1.1ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 21:42:08 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.6ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.4ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/index.json.jbuilder (7.4ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/futons/1" for 127.0.0.1 at 2016-09-03 21:42:38 -0700
+Processing by Api::FutonsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT  "futons".* FROM "futons" WHERE "futons"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/futons/show.json.jbuilder
+  Rendered api/futons/_futon.json.jbuilder (0.7ms)
+  Rendered api/futons/show.json.jbuilder (2.3ms)
+Completed 200 OK in 15ms (Views: 12.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 21:42:47 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.5ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.6ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.3ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/_futon.json.jbuilder (0.2ms)
+  Rendered api/futons/index.json.jbuilder (13.0ms)
+Completed 200 OK in 16ms (Views: 15.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-03 21:50:01 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "zg7VFzKGyrDPPfSJI2OqCA=="], ["LIMIT", 1]]
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 42ms (Views: 40.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/futons" for 127.0.0.1 at 2016-09-03 21:50:02 -0700
+Processing by Api::FutonsController#index as JSON
+  Rendering api/futons/index.json.jbuilder
+  [1m[36mFuton Load (0.4ms)[0m  [1m[34mSELECT "futons".* FROM "futons"[0m
+  Rendered api/futons/_futon.json.jbuilder (0.4ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/_futon.json.jbuilder (0.1ms)
+  Rendered api/futons/index.json.jbuilder (4.5ms)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.4ms)
+
+
