@@ -24,7 +24,10 @@ class IndexItem extends React.Component {
             {futon.description}
           </span>
         </div>
+        <span clasaName="futon-img">
+
         <img src={futon.futon_img_url}/>
+        </span>
       </div>
     );
   }
