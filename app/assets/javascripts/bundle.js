@@ -58,7 +58,7 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _store = __webpack_require__(523);
+	var _store = __webpack_require__(538);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -23081,7 +23081,7 @@
 	
 	var _futon_actions = __webpack_require__(522);
 	
-	var _user_actions = __webpack_require__(652);
+	var _user_actions = __webpack_require__(536);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23168,17 +23168,25 @@
 	
 	var _futon_show_container2 = _interopRequireDefault(_futon_show_container);
 	
-	var _futons_show_container = __webpack_require__(640);
+	var _futons_show_container = __webpack_require__(523);
 	
 	var _futons_show_container2 = _interopRequireDefault(_futons_show_container);
 	
-	var _user_show_container = __webpack_require__(645);
+	var _user_show_container = __webpack_require__(527);
 	
 	var _user_show_container2 = _interopRequireDefault(_user_show_container);
 	
-	var _users_show_container = __webpack_require__(648);
+	var _users_show_container = __webpack_require__(530);
 	
 	var _users_show_container2 = _interopRequireDefault(_users_show_container);
+	
+	var _edit_profile_container = __webpack_require__(534);
+	
+	var _edit_profile_container2 = _interopRequireDefault(_edit_profile_container);
+	
+	var _edit_futon_container = __webpack_require__(537);
+	
+	var _edit_futon_container2 = _interopRequireDefault(_edit_futon_container);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23263,7 +23271,9 @@
 	          _react2.default.createElement(_reactRouter.Route, { path: 'futons/:futonId', component: _futon_show_container2.default, onEnter: this.getFuton }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _users_show_container2.default, onEnter: this.getUsers }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users/:userId', component: _user_show_container2.default, onEnter: this.getUser }),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default, onEnter: this._ensureLoggedIn })
+	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default, onEnter: this._ensureLoggedIn }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'editprofile', component: _edit_profile_container2.default, onEnter: this.getUser }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'editfuton', component: _edit_futon_container2.default, onEnter: this.getFuton })
 	        )
 	      );
 	    }
@@ -28896,6 +28906,9 @@
 	  return {
 	    logOut: function logOut() {
 	      return dispatch((0, _session_actions.logOut)());
+	    },
+	    logIn: function logIn(user) {
+	      return dispatch((0, _session_actions.logIn)(user));
 	    }
 	  };
 	};
@@ -28994,10 +29007,19 @@
 	  function NavBar(props) {
 	    _classCallCheck(this, NavBar);
 	
-	    return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+	
+	    _this.handleGuest = _this.handleGuest.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(NavBar, [{
+	    key: 'handleGuest',
+	    value: function handleGuest(e) {
+	      var user = { user: { username: "Guest", password: "password1" } };
+	      this.props.logIn(user);
+	    }
+	  }, {
 	    key: 'navbarInstanceSession',
 	    value: function navbarInstanceSession() {
 	      return _react2.default.createElement(
@@ -29044,22 +29066,17 @@
 	            { pullRight: true },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '/login', className: 'btn btn-default login' },
-	              ' log in '
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
 	              { to: '/signup', className: 'btn btn-primary join' },
 	              ' Join '
 	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '/guest', className: 'btn btn-warning guest' },
-	              ' Guest '
+	              { to: '/profile', className: 'btn btn-warning join', onClick: this.handleGuest },
+	              '> Guest '
 	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '/futons', className: 'btn btn-info' },
+	              { to: '/futons', className: 'btn btn-info join' },
 	              'Futons'
 	            )
 	          )
@@ -29077,12 +29094,17 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactBootstrap.Navbar.Brand,
-	            null,
+	            { pullLeft: true },
 	            _react2.default.createElement(
 	              'a',
 	              { href: '#' },
 	              'FutonSurfing'
 	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Nav,
+	            { pullLeft: true },
+	            _react2.default.createElement('img', { className: 'img-nav', src: currentUser.profile_img_url, alt: '' })
 	          ),
 	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	        ),
@@ -29094,7 +29116,7 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactBootstrap.Navbar.Form,
-	              { pullLeft: true },
+	              { pullRight: true },
 	              _react2.default.createElement(
 	                _reactBootstrap.FormGroup,
 	                null,
@@ -29111,7 +29133,6 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Nav,
 	            { pullRight: true },
-	            _react2.default.createElement('img', { className: 'img-nav', src: currentUser.profile_img_url, alt: '' }),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'btn btn-primary join', to: '/profile' },
@@ -29136,6 +29157,8 @@
 	    value: function render() {
 	      var currentUser = this.props.currentUser;
 	      var logout = this.props.logOut;
+	      // let guestUser = {user:{username:"Guest",password:"password1"}};
+	      // let loginGuest = this.props.logIn(guestUser);
 	      if (currentUser) {
 	        return this.navbarInstanceLoggedin(currentUser, logout);
 	      } else {
@@ -48231,6 +48254,8 @@
 	      var allFutons = "/futons";
 	      var UserProfile = '/users/' + currentUser.id;
 	      var allUsers = "/users";
+	      var editFuton = '/editfuton';
+	      var editInfo = '/editprofile';
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -48279,6 +48304,24 @@
 	                  _reactRouter.Link,
 	                  { to: allFutons },
 	                  'All FUTONS IN YOUR AREA'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: editFuton },
+	                  'EDIT FUTON'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: editInfo },
+	                  'EDIT YOUR INFO'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -48548,7 +48591,8 @@
 	  REQUEST_FUTONS: "REQUEST_FUTONS",
 	  REQUEST_FUTON: "REQUEST_FUTON",
 	  CREATE_FUTON: "CREATE_FUTON",
-	  REQUEST_OWNER: "REQUEST_OWNER"
+	  REQUEST_OWNER: "REQUEST_OWNER",
+	  UPDATE_FUTON: "UPDATE_FUTON"
 	};
 	
 	var requestFutons = exports.requestFutons = function requestFutons() {
@@ -48590,6 +48634,13 @@
 	    owner: owner
 	  };
 	};
+	var updateFuton = exports.updateFuton = function updateFuton(id, futon) {
+	  return {
+	    type: FutonConstants.UPDATE_FUTON,
+	    id: id,
+	    futon: futon
+	  };
+	};
 
 /***/ },
 /* 523 */
@@ -48601,13 +48652,979 @@
 	  value: true
 	});
 	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _futons_show = __webpack_require__(524);
+	
+	var _futons_show2 = _interopRequireDefault(_futons_show);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var futons = state.futons;
+	  return {
+	    futons: futons
+	  };
+	};
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_futons_show2.default);
+
+/***/ },
+/* 524 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _futon_index = __webpack_require__(525);
+	
+	var _futon_index2 = _interopRequireDefault(_futon_index);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// import FutonMap from './futon_map/futon_map';
+	// import ReviewButton from './review_button';
+	
+	
+	var FutonShow = function FutonShow(_ref) {
+	  var futons = _ref.futons;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'container-fluid' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row-contect' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-3 sidenav' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/profile' },
+	          ' Back to Dashboard '
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'ul',
+	        { className: 'nav-pills nav-stacked' },
+	        _react2.default.createElement(_futon_index2.default, { futons: futons })
+	      )
+	    )
+	  );
+	};
+	exports.default = FutonShow;
+	
+	
+	{/* <div className="futon-details">
+	  <FutonIndex futons={futons}/>
+	  </div> */}
+
+/***/ },
+/* 525 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _futon_index_item = __webpack_require__(526);
+	
+	var _futon_index_item2 = _interopRequireDefault(_futon_index_item);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var FutonIndex = function FutonIndex(props) {
+	  var futons = props.futons;
+	  var futonKeys = Object.keys(futons);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    futonKeys.map(function (key) {
+	      return _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(_futon_index_item2.default, { futon: futons[key], key: key })
+	      );
+	    })
+	  );
+	};
+	
+	exports.default = FutonIndex;
+
+/***/ },
+/* 526 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var IndexItem = function (_React$Component) {
+	  _inherits(IndexItem, _React$Component);
+	
+	  function IndexItem(props) {
+	    _classCallCheck(this, IndexItem);
+	
+	    var _this = _possibleConstructorReturn(this, (IndexItem.__proto__ || Object.getPrototypeOf(IndexItem)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(IndexItem, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      var futonID = this.props.futon.id;
+	      _reactRouter.hashHistory.push("futons/" + futonID);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var futon = this.props.futon;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'futon-index-item',
+	          onClick: this.handleClick },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'index-item-info' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-category' },
+	            'Description: '
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            futon.description
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'span',
+	          { clasaName: 'futon-img' },
+	          _react2.default.createElement('img', { src: futon.futon_img_url })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return IndexItem;
+	}(_react2.default.Component);
+	
+	exports.default = IndexItem;
+	// #   create_table "futons", force: :cascade do |t|
+	// #     t.string   "address",       null: false
+	// #     t.float    "lat",           null: false
+	// #     t.float    "lng",           null: false
+	// #     t.text     "description",   null: false
+	// #     t.integer  "user_id",       null: false
+	// #     t.datetime "created_at",    null: false
+	// #     t.datetime "updated_at",    null: false
+	// #     t.string   "futon_img_url"
+	// #   end
+	
+	{/* <span className="index-item-category">Rating: </span>
+	  <span className="index-item-copy">
+	  {futon.average_rating || "No reviews yet"}
+	  </span>
+	  <span className="index-item-category">Number of Likes: </span>
+	  <span className="index-item-copy">
+	  {/*TODO remove the  || 0 below*/}
+	{} /*{futon.favorite_users.length || 0 }*/
+	// </span> */}
+
+/***/ },
+/* 527 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _user_show = __webpack_require__(528);
+	
+	var _user_show2 = _interopRequireDefault(_user_show);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var userId = parseInt(ownProps.params.userId);
+	  var user = state.users[userId] || {};
+	  return {
+	    userId: userId,
+	    user: user
+	  };
+	};
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_user_show2.default);
+
+/***/ },
+/* 528 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _user_details = __webpack_require__(529);
+	
+	var _user_details2 = _interopRequireDefault(_user_details);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserShow = function UserShow(_ref) {
+	  var currentUserId = _ref.currentUserId;
+	  var requestUser = _ref.requestUser;
+	  var children = _ref.children;
+	  var user = _ref.user;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'single-user-show' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'single-user-show' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/profile' },
+	        ' Back to Dashboard '
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'user-details' },
+	      _react2.default.createElement(_user_details2.default, { user: user })
+	    )
+	  );
+	};
+	exports.default = UserShow;
+
+/***/ },
+/* 529 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserDetail = function UserDetail(_ref) {
+	  var user = _ref.user;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'user-index-item-info' },
+	    _react2.default.createElement('img', { src: user.profile_img_url }),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'user-index-item-category' },
+	      'Name: '
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'index-item-copy' },
+	      user.firstname + " " + user.lastname
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'user-index-item-category' },
+	      'Username: '
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'index-item-copy' },
+	      user.username
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'user-index-item-category' },
+	      'email: '
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'index-item-copy' },
+	      user.email
+	    ),
+	    _react2.default.createElement('br', null)
+	  );
+	};
+	exports.default = UserDetail;
+	
+	//
+	// create_table "users", force: :cascade do |t|
+	//   t.string   "firstname",       null: false
+	//   t.string   "lastname",        null: false
+	//   t.string   "password_digest", null: false
+	//   t.string   "session_token",   null: false
+	//   t.string   "email",           null: false
+	//   t.string   "profile_img_url"
+	//   t.datetime "created_at",      null: false
+	//   t.datetime "updated_at",      null: false
+	//   t.string   "username"
+	// end
+
+/***/ },
+/* 530 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _users_show = __webpack_require__(531);
+	
+	var _users_show2 = _interopRequireDefault(_users_show);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var users = state.users;
+	  return {
+	    users: users
+	  };
+	};
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_users_show2.default);
+
+/***/ },
+/* 531 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _user_index = __webpack_require__(532);
+	
+	var _user_index2 = _interopRequireDefault(_user_index);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserShow = function UserShow(_ref) {
+	  var users = _ref.users;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'all-user-show' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'all-user-show' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/profile' },
+	        ' Back to Dashboard'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'user-details' },
+	      _react2.default.createElement(_user_index2.default, { users: users })
+	    )
+	  );
+	};
+	exports.default = UserShow;
+
+/***/ },
+/* 532 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _user_index_item = __webpack_require__(533);
+	
+	var _user_index_item2 = _interopRequireDefault(_user_index_item);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserIndex = function UserIndex(props) {
+	  var users = props.users;
+	  var userKeys = Object.keys(users);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Users: '
+	    ),
+	    userKeys.map(function (key) {
+	      return _react2.default.createElement(_user_index_item2.default, { user: users[key], key: key });
+	    })
+	  );
+	};
+	exports.default = UserIndex;
+
+/***/ },
+/* 533 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var IndexItem = function (_React$Component) {
+	  _inherits(IndexItem, _React$Component);
+	
+	  function IndexItem(props) {
+	    _classCallCheck(this, IndexItem);
+	
+	    var _this = _possibleConstructorReturn(this, (IndexItem.__proto__ || Object.getPrototypeOf(IndexItem)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	
+	    return _this;
+	  }
+	
+	  _createClass(IndexItem, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      var userID = this.props.user.id;
+	      _reactRouter.hashHistory.push("users/" + userID);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var user = this.props.user;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'user-index-item', onClick: this.handleClick },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'user-index-item-info' },
+	          _react2.default.createElement('img', { src: user.profile_img_url }),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'user-index-item-category' },
+	            'Name: '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            user.firstname + " " + user.lastname
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'user-index-item-category' },
+	            'Username: '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            user.username
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'user-index-item-category' },
+	            'email: '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'index-item-copy' },
+	            user.email
+	          ),
+	          _react2.default.createElement('br', null)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return IndexItem;
+	}(_react2.default.Component);
+	
+	exports.default = IndexItem;
+	//
+	//
+	// create_table "users", force: :cascade do |t|
+	//   t.string   "firstname",       null: false
+	//   t.string   "lastname",        null: false
+	//   t.string   "password_digest", null: false
+	//   t.string   "session_token",   null: false
+	//   t.string   "email",           null: false
+	//   t.string   "profile_img_url"
+	//   t.datetime "created_at",      null: false
+	//   t.datetime "updated_at",      null: false
+	//   t.string   "username"
+	// end
+
+/***/ },
+/* 534 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _edit_profile = __webpack_require__(535);
+	
+	var _edit_profile2 = _interopRequireDefault(_edit_profile);
+	
+	var _user_actions = __webpack_require__(536);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    currentUser: state.session.currentUser,
+	    errors: state.session.errors
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    updateUser: function updateUser(id, user) {
+	      return dispatch((0, _user_actions.updateUser)(id, user));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_edit_profile2.default);
+
+/***/ },
+/* 535 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var EditProfile = function (_React$Component) {
+	  _inherits(EditProfile, _React$Component);
+	
+	  function EditProfile(props) {
+	    _classCallCheck(this, EditProfile);
+	
+	    var _this = _possibleConstructorReturn(this, (EditProfile.__proto__ || Object.getPrototypeOf(EditProfile)).call(this, props));
+	
+	    _this.state = {
+	      firstname: _this.props.currentUser.firstname,
+	      lastname: _this.props.currentUser.lastname,
+	      password: "",
+	      description: _this.props.currentUser.description ? _this.props.currentUser.description : ""
+	    };
+	    console.log("hello");
+	    _this.update = _this.update.bind(_this);
+	    _this.updateProfilePic = _this.updateProfilePic.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(EditProfile, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var newInfo = this.state;
+	      this.props.updateUser(this.props.currentUser.id, newInfo);
+	      _reactRouter.hashHistory.push("/profile");
+	    }
+	  }, {
+	    key: 'update',
+	    value: function update(field) {
+	      var _this2 = this;
+	
+	      return function (e) {
+	        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+	      };
+	    }
+	  }, {
+	    key: 'renderErrors',
+	    value: function renderErrors() {
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        this.props.errors.map(function (error, i) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: 'error-' + i },
+	            error
+	          );
+	        })
+	      );
+	    }
+	  }, {
+	    key: 'updateProfilePic',
+	    value: function updateProfilePic() {
+	      var _this3 = this;
+	
+	      cloudinary.openUploadWidget(window.cloudinaryOptions, function (error, images) {
+	        if (error) {
+	          _this3.setState({ error: error.message });
+	        } else if (images.length > 1) {
+	          _this3.setState({ error: "Please only one image" });
+	        } else if (images.length === 0) {
+	          _this3.setState({ error: "Could not find image" });
+	        } else {
+	          _this3.props.updateUser(_this3.props.currentUser.id, { profile_img_url: images[0].url });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var profilePic = this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg";
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'main',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'vertical-container' },
+	            _react2.default.createElement(
+	              'aside',
+	              { className: 'profile-pic' },
+	              _react2.default.createElement('img', { className: 'edit-pic', src: profilePic, onClick: this.updateProfilePic }),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Click your profile image to update your profile pic'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'section',
+	              { className: 'main-profile' },
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-header' },
+	                _react2.default.createElement(
+	                  'h1',
+	                  null,
+	                  this.props.currentUser.username
+	                ),
+	                _react2.default.createElement(
+	                  'h3',
+	                  null,
+	                  this.props.currentUser.city
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-buttons' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  this.state.error
+	                ),
+	                this.renderErrors()
+	              ),
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-info' },
+	                _react2.default.createElement(
+	                  'nav',
+	                  { className: 'profile-navbar' },
+	                  _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'a',
+	                        { href: '/#/editprofile', className: 'profile-navbar-links' },
+	                        ' Edit your about'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'a',
+	                        { href: '/#/editfuton', className: 'profile-navbar-links' },
+	                        'Edit your futon'
+	                      )
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'inner-info' },
+	                  _react2.default.createElement(
+	                    'form',
+	                    { className: 'update-form' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      null,
+	                      'First name:',
+	                      _react2.default.createElement('input', { type: 'text', name: 'firstname', value: this.state.firstname, onChange: this.update("firstname") })
+	                    ),
+	                    _react2.default.createElement(
+	                      'label',
+	                      null,
+	                      'Last name:',
+	                      _react2.default.createElement('input', { type: 'text', name: 'lastname', value: this.state.lastname, onChange: this.update("lastname") })
+	                    ),
+	                    _react2.default.createElement(
+	                      'label',
+	                      null,
+	                      'Password:',
+	                      _react2.default.createElement('input', { type: 'password', name: 'password', value: this.state.password, onChange: this.update("password") })
+	                    ),
+	                    _react2.default.createElement(
+	                      'label',
+	                      null,
+	                      'About me:',
+	                      _react2.default.createElement('textarea', { name: 'description', value: this.state.description, onChange: this.update("description") })
+	                    ),
+	                    _react2.default.createElement(
+	                      'button',
+	                      { className: 'update-button', onClick: this.handleSubmit },
+	                      'Edit'
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return EditProfile;
+	}(_react2.default.Component);
+	
+	exports.default = EditProfile;
+	
+	// if (!newInfo.password) {
+	//   delete newInfo.password;
+	// }
+
+/***/ },
+/* 536 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UserConstants = exports.UserConstants = {
+	  RECEIVE_USERS: "RECEIVE_USERS",
+	  RECEIVE_USER: "RECEIVE_USER",
+	  REQUEST_USERS: "REQUEST_USERS",
+	  REQUEST_USER: "REQUEST_USER",
+	  CREATE_USER: "CREATE_USER",
+	  CREATE_REVIEW: "CREATE_REVIEW",
+	  UPDATE_USER: "UPDATE_USER"
+	};
+	
+	var requestUsers = exports.requestUsers = function requestUsers() {
+	  return {
+	    type: UserConstants.REQUEST_USERS
+	  };
+	};
+	
+	var requestUser = exports.requestUser = function requestUser(id) {
+	  return {
+	    type: UserConstants.REQUEST_USER,
+	    id: id
+	  };
+	};
+	
+	var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
+	  return {
+	    type: UserConstants.RECEIVE_USERS,
+	    users: users
+	  };
+	};
+	
+	var receiveUser = exports.receiveUser = function receiveUser(user) {
+	  return {
+	    type: UserConstants.RECEIVE_USER,
+	    user: user
+	  };
+	};
+	var updateUser = exports.updateUser = function updateUser(id, user) {
+	  return {
+	    type: UserConstants.UPDATE_USER,
+	    id: id,
+	    user: user
+	  };
+	};
+
+/***/ },
+/* 537 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _edit_futon = __webpack_require__(658);
+	
+	var _edit_futon2 = _interopRequireDefault(_edit_futon);
+	
+	var _futon_actions = __webpack_require__(522);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var errors = state.session.errors;
+	  var currentUser = state.session.currentUser;
+	  var futonId = state.session.currentUser.id;
+	  var futon = state.futons[futonId] || {};
+	  return {
+	    errors: errors,
+	    currentUser: currentUser,
+	    futonId: futonId,
+	    futon: futon
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    updateFuton: function updateFuton(id, futon) {
+	      return dispatch((0, _futon_actions.updateFuton)(id, futon));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_edit_futon2.default);
+
+/***/ },
+/* 538 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _redux = __webpack_require__(180);
 	
-	var _root_reducer = __webpack_require__(524);
+	var _root_reducer = __webpack_require__(539);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _root_middleware = __webpack_require__(635);
+	var _root_middleware = __webpack_require__(651);
 	
 	var _root_middleware2 = _interopRequireDefault(_root_middleware);
 	
@@ -48621,7 +49638,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 524 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48632,15 +49649,15 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _futon_reducer = __webpack_require__(525);
+	var _futon_reducer = __webpack_require__(540);
 	
 	var _futon_reducer2 = _interopRequireDefault(_futon_reducer);
 	
-	var _session_reducer = __webpack_require__(634);
+	var _session_reducer = __webpack_require__(649);
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
-	var _user_reducer = __webpack_require__(655);
+	var _user_reducer = __webpack_require__(650);
 	
 	var _user_reducer2 = _interopRequireDefault(_user_reducer);
 	
@@ -48653,7 +49670,7 @@
 	});
 
 /***/ },
-/* 525 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48664,7 +49681,7 @@
 	
 	var _futon_actions = __webpack_require__(522);
 	
-	var _merge = __webpack_require__(526);
+	var _merge = __webpack_require__(541);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -48690,11 +49707,11 @@
 	exports.default = FutonsReducer;
 
 /***/ },
-/* 526 */
+/* 541 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseMerge = __webpack_require__(527),
-	    createAssigner = __webpack_require__(630);
+	var baseMerge = __webpack_require__(542),
+	    createAssigner = __webpack_require__(645);
 	
 	/**
 	 * This method is like `_.assign` except that it recursively merges own and
@@ -48735,17 +49752,17 @@
 
 
 /***/ },
-/* 527 */
+/* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Stack = __webpack_require__(528),
-	    arrayEach = __webpack_require__(568),
-	    assignMergeValue = __webpack_require__(569),
-	    baseKeysIn = __webpack_require__(570),
-	    baseMergeDeep = __webpack_require__(573),
-	    isArray = __webpack_require__(585),
-	    isObject = __webpack_require__(546),
-	    isTypedArray = __webpack_require__(624);
+	var Stack = __webpack_require__(543),
+	    arrayEach = __webpack_require__(583),
+	    assignMergeValue = __webpack_require__(584),
+	    baseKeysIn = __webpack_require__(585),
+	    baseMergeDeep = __webpack_require__(588),
+	    isArray = __webpack_require__(600),
+	    isObject = __webpack_require__(561),
+	    isTypedArray = __webpack_require__(639);
 	
 	/**
 	 * The base implementation of `_.merge` without support for multiple sources.
@@ -48791,15 +49808,15 @@
 
 
 /***/ },
-/* 528 */
+/* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(529),
-	    stackClear = __webpack_require__(537),
-	    stackDelete = __webpack_require__(538),
-	    stackGet = __webpack_require__(539),
-	    stackHas = __webpack_require__(540),
-	    stackSet = __webpack_require__(541);
+	var ListCache = __webpack_require__(544),
+	    stackClear = __webpack_require__(552),
+	    stackDelete = __webpack_require__(553),
+	    stackGet = __webpack_require__(554),
+	    stackHas = __webpack_require__(555),
+	    stackSet = __webpack_require__(556);
 	
 	/**
 	 * Creates a stack cache object to store key-value pairs.
@@ -48823,14 +49840,14 @@
 
 
 /***/ },
-/* 529 */
+/* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var listCacheClear = __webpack_require__(530),
-	    listCacheDelete = __webpack_require__(531),
-	    listCacheGet = __webpack_require__(534),
-	    listCacheHas = __webpack_require__(535),
-	    listCacheSet = __webpack_require__(536);
+	var listCacheClear = __webpack_require__(545),
+	    listCacheDelete = __webpack_require__(546),
+	    listCacheGet = __webpack_require__(549),
+	    listCacheHas = __webpack_require__(550),
+	    listCacheSet = __webpack_require__(551);
 	
 	/**
 	 * Creates an list cache object.
@@ -48861,7 +49878,7 @@
 
 
 /***/ },
-/* 530 */
+/* 545 */
 /***/ function(module, exports) {
 
 	/**
@@ -48879,10 +49896,10 @@
 
 
 /***/ },
-/* 531 */
+/* 546 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(532);
+	var assocIndexOf = __webpack_require__(547);
 	
 	/** Used for built-in method references. */
 	var arrayProto = Array.prototype;
@@ -48919,10 +49936,10 @@
 
 
 /***/ },
-/* 532 */
+/* 547 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(533);
+	var eq = __webpack_require__(548);
 	
 	/**
 	 * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -48946,7 +49963,7 @@
 
 
 /***/ },
-/* 533 */
+/* 548 */
 /***/ function(module, exports) {
 
 	/**
@@ -48989,10 +50006,10 @@
 
 
 /***/ },
-/* 534 */
+/* 549 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(532);
+	var assocIndexOf = __webpack_require__(547);
 	
 	/**
 	 * Gets the list cache value for `key`.
@@ -49014,10 +50031,10 @@
 
 
 /***/ },
-/* 535 */
+/* 550 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(532);
+	var assocIndexOf = __webpack_require__(547);
 	
 	/**
 	 * Checks if a list cache value for `key` exists.
@@ -49036,10 +50053,10 @@
 
 
 /***/ },
-/* 536 */
+/* 551 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(532);
+	var assocIndexOf = __webpack_require__(547);
 	
 	/**
 	 * Sets the list cache `key` to `value`.
@@ -49067,10 +50084,10 @@
 
 
 /***/ },
-/* 537 */
+/* 552 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(529);
+	var ListCache = __webpack_require__(544);
 	
 	/**
 	 * Removes all key-value entries from the stack.
@@ -49087,7 +50104,7 @@
 
 
 /***/ },
-/* 538 */
+/* 553 */
 /***/ function(module, exports) {
 
 	/**
@@ -49107,7 +50124,7 @@
 
 
 /***/ },
-/* 539 */
+/* 554 */
 /***/ function(module, exports) {
 
 	/**
@@ -49127,7 +50144,7 @@
 
 
 /***/ },
-/* 540 */
+/* 555 */
 /***/ function(module, exports) {
 
 	/**
@@ -49147,12 +50164,12 @@
 
 
 /***/ },
-/* 541 */
+/* 556 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(529),
-	    Map = __webpack_require__(542),
-	    MapCache = __webpack_require__(553);
+	var ListCache = __webpack_require__(544),
+	    Map = __webpack_require__(557),
+	    MapCache = __webpack_require__(568);
 	
 	/** Used as the size to enable large array optimizations. */
 	var LARGE_ARRAY_SIZE = 200;
@@ -49185,11 +50202,11 @@
 
 
 /***/ },
-/* 542 */
+/* 557 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(543),
-	    root = __webpack_require__(549);
+	var getNative = __webpack_require__(558),
+	    root = __webpack_require__(564);
 	
 	/* Built-in method references that are verified to be native. */
 	var Map = getNative(root, 'Map');
@@ -49198,11 +50215,11 @@
 
 
 /***/ },
-/* 543 */
+/* 558 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsNative = __webpack_require__(544),
-	    getValue = __webpack_require__(552);
+	var baseIsNative = __webpack_require__(559),
+	    getValue = __webpack_require__(567);
 	
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -49221,14 +50238,14 @@
 
 
 /***/ },
-/* 544 */
+/* 559 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(545),
+	var isFunction = __webpack_require__(560),
 	    isHostObject = __webpack_require__(185),
-	    isMasked = __webpack_require__(547),
-	    isObject = __webpack_require__(546),
-	    toSource = __webpack_require__(551);
+	    isMasked = __webpack_require__(562),
+	    isObject = __webpack_require__(561),
+	    toSource = __webpack_require__(566);
 	
 	/**
 	 * Used to match `RegExp`
@@ -49275,10 +50292,10 @@
 
 
 /***/ },
-/* 545 */
+/* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(546);
+	var isObject = __webpack_require__(561);
 	
 	/** `Object#toString` result references. */
 	var funcTag = '[object Function]',
@@ -49322,7 +50339,7 @@
 
 
 /***/ },
-/* 546 */
+/* 561 */
 /***/ function(module, exports) {
 
 	/**
@@ -49359,10 +50376,10 @@
 
 
 /***/ },
-/* 547 */
+/* 562 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var coreJsData = __webpack_require__(548);
+	var coreJsData = __webpack_require__(563);
 	
 	/** Used to detect methods masquerading as native. */
 	var maskSrcKey = (function() {
@@ -49385,10 +50402,10 @@
 
 
 /***/ },
-/* 548 */
+/* 563 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(549);
+	var root = __webpack_require__(564);
 	
 	/** Used to detect overreaching core-js shims. */
 	var coreJsData = root['__core-js_shared__'];
@@ -49397,10 +50414,10 @@
 
 
 /***/ },
-/* 549 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var freeGlobal = __webpack_require__(550);
+	var freeGlobal = __webpack_require__(565);
 	
 	/** Detect free variable `self`. */
 	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -49412,7 +50429,7 @@
 
 
 /***/ },
-/* 550 */
+/* 565 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -49423,7 +50440,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 551 */
+/* 566 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -49455,7 +50472,7 @@
 
 
 /***/ },
-/* 552 */
+/* 567 */
 /***/ function(module, exports) {
 
 	/**
@@ -49474,14 +50491,14 @@
 
 
 /***/ },
-/* 553 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mapCacheClear = __webpack_require__(554),
-	    mapCacheDelete = __webpack_require__(562),
-	    mapCacheGet = __webpack_require__(565),
-	    mapCacheHas = __webpack_require__(566),
-	    mapCacheSet = __webpack_require__(567);
+	var mapCacheClear = __webpack_require__(569),
+	    mapCacheDelete = __webpack_require__(577),
+	    mapCacheGet = __webpack_require__(580),
+	    mapCacheHas = __webpack_require__(581),
+	    mapCacheSet = __webpack_require__(582);
 	
 	/**
 	 * Creates a map cache object to store key-value pairs.
@@ -49512,12 +50529,12 @@
 
 
 /***/ },
-/* 554 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Hash = __webpack_require__(555),
-	    ListCache = __webpack_require__(529),
-	    Map = __webpack_require__(542);
+	var Hash = __webpack_require__(570),
+	    ListCache = __webpack_require__(544),
+	    Map = __webpack_require__(557);
 	
 	/**
 	 * Removes all key-value entries from the map.
@@ -49538,14 +50555,14 @@
 
 
 /***/ },
-/* 555 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var hashClear = __webpack_require__(556),
-	    hashDelete = __webpack_require__(558),
-	    hashGet = __webpack_require__(559),
-	    hashHas = __webpack_require__(560),
-	    hashSet = __webpack_require__(561);
+	var hashClear = __webpack_require__(571),
+	    hashDelete = __webpack_require__(573),
+	    hashGet = __webpack_require__(574),
+	    hashHas = __webpack_require__(575),
+	    hashSet = __webpack_require__(576);
 	
 	/**
 	 * Creates a hash object.
@@ -49576,10 +50593,10 @@
 
 
 /***/ },
-/* 556 */
+/* 571 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(557);
+	var nativeCreate = __webpack_require__(572);
 	
 	/**
 	 * Removes all key-value entries from the hash.
@@ -49596,10 +50613,10 @@
 
 
 /***/ },
-/* 557 */
+/* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(543);
+	var getNative = __webpack_require__(558);
 	
 	/* Built-in method references that are verified to be native. */
 	var nativeCreate = getNative(Object, 'create');
@@ -49608,7 +50625,7 @@
 
 
 /***/ },
-/* 558 */
+/* 573 */
 /***/ function(module, exports) {
 
 	/**
@@ -49629,10 +50646,10 @@
 
 
 /***/ },
-/* 559 */
+/* 574 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(557);
+	var nativeCreate = __webpack_require__(572);
 	
 	/** Used to stand-in for `undefined` hash values. */
 	var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -49665,10 +50682,10 @@
 
 
 /***/ },
-/* 560 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(557);
+	var nativeCreate = __webpack_require__(572);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -49694,10 +50711,10 @@
 
 
 /***/ },
-/* 561 */
+/* 576 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(557);
+	var nativeCreate = __webpack_require__(572);
 	
 	/** Used to stand-in for `undefined` hash values. */
 	var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -49722,10 +50739,10 @@
 
 
 /***/ },
-/* 562 */
+/* 577 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(563);
+	var getMapData = __webpack_require__(578);
 	
 	/**
 	 * Removes `key` and its value from the map.
@@ -49744,10 +50761,10 @@
 
 
 /***/ },
-/* 563 */
+/* 578 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isKeyable = __webpack_require__(564);
+	var isKeyable = __webpack_require__(579);
 	
 	/**
 	 * Gets the data for `map`.
@@ -49768,7 +50785,7 @@
 
 
 /***/ },
-/* 564 */
+/* 579 */
 /***/ function(module, exports) {
 
 	/**
@@ -49789,10 +50806,10 @@
 
 
 /***/ },
-/* 565 */
+/* 580 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(563);
+	var getMapData = __webpack_require__(578);
 	
 	/**
 	 * Gets the map value for `key`.
@@ -49811,10 +50828,10 @@
 
 
 /***/ },
-/* 566 */
+/* 581 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(563);
+	var getMapData = __webpack_require__(578);
 	
 	/**
 	 * Checks if a map value for `key` exists.
@@ -49833,10 +50850,10 @@
 
 
 /***/ },
-/* 567 */
+/* 582 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(563);
+	var getMapData = __webpack_require__(578);
 	
 	/**
 	 * Sets the map `key` to `value`.
@@ -49857,7 +50874,7 @@
 
 
 /***/ },
-/* 568 */
+/* 583 */
 /***/ function(module, exports) {
 
 	/**
@@ -49885,10 +50902,10 @@
 
 
 /***/ },
-/* 569 */
+/* 584 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(533);
+	var eq = __webpack_require__(548);
 	
 	/**
 	 * This function is like `assignValue` except that it doesn't assign
@@ -49910,12 +50927,12 @@
 
 
 /***/ },
-/* 570 */
+/* 585 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(546),
-	    isPrototype = __webpack_require__(571),
-	    nativeKeysIn = __webpack_require__(572);
+	var isObject = __webpack_require__(561),
+	    isPrototype = __webpack_require__(586),
+	    nativeKeysIn = __webpack_require__(587);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -49949,7 +50966,7 @@
 
 
 /***/ },
-/* 571 */
+/* 586 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -49973,7 +50990,7 @@
 
 
 /***/ },
-/* 572 */
+/* 587 */
 /***/ function(module, exports) {
 
 	/**
@@ -49999,20 +51016,20 @@
 
 
 /***/ },
-/* 573 */
+/* 588 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignMergeValue = __webpack_require__(569),
-	    baseClone = __webpack_require__(574),
-	    copyArray = __webpack_require__(590),
-	    isArguments = __webpack_require__(581),
-	    isArray = __webpack_require__(585),
-	    isArrayLikeObject = __webpack_require__(582),
-	    isFunction = __webpack_require__(545),
-	    isObject = __webpack_require__(546),
+	var assignMergeValue = __webpack_require__(584),
+	    baseClone = __webpack_require__(589),
+	    copyArray = __webpack_require__(605),
+	    isArguments = __webpack_require__(596),
+	    isArray = __webpack_require__(600),
+	    isArrayLikeObject = __webpack_require__(597),
+	    isFunction = __webpack_require__(560),
+	    isObject = __webpack_require__(561),
 	    isPlainObject = __webpack_require__(182),
-	    isTypedArray = __webpack_require__(624),
-	    toPlainObject = __webpack_require__(628);
+	    isTypedArray = __webpack_require__(639),
+	    toPlainObject = __webpack_require__(643);
 	
 	/**
 	 * A specialized version of `baseMerge` for arrays and objects which performs
@@ -50087,26 +51104,26 @@
 
 
 /***/ },
-/* 574 */
+/* 589 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Stack = __webpack_require__(528),
-	    arrayEach = __webpack_require__(568),
-	    assignValue = __webpack_require__(575),
-	    baseAssign = __webpack_require__(576),
-	    cloneBuffer = __webpack_require__(589),
-	    copyArray = __webpack_require__(590),
-	    copySymbols = __webpack_require__(591),
-	    getAllKeys = __webpack_require__(594),
-	    getTag = __webpack_require__(597),
-	    initCloneArray = __webpack_require__(603),
-	    initCloneByTag = __webpack_require__(604),
-	    initCloneObject = __webpack_require__(619),
-	    isArray = __webpack_require__(585),
-	    isBuffer = __webpack_require__(621),
+	var Stack = __webpack_require__(543),
+	    arrayEach = __webpack_require__(583),
+	    assignValue = __webpack_require__(590),
+	    baseAssign = __webpack_require__(591),
+	    cloneBuffer = __webpack_require__(604),
+	    copyArray = __webpack_require__(605),
+	    copySymbols = __webpack_require__(606),
+	    getAllKeys = __webpack_require__(609),
+	    getTag = __webpack_require__(612),
+	    initCloneArray = __webpack_require__(618),
+	    initCloneByTag = __webpack_require__(619),
+	    initCloneObject = __webpack_require__(634),
+	    isArray = __webpack_require__(600),
+	    isBuffer = __webpack_require__(636),
 	    isHostObject = __webpack_require__(185),
-	    isObject = __webpack_require__(546),
-	    keys = __webpack_require__(578);
+	    isObject = __webpack_require__(561),
+	    keys = __webpack_require__(593);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]',
@@ -50232,10 +51249,10 @@
 
 
 /***/ },
-/* 575 */
+/* 590 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(533);
+	var eq = __webpack_require__(548);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -50265,11 +51282,11 @@
 
 
 /***/ },
-/* 576 */
+/* 591 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(577),
-	    keys = __webpack_require__(578);
+	var copyObject = __webpack_require__(592),
+	    keys = __webpack_require__(593);
 	
 	/**
 	 * The base implementation of `_.assign` without support for multiple sources
@@ -50288,10 +51305,10 @@
 
 
 /***/ },
-/* 577 */
+/* 592 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignValue = __webpack_require__(575);
+	var assignValue = __webpack_require__(590);
 	
 	/**
 	 * Copies properties of `source` to `object`.
@@ -50325,12 +51342,12 @@
 
 
 /***/ },
-/* 578 */
+/* 593 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(579),
-	    baseKeys = __webpack_require__(587),
-	    isArrayLike = __webpack_require__(583);
+	var arrayLikeKeys = __webpack_require__(594),
+	    baseKeys = __webpack_require__(602),
+	    isArrayLike = __webpack_require__(598);
 	
 	/**
 	 * Creates an array of the own enumerable property names of `object`.
@@ -50368,13 +51385,13 @@
 
 
 /***/ },
-/* 579 */
+/* 594 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseTimes = __webpack_require__(580),
-	    isArguments = __webpack_require__(581),
-	    isArray = __webpack_require__(585),
-	    isIndex = __webpack_require__(586);
+	var baseTimes = __webpack_require__(595),
+	    isArguments = __webpack_require__(596),
+	    isArray = __webpack_require__(600),
+	    isIndex = __webpack_require__(601);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -50413,7 +51430,7 @@
 
 
 /***/ },
-/* 580 */
+/* 595 */
 /***/ function(module, exports) {
 
 	/**
@@ -50439,10 +51456,10 @@
 
 
 /***/ },
-/* 581 */
+/* 596 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLikeObject = __webpack_require__(582);
+	var isArrayLikeObject = __webpack_require__(597);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]';
@@ -50491,10 +51508,10 @@
 
 
 /***/ },
-/* 582 */
+/* 597 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(583),
+	var isArrayLike = __webpack_require__(598),
 	    isObjectLike = __webpack_require__(186);
 	
 	/**
@@ -50530,11 +51547,11 @@
 
 
 /***/ },
-/* 583 */
+/* 598 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(545),
-	    isLength = __webpack_require__(584);
+	var isFunction = __webpack_require__(560),
+	    isLength = __webpack_require__(599);
 	
 	/**
 	 * Checks if `value` is array-like. A value is considered array-like if it's
@@ -50569,7 +51586,7 @@
 
 
 /***/ },
-/* 584 */
+/* 599 */
 /***/ function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -50610,7 +51627,7 @@
 
 
 /***/ },
-/* 585 */
+/* 600 */
 /***/ function(module, exports) {
 
 	/**
@@ -50642,7 +51659,7 @@
 
 
 /***/ },
-/* 586 */
+/* 601 */
 /***/ function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -50670,11 +51687,11 @@
 
 
 /***/ },
-/* 587 */
+/* 602 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isPrototype = __webpack_require__(571),
-	    nativeKeys = __webpack_require__(588);
+	var isPrototype = __webpack_require__(586),
+	    nativeKeys = __webpack_require__(603);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -50706,7 +51723,7 @@
 
 
 /***/ },
-/* 588 */
+/* 603 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(184);
@@ -50718,7 +51735,7 @@
 
 
 /***/ },
-/* 589 */
+/* 604 */
 /***/ function(module, exports) {
 
 	/**
@@ -50742,7 +51759,7 @@
 
 
 /***/ },
-/* 590 */
+/* 605 */
 /***/ function(module, exports) {
 
 	/**
@@ -50768,11 +51785,11 @@
 
 
 /***/ },
-/* 591 */
+/* 606 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(577),
-	    getSymbols = __webpack_require__(592);
+	var copyObject = __webpack_require__(592),
+	    getSymbols = __webpack_require__(607);
 	
 	/**
 	 * Copies own symbol properties of `source` to `object`.
@@ -50790,11 +51807,11 @@
 
 
 /***/ },
-/* 592 */
+/* 607 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(184),
-	    stubArray = __webpack_require__(593);
+	    stubArray = __webpack_require__(608);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeGetSymbols = Object.getOwnPropertySymbols;
@@ -50812,7 +51829,7 @@
 
 
 /***/ },
-/* 593 */
+/* 608 */
 /***/ function(module, exports) {
 
 	/**
@@ -50841,12 +51858,12 @@
 
 
 /***/ },
-/* 594 */
+/* 609 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetAllKeys = __webpack_require__(595),
-	    getSymbols = __webpack_require__(592),
-	    keys = __webpack_require__(578);
+	var baseGetAllKeys = __webpack_require__(610),
+	    getSymbols = __webpack_require__(607),
+	    keys = __webpack_require__(593);
 	
 	/**
 	 * Creates an array of own enumerable property names and symbols of `object`.
@@ -50863,11 +51880,11 @@
 
 
 /***/ },
-/* 595 */
+/* 610 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayPush = __webpack_require__(596),
-	    isArray = __webpack_require__(585);
+	var arrayPush = __webpack_require__(611),
+	    isArray = __webpack_require__(600);
 	
 	/**
 	 * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -50889,7 +51906,7 @@
 
 
 /***/ },
-/* 596 */
+/* 611 */
 /***/ function(module, exports) {
 
 	/**
@@ -50915,16 +51932,16 @@
 
 
 /***/ },
-/* 597 */
+/* 612 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var DataView = __webpack_require__(598),
-	    Map = __webpack_require__(542),
-	    Promise = __webpack_require__(599),
-	    Set = __webpack_require__(600),
-	    WeakMap = __webpack_require__(601),
-	    baseGetTag = __webpack_require__(602),
-	    toSource = __webpack_require__(551);
+	var DataView = __webpack_require__(613),
+	    Map = __webpack_require__(557),
+	    Promise = __webpack_require__(614),
+	    Set = __webpack_require__(615),
+	    WeakMap = __webpack_require__(616),
+	    baseGetTag = __webpack_require__(617),
+	    toSource = __webpack_require__(566);
 	
 	/** `Object#toString` result references. */
 	var mapTag = '[object Map]',
@@ -50990,11 +52007,11 @@
 
 
 /***/ },
-/* 598 */
+/* 613 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(543),
-	    root = __webpack_require__(549);
+	var getNative = __webpack_require__(558),
+	    root = __webpack_require__(564);
 	
 	/* Built-in method references that are verified to be native. */
 	var DataView = getNative(root, 'DataView');
@@ -51003,11 +52020,11 @@
 
 
 /***/ },
-/* 599 */
+/* 614 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(543),
-	    root = __webpack_require__(549);
+	var getNative = __webpack_require__(558),
+	    root = __webpack_require__(564);
 	
 	/* Built-in method references that are verified to be native. */
 	var Promise = getNative(root, 'Promise');
@@ -51016,11 +52033,11 @@
 
 
 /***/ },
-/* 600 */
+/* 615 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(543),
-	    root = __webpack_require__(549);
+	var getNative = __webpack_require__(558),
+	    root = __webpack_require__(564);
 	
 	/* Built-in method references that are verified to be native. */
 	var Set = getNative(root, 'Set');
@@ -51029,11 +52046,11 @@
 
 
 /***/ },
-/* 601 */
+/* 616 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(543),
-	    root = __webpack_require__(549);
+	var getNative = __webpack_require__(558),
+	    root = __webpack_require__(564);
 	
 	/* Built-in method references that are verified to be native. */
 	var WeakMap = getNative(root, 'WeakMap');
@@ -51042,7 +52059,7 @@
 
 
 /***/ },
-/* 602 */
+/* 617 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -51070,7 +52087,7 @@
 
 
 /***/ },
-/* 603 */
+/* 618 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -51102,16 +52119,16 @@
 
 
 /***/ },
-/* 604 */
+/* 619 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cloneArrayBuffer = __webpack_require__(605),
-	    cloneDataView = __webpack_require__(607),
-	    cloneMap = __webpack_require__(608),
-	    cloneRegExp = __webpack_require__(612),
-	    cloneSet = __webpack_require__(613),
-	    cloneSymbol = __webpack_require__(616),
-	    cloneTypedArray = __webpack_require__(618);
+	var cloneArrayBuffer = __webpack_require__(620),
+	    cloneDataView = __webpack_require__(622),
+	    cloneMap = __webpack_require__(623),
+	    cloneRegExp = __webpack_require__(627),
+	    cloneSet = __webpack_require__(628),
+	    cloneSymbol = __webpack_require__(631),
+	    cloneTypedArray = __webpack_require__(633);
 	
 	/** `Object#toString` result references. */
 	var boolTag = '[object Boolean]',
@@ -51188,10 +52205,10 @@
 
 
 /***/ },
-/* 605 */
+/* 620 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Uint8Array = __webpack_require__(606);
+	var Uint8Array = __webpack_require__(621);
 	
 	/**
 	 * Creates a clone of `arrayBuffer`.
@@ -51210,10 +52227,10 @@
 
 
 /***/ },
-/* 606 */
+/* 621 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(549);
+	var root = __webpack_require__(564);
 	
 	/** Built-in value references. */
 	var Uint8Array = root.Uint8Array;
@@ -51222,10 +52239,10 @@
 
 
 /***/ },
-/* 607 */
+/* 622 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cloneArrayBuffer = __webpack_require__(605);
+	var cloneArrayBuffer = __webpack_require__(620);
 	
 	/**
 	 * Creates a clone of `dataView`.
@@ -51244,12 +52261,12 @@
 
 
 /***/ },
-/* 608 */
+/* 623 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var addMapEntry = __webpack_require__(609),
-	    arrayReduce = __webpack_require__(610),
-	    mapToArray = __webpack_require__(611);
+	var addMapEntry = __webpack_require__(624),
+	    arrayReduce = __webpack_require__(625),
+	    mapToArray = __webpack_require__(626);
 	
 	/**
 	 * Creates a clone of `map`.
@@ -51269,7 +52286,7 @@
 
 
 /***/ },
-/* 609 */
+/* 624 */
 /***/ function(module, exports) {
 
 	/**
@@ -51290,7 +52307,7 @@
 
 
 /***/ },
-/* 610 */
+/* 625 */
 /***/ function(module, exports) {
 
 	/**
@@ -51322,7 +52339,7 @@
 
 
 /***/ },
-/* 611 */
+/* 626 */
 /***/ function(module, exports) {
 
 	/**
@@ -51346,7 +52363,7 @@
 
 
 /***/ },
-/* 612 */
+/* 627 */
 /***/ function(module, exports) {
 
 	/** Used to match `RegExp` flags from their coerced string values. */
@@ -51369,12 +52386,12 @@
 
 
 /***/ },
-/* 613 */
+/* 628 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var addSetEntry = __webpack_require__(614),
-	    arrayReduce = __webpack_require__(610),
-	    setToArray = __webpack_require__(615);
+	var addSetEntry = __webpack_require__(629),
+	    arrayReduce = __webpack_require__(625),
+	    setToArray = __webpack_require__(630);
 	
 	/**
 	 * Creates a clone of `set`.
@@ -51394,7 +52411,7 @@
 
 
 /***/ },
-/* 614 */
+/* 629 */
 /***/ function(module, exports) {
 
 	/**
@@ -51415,7 +52432,7 @@
 
 
 /***/ },
-/* 615 */
+/* 630 */
 /***/ function(module, exports) {
 
 	/**
@@ -51439,10 +52456,10 @@
 
 
 /***/ },
-/* 616 */
+/* 631 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(617);
+	var Symbol = __webpack_require__(632);
 	
 	/** Used to convert symbols to primitives and strings. */
 	var symbolProto = Symbol ? Symbol.prototype : undefined,
@@ -51463,10 +52480,10 @@
 
 
 /***/ },
-/* 617 */
+/* 632 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(549);
+	var root = __webpack_require__(564);
 	
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -51475,10 +52492,10 @@
 
 
 /***/ },
-/* 618 */
+/* 633 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cloneArrayBuffer = __webpack_require__(605);
+	var cloneArrayBuffer = __webpack_require__(620);
 	
 	/**
 	 * Creates a clone of `typedArray`.
@@ -51497,12 +52514,12 @@
 
 
 /***/ },
-/* 619 */
+/* 634 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseCreate = __webpack_require__(620),
+	var baseCreate = __webpack_require__(635),
 	    getPrototype = __webpack_require__(183),
-	    isPrototype = __webpack_require__(571);
+	    isPrototype = __webpack_require__(586);
 	
 	/**
 	 * Initializes an object clone.
@@ -51521,10 +52538,10 @@
 
 
 /***/ },
-/* 620 */
+/* 635 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(546);
+	var isObject = __webpack_require__(561);
 	
 	/** Built-in value references. */
 	var objectCreate = Object.create;
@@ -51545,11 +52562,11 @@
 
 
 /***/ },
-/* 621 */
+/* 636 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(549),
-	    stubFalse = __webpack_require__(623);
+	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(564),
+	    stubFalse = __webpack_require__(638);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -51587,10 +52604,10 @@
 	
 	module.exports = isBuffer;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(622)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(637)(module)))
 
 /***/ },
-/* 622 */
+/* 637 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -51606,7 +52623,7 @@
 
 
 /***/ },
-/* 623 */
+/* 638 */
 /***/ function(module, exports) {
 
 	/**
@@ -51630,12 +52647,12 @@
 
 
 /***/ },
-/* 624 */
+/* 639 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsTypedArray = __webpack_require__(625),
-	    baseUnary = __webpack_require__(626),
-	    nodeUtil = __webpack_require__(627);
+	var baseIsTypedArray = __webpack_require__(640),
+	    baseUnary = __webpack_require__(641),
+	    nodeUtil = __webpack_require__(642);
 	
 	/* Node.js helper references. */
 	var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -51663,10 +52680,10 @@
 
 
 /***/ },
-/* 625 */
+/* 640 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isLength = __webpack_require__(584),
+	var isLength = __webpack_require__(599),
 	    isObjectLike = __webpack_require__(186);
 	
 	/** `Object#toString` result references. */
@@ -51738,7 +52755,7 @@
 
 
 /***/ },
-/* 626 */
+/* 641 */
 /***/ function(module, exports) {
 
 	/**
@@ -51758,10 +52775,10 @@
 
 
 /***/ },
-/* 627 */
+/* 642 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(550);
+	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(565);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -51784,14 +52801,14 @@
 	
 	module.exports = nodeUtil;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(622)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(637)(module)))
 
 /***/ },
-/* 628 */
+/* 643 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(577),
-	    keysIn = __webpack_require__(629);
+	var copyObject = __webpack_require__(592),
+	    keysIn = __webpack_require__(644);
 	
 	/**
 	 * Converts `value` to a plain object flattening inherited enumerable string
@@ -51825,12 +52842,12 @@
 
 
 /***/ },
-/* 629 */
+/* 644 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(579),
-	    baseKeysIn = __webpack_require__(570),
-	    isArrayLike = __webpack_require__(583);
+	var arrayLikeKeys = __webpack_require__(594),
+	    baseKeysIn = __webpack_require__(585),
+	    isArrayLike = __webpack_require__(598);
 	
 	/**
 	 * Creates an array of the own and inherited enumerable property names of `object`.
@@ -51863,11 +52880,11 @@
 
 
 /***/ },
-/* 630 */
+/* 645 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseRest = __webpack_require__(631),
-	    isIterateeCall = __webpack_require__(633);
+	var baseRest = __webpack_require__(646),
+	    isIterateeCall = __webpack_require__(648);
 	
 	/**
 	 * Creates a function like `_.assign`.
@@ -51906,10 +52923,10 @@
 
 
 /***/ },
-/* 631 */
+/* 646 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var apply = __webpack_require__(632);
+	var apply = __webpack_require__(647);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeMax = Math.max;
@@ -51947,7 +52964,7 @@
 
 
 /***/ },
-/* 632 */
+/* 647 */
 /***/ function(module, exports) {
 
 	/**
@@ -51974,13 +52991,13 @@
 
 
 /***/ },
-/* 633 */
+/* 648 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(533),
-	    isArrayLike = __webpack_require__(583),
-	    isIndex = __webpack_require__(586),
-	    isObject = __webpack_require__(546);
+	var eq = __webpack_require__(548),
+	    isArrayLike = __webpack_require__(598),
+	    isIndex = __webpack_require__(601),
+	    isObject = __webpack_require__(561);
 	
 	/**
 	 * Checks if the given arguments are from an iteratee call.
@@ -52010,7 +53027,7 @@
 
 
 /***/ },
-/* 634 */
+/* 649 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52021,7 +53038,7 @@
 	
 	var _session_actions = __webpack_require__(261);
 	
-	var _merge = __webpack_require__(526);
+	var _merge = __webpack_require__(541);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -52056,7 +53073,45 @@
 	exports.default = SessionReducer;
 
 /***/ },
-/* 635 */
+/* 650 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _user_actions = __webpack_require__(536);
+	
+	var _merge = __webpack_require__(541);
+	
+	var _merge2 = _interopRequireDefault(_merge);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	var UsersReducer = function UsersReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _user_actions.UserConstants.RECEIVE_USERS:
+	      return action.users;
+	    case _user_actions.UserConstants.RECEIVE_USER:
+	      var user = _defineProperty({}, action.user.id, action.user);
+	      return (0, _merge2.default)({}, state, user);
+	    default:
+	      return state;
+	
+	  }
+	};
+	
+	exports.default = UsersReducer;
+
+/***/ },
+/* 651 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52067,15 +53122,15 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _futon_middleware = __webpack_require__(636);
+	var _futon_middleware = __webpack_require__(652);
 	
 	var _futon_middleware2 = _interopRequireDefault(_futon_middleware);
 	
-	var _session_middleware = __webpack_require__(638);
+	var _session_middleware = __webpack_require__(654);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
-	var _user_middleware = __webpack_require__(653);
+	var _user_middleware = __webpack_require__(656);
 	
 	var _user_middleware2 = _interopRequireDefault(_user_middleware);
 	
@@ -52085,7 +53140,7 @@
 	exports.default = RootMiddleware;
 
 /***/ },
-/* 636 */
+/* 652 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52094,7 +53149,7 @@
 	  value: true
 	});
 	
-	var _futon_util = __webpack_require__(637);
+	var _futon_util = __webpack_require__(653);
 	
 	var _futon_actions = __webpack_require__(522);
 	
@@ -52126,6 +53181,9 @@
 	        case _futon_actions.FutonConstants.CREATE_FUTON:
 	          createFuton(action.futon, futonSuccess);
 	          break;
+	        case _futon_actions.FutonConstants.UPDATE_FUTON:
+	          (0, _futon_util.updateFuton)(action.id, action.futon, futonSuccess);
+	          break;
 	        default:
 	          break;
 	      }
@@ -52141,7 +53199,7 @@
 	// Futon Action
 
 /***/ },
-/* 637 */
+/* 653 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52181,9 +53239,18 @@
 	    success: success
 	  });
 	};
+	
+	var updateFuton = exports.updateFuton = function updateFuton(id, futon, success) {
+	  $.ajax({
+	    url: 'api/futons/' + id,
+	    method: "PATCH",
+	    data: { futon: futon },
+	    success: success
+	  });
+	};
 
 /***/ },
-/* 638 */
+/* 654 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52196,7 +53263,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _session_util = __webpack_require__(639);
+	var _session_util = __webpack_require__(655);
 	
 	exports.default = function (_ref) {
 	  var getState = _ref.getState;
@@ -52243,7 +53310,7 @@
 	};
 
 /***/ },
-/* 639 */
+/* 655 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52304,7 +53371,7 @@
 	};
 
 /***/ },
-/* 640 */
+/* 656 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52313,645 +53380,9 @@
 	  value: true
 	});
 	
-	var _reactRedux = __webpack_require__(173);
+	var _user_util = __webpack_require__(657);
 	
-	var _futons_show = __webpack_require__(641);
-	
-	var _futons_show2 = _interopRequireDefault(_futons_show);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  var futons = state.futons;
-	  return {
-	    futons: futons
-	  };
-	};
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_futons_show2.default);
-
-/***/ },
-/* 641 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _futon_index = __webpack_require__(643);
-	
-	var _futon_index2 = _interopRequireDefault(_futon_index);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// import FutonMap from './futon_map/futon_map';
-	// import ReviewButton from './review_button';
-	
-	
-	var FutonShow = function FutonShow(_ref) {
-	  var futons = _ref.futons;
-	
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'all-futon-show' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'all-futon-show' },
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/profile' },
-	        ' Back to Dashboard '
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'futon-details' },
-	      _react2.default.createElement(_futon_index2.default, { futons: futons })
-	    )
-	  );
-	};
-	exports.default = FutonShow;
-
-/***/ },
-/* 642 */,
-/* 643 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _futon_index_item = __webpack_require__(644);
-	
-	var _futon_index_item2 = _interopRequireDefault(_futon_index_item);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var FutonIndex = function FutonIndex(props) {
-	  var futons = props.futons;
-	  var futonKeys = Object.keys(futons);
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Futons: '
-	    ),
-	    futonKeys.map(function (key) {
-	      return _react2.default.createElement(_futon_index_item2.default, { futon: futons[key], key: key });
-	    })
-	  );
-	};
-	
-	exports.default = FutonIndex;
-
-/***/ },
-/* 644 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var IndexItem = function (_React$Component) {
-	  _inherits(IndexItem, _React$Component);
-	
-	  function IndexItem(props) {
-	    _classCallCheck(this, IndexItem);
-	
-	    var _this = _possibleConstructorReturn(this, (IndexItem.__proto__ || Object.getPrototypeOf(IndexItem)).call(this, props));
-	
-	    _this.handleClick = _this.handleClick.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(IndexItem, [{
-	    key: 'handleClick',
-	    value: function handleClick() {
-	      var futonID = this.props.futon.id;
-	      _reactRouter.hashHistory.push("futons/" + futonID);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var futon = this.props.futon;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'futon-index-item',
-	          onClick: this.handleClick },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'index-item-info' },
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'index-item-category' },
-	            'Description: '
-	          ),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'index-item-copy' },
-	            futon.description
-	          )
-	        ),
-	        _react2.default.createElement('img', { src: futon.futon_img_url })
-	      );
-	    }
-	  }]);
-	
-	  return IndexItem;
-	}(_react2.default.Component);
-	
-	exports.default = IndexItem;
-	// #   create_table "futons", force: :cascade do |t|
-	// #     t.string   "address",       null: false
-	// #     t.float    "lat",           null: false
-	// #     t.float    "lng",           null: false
-	// #     t.text     "description",   null: false
-	// #     t.integer  "user_id",       null: false
-	// #     t.datetime "created_at",    null: false
-	// #     t.datetime "updated_at",    null: false
-	// #     t.string   "futon_img_url"
-	// #   end
-	
-	{/* <span className="index-item-category">Rating: </span>
-	  <span className="index-item-copy">
-	  {futon.average_rating || "No reviews yet"}
-	  </span>
-	  <span className="index-item-category">Number of Likes: </span>
-	  <span className="index-item-copy">
-	  {/*TODO remove the  || 0 below*/}
-	{} /*{futon.favorite_users.length || 0 }*/
-	// </span> */}
-
-/***/ },
-/* 645 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _user_show = __webpack_require__(646);
-	
-	var _user_show2 = _interopRequireDefault(_user_show);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  var userId = parseInt(ownProps.params.userId);
-	  var user = state.users[userId] || {};
-	  return {
-	    userId: userId,
-	    user: user
-	  };
-	};
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_user_show2.default);
-
-/***/ },
-/* 646 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _user_details = __webpack_require__(647);
-	
-	var _user_details2 = _interopRequireDefault(_user_details);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var UserShow = function UserShow(_ref) {
-	  var currentUserId = _ref.currentUserId;
-	  var requestUser = _ref.requestUser;
-	  var children = _ref.children;
-	  var user = _ref.user;
-	
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'single-user-show' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'single-user-show' },
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/profile' },
-	        ' Back to Dashboard '
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'user-details' },
-	      _react2.default.createElement(_user_details2.default, { user: user })
-	    )
-	  );
-	};
-	exports.default = UserShow;
-
-/***/ },
-/* 647 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var UserDetail = function UserDetail(_ref) {
-	  var user = _ref.user;
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'user-index-item-info' },
-	    _react2.default.createElement('img', { src: user.profile_img_url }),
-	    _react2.default.createElement(
-	      'span',
-	      { className: 'user-index-item-category' },
-	      'Name: '
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'span',
-	      { className: 'index-item-copy' },
-	      user.firstname + " " + user.lastname
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'span',
-	      { className: 'user-index-item-category' },
-	      'Username: '
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'span',
-	      { className: 'index-item-copy' },
-	      user.username
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'span',
-	      { className: 'user-index-item-category' },
-	      'email: '
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'span',
-	      { className: 'index-item-copy' },
-	      user.email
-	    ),
-	    _react2.default.createElement('br', null)
-	  );
-	};
-	exports.default = UserDetail;
-	
-	//
-	// create_table "users", force: :cascade do |t|
-	//   t.string   "firstname",       null: false
-	//   t.string   "lastname",        null: false
-	//   t.string   "password_digest", null: false
-	//   t.string   "session_token",   null: false
-	//   t.string   "email",           null: false
-	//   t.string   "profile_img_url"
-	//   t.datetime "created_at",      null: false
-	//   t.datetime "updated_at",      null: false
-	//   t.string   "username"
-	// end
-
-/***/ },
-/* 648 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _users_show = __webpack_require__(649);
-	
-	var _users_show2 = _interopRequireDefault(_users_show);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  var users = state.users;
-	  return {
-	    users: users
-	  };
-	};
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_users_show2.default);
-
-/***/ },
-/* 649 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _user_index = __webpack_require__(650);
-	
-	var _user_index2 = _interopRequireDefault(_user_index);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var UserShow = function UserShow(_ref) {
-	  var users = _ref.users;
-	
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'all-user-show' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'all-user-show' },
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/profile' },
-	        ' Back to Dashboard'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'user-details' },
-	      _react2.default.createElement(_user_index2.default, { users: users })
-	    )
-	  );
-	};
-	exports.default = UserShow;
-
-/***/ },
-/* 650 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _user_index_item = __webpack_require__(651);
-	
-	var _user_index_item2 = _interopRequireDefault(_user_index_item);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var UserIndex = function UserIndex(props) {
-	  var users = props.users;
-	  var userKeys = Object.keys(users);
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Users: '
-	    ),
-	    userKeys.map(function (key) {
-	      return _react2.default.createElement(_user_index_item2.default, { user: users[key], key: key });
-	    })
-	  );
-	};
-	exports.default = UserIndex;
-
-/***/ },
-/* 651 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var IndexItem = function (_React$Component) {
-	  _inherits(IndexItem, _React$Component);
-	
-	  function IndexItem(props) {
-	    _classCallCheck(this, IndexItem);
-	
-	    var _this = _possibleConstructorReturn(this, (IndexItem.__proto__ || Object.getPrototypeOf(IndexItem)).call(this, props));
-	
-	    _this.handleClick = _this.handleClick.bind(_this);
-	
-	    return _this;
-	  }
-	
-	  _createClass(IndexItem, [{
-	    key: 'handleClick',
-	    value: function handleClick() {
-	      var userID = this.props.user.id;
-	      _reactRouter.hashHistory.push("users/" + userID);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var user = this.props.user;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'user-index-item', onClick: this.handleClick },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'user-index-item-info' },
-	          _react2.default.createElement('img', { src: user.profile_img_url }),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'user-index-item-category' },
-	            'Name: '
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'index-item-copy' },
-	            user.firstname + " " + user.lastname
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'user-index-item-category' },
-	            'Username: '
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'index-item-copy' },
-	            user.username
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'user-index-item-category' },
-	            'email: '
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'index-item-copy' },
-	            user.email
-	          ),
-	          _react2.default.createElement('br', null)
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return IndexItem;
-	}(_react2.default.Component);
-	
-	exports.default = IndexItem;
-	//
-	//
-	// create_table "users", force: :cascade do |t|
-	//   t.string   "firstname",       null: false
-	//   t.string   "lastname",        null: false
-	//   t.string   "password_digest", null: false
-	//   t.string   "session_token",   null: false
-	//   t.string   "email",           null: false
-	//   t.string   "profile_img_url"
-	//   t.datetime "created_at",      null: false
-	//   t.datetime "updated_at",      null: false
-	//   t.string   "username"
-	// end
-
-/***/ },
-/* 652 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var UserConstants = exports.UserConstants = {
-	  RECEIVE_USERS: "RECEIVE_USERS",
-	  RECEIVE_USER: "RECEIVE_USER",
-	  REQUEST_USERS: "REQUEST_USERS",
-	  REQUEST_USER: "REQUEST_USER",
-	  CREATE_USER: "CREATE_USER",
-	  CREATE_REVIEW: "CREATE_REVIEW"
-	};
-	
-	var requestUsers = exports.requestUsers = function requestUsers() {
-	  return {
-	    type: UserConstants.REQUEST_USERS
-	  };
-	};
-	
-	var requestUser = exports.requestUser = function requestUser(id) {
-	  return {
-	    type: UserConstants.REQUEST_USER,
-	    id: id
-	  };
-	};
-	
-	var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
-	  return {
-	    type: UserConstants.RECEIVE_USERS,
-	    users: users
-	  };
-	};
-	
-	var receiveUser = exports.receiveUser = function receiveUser(user) {
-	  return {
-	    type: UserConstants.RECEIVE_USER,
-	    user: user
-	  };
-	};
-
-/***/ },
-/* 653 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _user_util = __webpack_require__(654);
-	
-	var _user_actions = __webpack_require__(652);
+	var _user_actions = __webpack_require__(536);
 	
 	exports.default = function (_ref) {
 	  var getState = _ref.getState;
@@ -52972,6 +53403,9 @@
 	        case _user_actions.UserConstants.REQUEST_USER:
 	          (0, _user_util.fetchUser)(action.id, userSuccess);
 	          break;
+	        case _user_actions.UserConstants.UPDATE_USER:
+	          (0, _user_util.updateUser)(action.id, action.user, userSuccess);
+	          break;
 	        default:
 	          break;
 	      }
@@ -52981,7 +53415,7 @@
 	};
 
 /***/ },
-/* 654 */
+/* 657 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53004,9 +53438,18 @@
 	    success: success
 	  });
 	};
+	
+	var updateUser = exports.updateUser = function updateUser(id, user, success) {
+	  $.ajax({
+	    url: 'api/users/' + id,
+	    method: "PATCH",
+	    data: { user: user },
+	    success: success
+	  });
+	};
 
 /***/ },
-/* 655 */
+/* 658 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53015,33 +53458,205 @@
 	  value: true
 	});
 	
-	var _user_actions = __webpack_require__(652);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _merge = __webpack_require__(526);
+	var _react = __webpack_require__(1);
 	
-	var _merge2 = _interopRequireDefault(_merge);
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
-	var UsersReducer = function UsersReducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var action = arguments[1];
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	  switch (action.type) {
-	    case _user_actions.UserConstants.RECEIVE_USERS:
-	      return action.users;
-	    case _user_actions.UserConstants.RECEIVE_USER:
-	      var user = _defineProperty({}, action.user.id, action.user);
-	      return (0, _merge2.default)({}, state, user);
-	    default:
-	      return state;
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var EditFuton = function (_React$Component) {
+	  _inherits(EditFuton, _React$Component);
+	
+	  function EditFuton(props) {
+	    _classCallCheck(this, EditFuton);
+	
+	    var _this = _possibleConstructorReturn(this, (EditFuton.__proto__ || Object.getPrototypeOf(EditFuton)).call(this, props));
+	
+	    _this.state = {
+	      address: _this.props.futon.address ? _this.props.futon.address : "",
+	      description: _this.props.futon.description ? _this.props.futon.description : ""
+	    };
+	    console.log("hello");
+	    _this.update = _this.update.bind(_this);
+	    _this.updateFutonPic = _this.updateFutonPic.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
 	  }
-	};
 	
-	exports.default = UsersReducer;
+	  _createClass(EditFuton, [{
+	    key: 'updateFutonPic',
+	    value: function updateFutonPic() {
+	      var _this2 = this;
+	
+	      cloudinary.openUploadWidget(window.cloudinaryOptions, function (error, images) {
+	        if (error) {
+	          _this2.setState({ error: error.message });
+	        } else if (images.length > 1) {
+	          _this2.setState({ error: "Please only one image" });
+	        } else if (images.length === 0) {
+	          _this2.setState({ error: "Could not find image" });
+	        } else {
+	          _this2.props.updateUser(_this2.props.futon.id, { futon_img_url: images[0].url });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var newState = this.state;
+	      this.props.updateFuton(this.props.futon.id, newState);
+	      _reactRouter.hashHistory.push("/profile");
+	    }
+	  }, {
+	    key: 'update',
+	    value: function update(field) {
+	      var _this3 = this;
+	
+	      return function (e) {
+	        _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+	      };
+	    }
+	  }, {
+	    key: 'renderErrors',
+	    value: function renderErrors() {
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        this.props.errors.map(function (error, i) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: 'error-' + i },
+	            error
+	          );
+	        })
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var futonPic = this.props.futon.futon_img_url ? this.props.futon.futon_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg";
+	      var des = this.props.description;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'main',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'vertical-container' },
+	            _react2.default.createElement(
+	              'aside',
+	              { className: 'profile-pic' },
+	              _react2.default.createElement('img', { className: 'edit-pic', src: futonPic, onClick: this.updateFutonPic }),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Click your futon image to update the your futon pic'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'section',
+	              { className: 'main-profile' },
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-header' },
+	                _react2.default.createElement(
+	                  'h1',
+	                  null,
+	                  this.props.currentUser.firstname + " " + this.props.currentUser.lastname
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-buttons' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  this.state.error
+	                ),
+	                this.renderErrors()
+	              ),
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-info' },
+	                _react2.default.createElement(
+	                  'nav',
+	                  { className: 'profile-navbar' },
+	                  _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'a',
+	                        { href: '/#/editprofile', className: 'profile-navbar-links' },
+	                        ' Edit your about'
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'a',
+	                        { href: '/#/editfuton', className: 'profile-navbar-links' },
+	                        'Edit your futon'
+	                      )
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'inner-info' },
+	                  _react2.default.createElement(
+	                    'form',
+	                    { className: 'update-form' },
+	                    _react2.default.createElement('p', null),
+	                    _react2.default.createElement(
+	                      'label',
+	                      null,
+	                      'address:',
+	                      _react2.default.createElement('input', { type: 'text', name: 'address', onChange: this.update("address") })
+	                    ),
+	                    _react2.default.createElement(
+	                      'label',
+	                      null,
+	                      'Futon description:',
+	                      _react2.default.createElement('textarea', { name: 'description', onChange: this.update("description") })
+	                    ),
+	                    _react2.default.createElement(
+	                      'button',
+	                      { className: 'update-button', onClick: this.handleSubmit },
+	                      'Edit'
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return EditFuton;
+	}(_react2.default.Component);
+	
+	exports.default = EditFuton;
 
 /***/ }
 /******/ ]);

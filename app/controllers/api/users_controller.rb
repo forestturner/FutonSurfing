@@ -1,3 +1,4 @@
+require "byebug"
 class Api::UsersController < ApplicationController
   def index()
     @users = User.all
@@ -19,8 +20,25 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(id: params[:id])
+    if @user.update(firstname: params[:user][:firstname],lastname: params[:user][:lastname], description: params[:user][:description],password: params[:user][:password] )
+      login(@user)
+      render :show
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
+  end
+
+  def destroy
+    @user = user.find_by(id: params[:id])
+    @user.destroy
+    render json: {}
+  end
+
+
   private
   def user_params
-    params.require(:user).permit(:username,:password, :firstname,:lastname, :email, :profile_img_url)
+    params.require(:user).permit(:username,:password, :firstname,:lastname, :email, :profile_img_url,:description)
   end
 end

@@ -4,7 +4,8 @@ export const UserConstants = {
   REQUEST_USERS: "REQUEST_USERS",
   REQUEST_USER: "REQUEST_USER",
   CREATE_USER: "CREATE_USER",
-  CREATE_REVIEW: "CREATE_REVIEW"
+  CREATE_REVIEW: "CREATE_REVIEW",
+  UPDATE_USER: "UPDATE_USER"
 };
 
 export const requestUsers = () => ({
@@ -25,3 +26,8 @@ export const receiveUser = user => ({
   type: UserConstants.RECEIVE_USER,
   user
 });
+export const updateUser = (id, user) => ({
+  type: UserConstants.UPDATE_USER,
+  id,
+  user
+})

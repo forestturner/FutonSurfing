@@ -32,3 +32,12 @@ export const createFuton = (futon, success) => {
     success
   });
 };
+
+export const updateFuton = (id, futon, success) => {
+  $.ajax({
+    url: `api/futons/${id}`,
+    method: "PATCH",
+    data: {futon: futon},
+    success
+  });
+};

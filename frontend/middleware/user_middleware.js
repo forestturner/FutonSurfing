@@ -1,4 +1,4 @@
-import {fetchUsers,fetchUser} from '../util/user_util';
+import {fetchUsers,fetchUser,updateUser} from '../util/user_util';
 import {receiveUsers,receiveUser,UserConstants} from '../actions/user_actions';
 
 export default ({getState,dispatch}) => next => action => {
@@ -11,6 +11,9 @@ export default ({getState,dispatch}) => next => action => {
       break;
     case UserConstants.REQUEST_USER:
       fetchUser(action.id,userSuccess);
+      break;
+    case UserConstants.UPDATE_USER:
+      updateUser(action.id,action.user,userSuccess)
       break;
     default:
       break;

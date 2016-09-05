@@ -9,6 +9,9 @@ import FutonShowContainer from '../futon_show/futon_show_container';
 import FutonsShowContainer from '../futon_all/futons_show_container';
 import UserShowContainer from '../user_show/user_show_container';
 import UsersShowContainer from '../user_all/users_show_container';
+import EditProfileContainer from '../profile/edit_profile_container';
+import EditFutonContainer from '../futon_show/edit_futon_container';
+
 
 class AppRouter extends React.Component{
   constructor(props){
@@ -63,7 +66,7 @@ getUsers(nextState,replace) {
     return(
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
-        <IndexRoute component= {splashPage}/>
+          <IndexRoute component= {splashPage}/>
           <Route path="login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
@@ -72,6 +75,8 @@ getUsers(nextState,replace) {
           <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
           <Route path="profile" component={ProfileContainer} onEnter ={this._ensureLoggedIn}/>
+          <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getUser}/>
+          <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFuton}/>
         </Route>
       </Router>
     );

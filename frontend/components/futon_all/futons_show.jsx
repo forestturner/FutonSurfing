@@ -8,14 +8,24 @@ import FutonIndex from './futon_index';
 
 const FutonShow = function({ futons }) {
   return(
-    <div className='all-futon-show'>
-      <div className='all-futon-show'>
-        <Link to="/profile"> Back to Dashboard </Link>
-      </div>
-      <div className="futon-details">
-        <FutonIndex futons={futons}/>
+    <div className='container-fluid'>
+      <div className='row-contect'>
+        <div className="col-sm-3 sidenav">
+          <Link to="/profile"> Back to Dashboard </Link>
+        </div>
+        <ul className="nav-pills nav-stacked">
+          <FutonIndex futons={futons}/>
+        </ul>
       </div>
     </div>
   );
 };
 export default FutonShow;
+
+
+
+
+
+{/* <div className="futon-details">
+<FutonIndex futons={futons}/>
+</div> */}

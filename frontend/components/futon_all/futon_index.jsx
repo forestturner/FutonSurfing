@@ -6,10 +6,9 @@ const FutonIndex = function(props) {
   const futonKeys = Object.keys(futons);
   return (
     <div>
-      <h1>Futons: </h1>
       {
         futonKeys.map( key => (
-          <FutonIndexItem futon={futons[key]} key={key} />
+        <li><FutonIndexItem futon={futons[key]} key={key} /></li>
         ))
       }
     </div>

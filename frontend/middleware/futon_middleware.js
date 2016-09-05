@@ -1,4 +1,4 @@
-import { fetchFutons,fetchFuton,fetchOwner} from '../util/futon_util';
+import { fetchFutons,fetchFuton,fetchOwner,updateFuton} from '../util/futon_util';
 // Futon Action
 import { requestFutons,receiveFuton,receiveFutons,FutonConstants} from '../actions/futon_actions';
 
@@ -20,6 +20,9 @@ export default ({getState, dispatch}) => next => action => {
       break;
     case FutonConstants.CREATE_FUTON:
       createFuton(action.futon, futonSuccess);
+      break;
+    case FutonConstants.UPDATE_FUTON:
+      updateFuton(action.id,action.futon,futonSuccess)
       break;
     default:
       break;
