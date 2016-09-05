@@ -12,6 +12,8 @@ class Profile extends React.Component {
      let allFutons =  "/futons"
      let UserProfile = `/users/${currentUser.id}`
      let allUsers =  "/users"
+     let editFuton = '/editfuton';
+     let editInfo = '/editprofile'
     return (
       <div>
         <main className="content group">
@@ -29,6 +31,8 @@ class Profile extends React.Component {
         <ul className="profile-nav">
           <li><Link to={listedFuton} >YOUR FUTON</Link></li>
           <li><Link to={allFutons} >All FUTONS IN YOUR AREA</Link></li>
+          <li><Link to={editFuton} >EDIT FUTON</Link></li>
+          <li><Link to={editInfo} >EDIT YOUR INFO</Link></li>
           <li><Link to={UserProfile} >YOUR PUBLIC PROFILE</Link></li>
           <li><Link to={allUsers} >All USERS IN YOUR AREA</Link></li>
           <li><Link to="/" >SPLASH</Link></li>

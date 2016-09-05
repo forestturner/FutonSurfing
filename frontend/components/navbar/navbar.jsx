@@ -6,7 +6,15 @@ import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl,Butt
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.handleGuest = this.handleGuest.bind(this);
   }
+
+  handleGuest(e) {
+		const user = {user: {username: "Guest",password:"password1"}};
+		this.props.logIn(user);
+	}
+
+
   navbarInstanceSession(){
     return (
       <Navbar inverse>
@@ -27,10 +35,10 @@ class NavBar extends React.Component {
            </Navbar.Form>
           </Nav>
           <Nav pullRight>
-            <Link to="/login" className="btn btn-default login"> log in </Link>
+            {/* <Link to="#" className="btn btn-default join" onClick={handleGuest}> log in </Link> */}
             <Link to="/signup" className="btn btn-primary join"> Join </Link>
-            <Link to="/guest" className="btn btn-warning guest"> Guest </Link>
-            <Link to="/futons" className="btn btn-info">Futons</Link>
+            <Link to="/profile" className="btn btn-warning join" onClick={this.handleGuest}>> Guest </Link>
+            <Link to="/futons" className="btn btn-info join">Futons</Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -40,14 +48,18 @@ class NavBar extends React.Component {
     return (
       <Navbar inverse>
         <Navbar.Header>
-          <Navbar.Brand>
+          <Navbar.Brand pullLeft>
             <a href="#">FutonSurfing</a>
+
           </Navbar.Brand>
+          <Nav pullLeft>
+            <img className="img-nav" src={currentUser.profile_img_url} alt=""></img>
+          </Nav>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <Navbar.Form pullLeft>
+            <Navbar.Form pullRight>
              <FormGroup>
                <FormControl type="text" placeholder="City" />
              </FormGroup>
@@ -57,7 +69,7 @@ class NavBar extends React.Component {
           </Nav>
           <Nav pullRight>
             {/* <NavItem eventKey={1} >{currentUser.username}</NavItem> */}
-            <img className="img-nav" src={currentUser.profile_img_url} alt=""></img>
+
             <Link className="btn btn-primary join" to="/profile">Dashboard</Link>
             <Link to="/" className="btn btn-warning join" onClick={logout}>Log Out</Link>
             <Link to="/futons" className="btn btn-info join">Futons</Link>
@@ -70,6 +82,8 @@ class NavBar extends React.Component {
   render() {
     let currentUser = this.props.currentUser;
     let logout = this.props.logOut;
+    // let guestUser = {user:{username:"Guest",password:"password1"}};
+    // let loginGuest = this.props.logIn(guestUser);
     if (currentUser){
       return this.navbarInstanceLoggedin(currentUser, logout);
     } else {

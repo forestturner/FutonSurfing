@@ -18,10 +18,9 @@
  @import "bootstrap";
 
 
- /* --- RESET --- */
 
 .navbar {
-  margin-bottom: 3px;
+  margin-bottom: 0px;
 }
 
 
@@ -170,7 +169,7 @@
     margin:5px;
 }
 .join{
-  margin:5px;
+  margin:6px;
 }
 
 
@@ -179,6 +178,7 @@
   height:45px;
   display: inline;
   border-radius: 50%;
+  margin:6px;
 }
 
 
@@ -218,4 +218,65 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.futon-index-item {
+  width: 500px;
+  display: flex;
+  float: right;
+  height: 200px;
+  border: 1px solid #ccc;
+  justify-content: space-between;
+  background: white;
+}
+.index-item-info {
+  padding: 30px 20px;
+  float: right;
+  background: white;
+}
+.index-item-category {
+  display: flex;
+  float:left;
+}
+ span img {
+   display: table-cell;
+   /* padding-right: 10px; */
+   vertical-align: top;
+   width: 200px;
+   height: 200px;
+ }
+
+.user-index-item-info {
+  width:300px;
+  height: 300px;
+}
+
+.map {
+  width: 500px;
+  height: 500px;
+  float: right;;
+  position: relative;
+}
+user-index-item {
+  width: 500px;
+display: flex;
+float: right;
+height: 200px;
+border: 1px solid #ccc;
+justify-content: space-between;
+background: white;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+//nav
+
+.container {
+    width: 100%;
+    box-shadow: 5px 3px 15px;
 }
