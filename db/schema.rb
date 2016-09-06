@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905183207) do
+ActiveRecord::Schema.define(version: 20160906003910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20160905183207) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "futon_img_url"
+    t.integer  "capacity"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "hosts", force: :cascade do |t|
@@ -67,6 +70,9 @@ ActiveRecord::Schema.define(version: 20160905183207) do
     t.datetime "updated_at",      null: false
     t.string   "username"
     t.string   "description"
+    t.string   "city"
+    t.string   "state"
+    t.string   "address"
   end
 
 end

@@ -47,14 +47,21 @@ import {logIn,signUp} from './actions/session_actions.js';
 document.addEventListener('DOMContentLoaded', () => {
 
 
+  let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  let height = window.innerHeight || document.documentElement.clientHeight|| document.body.clientHeight;
+
   let store;
   if (window.currentUser) {
-    const initialState = {session: {currentUser: window.currentUser,errors: []}};
+    const initialState = {session: {currentUser: window.currentUser, errors: [], width: width, height:height }};
     store = configureStore(initialState);
   }
   else {
     store = configureStore();
   }
+
+
+
+
   // window.logIn = logIn;
   // window.signUp = signUp;
   window.store = store;

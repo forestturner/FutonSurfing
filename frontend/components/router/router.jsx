@@ -42,6 +42,7 @@ class AppRouter extends React.Component{
     const currentUser = this.props.currentUser;
 
     this.props.requestFuton(currentUser.id);
+    this.props.requestUser(currentUser.id);
 
   }
  getFutons(nextState,replace) {
@@ -55,6 +56,8 @@ class AppRouter extends React.Component{
 
 
  }
+
+
 getUsers(nextState,replace) {
   this.props.requestUsers()
 }
@@ -75,7 +78,7 @@ getUsers(nextState,replace) {
           <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
           <Route path="profile" component={ProfileContainer} onEnter ={this._ensureLoggedIn}/>
-          <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getUser}/>
+          <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFuton}/>
           <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFuton}/>
         </Route>
       </Router>

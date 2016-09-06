@@ -1,6 +1,10 @@
 class Api::FutonsController < ApplicationController
   def index()
-    @futons = Futon.all
+
+    futons = bounds ? Futon.in_bounds(bounds) : Futon.all
+    # futons = futons.where(city: params[:city])
+
+    @futons = futons
     render :index
   end
   def show()
@@ -30,5 +34,10 @@ class Api::FutonsController < ApplicationController
   private
   def futon_params()
     params.require(:futon).permit(:lat,:lng,:description,:futon_img_url,:address)
+  end
+
+
+  def bounds
+    params[:bounds]
   end
 end
