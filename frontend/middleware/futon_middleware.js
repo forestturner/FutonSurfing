@@ -1,7 +1,7 @@
 import { fetchFutons,fetchFuton,fetchOwner,updateFuton} from '../util/futon_util';
 // Futon Action
 import { requestFutons,receiveFuton,receiveFutons,FutonConstants} from '../actions/futon_actions';
-
+import{FilterConstants} from '../actions/filter_actions';
 
 export default ({getState, dispatch}) => next => action => {
   const futonsSuccess = data => dispatch(receiveFutons(data));
@@ -10,7 +10,8 @@ export default ({getState, dispatch}) => next => action => {
   const result = next(action);
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
-      fetchFutons(futonsSuccess);
+      const filters = getState().filters;
+      fetchFutons(filters, futonSuccess);
       break;
     case FutonConstants.REQUEST_FUTON:
       fetchFuton(action.id, futonSuccess);
@@ -23,6 +24,9 @@ export default ({getState, dispatch}) => next => action => {
       break;
     case FutonConstants.UPDATE_FUTON:
       updateFuton(action.id,action.futon,futonSuccess)
+      break;
+    case FilterConstants.UPDATE_FILTER:
+      dispatch(requestFutons());
       break;
     default:
       break;

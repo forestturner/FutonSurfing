@@ -15,6 +15,7 @@ export default ({getState,dispatch}) => next => action => {
     case UserConstants.UPDATE_USER:
       updateUser(action.id,action.user,userSuccess)
       break;
+
     default:
       break;
   }

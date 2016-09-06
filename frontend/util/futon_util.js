@@ -1,7 +1,8 @@
-export const fetchFutons = ( success) => {
+export const fetchFutons = ( filters, success) => {
   $.ajax({
     method: 'GET',
     url: 'api/futons',
+    data: filters,
     success
   });
 };
@@ -37,7 +38,8 @@ export const updateFuton = (id, futon, success) => {
   $.ajax({
     url: `api/futons/${id}`,
     method: "PATCH",
-    data: {futon: futon},
-    success
+    data: {futon:futon},
+    success,
+    error: (error)=> (console.log(error) )
   });
 };

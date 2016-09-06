@@ -1,7 +1,22 @@
 class Futon < ApplicationRecord
 
-  validates :address, :lat, :lng, :description, :user_id, presence: true
-  belongs_to :owner, class_name: "User"
+  validates :address, :city, :lat, :lng, :description, :user_id, presence: true
+
+  belongs_to :owner,
+  primary_key: :id,
+  foriegn_key: :user_id,
+  class_name: "User"
+
+
+  def self.in_bounds(bounds)
+  self.where("lat < ?", bounds[:northEast][:lat])
+      .where("lat > ?", bounds[:southWest][:lat])
+      .where("lng > ?", bounds[:southWest][:lng])
+      .where("lng < ?", bounds[:northEast][:lng])
+end
+
+
+
 
 end
 

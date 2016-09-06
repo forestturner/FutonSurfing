@@ -25,20 +25,20 @@ class NavBar extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
-            <Navbar.Form pullLeft>
-             <FormGroup>
-               <FormControl type="text" placeholder="City" />
-             </FormGroup>
-             {' '}
-             <Button type="submit">Search</Button>
-           </Navbar.Form>
-          </Nav>
           <Nav pullRight>
             {/* <Link to="#" className="btn btn-default join" onClick={handleGuest}> log in </Link> */}
             <Link to="/signup" className="btn btn-primary join"> Join </Link>
             <Link to="/profile" className="btn btn-warning join" onClick={this.handleGuest}>> Guest </Link>
             <Link to="/futons" className="btn btn-info join">Futons</Link>
+          </Nav>
+          <Nav pullRight>
+          <Navbar.Form >
+          <FormGroup pullRight>
+          <FormControl type="text" placeholder="City" />
+          </FormGroup>
+          {' '}
+          <Button type="submit">Search</Button>
+          </Navbar.Form>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -58,15 +58,6 @@ class NavBar extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
-            <Navbar.Form pullRight>
-             <FormGroup>
-               <FormControl type="text" placeholder="City" />
-             </FormGroup>
-             {' '}
-             <Button type="submit">Search</Button>
-           </Navbar.Form>
-          </Nav>
           <Nav pullRight>
             {/* <NavItem eventKey={1} >{currentUser.username}</NavItem> */}
 
@@ -74,6 +65,15 @@ class NavBar extends React.Component {
             <Link to="/" className="btn btn-warning join" onClick={logout}>Log Out</Link>
             <Link to="/futons" className="btn btn-info join">Futons</Link>
             {/* <Button className="header-button" onClick={logout}>Log Out</Button> */}
+          </Nav>
+          <Nav pullRight>
+          <Navbar.Form pullRight>
+          <FormGroup>
+          <FormControl type="text" placeholder="City" />
+          </FormGroup>
+          {' '}
+          <Button type="submit">Search</Button>
+          </Navbar.Form>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
