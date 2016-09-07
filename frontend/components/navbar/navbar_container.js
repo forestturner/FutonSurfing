@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
 import { logOut, logIn } from '../../actions/session_actions';
 import NavBar from './navbar';
+import {updateSearch} from '../../actions/search_actions';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  search: state.search
 });
 
 const mapDispatchToProps = dispatch => ({
   logOut: () => dispatch(logOut()),
-  logIn: user => dispatch(logIn(user))
+  logIn: user => dispatch(logIn(user)),
+  updateSearch: (search) => dispatch(updateSearch(search))
 });
 
 export default connect(

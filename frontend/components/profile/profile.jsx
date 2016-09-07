@@ -1,10 +1,21 @@
 import React from 'react';
 import {Link, hashHistory} from 'react-router';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl,Button} from 'react-bootstrap';
+import Bookings from '../bookings/bookings';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+     this.acceptGuests = this.acceptGuests.bind(this);
+  }
+  acceptGuests() {
+    let newInfo;
+    if (this.props.currentUser.site.accepting_guests) {
+      newInfo = {accepting_guests: false}
+    } else {
+      newInfo = {accepting_guests: true}
+    }
+    this.props.updateSite(this.props.currentUser.site.id, newInfo)
   }
 
   render() {
@@ -77,6 +88,19 @@ class Profile extends React.Component {
 
         </div>
 
+
+        <article className="profile-section-main">
+          <section className="profile-section-heading">
+            <h2> My Bookings</h2>
+          </section>
+            <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} />
+        </article>
+        <article className="profile-section-main">
+          <section className="profile-section-heading">
+          <h2> My Guests </h2>
+          </section>
+            <Bookings bookings={this.props.guests} deleteBooking={this.props.deleteBooking} />
+          </article>
       </section>
     </main>
 

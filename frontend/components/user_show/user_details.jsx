@@ -2,11 +2,22 @@ import React from 'react';
 import {Link} from 'react-router';
 
 const UserDetail = ({user}) => (
+  <div>
+
   <main className="content group">
     <div className="banner">
       <img src={user.profile_img_url}></img>
     </div>
   </main>
+  <div>
+    <div className="description">
+      <h1>{user.firstname} {user.lastname}</h1>
+      <br/>
+    <p>{user.description}</p>
+
+    </div>
+  </div>
+  </div>
 
 );
 export default UserDetail;

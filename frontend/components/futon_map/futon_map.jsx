@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import MarkerManager from '../../util/maker_manger';
 
-let _mapOptions = {
-  center: {lat: 37.773972, lng: -122.431297}, //San Francisco
-  zoom: 13
-};
+let _mapOptions = {center: {lat: 37.753972, lng: -122.431297},zoom: 8};
 
 class FutonMap extends React.Component{
 
@@ -14,9 +11,9 @@ class FutonMap extends React.Component{
     const map = this.refs.map;
 
 
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // var input = document.getElementById('pac-input');
+    // var searchBox = new google.maps.places.SearchBox(input);
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     this.map = new google.maps.Map(map, _mapOptions);
 

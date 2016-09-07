@@ -11,6 +11,7 @@ import UserShowContainer from '../user_show/user_show_container';
 import UsersShowContainer from '../user_all/users_show_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import EditFutonContainer from '../futon_show/edit_futon_container';
+import RequestBookingtContainer from '../request_booking/request_booking_container';
 
 
 class AppRouter extends React.Component{
@@ -74,11 +75,13 @@ getUsers(nextState,replace) {
           <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="futons" component={ FutonsShowContainer} onEnter ={this.getFutons }/>
-          <Route path="futons/:futonId" component={FutonShowContainer} onEnter={this.getFuton}/>
+          <Route path="futons/:futonId" component={FutonShowContainer} onEnter={this.getFuton}>
+           <Route path="/futons/:futonId/request" component={RequestBookingtContainer} />
+           </Route>
           <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
           <Route path="profile" component={ProfileContainer} onEnter ={this._ensureLoggedIn}/>
-          <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFuton}/>
+          <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
           <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFuton}/>
         </Route>
       </Router>

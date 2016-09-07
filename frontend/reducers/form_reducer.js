@@ -1,0 +1,18 @@
+// import { FormConstants } from '../actions/form_actions.js';
+// import merge from 'lodash/merge';
+//
+// const _defaultFilters = Object.freeze({
+//   bounds:{},
+//   city:"San Francisco"
+// });
+//
+// const FiltersReducer = function(state = _defaultFilters, action){
+//   if (action.type === FilterConstants.UPDATE_FILTER){
+//     const newFilter = {[action.filter]: action.value};
+//     return merge({}, state, newFilter);
+//   } else {
+//     return state;
+//   }
+// };
+//
+// export default FiltersReducer;

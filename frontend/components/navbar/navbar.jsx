@@ -6,7 +6,15 @@ import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl,Butt
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+         lat: this.props.search.lat,
+         lng: this.props.search.lng,
+         location: ""
+       };
+
     this.handleGuest = this.handleGuest.bind(this);
+    this.search = this.search.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   handleGuest(e) {
@@ -14,6 +22,29 @@ class NavBar extends React.Component {
 		this.props.logIn(user);
 	}
 
+  componentDidMount() {
+    let input = document.getElementById('nav-search')
+    let options = {types: ['(cities)']};
+    this.autocomplete = new google.maps.places.Autocomplete(input, options);
+    this.autocomplete.addListener('place_changed', this.search);
+  }
+
+  search() {
+    let place = this.autocomplete.getPlace();
+    this.setState({
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+      location: ""
+    });
+    this.props.updateSearch(this.state);
+    hashHistory.push("/futons");
+  }
+  updateSearch(e) {
+    this.setState({location: e.target.value});
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+  }
 
   navbarInstanceSession(){
     return (
@@ -32,13 +63,9 @@ class NavBar extends React.Component {
             <Link to="/futons" className="btn btn-info join">Futons</Link>
           </Nav>
           <Nav pullRight>
-          <Navbar.Form >
-          <FormGroup pullRight>
-          <FormControl type="text" placeholder="City" />
-          </FormGroup>
-          {' '}
-          <Button type="submit">Search</Button>
-          </Navbar.Form>
+            <form className="nav-search" onSubmit={this.handleSubmit} >
+              <input type="text" id="nav-search" placeholder="city?" value={this.state.location} onChange={this.updateSearch} />
+            </form>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -67,13 +94,9 @@ class NavBar extends React.Component {
             {/* <Button className="header-button" onClick={logout}>Log Out</Button> */}
           </Nav>
           <Nav pullRight>
-          <Navbar.Form pullRight>
-          <FormGroup>
-          <FormControl type="text" placeholder="City" />
-          </FormGroup>
-          {' '}
-          <Button type="submit">Search</Button>
-          </Navbar.Form>
+          <form className="nav-search" onSubmit={this.handleSubmit} >
+            <input type="text" id="nav-search" placeholder="city?" value={this.state.location} onChange={this.updateSearch} />
+          </form>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

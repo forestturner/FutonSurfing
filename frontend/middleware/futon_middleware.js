@@ -11,7 +11,7 @@ export default ({getState, dispatch}) => next => action => {
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
       const filters = getState().filters;
-      fetchFutons(filters, futonSuccess);
+      fetchFutons(filters, futonsSuccess);
       break;
     case FutonConstants.REQUEST_FUTON:
       fetchFuton(action.id, futonSuccess);

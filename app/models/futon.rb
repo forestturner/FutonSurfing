@@ -1,11 +1,9 @@
 class Futon < ApplicationRecord
 
-  validates :address, :city, :lat, :lng, :description, :user_id, presence: true
+  validates :address, :lat, :lng, :description, :user_id, presence: true
+  belongs_to :user
+  has_many :bookings
 
-  belongs_to :owner,
-  primary_key: :id,
-  foriegn_key: :user_id,
-  class_name: "User"
 
 
   def self.in_bounds(bounds)
