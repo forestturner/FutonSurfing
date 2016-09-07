@@ -23,6 +23,7 @@ class AppRouter extends React.Component{
     this.getFutons = this.getFutons.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getUsers = this.getUsers.bind(this);
+    this.getBookings = this.getBookings.bind(this);
   }
 
   _ensureLoggedIn(nextState, replace){
@@ -55,15 +56,16 @@ class AppRouter extends React.Component{
 
    this.props.requestUser(currentUser.id);
 
-
  }
-
-
 getUsers(nextState,replace) {
   this.props.requestUsers()
 }
 
+getBookings(nextState, replace) {
+  debugger;
+    this.props.requestBookings();
 
+}
 
 
   render(){
@@ -80,7 +82,9 @@ getUsers(nextState,replace) {
            </Route>
           <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
-          <Route path="profile" component={ProfileContainer} onEnter ={this._ensureLoggedIn}/>
+
+          <Route path="profile" component={ProfileContainer} onEnter ={this.getBookings}/>
+
           <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
           <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFuton}/>
         </Route>

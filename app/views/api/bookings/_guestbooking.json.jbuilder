@@ -1,11 +1,8 @@
-json.id booking.id
-json.futon_id booking.futon_id
-json.guest_id booking.guest_id
-json.start_date booking.start_date
-json.end_date booking.end_date
-json.user do
-  json.id booking.guest.id
-  json.firstname booking.guest.firstname
-  json.lastname booking.guest.lastname
-  json.profile_img_url booking.guest.profile_img_url
-end
+json.extract! guestbooking, :id, :guest_id, :futon_id, :start_date, :end_date
+# create_table "bookings", force: :cascade do |t|
+#   t.integer  "guest_id",   null: false
+#   t.datetime "created_at", null: false
+#   t.datetime "updated_at", null: false
+#   t.date     "start_date"
+#   t.date     "end_date"
+#   t.integer  "futon_id"

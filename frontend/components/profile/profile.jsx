@@ -7,6 +7,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
      this.acceptGuests = this.acceptGuests.bind(this);
+     this.getBookings = this.getBookings.bind(this);
   }
   acceptGuests() {
     let newInfo;
@@ -17,6 +18,13 @@ class Profile extends React.Component {
     }
     this.props.updateSite(this.props.currentUser.site.id, newInfo)
   }
+  getBookings(nextState, replace) {
+  if (!this.props.store.getState().session.currentUser) {
+    replace('/');
+  } else {
+    this.props.store.dispatch(requestBookings());
+  }
+}
 
   render() {
      let currentUser = this.props.currentUser;
@@ -26,6 +34,7 @@ class Profile extends React.Component {
      let allUsers =  "/users"
      let editFuton = '/editfuton';
      let editInfo = '/editprofile'
+     debugger;
     return (
       <div>
         <main className="content group">
@@ -91,7 +100,7 @@ class Profile extends React.Component {
 
         <article className="profile-section-main">
           <section className="profile-section-heading">
-            <h2> My Bookings</h2>
+            <h2>My Bookings</h2>
           </section>
             <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} />
         </article>

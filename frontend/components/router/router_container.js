@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import AppRouter from './router';
 import {requestFuton, requestFutons} from '../../actions/futon_actions';
 import {requestUser, requestUsers} from '../../actions/user_actions';
+import {requestBookings} from '../../actions/booking_actions';
+
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -13,9 +15,12 @@ const mapDispatchToProps = dispatch => ({
   requestFuton: id => dispatch(requestFuton(id)),
   requestFutons: () => dispatch(requestFutons()),
   requestUser: id => dispatch(requestUser(id)),
-  requestUsers: () => dispatch(requestUsers())
+  requestUsers: () => dispatch(requestUsers()),
+  requestBookings: () => console.log(dispatch)
+
 });
 
+// requestBookings: () => dispatch(requestBookings())
 //
 //
 // const mapDispatchToProps = (dispatch, ownProps) => {

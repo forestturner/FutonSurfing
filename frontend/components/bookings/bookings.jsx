@@ -3,13 +3,13 @@ import Booking from './booking';
 
 const Bookings = ({bookings, deleteBooking}) => {
   debugger;
-  let bookingEls = bookings.map((booking) => (
+  let bookingMapped = bookings.map((booking) => (
     <Booking key={"booking" + booking.id} booking={booking} deleteBooking={deleteBooking}/>
   ));
   return (
     <section className="bookings">
       <ul>
-        {bookingEls}
+        {bookingMapped}
       </ul>
     </section>
   );

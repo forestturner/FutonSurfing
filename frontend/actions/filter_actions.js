@@ -1,9 +1,10 @@
-export const FilterConstants = {
-  UPDATE_BOUNDS: "UPDATE_BOUNDS",
-  UPDATE_DATES: "UPDATE_DATES"
-}
 
-export const updateBounds = (bounds) => ({
-  type: FILTER_CONSTANTS.UPDATE_BOUNDS,
-  bounds
+export const FilterConstants = {
+  UPDATE_FILTER: "UPDATE_FILTER"
+};
+
+export const updateFilter = (filter, value) => ({
+  type: FilterConstants.UPDATE_FILTER,
+  filter,
+  value
 });

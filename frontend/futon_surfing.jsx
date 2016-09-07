@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
-
+  store.dispatch({type:"hello"})
 
 
   // window.logIn = logIn;
