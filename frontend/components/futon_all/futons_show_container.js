@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import FutonsShow from './futons_show';
 import {updateFilter} from '../../actions/filter_actions';
+import {requestFutons} from '../../actions/futon_actions';
 
 const mapStateToProps = (state, ownProps) => {
    let futons = state.futons;
@@ -15,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
+  updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
+  requestFutons: () => dispatch(requestFutons())
 });
 
 

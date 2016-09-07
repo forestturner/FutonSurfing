@@ -2,8 +2,6 @@ class Api::FutonsController < ApplicationController
   def index()
 
     futons = bounds ? Futon.in_bounds(bounds) : Futon.all
-    # futons = futons.where(city: params[:city])
-
     @futons = futons
     render :index
   end

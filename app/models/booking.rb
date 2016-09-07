@@ -12,4 +12,19 @@
 #
 
 class Booking < ApplicationRecord
+
+    validates :guest_id, :futon_id, :start_date, :end_date, presence: true
+
+   belongs_to :futon
+
+   has_one :host,
+     through: :futon,
+     source: :user
+
+   belongs_to :guest,
+     primary_key: :id,
+     foreign_key: :guest_id,
+     class_name: :User
+
+
 end

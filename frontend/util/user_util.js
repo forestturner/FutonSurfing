@@ -19,6 +19,7 @@ export const updateUser = (id, user, success) => {
     url: `api/users/${id}`,
     method: "PATCH",
     data: {user:user},
-    success
+    success,
+    error: (error)=> (console.log(error) )
   });
 };
