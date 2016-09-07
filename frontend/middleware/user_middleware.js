@@ -8,16 +8,16 @@ export default ({getState,dispatch}) => next => action => {
   switch(action.type){
     case UserConstants.REQUEST_USERS:
       fetchUsers(usersSuccess);
-      break;
+      return next(action);
     case UserConstants.REQUEST_USER:
       fetchUser(action.id,userSuccess);
-      break;
+      return next(action);
     case UserConstants.UPDATE_USER:
       updateUser(action.id,action.user,userSuccess)
-      break;
+    return next(action);
 
     default:
-      break;
+      return next(action);
   }
   return result;
 }

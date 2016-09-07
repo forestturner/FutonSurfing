@@ -3,6 +3,6 @@ export const SearchConstants = {
 };
 
 export const updateSearch = (search) => ({
-  type: SEARCH_CONSTANTS.UPDATE_SEARCH,
+  type: SearchConstants.UPDATE_SEARCH,
   search
 });

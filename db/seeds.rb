@@ -24,6 +24,14 @@ Futon.create(address: "135-149 Cargo Way, San Francisco, CA 94124 USA", city: "S
 Futon.create(address: "527 Athens St, San Francisco, CA 94112 USA", city: "San Francisco", lat: 37.719623, lng: -122.429848, description:"I love this thing!", user_id:6, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780290/cayo-espanto-belize-outside-bed_frzmb1.jpg")
 Futon.create(address: "1706 Waller St, San Francisco, CA 94117 USA", city: "San Francisco", lat: 37.76849, lng: -122.451821, description:"try it!", user_id:7, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/2052641043_5489fbdc48_z_n3hiuw.jpg" )
 
+
+bookings = Booking.create([{
+  guest_id: 1, futon_id: 2, start_date: Date.new(2016, 5, 5),
+  end_date: Date.new(2016, 10, 8)
+}, {
+  guest_id: 3, futon_id: 1, start_date: Date.new(2016, 6, 15),
+  end_date: Date.new(2016, 11, 22)
+}])
 #
 #   create_table "bookings", force: :cascade do |t|
 #     t.integer  "guest_id",   null: false

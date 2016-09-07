@@ -5,7 +5,8 @@ import { deleteBooking } from '../../actions/booking_actions';
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  bookings: state.bookings.bookings
+  bookings: state.bookings.bookings,
+  guests: state.bookings.guests
 });
 
 const mapDispatchToProps = (dispatch) => ({

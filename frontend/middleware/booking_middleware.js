@@ -4,6 +4,7 @@ import { fetchBookings, createBooking, deleteBooking } from '../util/booking_uti
 const BookingMiddleware = ({getState, dispatch}) => next => action => {
   let success;
   let error;
+  debugger;
   switch (action.type) {
     case BookingConstants.REQUEST_BOOKINGS:
       success = (bookings) => dispatch(receiveBookings(bookings));
@@ -19,7 +20,7 @@ const BookingMiddleware = ({getState, dispatch}) => next => action => {
       success = () => dispatch(requestBookings());
       error = (errors) => console.log(errors);
       deleteBooking(action.id, success, error);
-      break;
+      return next(action);
     default:
       return next(action);
   }

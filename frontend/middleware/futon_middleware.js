@@ -8,28 +8,29 @@ export default ({getState, dispatch}) => next => action => {
   const futonSuccess = data => dispatch(receiveFuton(data));
   const ownerSuccess = data => dispatch(receiveOwner(data));
   const result = next(action);
+  debugger;
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
       const filters = getState().filters;
       fetchFutons(filters, futonsSuccess);
-      break;
+      return next(action);
     case FutonConstants.REQUEST_FUTON:
       fetchFuton(action.id, futonSuccess);
-      break;
+      return next(state);
     case FutonConstants.REQUEST_OWNER:
       fetchOwner(action.id, ownerSuccess);
-      break;
+      return next(action);
     case FutonConstants.CREATE_FUTON:
       createFuton(action.futon, futonSuccess);
-      break;
+      return next(action);
     case FutonConstants.UPDATE_FUTON:
       updateFuton(action.id,action.futon,futonSuccess)
-      break;
+    return next(action);
     case FilterConstants.UPDATE_FILTER:
       dispatch(requestFutons());
-      break;
+      return next(action);
     default:
-      break;
+      return next(action);
   }
   return result;
 };

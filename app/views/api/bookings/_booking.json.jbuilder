@@ -1,4 +1,5 @@
-json.extract! guestbooking, :id, :guest_id, :futon_id, :start_date, :end_date
+json.extract! booking, :id, :guest_id, :futon_id, :start_date, :end_date
+
 # create_table "bookings", force: :cascade do |t|
 #   t.integer  "guest_id",   null: false
 #   t.datetime "created_at", null: false
