@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   requestFutons: () => dispatch(requestFutons()),
   requestUser: id => dispatch(requestUser(id)),
   requestUsers: () => dispatch(requestUsers()),
-  requestBookings: () => console.log(dispatch)
+  requestBookings: () => dispatch(requestBookings())
 
 });
 

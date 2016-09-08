@@ -37,8 +37,9 @@ class Request extends React.Component {
     let updates = {
       start_date: from,
       end_date: to,
-      futon_id: this.props.user.futon.id
+      futon_id: this.props.futonId
     }
+    console.log("handling submit of createBooking");
     this.props.createBooking(updates);
   }
 
@@ -58,9 +59,7 @@ class Request extends React.Component {
       <div>
         <div className="overlay"></div>
         <section className="request-form">
-          <a href={"/#/users/" + this.props.user.id}><button className="cancel">
-            <i className="material-icons">clear</i>
-          </button></a>
+          <a href={"/#/users/" + this.props.user.id}> cancel </a>
           <div className="errors">
             <ul>
               {errors}

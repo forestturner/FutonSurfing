@@ -4,16 +4,19 @@ const _handleChange = (filter, updateFilter) => (
   e => updateFilter(filter, e.currentTarget.value)
 )
 
-const FilterForm = ({city, updateFilter}) => (
+const FilterForm = ({minSeating, maxSeating, updateFilter}) => (
   <div>
     <span className="filter">Filter results:</span>
     <br/>
-    <label>City: </label>
-    <input type="string"
-           value={city}
-           onChange={_handleChange('city', updateFilter)}/>
+    <label>Minimum Seats </label>
+    <input type="number"
+           value={minSeating}
+           onChange={_handleChange('minSeating', updateFilter)}/>
      <br/>
-
+    <label>Maximum Seats </label>
+    <input type="number"
+           value={maxSeating}
+           onChange={_handleChange('maxSeating', updateFilter)}
     />
   </div>
 );

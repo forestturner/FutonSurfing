@@ -7,7 +7,8 @@ export const fetchBookings = (success, error) => {
   });
 };
 
-export const createBooking = (booking, success, error) => {
+export const fetchBooking = (booking, success, error) => {
+    console.log("fetching booking in api util");
   $.ajax({
     url: "api/bookings",
     method: "POST",

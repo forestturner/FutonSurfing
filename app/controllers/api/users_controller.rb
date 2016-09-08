@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if @user.update(firstname: params[:user][:firstname],lastname: params[:user][:lastname], description: params[:user][:description],password: params[:user][:password] )
+    if @user.update(user_params )
       login(@user)
       render :show
     else
@@ -39,6 +39,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username,:password, :firstname,:lastname, :email, :profile_img_url,:description)
+    params.require(:user).permit(:username,:password, :firstname,:lastname, :email, :profile_img_url,:description, :futon, :rented_futon)
   end
 end

@@ -3,19 +3,26 @@ import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import MarkerManager from '../../util/maker_manger';
 
-let _mapOptions = {center: {lat: 37.753972, lng: -122.431297},zoom: 8};
 
 class FutonMap extends React.Component{
+  constructor(props) {
+   super(props);
+   this.defaultProps = props;
+ }
 
   componentDidMount() {
     const map = this.refs.map;
+    let options = {
+     center: {lat: this.props.coords.lat, lng: this.props.coords.lng},
+     zoom: 8
+   };
 
-
+    //
     // var input = document.getElementById('pac-input');
     // var searchBox = new google.maps.places.SearchBox(input);
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    this.map = new google.maps.Map(map, _mapOptions);
+    this.map = new google.maps.Map(map, options);
 
 
     this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
@@ -29,6 +36,10 @@ class FutonMap extends React.Component{
 
   componentDidUpdate(){
     this.MarkerManager.updateMarkers(this.props.futons);
+    if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
+      this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+      this.defaultProps = this.props
+    }
   }
 
 
@@ -41,22 +52,22 @@ class FutonMap extends React.Component{
         southWest: { lat: south, lng: west } };
       this.props.updateFilter('bounds', bounds);
     });
-    google.maps.event.addListener(this.map, 'click', event => {
-      const coords = _getCoordsObj(event.latLng);
-      this._handleClick(coords);
-    });
+    // google.maps.event.addListener(this.map, 'click', event => {
+    //   const coords = _getCoordsObj(event.latLng);
+    //   this._handleClick(coords);
+    // });
   }
 
   _handleMarkerClick(futon){
     this.props.router.push("futons/" + futon.id );
   }
 
-  _handleClick(coords) {
-    this.props.router.push({
-      pathname: "futons/new",
-      query: coords
-    });
-  }
+  // _handleClick(coords) {
+  //   this.props.router.push({
+  //     pathname: "futons/new",
+  //     query: coords
+  //   });
+  // }
 
 
 

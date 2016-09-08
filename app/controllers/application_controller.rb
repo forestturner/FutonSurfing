@@ -16,6 +16,16 @@ class ApplicationController < ActionController::Base
     session[:session_token] = user.session_token
     @current_user = user
   end
+  def ensure_logged_in
+  unless current_user
+    render json: ["Forbidden"], status: 404
+  end
+end
+  def ensure_not_logged_in
+    if current_user
+      render json: ["Already logged in"], status: 403
+    end
+  end
   def logout
     current_user.reset_session_token!
     session[:session_token] = nil

@@ -5,7 +5,8 @@ export const FutonConstants = {
   REQUEST_FUTON: "REQUEST_FUTON",
   CREATE_FUTON: "CREATE_FUTON",
   REQUEST_OWNER: "REQUEST_OWNER",
-  UPDATE_FUTON: "UPDATE_FUTON"
+  UPDATE_FUTON: "UPDATE_FUTON",
+  DELETE_FUTON: "DELETE_FUTON"
 };
 
 export const requestFutons = () => ({
@@ -21,6 +22,12 @@ export const receiveFutons = futons => ({
   type: FutonConstants.RECEIVE_FUTONS,
   futons
 });
+
+export const deleteFuton = (id) => ({
+  type: BookingConstants.DELETE_BOOKING,
+  id
+});
+
 
 export const receiveFuton = futon => ({
   type: FutonConstants.RECEIVE_FUTON,

@@ -7,12 +7,8 @@ class EditFuton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    city: "",
     address: (this.props.futon.address ? this.props.futon.address : ""),
-    description: (this.props.futon.description ? this.props.futon.description : ""),
-    user_id: "",
-    lat: "",
-    lng: ""
+    description: (this.props.futon.description ? this.props.futon.description : "")
   };
   // console.log("hello");
     this.update = this.update.bind(this);
@@ -54,7 +50,8 @@ class EditFuton extends React.Component {
     handleSubmit(e) {
       e.preventDefault();
       let newState = this.state
-      const editfuton = Object.assign({}, this.state, this.props.futon);
+      const editfuton = merge({}, this.props.futon, this.state);
+      debugger;
       this.props.updateFuton(this.props.futon.id, editfuton);
       hashHistory.push("/profile");
     }
@@ -79,7 +76,7 @@ class EditFuton extends React.Component {
 
 editFutonMethod(){
 let futonPic = ( this.props.futon.futon_img_url ? this.props.futon.futon_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
-
+this.state.address = this.props.futon.address
 return(
   <div>
     <main className="container">

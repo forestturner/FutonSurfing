@@ -1,12 +1,16 @@
 import { receiveCurrentUser, receiveErrors, SessionConstants} from '../actions/session_actions';
 import { hashHistory } from 'react-router';
 import { login, signup, logout, editCurrentUser } from '../util/session_util';
+import { requestBookings } from '../actions/booking_actions';
 
+console.log(requestBookings);
+console.log(receiveCurrentUser);
 
 export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
+    debugger;
     dispatch(receiveCurrentUser(data));
-
+    dispatch(requestBookings());
     hashHistory.push("/profile");
   }
   const editSuccess = data => {
@@ -19,7 +23,9 @@ export default ({getState, dispatch}) => next => action => {
     dispatch(receiveErrors(errors));
   };
   switch(action.type) {
+
     case SessionConstants.LOG_IN:
+      console.log(action.type);
       login(action.user,loginSuccess,errorsCallback);
       return next(action);
       break;
@@ -31,7 +37,7 @@ export default ({getState, dispatch}) => next => action => {
       signup(action.user, loginSuccess, errorsCallback);
       return next(action);
     case SessionConstants.EDIT_USER:
-  
+
       editCurrentUser(action.user, editSuccess, errorsCallback);
       return next(action);
     default:

@@ -7,11 +7,12 @@ const mapStateToProps = (state, ownProps) => {
    let futons = state.futons;
    let width = state.session.width;
    let height = state.session.height;
-  //  let city = state.filters.city;
+   let coords = state.coords;
   return {
     futons,
     width,
-    height
+    height,
+    coords
     // city
   }
 }

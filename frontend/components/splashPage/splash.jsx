@@ -1,7 +1,9 @@
 import React from 'react';
 
-class IndexPage extends React.Component {
-
+class Splash extends React.Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return(
     <div>
@@ -10,4 +12,4 @@ class IndexPage extends React.Component {
   );
   }
 }
-export default IndexPage;
+export default Splash;

@@ -324,9 +324,16 @@ background: white;
  position: relative;
 }
 
+.bookings-container {
+  display: table;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
 
-
-
+.profile-section-main {
+  border-bottom: 1px solid #ccc;
+}
 
 
 //google map css

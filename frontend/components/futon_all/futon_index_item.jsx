@@ -19,15 +19,15 @@ class IndexItem extends React.Component {
       <div className="futon-index-item"
            onClick={this.handleClick}>
         <div className="index-item-info">
-          <span className="index-item-category">Description: </span>
-          <span className="index-item-copy">
+          <div className="index-item-category">Description: </div>
+          <div className="index-item-copy">
             {futon.description}
-          </span>
+          </div>
         </div>
-        <span clasaName="futon-img">
+        <div clasaName="futon-img">
 
         <img src={futon.futon_img_url}/>
-        </span>
+        </div>
       </div>
     );
   }
@@ -44,13 +44,3 @@ export default IndexItem;
 // #     t.datetime "updated_at",    null: false
 // #     t.string   "futon_img_url"
 // #   end
-
-{/* <span className="index-item-category">Rating: </span>
-<span className="index-item-copy">
-{futon.average_rating || "No reviews yet"}
-</span>
-<span className="index-item-category">Number of Likes: </span>
-<span className="index-item-copy">
-{/*TODO remove the  || 0 below*/}
-{/*{futon.favorite_users.length || 0 }*/}
-// </span> */}
