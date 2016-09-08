@@ -7,8 +7,8 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-         lat: this.props.search.lat,
-         lng: this.props.search.lng,
+         lat: this.props.coords.lat,
+         lng: this.props.coords.lng,
          location: ""
        };
 
@@ -18,6 +18,7 @@ class NavBar extends React.Component {
   }
 
   handleGuest(e) {
+    debugger;
 		const user = {user: {username: "Guest",password:"password1"}};
 		this.props.logIn(user);
 	}
@@ -36,7 +37,7 @@ class NavBar extends React.Component {
       lng: place.geometry.location.lng(),
       location: ""
     });
-    this.props.updateSearch(this.state);
+    this.props.updateCoords(this.state);
     hashHistory.push("/futons");
   }
   updateSearch(e) {
@@ -60,11 +61,12 @@ class NavBar extends React.Component {
             {/* <Link to="#" className="btn btn-default join" onClick={handleGuest}> log in </Link> */}
             <Link to="/signup" className="btn btn-primary join"> Join </Link>
             <Link to="/profile" className="btn btn-warning join" onClick={this.handleGuest}>> Guest </Link>
+            <Link to="/login" className="btn btn-warning join"> Log in</Link>
             <Link to="/futons" className="btn btn-info join">Futons</Link>
           </Nav>
           <Nav pullRight>
             <form className="nav-search" onSubmit={this.handleSubmit} >
-              <input type="text" id="nav-search" placeholder="city?" value={this.state.location} onChange={this.updateSearch} />
+              <input type="text" id="nav-search" placeholder="enter a city" value={this.state.location} onChange={this.updateSearch} />
             </form>
           </Nav>
         </Navbar.Collapse>
@@ -95,7 +97,7 @@ class NavBar extends React.Component {
           </Nav>
           <Nav pullRight>
           <form className="nav-search" onSubmit={this.handleSubmit} >
-            <input type="text" id="nav-search" placeholder="city?" value={this.state.location} onChange={this.updateSearch} />
+            <input type="text" id="nav-search" placeholder="enter a city" value={this.state.location} onChange={this.updateSearch} />
           </form>
           </Nav>
         </Navbar.Collapse>

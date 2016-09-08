@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { logOut, logIn } from '../../actions/session_actions';
 import NavBar from './navbar';
-import {updateSearch} from '../../actions/search_actions';
+import {updateCoords} from '../../actions/coords_actions.js';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
-  search: state.search
+  coords: state.coords
 });
 
 const mapDispatchToProps = dispatch => ({
   logOut: () => dispatch(logOut()),
   logIn: user => dispatch(logIn(user)),
-  updateSearch: (search) => dispatch(updateSearch(search))
+  updateCoords: (search) => dispatch(updateCoords(search))
 });
 
 export default connect(

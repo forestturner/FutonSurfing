@@ -1,6 +1,6 @@
 class Api::BookingsController < ApplicationController
-
-
+   #
+  #  before_action :ensure_logged_in
   def index
     @bookings = Booking.where(guest_id: current_user.id).includes(:host)
     @guests = Booking.where(futon_id: current_user.rented_futon.id).includes(:guest)
@@ -24,7 +24,7 @@ class Api::BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:futon_id, :start_date, :end_date)
+    params.require(:booking).permit(:futon_id, :start_date, :end_date, :host, :guest, :futon,:rented_futon)
   end
 
 end

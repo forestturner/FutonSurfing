@@ -12,9 +12,5 @@ const App = ({children}) => (
 );
 
 
-
-
-
-
 export default App;
 // /home/forest/Development/FutonSurfing/frontend/components/App.jsx

@@ -6,7 +6,8 @@ import FutonDetail from './futon_details';
 // import ReviewButton from './review_button';
 
 
-const FutonShow = function({ currentUserId, requestFuton, children, futon}) {
+const FutonShow = function({ currentUserId, requestFuton, children, futon, futonId}) {
+  let url = `/futons/${futonId}/request`;
   return(
     <div className='single-futon-show'>
       <div className='single-futon-show'>
@@ -14,6 +15,9 @@ const FutonShow = function({ currentUserId, requestFuton, children, futon}) {
       </div>
       <div className="futon-details">
         <FutonDetail futon={futon} />
+      </div>
+      <div className='requestFuton'>
+        <Link to={url}> Request a booking! </Link>
       </div>
     </div>
   );

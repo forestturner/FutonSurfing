@@ -8,7 +8,7 @@
 
 
 
-User.create(username: "Guest", password: "password1",city: "San Francisco", firstname: "Edward", lastname: "Norton", email: "EdwardNorton@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782427/download_1_ae10bn.jpg" )
+User.create(username: "Guest", password: "password1",city: "San Francisco", firstname: "Edward", lastname: "Norton", email: "EdwardNorton@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473292366/profile_yozbyk.jpg" )
 User.create(username: "Luke", password: "password1",city: "San Francisco", firstname: "Luke", lastname: "Turner", email: "Luke@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782432/ford_4_yp0v9e.jpg")
 User.create(username: "Tyler", password: "password1",city: "San Francisco", firstname: "Tyler", lastname: "Sky", email: "TylerSky@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782432/ford_4_yp0v9e.jpg" )
 User.create(username: "Bob", password: "password1",city: "San Francisco", firstname: "Bob", lastname: "Singer", email: "BobTurner@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782442/grid-cell-27637-1389642560-41_bpsw5b.jpg" )

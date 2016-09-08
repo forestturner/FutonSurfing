@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 
 import FutonIndex from './futon_index';
 import FutonMap from '../futon_map/futon_map';
+import FilterForm from './filter_form';
 // import ReviewButton from './review_button';
 
 
@@ -16,13 +17,14 @@ class FutonShow extends React.Component {
     <div className='container-fluid'>
 
     <div>
-    <input id="pac-input" className="controls" type="text" placeholder="Search Box"></input>
-    <FutonMap futons={this.props.futons} updateFilter={this.props.updateFilter} singleFuton={false} height={this.props.height} width={this.props.width}/>
+      <FutonMap futons={this.props.futons} coords={this.props.coords} updateFilter={this.props.updateFilter} singleFuton={false} height={this.props.height} width={this.props.width}/>
     </div>
       <div className='row-contect'>
         <div className="col-sm-3 sidenav">
           <Link to="/profile"> Back to Dashboard </Link>
         </div>
+
+
         <ul className="nav-pills nav-stacked">
           <FutonIndex futons={this.props.futons}/>
         </ul>

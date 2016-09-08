@@ -4,14 +4,14 @@ import App from '../app';
 import navbarContainer from '../navbar/navbar_container.js'
 import SessionFormContainer from '../session_form/session_form_container';
 import ProfileContainer from '../profile/profile_container';
-import splashPage from '../splashPage/IndexPage';
+import SplashPageContainer from '../splashPage/splash_container';
 import FutonShowContainer from '../futon_show/futon_show_container';
 import FutonsShowContainer from '../futon_all/futons_show_container';
 import UserShowContainer from '../user_show/user_show_container';
 import UsersShowContainer from '../user_all/users_show_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import EditFutonContainer from '../futon_show/edit_futon_container';
-import RequestBookingtContainer from '../request_booking/request_booking_container';
+import RequestBookingsContainer from '../request_booking/request_booking_container';
 
 
 class AppRouter extends React.Component{
@@ -62,7 +62,6 @@ getUsers(nextState,replace) {
 }
 
 getBookings(nextState, replace) {
-  debugger;
     this.props.requestBookings();
 
 }
@@ -72,21 +71,22 @@ getBookings(nextState, replace) {
     return(
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
-          <IndexRoute component= {splashPage}/>
+          <IndexRoute component= {SplashPageContainer}/>
           <Route path="login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="futons" component={ FutonsShowContainer} onEnter ={this.getFutons }/>
-          <Route path="futons/:futonId" component={FutonShowContainer} onEnter={this.getFuton}>
-           <Route path="/futons/:futonId/request" component={RequestBookingtContainer} />
-           </Route>
+          <Route path="futons/:futonId" component={FutonShowContainer} onEnter={this.getFuton}/>
+
+          <Route path="/futons/:futonId/request" component={RequestBookingsContainer} />
+
           <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
 
-          <Route path="profile" component={ProfileContainer} onEnter ={this.getBookings}/>
+          <Route path="profile" component={ProfileContainer}/>
 
           <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
-          <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFuton}/>
+          <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFutons}/>
         </Route>
       </Router>
     );

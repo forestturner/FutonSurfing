@@ -2,9 +2,7 @@ import { FilterConstants } from '../actions/filter_actions';
 import merge from 'lodash/merge';
 
 const _defaultFilters = Object.freeze({
-  bounds:{},
-  minSeating: 1,
-  maxSeating: 10
+  bounds:{}
 });
 
 const FiltersReducer = function(state = _defaultFilters, action){

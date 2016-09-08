@@ -1,10 +1,10 @@
 import { BookingConstants, receiveBookings, receiveBooking, receiveBookingErrors, requestBookings } from '../actions/booking_actions';
-import { fetchBookings, createBooking, deleteBooking } from '../util/booking_util';
+import { fetchBookings, fetchBooking, deleteBooking } from '../util/booking_util';
 
 const BookingMiddleware = ({getState, dispatch}) => next => action => {
+  console.log(`dipatching .. ${action.type}`);
   let success;
   let error;
-  debugger;
   switch (action.type) {
     case BookingConstants.REQUEST_BOOKINGS:
       success = (bookings) => dispatch(receiveBookings(bookings));
@@ -12,9 +12,10 @@ const BookingMiddleware = ({getState, dispatch}) => next => action => {
       fetchBookings(success, error);
       return next(action);
     case BookingConstants.CREATE_BOOKING:
+      console.log("creating booking in middleware");
       success = (booking) => dispatch(receiveBooking(booking));
       error = (errors) => dispatch(receiveBookingErrors(errors.responseJSON));
-      createBooking(action.booking, success, error);
+      fetchBooking(action.booking, success, error);
       return next(action);
     case BookingConstants.DELETE_BOOKING:
       success = () => dispatch(requestBookings());

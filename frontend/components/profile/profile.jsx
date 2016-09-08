@@ -2,12 +2,20 @@ import React from 'react';
 import {Link, hashHistory} from 'react-router';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl,Button} from 'react-bootstrap';
 import Bookings from '../bookings/bookings';
+import Guests from '../bookings/guests.jsx'
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   currentUser: {
+    //     id: undefined,
+    //
+    //   }
+    // }
      this.acceptGuests = this.acceptGuests.bind(this);
      this.getBookings = this.getBookings.bind(this);
+      this.renderUserProfile = this.renderUserProfile.bind(this);
   }
   acceptGuests() {
     let newInfo;
@@ -25,8 +33,15 @@ class Profile extends React.Component {
     this.props.store.dispatch(requestBookings());
   }
 }
+componentWillReceiveProps(newProps){
+  //console.log(newProps);
+}
+componentDidMount() {
+  this.props.requestBookings();
+}
 
-  render() {
+
+renderUserProfile() {
      let currentUser = this.props.currentUser;
      let listedFuton = `/futons/${currentUser.id}`
      let allFutons =  "/futons"
@@ -34,7 +49,6 @@ class Profile extends React.Component {
      let allUsers =  "/users"
      let editFuton = '/editfuton';
      let editInfo = '/editprofile'
-     debugger;
     return (
       <div>
         <main className="content group">
@@ -97,7 +111,7 @@ class Profile extends React.Component {
 
         </div>
 
-
+        <div className="bookings-container">
         <article className="profile-section-main">
           <section className="profile-section-heading">
             <h2>My Bookings</h2>
@@ -108,8 +122,9 @@ class Profile extends React.Component {
           <section className="profile-section-heading">
           <h2> My Guests </h2>
           </section>
-            <Bookings bookings={this.props.guests} deleteBooking={this.props.deleteBooking} />
+            <Guests guests={this.props.guests} deleteBooking={this.props.deleteBooking} />
           </article>
+          </div>
       </section>
     </main>
 
@@ -121,6 +136,15 @@ class Profile extends React.Component {
 
   </div>
     );
+
+}
+
+  render() {
+    if(this.props.currentUser){
+      return (<div>{this.renderUserProfile()}</div>);
+    } else {
+      return( <div> loading... </div>);
+    }
   }
 }
 export default Profile;
