@@ -49517,7 +49517,7 @@
 	          _react2.default.createElement(
 	            'h4',
 	            null,
-	            'Description: ',
+	            '* click here to book *  Description: ',
 	            futon.description
 	          ),
 	          _react2.default.createElement('img', { src: futon.futon_img_url })
