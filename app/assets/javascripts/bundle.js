@@ -23206,7 +23206,6 @@
 	    key: '_ensureLoggedIn',
 	    value: function _ensureLoggedIn(nextState, replace) {
 	      var currentUser = this.props.currentUser;
-	      console.log(this.props);
 	      if (!currentUser) {
 	        replace('/login');
 	      }
@@ -23268,7 +23267,7 @@
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _users_show_container2.default, onEnter: this.getUsers }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users/:userId', component: _user_show_container2.default, onEnter: this.getUser }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default }),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'createFuton', component: _createFutonContainer2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'createfuton', component: _createFutonContainer2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'editprofile', component: _edit_profile_container2.default, onEnter: this.getFutons }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'editfuton', component: _edit_futon_container2.default, onEnter: this.getFutons })
 	        )
@@ -29027,7 +29026,6 @@
 	  _createClass(NavBar, [{
 	    key: 'handleGuest',
 	    value: function handleGuest(e) {
-	      debugger;
 	      var user = { user: { username: "Guest", password: "password1" } };
 	      this.props.logIn(user);
 	    }
@@ -29087,6 +29085,11 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Nav,
 	            { pullRight: true },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '#', className: 'btn btn-default join', onClick: handleGuest },
+	              ' log in '
+	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: '/signup', className: 'btn btn-primary join' },
@@ -48504,16 +48507,7 @@
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
 	                  { to: createFuton },
-	                  'Create a Futon'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: '/' },
-	                  'SPLASH'
+	                  'CREATE FUTON'
 	                )
 	              )
 	            )
@@ -48649,8 +48643,8 @@
 	      bookingKeys.map(function (key) {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
-	          _react2.default.createElement(_booking2.default, { booking: bookings[key], key: key, deleteBooking: deleteBooking })
+	          { key: bookings[key].id },
+	          _react2.default.createElement(_booking2.default, { booking: bookings[key], key: bookings[key].id, deleteBooking: deleteBooking })
 	        );
 	      })
 	    );
@@ -49107,6 +49101,7 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'nav-search', onSubmit: this.handleSubmit },
+	          'Search',
 	          _react2.default.createElement('input', { type: 'text', id: 'nav-search-splash', placeholder: 'enter a city', value: this.state.location, onChange: this.updateSearch })
 	        )
 	      );
@@ -49139,10 +49134,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var currentUserFutonId = state.session.currentUser.futon.id;
 	  var futonId = parseInt(ownProps.params.futonId);
 	  var futon = state.futons[futonId] || {};
 	  return {
 	    futonId: futonId,
+	    currentUserFutonId: currentUserFutonId,
 	    futon: futon
 	  };
 	};
@@ -49187,35 +49184,57 @@
 	  var children = _ref.children;
 	  var futon = _ref.futon;
 	  var futonId = _ref.futonId;
+	  var currentUserFutonId = _ref.currentUserFutonId;
 	
 	  var url = '/futons/' + futonId + '/request';
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'single-futon-show' },
-	    _react2.default.createElement(
+	  if (currentUserFutonId != futon.id) {
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'single-futon-show' },
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/profile' },
-	        ' Back to Dashboard '
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'futon-details' },
-	      _react2.default.createElement(_futon_details2.default, { futon: futon })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'requestFuton' },
+	        'div',
+	        { className: 'single-futon-show' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/profile' },
+	          ' Back to Dashboard '
+	        )
+	      ),
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: url },
-	        ' Request a booking! '
+	        'div',
+	        { className: 'futon-details' },
+	        _react2.default.createElement(_futon_details2.default, { futon: futon })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'requestFuton' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: url },
+	          ' Request a booking! '
+	        )
 	      )
-	    )
-	  );
+	    );
+	  } else {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'single-futon-show' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'single-futon-show' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/profile' },
+	          ' Back to Dashboard '
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'futon-details' },
+	        _react2.default.createElement(_futon_details2.default, { futon: futon })
+	      )
+	    );
+	  }
 	};
 	exports.default = FutonShow;
 	
@@ -49441,8 +49460,8 @@
 	    futonKeys.map(function (key) {
 	      return _react2.default.createElement(
 	        'li',
-	        null,
-	        _react2.default.createElement(_futon_index_item2.default, { futon: futons[key], key: key })
+	        { key: futons[key].id },
+	        _react2.default.createElement(_futon_index_item2.default, { futon: futons[key], key: futons[key].id })
 	      );
 	    })
 	  );
@@ -50382,16 +50401,17 @@
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      var newInfo = this.state;
-	      this.props.updateUser(this.props.currentUser.id, newInfo);
+	      var editUser = (0, _merge2.default)({}, this.props.currentUser, newInfo);
+	      this.props.updateUser(this.props.currentUser.id, editUser);
 	    }
 	
+	    //
 	    // handleSubmit(e) {
 	    //   e.preventDefault();
 	    //   let newState = this.state
 	    //   const editfuton = merge({}, this.props.futon, this.state);
-	    //   debugger;
 	    //   this.props.updateFuton(this.props.futon.id, editfuton);
-	    //   // hashHistory.push("/profile");
+	    //    hashHistory.push("/profile");
 	    // }
 	
 	
@@ -54075,7 +54095,6 @@
 	      e.preventDefault();
 	      var newState = this.state;
 	      var editfuton = (0, _merge2.default)({}, this.props.futon, this.state);
-	      debugger;
 	      this.props.updateFuton(this.props.futon.id, editfuton);
 	      // hashHistory.push("/profile");
 	    }
@@ -54220,8 +54239,6 @@
 	    key: 'render',
 	    value: function render() {
 	
-	      console.log(this.state);
-	      console.log(this.props);
 	      // this.state.city = this.props.futon.city;
 	      // this.state.lat = this.props.futon.lat;
 	      // this.state.lng = this.props.futon.lng;
@@ -54327,8 +54344,6 @@
 	  function Request(props) {
 	    _classCallCheck(this, Request);
 	
-	    debugger;
-	
 	    var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this, props));
 	
 	    var from = _this.props.user.futon.start_date;
@@ -54409,19 +54424,11 @@
 	          'section',
 	          { className: 'request-form' },
 	          _react2.default.createElement(
-	            'a',
-	            { href: "/#/users/" + this.props.user.id },
-	            ' cancel '
+	            _reactRouter.Link,
+	            { className: 'btn btn-primary join', to: '/profile' },
+	            'cancel'
 	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'errors' },
-	            _react2.default.createElement(
-	              'ul',
-	              null,
-	              this.renderErrors()
-	            )
-	          ),
+	          _react2.default.createElement('div', { className: 'errors' }),
 	          _react2.default.createElement(
 	            'h3',
 	            null,
@@ -54482,9 +54489,6 @@
 	var _create_futon_form2 = _interopRequireDefault(_create_futon_form);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// console.log(login);
-	// console.log(signup);
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
@@ -54676,8 +54680,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	console.log(_root_middleware2.default);
-	
 	var configureStore = function configureStore() {
 	  var preloadedState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, _root_middleware2.default);
@@ -54766,7 +54768,6 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var action = arguments[1];
 	
-	  console.log("reducer hit");
 	  switch (action.type) {
 	    case _futon_actions.FutonConstants.RECEIVE_FUTONS:
 	      return action.futons;
@@ -71741,19 +71742,18 @@
 	  var newState = void 0;
 	  switch (action.type) {
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKINGS:
-	      newState = { bookings: action.bookings, guests: action.bookings.guests, errors: {} };
+	
+	      newState = { bookings: action.bookings, guests: action.bookings.guests, errors: action.errors, received: action.received };
 	      newState.received = false;
 	      return newState;
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING:
 	      newState = (0, _lodash.merge)({}, state, action.booking);
-	      console.log(newState);
 	      // newState.bookings.push(action.booking);
 	      newState.received = true;
 	      return newState;
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING_ERRORS:
-	      debugger;
+	
 	      newState = (0, _lodash.merge)({}, state);
-	      console.log(action.errors);
 	      newState.errors = action.errors;
 	      newState.received = false;
 	      return newState;
@@ -71867,7 +71867,6 @@
 	      switch (action.type) {
 	        case _futon_actions.FutonConstants.REQUEST_FUTONS:
 	          var filters = getState().filter;
-	          debugger;
 	          (0, _futon_util.fetchFutons)(filters, futonsSuccess);
 	          return next(action);
 	        case _futon_actions.FutonConstants.REQUEST_FUTON:
@@ -71969,16 +71968,12 @@
 	
 	var _booking_actions = __webpack_require__(524);
 	
-	console.log(_booking_actions.requestBookings);
-	console.log(_session_actions.receiveCurrentUser);
-	
 	exports.default = function (_ref) {
 	  var getState = _ref.getState;
 	  var dispatch = _ref.dispatch;
 	  return function (next) {
 	    return function (action) {
 	      var loginSuccess = function loginSuccess(data) {
-	        debugger;
 	        dispatch((0, _session_actions.receiveCurrentUser)(data));
 	        dispatch((0, _booking_actions.requestBookings)());
 	        _reactRouter.hashHistory.push("/profile");
@@ -71995,7 +71990,6 @@
 	      switch (action.type) {
 	
 	        case _session_actions.SessionConstants.LOG_IN:
-	          console.log(action.type);
 	          (0, _session_util.login)(action.user, loginSuccess, errorsCallback);
 	          return next(action);
 	          break;
@@ -72114,7 +72108,6 @@
 	          (0, _user_util.fetchUser)(action.id, userSuccess);
 	          return next(action);
 	        case _user_actions.UserConstants.UPDATE_USER:
-	          debugger;
 	          (0, _user_util.updateUser)(action.id, action.user, userSuccess);
 	          return next(action);
 	        default:
@@ -72151,7 +72144,6 @@
 	};
 	
 	var updateUser = exports.updateUser = function updateUser(id, user, success) {
-	  debugger;
 	  $.ajax({
 	    url: 'api/users/' + id,
 	    method: "PATCH",
@@ -72415,37 +72407,35 @@
 	  var dispatch = _ref.dispatch;
 	  return function (next) {
 	    return function (action) {
-	      console.log('dipatching .. ' + action.type);
 	      var success = void 0;
-	      var error = void 0;
+	      var errors = void 0;
 	      switch (action.type) {
 	        case _booking_actions.BookingConstants.REQUEST_BOOKINGS:
 	          success = function success(bookings) {
 	            return dispatch((0, _booking_actions.receiveBookings)(bookings));
 	          };
-	          error = function error(errors) {
-	            return dispatch((0, _booking_actions.receiveBookingErrors)(errors.responseJSON));
+	          errors = function errors(_errors) {
+	            return dispatch((0, _booking_actions.receiveBookingErrors)(_errors.responseJSON));
 	          };
-	          (0, _booking_util.fetchBookings)(success, error);
+	          (0, _booking_util.fetchBookings)(success, errors);
 	          return next(action);
 	        case _booking_actions.BookingConstants.CREATE_BOOKING:
-	          console.log("creating booking in middleware");
 	          success = function success(booking) {
 	            return dispatch((0, _booking_actions.receiveBooking)(booking));
 	          };
-	          error = function error(errors) {
-	            return dispatch((0, _booking_actions.receiveBookingErrors)(errors.responseJSON));
+	          errors = function errors(_errors2) {
+	            return dispatch((0, _booking_actions.receiveBookingErrors)(_errors2.responseJSON));
 	          };
-	          (0, _booking_util.fetchBooking)(action.booking, success, error);
+	          (0, _booking_util.fetchBooking)(action.booking, success, errors);
 	          return next(action);
 	        case _booking_actions.BookingConstants.DELETE_BOOKING:
 	          success = function success() {
 	            return dispatch((0, _booking_actions.requestBookings)());
 	          };
-	          error = function error(errors) {
-	            return console.log(errors);
+	          errors = function errors(_errors3) {
+	            return console.log(_errors3);
 	          };
-	          (0, _booking_util.deleteBooking)(action.id, success, error);
+	          (0, _booking_util.deleteBooking)(action.id, success, errors);
 	          return next(action);
 	        default:
 	          return next(action);
@@ -72465,32 +72455,31 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var fetchBookings = exports.fetchBookings = function fetchBookings(success, error) {
+	var fetchBookings = exports.fetchBookings = function fetchBookings(success, errors) {
 	  $.ajax({
 	    url: "api/bookings",
 	    method: "GET",
 	    success: success,
-	    error: error
+	    errors: errors
 	  });
 	};
 	
-	var fetchBooking = exports.fetchBooking = function fetchBooking(booking, success, error) {
-	  console.log("fetching booking in api util");
+	var fetchBooking = exports.fetchBooking = function fetchBooking(booking, success, errors) {
 	  $.ajax({
 	    url: "api/bookings",
 	    method: "POST",
 	    data: { booking: booking },
 	    success: success,
-	    error: error
+	    errors: errors
 	  });
 	};
 	
-	var deleteBooking = exports.deleteBooking = function deleteBooking(id, success, error) {
+	var deleteBooking = exports.deleteBooking = function deleteBooking(id, success, errors) {
 	  $.ajax({
 	    url: "api/bookings/" + id,
 	    method: "DELETE",
 	    success: success,
-	    error: error
+	    errors: errors
 	  });
 	};
 

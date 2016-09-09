@@ -1,28 +1,27 @@
-export const fetchBookings = (success, error) => {
+export const fetchBookings = (success, errors) => {
   $.ajax({
     url: "api/bookings",
     method: "GET",
     success,
-    error
+    errors
   });
 };
 
-export const fetchBooking = (booking, success, error) => {
-    console.log("fetching booking in api util");
+export const fetchBooking = (booking, success, errors) => {
   $.ajax({
     url: "api/bookings",
     method: "POST",
     data: {booking},
     success,
-    error
+    errors
   });
 };
 
-export const deleteBooking = (id, success, error) => {
+export const deleteBooking = (id, success, errors) => {
   $.ajax({
     url: `api/bookings/${id}`,
     method: "DELETE",
     success,
-    error
+    errors
   });
 };

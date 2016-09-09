@@ -18,7 +18,6 @@ class NavBar extends React.Component {
   }
 
   handleGuest(e) {
-    debugger;
 		const user = {user: {username: "Guest",password:"password1"}};
 		this.props.logIn(user);
 	}
@@ -58,7 +57,7 @@ class NavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            {/* <Link to="#" className="btn btn-default join" onClick={handleGuest}> log in </Link> */}
+            <Link to="#" className="btn btn-default join" onClick={handleGuest}> log in </Link>
             <Link to="/signup" className="btn btn-primary join"> Join </Link>
             <Link to="/profile" className="btn btn-warning join" onClick={this.handleGuest}>> Guest </Link>
             <Link to="/login" className="btn btn-warning join"> Log in</Link>
@@ -84,7 +83,7 @@ class NavBar extends React.Component {
             <a href="#">FutonSurfing</a>
 
           </Navbar.Brand>
-          <Nav pullLeft>
+          <Nav pullLeft >
             <img className="img-nav" src={currentUser.profile_img_url} alt=""></img>
           </Nav>
           <Navbar.Toggle />

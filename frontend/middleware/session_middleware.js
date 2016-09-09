@@ -3,12 +3,9 @@ import { hashHistory } from 'react-router';
 import { login, signup, logout, editCurrentUser } from '../util/session_util';
 import { requestBookings } from '../actions/booking_actions';
 
-console.log(requestBookings);
-console.log(receiveCurrentUser);
 
 export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
-    debugger;
     dispatch(receiveCurrentUser(data));
     dispatch(requestBookings());
     hashHistory.push("/profile");
@@ -25,7 +22,6 @@ export default ({getState, dispatch}) => next => action => {
   switch(action.type) {
 
     case SessionConstants.LOG_IN:
-      console.log(action.type);
       login(action.user,loginSuccess,errorsCallback);
       return next(action);
       break;

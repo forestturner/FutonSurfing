@@ -1,9 +1,8 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 
 class Request extends React.Component {
   constructor(props) {
-    debugger;
     super(props);
     let from = this.props.user.futon.start_date;
     let to = this.props.user.futon.end_date;
@@ -43,6 +42,7 @@ class Request extends React.Component {
     }
     console.log("handling submit of createBooking");
     this.props.createBooking(updates);
+
   }
 
   updateField(event) {
@@ -70,11 +70,8 @@ renderMethod(){
     <div>
       <div className="overlay"></div>
       <section className="request-form">
-        <a href={"/#/users/" + this.props.user.id}> cancel </a>
+        <Link className="btn btn-primary join" to="/profile">cancel</Link>
         <div className="errors">
-          <ul>
-            {this.renderErrors()}
-          </ul>
         </div>
         <h3>Request Booking</h3>
         <form className="request" onSubmit={this.handleSubmit}>

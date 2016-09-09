@@ -8,7 +8,7 @@ class EditProfile extends React.Component {
     this.state = {
     firstname: this.props.currentUser.firstname,
     lastname: this.props.currentUser.lastname,
-    description: this.props.currentUser.description 
+    description: this.props.currentUser.description
   };
 
     this.update = this.update.bind(this);
@@ -22,18 +22,18 @@ class EditProfile extends React.Component {
     handleSubmit(e) {
       e.preventDefault();
       let newInfo = this.state
-      this.props.updateUser(this.props.currentUser.id, newInfo);
+      const editUser = merge({}, this.props.currentUser, newInfo);
+      this.props.updateUser(this.props.currentUser.id, editUser);
 
     }
 
-
+        //
         // handleSubmit(e) {
         //   e.preventDefault();
         //   let newState = this.state
         //   const editfuton = merge({}, this.props.futon, this.state);
-        //   debugger;
         //   this.props.updateFuton(this.props.futon.id, editfuton);
-        //   // hashHistory.push("/profile");
+        //    hashHistory.push("/profile");
         // }
 
 

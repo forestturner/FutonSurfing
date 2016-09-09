@@ -29,7 +29,6 @@ class AppRouter extends React.Component{
 
   _ensureLoggedIn(nextState, replace){
     const currentUser = this.props.currentUser;
-    console.log(this.props);
     if (!currentUser) {
       replace('/login');
     }

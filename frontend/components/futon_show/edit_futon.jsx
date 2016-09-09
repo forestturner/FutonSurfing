@@ -51,7 +51,6 @@ class EditFuton extends React.Component {
       e.preventDefault();
       let newState = this.state
       const editfuton = merge({}, this.props.futon, this.state);
-      debugger;
       this.props.updateFuton(this.props.futon.id, editfuton);
       // hashHistory.push("/profile");
     }
@@ -136,8 +135,7 @@ return(
 
   render() {
 
-    console.log(this.state);
-    console.log(this.props);
+
     // this.state.city = this.props.futon.city;
     // this.state.lat = this.props.futon.lat;
     // this.state.lng = this.props.futon.lng;
