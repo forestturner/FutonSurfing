@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link} from 'react-router';
+import { Link, hashHistory} from 'react-router';
 
 
 class createFutonForm extends React.Component {
@@ -50,6 +50,18 @@ renderErrors(){
 // 	this.props.processForm()
 // }
 //
+
+
+componentDidMount(){
+
+  if (this.props.currentUser.futon.address)
+  {
+    hashHistory.push("/editfuton");
+  }
+}
+
+
+
 render(){
   return(
   <div>

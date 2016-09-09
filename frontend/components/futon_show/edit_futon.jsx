@@ -52,7 +52,7 @@ class EditFuton extends React.Component {
       let newState = this.state
       const editfuton = merge({}, this.props.futon, this.state);
       this.props.updateFuton(this.props.futon.id, editfuton);
-      // hashHistory.push("/profile");
+       hashHistory.push("/profile");
     }
 
     update(field){
@@ -129,7 +129,13 @@ return(
 
 }
 
-
+componentDidMount(){
+  if (this.props.currentUser.futon.description)
+  {}
+    else {
+     hashHistory.push("/createfuton");
+   }
+}
 
 
 
@@ -149,11 +155,11 @@ return(
     // lng: "",
     // futon_img_url:""
 
+      return (
+        this.editFutonMethod()
+      );
 
-    return (
-      this.editFutonMethod()
-    );
-  }
+}
 
 }
 
