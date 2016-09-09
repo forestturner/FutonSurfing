@@ -19,7 +19,7 @@ class IndexItem extends React.Component {
       <div className="futon-index-item"
            onClick={this.handleClick}>
           <div className="index-item-copy futon-image">
-            <h4>Description: {futon.description}</h4>
+            <h4>* click here to book *  Description: {futon.description}</h4>
             <img src={futon.futon_img_url}/>
           </div>
       </div>
