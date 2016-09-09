@@ -29087,11 +29087,6 @@
 	            { pullRight: true },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '#', className: 'btn btn-default join', onClick: handleGuest },
-	              ' log in '
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
 	              { to: '/signup', className: 'btn btn-primary join' },
 	              ' Join '
 	            ),
@@ -29173,11 +29168,6 @@
 	              _reactRouter.Link,
 	              { to: '/futons', className: 'btn btn-info join' },
 	              'Futons'
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { className: 'header-button', onClick: logout },
-	              'Log Out'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -54096,7 +54086,7 @@
 	      var newState = this.state;
 	      var editfuton = (0, _merge2.default)({}, this.props.futon, this.state);
 	      this.props.updateFuton(this.props.futon.id, editfuton);
-	      // hashHistory.push("/profile");
+	      _reactRouter.hashHistory.push("/profile");
 	    }
 	  }, {
 	    key: 'update',
@@ -54236,6 +54226,13 @@
 	      );
 	    }
 	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      if (this.props.currentUser.futon.description) {} else {
+	        _reactRouter.hashHistory.push("/createfuton");
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	
@@ -54251,7 +54248,6 @@
 	      // lat: "",
 	      // lng: "",
 	      // futon_img_url:""
-	
 	
 	      return this.editFutonMethod();
 	    }
@@ -54596,6 +54592,15 @@
 	    // }
 	    //
 	
+	
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	
+	      if (this.props.currentUser.futon.address) {
+	        _reactRouter.hashHistory.push("/editfuton");
+	      }
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {

@@ -57,7 +57,7 @@ class NavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <Link to="#" className="btn btn-default join" onClick={handleGuest}> log in </Link>
+
             <Link to="/signup" className="btn btn-primary join"> Join </Link>
             <Link to="/profile" className="btn btn-warning join" onClick={this.handleGuest}>> Guest </Link>
             <Link to="/login" className="btn btn-warning join"> Log in</Link>
@@ -95,7 +95,7 @@ class NavBar extends React.Component {
             <Link className="btn btn-primary join" to="/profile">Dashboard</Link>
             <Link to="/" className="btn btn-warning join" onClick={logout}>Log Out</Link>
             <Link to="/futons" className="btn btn-info join">Futons</Link>
-            <Button className="header-button" onClick={logout}>Log Out</Button>
+            {/* <Button className="header-button" onClick={logout}>Log Out</Button> */}
           </Nav>
           <Nav pullRight>
 
