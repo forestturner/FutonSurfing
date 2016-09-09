@@ -23,7 +23,7 @@ Google places api and google maps api is used so that users can search for other
 
 
 
-![image of search](docs/futon_show.png)
+![image of search](docs/futons_show.png)
 
 ### Bookings Futons
 Users can be reserve futons on other user's futon show pages. A user has to logged in to make a booking. This is accomplished with rails validation, which is then loaded into an "errors" state on the store. Users can disallow other people from reserving their futon by changing their settings in the dashboard page.
