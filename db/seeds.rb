@@ -24,14 +24,49 @@ Futon.create(address: "135-149 Cargo Way, San Francisco, CA 94124 USA", city: "S
 Futon.create(address: "527 Athens St, San Francisco, CA 94112 USA", city: "San Francisco", lat: 37.719623, lng: -122.429848, description:"I love this thing!", user_id:6, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780290/cayo-espanto-belize-outside-bed_frzmb1.jpg")
 Futon.create(address: "1706 Waller St, San Francisco, CA 94117 USA", city: "San Francisco", lat: 37.76849, lng: -122.451821, description:"try it!", user_id:7, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/2052641043_5489fbdc48_z_n3hiuw.jpg" )
 
+futon_pic_array =[
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780292/futon_i8kscr.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780291/tmg-article_tall_ws6rcn.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/555f26ca_original_f0yu0a.webp",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780308/1-screen-shot-2016-07-10-at-11-42-33-am_crnta3.png",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780287/download_gapork.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780290/cayo-espanto-belize-outside-bed_frzmb1.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/2052641043_5489fbdc48_z_n3hiuw.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473366504/loplmavkx9xmzf6iloea.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473391039/images_u0tjqm.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473391039/img_9312_yx5l99.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473391035/black-futons-for-sale_rcim7k.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473391033/futons1_wmumyu.jpg",
+  "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473391032/images_1_wsv5jx.jpg"
 
-bookings = Booking.create([{
-  guest_id: 1, futon_id: 2, start_date: Date.new(2016, 5, 5),
-  end_date: Date.new(2016, 10, 8)
-}, {
-  guest_id: 3, futon_id: 1, start_date: Date.new(2016, 6, 15),
-  end_date: Date.new(2016, 11, 22)
-}])
+]
+
+
+50.times do |i|
+  User.create({
+    username: Faker::Internet.user_name,
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    password: "password",
+    profile_img_url: Faker::Avatar.image,
+    description: Faker::Lorem.paragraph,
+    email: Faker::Internet.email
+  })
+  Futon.create({
+    address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    lat: Faker::Address.latitude,
+    lng: Faker::Address.longitude,
+    description: Faker::ChuckNorris.fact,
+    user_id: (i + 7),
+    futon_img_url:futon_pic_array[Faker::Number.between(1, 12)]
+  })
+
+end
+
+
+
+
 #
 #   create_table "bookings", force: :cascade do |t|
 #     t.integer  "guest_id",   null: false

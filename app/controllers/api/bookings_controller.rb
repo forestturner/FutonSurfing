@@ -3,7 +3,11 @@ class Api::BookingsController < ApplicationController
   #  before_action :ensure_logged_in
   def index
     @bookings = Booking.where(guest_id: current_user.id).includes(:host)
-    @guests = Booking.where(futon_id: current_user.rented_futon.id).includes(:guest)
+    if current_user.rented_futon
+      @guests = Booking.where(futon_id: current_user.rented_futon.id).includes(:guest)
+    else
+      @guests ={}
+    end
   end
 
 

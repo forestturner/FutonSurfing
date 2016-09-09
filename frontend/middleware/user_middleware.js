@@ -13,6 +13,7 @@ export default ({getState,dispatch}) => next => action => {
       fetchUser(action.id,userSuccess);
       return next(action);
     case UserConstants.UPDATE_USER:
+    debugger;
       updateUser(action.id,action.user,userSuccess)
     return next(action);
     default:

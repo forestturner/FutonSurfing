@@ -3,6 +3,7 @@ import { hashHistory } from 'react-router';
 
 class Request extends React.Component {
   constructor(props) {
+    debugger;
     super(props);
     let from = this.props.user.futon.start_date;
     let to = this.props.user.futon.end_date;
@@ -13,6 +14,7 @@ class Request extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
+    this.renderMethod = this.renderMethod.bind(this);
   }
 
   componentDidMount() {
@@ -51,35 +53,49 @@ class Request extends React.Component {
   }
 
 
-  render() {
-    let errors = this.props.errors.map((error, idx) => (
-      <li key={idx}> {error}</li>
-    ));
-    return (
-      <div>
-        <div className="overlay"></div>
-        <section className="request-form">
-          <a href={"/#/users/" + this.props.user.id}> cancel </a>
-          <div className="errors">
-            <ul>
-              {errors}
-            </ul>
-          </div>
-          <h3>Request Booking</h3>
-          <form className="request" onSubmit={this.handleSubmit}>
-            <label className="request-label">
-              Start date:
-              <input className="request-input" type="date" id="first-field" name="start_date" value={this.state.start_date} onChange={this.updateField} />
-            </label>
-            <label className="request-label">
-              End date:
-              <input className="request-input" type="date" name="end_date" value={this.state.end_date} onChange={this.updateField} />
-            </label>
-            <button className="request-button">Request</button>
-          </form>
-        </section>
-      </div>
+  renderErrors(){
+    return(
+      <ul>
+        {this.props.errors.map( (error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
     );
+  }
+
+renderMethod(){
+  return (
+    <div>
+      <div className="overlay"></div>
+      <section className="request-form">
+        <a href={"/#/users/" + this.props.user.id}> cancel </a>
+        <div className="errors">
+          <ul>
+            {this.renderErrors()}
+          </ul>
+        </div>
+        <h3>Request Booking</h3>
+        <form className="request" onSubmit={this.handleSubmit}>
+          <label className="request-label">
+            Start date:
+            <input className="request-input" type="date" id="first-field" name="start_date" value={this.state.start_date} onChange={this.updateField} />
+          </label>
+          <label className="request-label">
+            End date:
+            <input className="request-input" type="date" name="end_date" value={this.state.end_date} onChange={this.updateField} />
+          </label>
+          <button className="request-button">Request</button>
+        </form>
+      </section>
+    </div>
+  );
+}
+
+
+  render() {
+    return (this.renderMethod());
   }
 }
 
