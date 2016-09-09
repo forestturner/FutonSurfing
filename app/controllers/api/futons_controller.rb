@@ -10,7 +10,7 @@ class Api::FutonsController < ApplicationController
   end
   def create()
     @futon = Futon.new(futon_params)
-    @futon.user_id = currentUser.id
+    @futon.user_id = current_user.id
     @futon.save
     render :show
   end

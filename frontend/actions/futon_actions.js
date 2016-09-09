@@ -42,7 +42,7 @@ export const reciveOwner = owner => ({
   type: FutonConstants.REQUEST_OWNER,
   owner
 })
-export const updateFuton= (id, futon) => ({
+export const updateFuton = (id, futon) => ({
   type: FutonConstants.UPDATE_FUTON,
   id,
   futon

@@ -13,16 +13,19 @@ const Bookings = ({bookings, deleteBooking}) => {
   //   </section>
   // );
   const bookingKeys = Object.keys(bookings);
+  if (bookingKeys){
   return (
     <div>
       {
         bookingKeys.map( key => (
-        <li><Booking booking={bookings[key]} key={key} deleteBooking={deleteBooking} /></li>
+        <div><Booking booking={bookings[key]} key={key} deleteBooking={deleteBooking} /></div>
         ))
       }
     </div>
   );
-
+} else {
+  return (<div> Sorry {currentUser.username} you have no bookings.</div>)
+}
 
 
 }

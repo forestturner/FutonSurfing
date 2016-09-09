@@ -15,20 +15,13 @@ class FutonShow extends React.Component {
  render () {
   return(
     <div className='container-fluid'>
-
-    <div>
-      <FutonMap futons={this.props.futons} coords={this.props.coords} updateFilter={this.props.updateFilter} singleFuton={false} height={this.props.height} width={this.props.width}/>
-    </div>
-      <div className='row-contect'>
-        <div className="col-sm-3 sidenav">
-          <Link to="/profile"> Back to Dashboard </Link>
-        </div>
-
-
-        <ul className="nav-pills nav-stacked">
-          <FutonIndex futons={this.props.futons}/>
-        </ul>
+      <ul>
+        <FutonIndex futons={this.props.futons}/>
+      </ul>
+      <div>
+        <FutonMap futons={this.props.futons} coords={this.props.coords} updateFilter={this.props.updateFilter} singleFuton={false} height={this.props.height} width={this.props.width}/>
       </div>
+
     </div>
   );
 }

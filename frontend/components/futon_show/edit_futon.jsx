@@ -41,7 +41,7 @@ class EditFuton extends React.Component {
       } else if (images.length === 0) {
         this.setState({error: "Could not find image"})
       } else {
-        this.props.updateUser(this.props.futon.id, { futon_img_url: images[0].url });
+        this.props.updateFuton(this.props.futon.id, { futon_img_url: images[0].url });
       }
     });
   }
@@ -53,11 +53,12 @@ class EditFuton extends React.Component {
       const editfuton = merge({}, this.props.futon, this.state);
       debugger;
       this.props.updateFuton(this.props.futon.id, editfuton);
-      hashHistory.push("/profile");
+      // hashHistory.push("/profile");
     }
 
     update(field){
   		return e => { this.setState({[field]: e.currentTarget.value }); };
+      // return e => { this.state.field = e.currentTarget.value };
   	}
 
     renderErrors(){
@@ -71,12 +72,16 @@ class EditFuton extends React.Component {
         </ul>
       );
     }
+    componentWillUpdate() {
+      this.state.address = this.props.address;
+      this.state.description = this.props.description;
+    }
 
 
 
 editFutonMethod(){
 let futonPic = ( this.props.futon.futon_img_url ? this.props.futon.futon_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
-this.state.address = this.props.futon.address
+
 return(
   <div>
     <main className="container">

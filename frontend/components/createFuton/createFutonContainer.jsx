@@ -5,7 +5,7 @@ import createFutonForm from './create_futon_form';
 // console.log(signup);
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
   errors: state.session.errors
 });
 

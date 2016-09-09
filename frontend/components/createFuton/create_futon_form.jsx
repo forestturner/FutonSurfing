@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link} from 'react-router';
 
+
 class createFutonForm extends React.Component {
 constructor(props){
   super(props);
@@ -8,16 +9,10 @@ constructor(props){
     address: "",
     lng: "",
     lat:"",
-    address:"",
-    lat:"",
-    lng:"",
     description:"",
     futon_img_url: ""
   };
   this.handleSubmit = this.handleSubmit.bind(this);
-  this.signupMethod = this.signupMethod.bind(this);
-  this.loginMethod = this.loginMethod.bind(this);
-  this.guestMethod = this.guestMethod.bind(this);
 
 }
 
@@ -55,7 +50,7 @@ renderErrors(){
 // 	this.props.processForm()
 // }
 //
-signupMethod(){
+render(){
   return(
   <div>
     <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -63,25 +58,29 @@ signupMethod(){
       <br/>
       { this.renderErrors() }
       <div className="login-form">
-        <label> Username:
-          <input type="text" value={this.state.username}	onChange={this.update("username")} className="login-input" />
+        <label> address:
+          <input type="text" value={this.state.address}	onChange={this.update("address")} className="login-input" />
         </label>
-        <label> Password:
-          <input type="password" value={this.state.password} onChange={this.update("password")} className="login-input" />
+        <label> lng:
+          <input type="text" value={this.state.lng}	onChange={this.update("lng")} className="login-input" />
         </label>
-        <label> firstname:
-          <input type="text" value={this.state.firstname}	onChange={this.update("firstname")} className="login-input" />
+        <label> lat:
+          <input type="text" value={this.state.lat}	onChange={this.update("lat")} className="login-input" />
         </label>
-        <label> lastname:
-          <input type="text" value={this.state.lastname}	onChange={this.update("lastname")} className="login-input" />
+        <label> description:
+          <input type="text" value={this.state.email}	onChange={this.update("description")} className="login-input" />
         </label>
-        <label> email:
-          <input type="text" value={this.state.email}	onChange={this.update("email")} className="login-input" />
+        <label> futon image url:
+          <input type="text" value={this.state.username}	onChange={this.update("futon_img_url")} className="login-input" />
         </label>
-
-        <input type="submit" value="sign-up"/>
+        <input type="submit" value="Create"/>
       </div>
+      <Link to="/profile"> Back to Dashboard</Link>
     </form>
   </div>
 );
 }
+
+}
+
+export default createFutonForm;

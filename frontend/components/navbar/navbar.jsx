@@ -69,6 +69,9 @@ class NavBar extends React.Component {
               <input type="text" id="nav-search" placeholder="enter a city" value={this.state.location} onChange={this.updateSearch} />
             </form>
           </Nav>
+          <Nav pullRight>
+            Search:
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
@@ -93,10 +96,12 @@ class NavBar extends React.Component {
             <Link className="btn btn-primary join" to="/profile">Dashboard</Link>
             <Link to="/" className="btn btn-warning join" onClick={logout}>Log Out</Link>
             <Link to="/futons" className="btn btn-info join">Futons</Link>
-            {/* <Button className="header-button" onClick={logout}>Log Out</Button> */}
+            <Button className="header-button" onClick={logout}>Log Out</Button>
           </Nav>
           <Nav pullRight>
+
           <form className="nav-search" onSubmit={this.handleSubmit} >
+              Search
             <input type="text" id="nav-search" placeholder="enter a city" value={this.state.location} onChange={this.updateSearch} />
           </form>
           </Nav>

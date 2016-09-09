@@ -12,6 +12,7 @@ import UsersShowContainer from '../user_all/users_show_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import EditFutonContainer from '../futon_show/edit_futon_container';
 import RequestBookingsContainer from '../request_booking/request_booking_container';
+import CreateFutonContainer from '../createFuton/createFutonContainer';
 
 
 class AppRouter extends React.Component{
@@ -84,7 +85,7 @@ getBookings(nextState, replace) {
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
 
           <Route path="profile" component={ProfileContainer}/>
-
+          <Route path="createFuton" component={CreateFutonContainer}/>
           <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
           <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFutons}/>
         </Route>

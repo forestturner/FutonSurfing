@@ -224,10 +224,9 @@
 }
 
 .futon-index-item {
-  width: 500px;
+  width: 66%;
   display: flex;
-  float: right;
-  height: 200px;
+  height: 600px;
   border: 1px solid #ccc;
   justify-content: space-between;
   background: white;
@@ -272,8 +271,12 @@ background: white;
 
 .container-fluid {
   display: flex;
-  align-items: center;
-  margin-top: 50px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+ul {
+  list-style: none;
 }
 
 
@@ -297,6 +300,27 @@ background: white;
 .mod-tight {
   margin-bottom: 0;
 }
+//futon_items
+.futon-img{
+  height: auto;
+  width: 50%;
+  padding: 10px;
+  float: right;
+  /* margin-bottom: 206px; */
+  position: inherit;
+}
+
+.index-item-copy futon-image {
+  float: right;
+  width: 39%;
+  padding: 10px;
+  height: auto;
+}
+
+.index-item-copy futon-image img {
+  width: 99%;
+  height: 80%
+}
 
 //nav
 
@@ -304,7 +328,29 @@ background: white;
     width: 100%;
     box-shadow: 5px 3px 15px;
 }
+#nav-search{
+  margin-left:7px;
+}
+#nav-search-profile{
+  margin-left:7px;
+}
+.nav-search-profile{
+  display: inline-table;
+color: gray;
+}
+.nav-search {
+  color:gray;
+  padding: 10px;
+  margin-top: 6px;
+  margin-right: 10px;
+}
+.nav-search-profile{
+  margin:20px;
 
+}
+.search-text {
+  color:#eee;
+}
 
 //public profile
 

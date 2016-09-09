@@ -2,6 +2,7 @@ import { FutonConstants } from '../actions/futon_actions';
 import merge from 'lodash/merge';
 
 const FutonsReducer = function(state = {}, action){
+  console.log("reducer hit");
   switch(action.type){
     case FutonConstants.RECEIVE_FUTONS:
       return action.futons;
