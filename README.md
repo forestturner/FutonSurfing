@@ -1,102 +1,28 @@
 http://www.futonsurfing.site/
 
 
-## MVP
-- [ ] Heroku
-- [ ] new Acc,log in, guest
-- [ ] user profile
-- [ ] Futons
-- [ ] Search
-- [ ] filters
-- [ ] bookings
-- [ ] production readme
-- [ ] Bonus -references/reviews
+# FutonSurfing
 
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Redux Cycles][redux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
+[FutonSurfing.site](http://www.futonsurfing.site)
 
-[views]: docs/wireframe
-[components]: docs/components.md
-[redux-cycles]: docs/redux-cycles.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
+FutonSurfing is a full-stack web app inspired by couchsurfing with a backend managed by Ruby on Rails with a PostgreSQL database. The frontend was developed with React and Redux, along with googleapis for the search and map features.
+
+## Features
+
+### Single-page app
+
+FutonSurfing uses react and redux to navigate throughout the site without actually changing the site, for a smooth experience.
+### User authentication and signup
+The authentication process is built from the ground up on the backend utilizing bcrypt. There is a redux cycle that manages that authentication on the frontend. When signing up,  logging in or logging out, the redux cycle makes ajax calls to rails on the backend and rails responses with json objects rendered by jbuilder. Users may edit their profile. Cloudinary is utilized so that users may upload their own profile pictures. Google places api is used so that when users enter their location, the latitude and longitude is extracted to put them on the search map.
 
 
-## Implementation Timeline
-
-### Phase 1: Backend setup and Front End User Authentication (2 days, W1 W 6pm)
-
-**Objective:** Functioning rails project with front-end Authentication
-- [ ] host on Heroku
-- [ ] create new project
-- [ ] authentication backend setup
-- [ ] set up redux cycle for frontend auth
-- [ ] user signup/signin components
-- [ ] blank landing component after signin
-- [ ] style front end auth
+### Search locations for users
+Google places api and google maps api is used so that users can search for other users to stay with by either typing the location they wish to visit in the search bar, or by scrolling through the map to see different locations.
 
 
-### Phase 2: Futons Model, API, and components (1 days, W1 Th 6pm)
-
-**Objective:** Futons can be created, read, edited and destroyed through
-the API.
-
-- [ ] Futons CRUD API
-- [ ] Futons seed
-- [ ] Futons index
-- [ ] Futon item details
+### Bookings Futons
+Users can be reserve futons on other user's futon show pages. A user has to logged in to make a booking. This is accomplished with rails validation, which is then loaded into an "errors" state on the store. Users can disallow other people from reserving their futon by changing their settings in the dashboard page.
 
 
-### Phase 3: Map, Filters, NavBar, and Search Components (2 day, W2 Mon 6pm)
-
-**Objective:** Futons can be searched by location, availability, and filtered.
-
-- [ ] Maps component
-- [ ] Filters Component
-- [ ] Style Map and Filters
-- [ ] NavBar Component
-- [ ] Search Component
-
-
-### Phase 4: Profile, Booking, Reference, and ReferenceIndex Components (1 day, W2 Tu 6pm)
-
-**Objective:** Futons can be booked. Profiles can be viewed.
-
-- [ ] Profile component
-- [ ] Style the Profile
-- [ ] Booking Component
-- [ ] Style the Bookings
-
-
-### Phase 5: Landing Page (1 day, W2 We 6pm)
-
-**objective:** Landing page will have car visuals and a guest login button.
-
-- [ ] Landing Page
-- [ ] Style Landing Page
-
-### Phase 6: - Beautify website (1 day, W2 Th 6pm)
-
-**objective:** Beautify website.
-
-- [ ] Style profile page
-- [ ] Polish the user experience
-
-
-### Bonus Features (TBD)
-- [ ] Reference Component
-- [ ] ReferenceIndex Component
-- [ ] Style the Reference
-
-
-- [ ] Dashboard
-- [ ] Messaging
-- [ ] Events
-- [ ] Friends
-- [ ] search by name
-- [ ] boring about selections
-- [ ] House Photos
+### Future features
+Features to add include a member search, a friends feature, the ability to send messages to other users, pagination on the location search page, a responsive design for mobile devices, different styling for different eras, and the ability to add photos other than the profile pic.
