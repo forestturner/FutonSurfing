@@ -1,8 +1,6 @@
 import {connect} from 'react-redux';
 import {createFuton} from '../../actions/futon_actions.js';
 import createFutonForm from './create_futon_form';
-// console.log(login);
-// console.log(signup);
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,

@@ -13,12 +13,12 @@ const Bookings = ({bookings, deleteBooking}) => {
   //   </section>
   // );
   const bookingKeys = Object.keys(bookings);
-  if (bookingKeys){
+  if (bookingKeys ){
   return (
     <div>
       {
         bookingKeys.map( key => (
-        <div><Booking booking={bookings[key]} key={key} deleteBooking={deleteBooking} /></div>
+        <div key={bookings[key].id} ><Booking booking={bookings[key]} key={bookings[key].id} deleteBooking={deleteBooking} /></div>
         ))
       }
     </div>

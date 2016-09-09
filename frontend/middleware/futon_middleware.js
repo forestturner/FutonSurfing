@@ -10,7 +10,6 @@ export default ({getState, dispatch}) => next => action => {
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
       const filters = getState().filter;
-      debugger;
       fetchFutons(filters, futonsSuccess);
       return next(action);
     case FutonConstants.REQUEST_FUTON:

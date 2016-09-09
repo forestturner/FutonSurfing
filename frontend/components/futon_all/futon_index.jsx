@@ -8,7 +8,7 @@ const FutonIndex = function(props) {
     <div>
       {
         futonKeys.map( key => (
-        <li><FutonIndexItem futon={futons[key]} key={key} /></li>
+        <li key={futons[key].id} ><FutonIndexItem futon={futons[key]} key={futons[key].id} /></li>
         ))
       }
     </div>

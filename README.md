@@ -16,9 +16,14 @@ FutonSurfing uses react and redux to navigate throughout the site without actual
 The authentication process is built from the ground up on the backend utilizing bcrypt. There is a redux cycle that manages that authentication on the frontend. When signing up,  logging in or logging out, the redux cycle makes ajax calls to rails on the backend and rails responses with json objects rendered by jbuilder. Users may edit their profile. Cloudinary is utilized so that users may upload their own profile pictures. Google places api is used so that when users enter their location, the latitude and longitude is extracted to put them on the search map.
 
 
+![image of profile](docs/Profile.png)
+
 ### Search locations for users
 Google places api and google maps api is used so that users can search for other users to stay with by either typing the location they wish to visit in the search bar, or by scrolling through the map to see different locations.
 
+
+
+![image of search](docs/futon_show.png)
 
 ### Bookings Futons
 Users can be reserve futons on other user's futon show pages. A user has to logged in to make a booking. This is accomplished with rails validation, which is then loaded into an "errors" state on the store. Users can disallow other people from reserving their futon by changing their settings in the dashboard page.
