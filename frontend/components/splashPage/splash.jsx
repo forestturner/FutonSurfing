@@ -42,8 +42,9 @@ class Splash extends React.Component {
     <div>
       <img src="http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775241/have-fun-with-FutonSurfing-4be6460989531efdc476a47756fc0d12_clqp2i.jpg" alt=""></img>
       <form className="nav-search" onSubmit={this.handleSubmit} >
+          Search
         <input type="text" id="nav-search-splash" placeholder="enter a city" value={this.state.location} onChange={this.updateSearch} />
-    </form>
+      </form>
     </div>
   );
   }

@@ -1,4 +1,4 @@
-require "byebug"
+
 class Api::UsersController < ApplicationController
   def index()
     @users = User.all
@@ -10,7 +10,6 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    p @user
     if @user.save
       login(@user)
       render "api/users/show"

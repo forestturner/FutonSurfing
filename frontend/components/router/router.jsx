@@ -85,7 +85,7 @@ getBookings(nextState, replace) {
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
 
           <Route path="profile" component={ProfileContainer}/>
-          <Route path="createFuton" component={CreateFutonContainer}/>
+          <Route path="createfuton" component={CreateFutonContainer}/>
           <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
           <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFutons}/>
         </Route>
