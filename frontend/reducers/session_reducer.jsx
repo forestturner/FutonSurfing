@@ -2,7 +2,7 @@ import {SessionConstants} from '../actions/session_actions.js';
 import merge from 'lodash/merge';
 
 const _freshUser = Object.freeze({
-  current_user: null,
+  currentUser: null,
   errors: []
 });
 

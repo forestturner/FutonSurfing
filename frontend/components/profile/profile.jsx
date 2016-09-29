@@ -288,6 +288,7 @@ futonDescriptionClose(){
 
 renderUserProfile() {
     // let guests = this.props.booking.guests
+    debugger;
     let divStyle ={fontSize: 14 };
     let currentUser = this.props.currentUser;
     let listedFuton = `/futons/${currentUser.id}`
@@ -539,6 +540,7 @@ return (
 
 
   render() {
+    debugger;
     if(this.props.currentUser){
       return (<div>{this.renderProfileInfo()}</div>);
       // return (<div>{this.renderUserProfile()}</div>);

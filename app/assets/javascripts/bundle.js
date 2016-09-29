@@ -29058,6 +29058,7 @@
 	  _createClass(NavBar, [{
 	    key: 'handleGuest',
 	    value: function handleGuest(e) {
+	      debugger;
 	      var user = { user: { username: "Guest", password: "password1" } };
 	      this.props.logIn(user);
 	    }
@@ -29244,8 +29245,8 @@
 	                )
 	              ),
 	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/profile', className: 'btn btn-guest join', onClick: this.handleGuest },
+	                'div',
+	                { className: 'btn btn-guest join', onClick: this.handleGuest },
 	                ' Guest '
 	              ),
 	              _react2.default.createElement(
@@ -53763,7 +53764,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var mapStateToProps = function mapStateToProps(state) {
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	  debugger;
 	  var currentUser = state.session.currentUser;
 	  var bookings = state.bookings.bookings;
@@ -54178,6 +54179,7 @@
 	    key: 'renderUserProfile',
 	    value: function renderUserProfile() {
 	      // let guests = this.props.booking.guests
+	      debugger;
 	      var divStyle = { fontSize: 14 };
 	      var currentUser = this.props.currentUser;
 	      var listedFuton = '/futons/' + currentUser.id;
@@ -54660,6 +54662,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      debugger;
 	      if (this.props.currentUser) {
 	        return _react2.default.createElement(
 	          'div',
@@ -57812,7 +57815,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var _freshUser = Object.freeze({
-	  current_user: null,
+	  currentUser: null,
 	  errors: []
 	});
 	
@@ -74987,6 +74990,7 @@
 	  return function (next) {
 	    return function (action) {
 	      var loginSuccess = function loginSuccess(data) {
+	        debugger;
 	        dispatch((0, _session_actions.receiveCurrentUser)(data));
 	        dispatch((0, _booking_actions.requestBookings)());
 	        _reactRouter.hashHistory.push("/profile");
