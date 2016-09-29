@@ -6,6 +6,7 @@ import { requestBookings } from '../actions/booking_actions';
 
 export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
+    debugger;
     dispatch(receiveCurrentUser(data));
     dispatch(requestBookings());
     hashHistory.push("/profile");

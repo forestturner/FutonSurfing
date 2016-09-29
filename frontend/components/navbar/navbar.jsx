@@ -35,6 +35,7 @@ class NavBar extends React.Component {
   }
 
   handleGuest(e) {
+    debugger;
 		const user = {user: {username: "Guest",password:"password1"}};
 		this.props.logIn(user);
 	}
@@ -161,7 +162,7 @@ class NavBar extends React.Component {
              </div>
 
 
-            <Link to="/profile" className="btn btn-guest join" onClick={this.handleGuest}> Guest </Link>
+            <div  className="btn btn-guest join" onClick={this.handleGuest}> Guest </div>
 
             <button className="btn btn-login join" onClick={this.handleLogin}> Log in</button>
             <div>

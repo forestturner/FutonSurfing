@@ -6,13 +6,13 @@ import {updateCoords} from '../../actions/coords_actions.js';
 import { updateUser } from '../../actions/user_actions';
 import {logIn,signUp} from '../../actions/session_actions.js';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   debugger;
   const currentUser = state.session.currentUser
   const bookings = state.bookings.bookings
   const guests = state.bookings.guests
   const coords = state.coords
-  const errors =state.session.errors
+  const errors = state.session.errors
   return {
     currentUser,
     bookings,
