@@ -22,6 +22,7 @@ export default ({getState, dispatch}) => next => action => {
   switch(action.type) {
 
     case SessionConstants.LOG_IN:
+    debugger;
       login(action.user,loginSuccess,errorsCallback);
       return next(action);
       break;
