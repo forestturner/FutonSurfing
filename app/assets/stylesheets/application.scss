@@ -260,7 +260,7 @@
   position: relative;
 }
 user-index-item {
-  width: 500px;
+width: 500px;
 display: flex;
 float: right;
 height: 200px;
@@ -434,10 +434,165 @@ color: gray;
       }
 
 
+//Splash@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
 
 
 
+.Splash {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775241/have-fun-with-FutonSurfing-4be6460989531efdc476a47756fc0d12_clqp2i.jpg);
+  background-size: cover;
+  height: 75vh;
+}
 
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+h1 {
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 3rem;
+  white-space: nowrap;
+}
+h2 {
+  font-size: 2rem;
+}
+p {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+main {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.featured-cities{
+  display: flex;
+  height: 300px;
+  width: 300px;
+  background-size: cover;
+  background-position: center;
+  float: left;
+  align-items: baseline;;
+  justify-content: center;
+  margin: 40px 40px;
+  // border-radius: 2%;
+  cursor: pointer;
+}
+
+.featured-cities-header h2 {
+  font-weight: 400;
+  color: white;
+  width: 290px;
+  background: rgba(4,99,128,0.3);
+  padding: 5px;
+  font-size: 24px;
+  letter-spacing: 3px;
+}
+
+
+.rootCities{
+  margin: 0 auto;
+  display: block;
+  width: 1140px;
+}
+
+
+
+//login-form
+.modal {
+    // display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+
+//bin/
+
+.btn-signup{
+  color: #fff;
+  background-color: #468966;
+  border-color: #468966;
+}
+.btn-login {
+  color: #fff;
+  background-color: #FFB03B;
+  border-color: #FFB03B;
+}
+.btn-guest {
+  color: #fff;
+  background-color: #8E2800;
+  border-color: #8E2800;
+}
+.btn-futons {
+  color: #fff;
+  background-color: #FFF0A5;
+  border-color: #FFF0A5;
+}
+
+.navbar-right{
+  display: inline-flex;
+}
 
 
 

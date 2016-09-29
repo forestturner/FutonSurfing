@@ -15,12 +15,12 @@ class FutonShow extends React.Component {
  render () {
   return(
     <div className='container-fluid'>
+    <div>
+    <FutonMap futons={this.props.futons} coords={this.props.coords} updateFilter={this.props.updateFilter} singleFuton={false} height={this.props.height} width={this.props.width}/>
+    </div>
       <ul>
         <FutonIndex futons={this.props.futons}/>
       </ul>
-      <div>
-        <FutonMap futons={this.props.futons} coords={this.props.coords} updateFilter={this.props.updateFilter} singleFuton={false} height={this.props.height} width={this.props.width}/>
-      </div>
 
     </div>
   );

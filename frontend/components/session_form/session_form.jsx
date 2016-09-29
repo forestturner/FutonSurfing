@@ -62,7 +62,10 @@ class SessionForm extends React.Component {
 //
 	signupMethod(){
 		return(
-		<div>
+		<div id="id01" class="modal">
+			<span onclick="document.getElementById('id01').style.display='none'"
+				class="close" title="Close Modal">&times;</span>
+
 			<form onSubmit={this.handleSubmit} className="login-form-box">
 				Futonsurfing sign up form
 				<br/>
@@ -87,6 +90,9 @@ class SessionForm extends React.Component {
 
 					<input type="submit" value="sign-up"/>
 				</div>
+				<div class="container">
+					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+				</div>
 			</form>
 		</div>
 	);
@@ -94,7 +100,10 @@ class SessionForm extends React.Component {
 
 	loginMethod(){
 		return(
-		<div>
+		<div id="id01" class="modal">
+		<span onclick="document.getElementById('id01').style.display='none'"
+			class="close" title="Close Modal">&times;</span>
+
 			<form onSubmit={this.handleSubmit} className="login-form-box">
 				Futonsurfing log in form
 				<br/>
@@ -109,6 +118,9 @@ class SessionForm extends React.Component {
 					</label>
 					<input type="submit" value="login"/>
 				</div>
+				<div class="container">
+					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+				</div>
 			</form>
 		</div>
 	);
@@ -118,7 +130,10 @@ class SessionForm extends React.Component {
 		this.state.username = "Guest";
 		this.state.password = "password1";
 		return(
-			<div>
+			<div id="id01" className="modal">
+			<span onclick="document.getElementById('id01').style.display='none'"
+				className="close" title="Close Modal">&times;</span>
+
 				<form onSubmit={this.handleSubmit} className="login-form-box">
 					Futonsurfing log in form
 					<br/>
@@ -132,6 +147,9 @@ class SessionForm extends React.Component {
 							<input type="password" value={this.state.password} onChange={this.update("password")} className="login-input" />
 						</label>
 						<input type="submit" value="login"/>
+					</div>
+					<div className="container">
+						<button type="button" onclick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
 					</div>
 				</form>
 			</div>

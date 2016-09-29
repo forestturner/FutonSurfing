@@ -14,7 +14,7 @@ class FutonMap extends React.Component{
     const map = this.refs.map;
     let options = {
      center: {lat: this.props.coords.lat, lng: this.props.coords.lng},
-     zoom: 8
+     zoom: 9
    };
 
     //
@@ -23,6 +23,42 @@ class FutonMap extends React.Component{
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     this.map = new google.maps.Map(map, options);
+    this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+
+    this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
+    if(this.props.singleFuton){
+      this.props.requestFuton(this.props.futonId);
+    } else {
+      this._registerListeners();
+      this.MarkerManager.updateMarkers(this.props.futons);
+    }
+    // const { north, south, east, west } = this.map.getBounds().toJSON();
+    //      const bounds = {
+    //        northEast: { lat:north, lng: east },
+    //        southWest: { lat: south, lng: west } };
+    //
+    //      this.props.updateFilter('bounds', bounds);
+
+
+
+
+
+
+  }
+
+  componentDidUpdate(){
+    const map = this.refs.map;
+    let options = {
+     center: {lat: this.props.coords.lat, lng: this.props.coords.lng},
+     zoom: 9
+   };
+
+    //
+    // var input = document.getElementById('pac-input');
+    // var searchBox = new google.maps.places.SearchBox(input);
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // this.map = new google.maps.Map(map, options);
 
 
     this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
@@ -32,14 +68,21 @@ class FutonMap extends React.Component{
       this._registerListeners();
       this.MarkerManager.updateMarkers(this.props.futons);
     }
-  }
 
-  componentDidUpdate(){
+
+
+
     this.MarkerManager.updateMarkers(this.props.futons);
     if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
-      this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+
       this.defaultProps = this.props
     }
+
+
+
+
+
+
   }
 
 

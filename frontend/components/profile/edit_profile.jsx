@@ -6,10 +6,12 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    firstname: this.props.currentUser.firstname,
-    lastname: this.props.currentUser.lastname,
-    description: this.props.currentUser.description
-  };
+      firstname: this.props.currentUser.firstname,
+      lastname: this.props.currentUser.lastname,
+      description: this.props.currentUser.description,
+      places: this.props.currentUser.places,
+      languages: this.props.currentUser.languages
+    };
 
     this.update = this.update.bind(this);
     this.updateProfilePic = this.updateProfilePic.bind(this);

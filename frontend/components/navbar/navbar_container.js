@@ -1,16 +1,20 @@
 import { connect } from 'react-redux';
-import { logOut, logIn } from '../../actions/session_actions';
+import { logOut, logIn, signUp } from '../../actions/session_actions';
 import NavBar from './navbar';
 import {updateCoords} from '../../actions/coords_actions.js';
+// import {logIn,signUp} from '../../actions/session_actions.js';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
-  coords: state.coords
+  coords: state.coords,
+  showModal: false,
+  modal: ""
 });
 
 const mapDispatchToProps = dispatch => ({
   logOut: () => dispatch(logOut()),
-  logIn: user => dispatch(logIn(user)),
+  signUp: (user) => dispatch(signUp(user)),
+  logIn: (user) => dispatch(logIn(user)),
   updateCoords: (search) => dispatch(updateCoords(search))
 });
 
