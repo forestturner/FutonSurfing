@@ -24,7 +24,6 @@ class NavBar extends React.Component {
 
     this.handleGuest = this.handleGuest.bind(this);
     this.search = this.search.bind(this);
-    this.updateSearch = this.updateSearch.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleCloseLogin = this.handleCloseLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -32,27 +31,32 @@ class NavBar extends React.Component {
     this.handleSubmitSignUpForm = this.handleSubmitSignUpForm.bind(this);
     this.handleSubmitLoginForm = this.handleSubmitLoginForm.bind(this);
     this.update = this.update.bind(this);
+    this.updateSearch =this.updateSearch.bind(this);
+
+
   }
 
   handleGuest(e) {
-    debugger;
 		const user = {user: {username: "Guest",password:"password1"}};
 		this.props.logIn(user);
 	}
+  //
+   componentDidMount() {
+     let input = document.getElementById('nav-search')
+     let options = {types: ['(cities)']};
+     this.autocomplete = new google.maps.places.Autocomplete(input, options);
+     this.autocomplete.addListener('place_changed', this.search);
 
-  componentDidUpdate() {
-    let input = document.getElementById('nav-search')
-    let options = {types: ['(cities)']};
-    this.autocomplete = new google.maps.places.Autocomplete(input, options);
-    this.autocomplete.addListener('place_changed', this.search);
-  }
+   }
 
   search() {
     let place = this.autocomplete.getPlace();
+
     this.setState({
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
-      location: ""
+      location: "",
+      once: true
     });
     this.props.updateCoords(this.state);
     hashHistory.push("/futons");
@@ -65,7 +69,7 @@ class NavBar extends React.Component {
   }
 
   handleLogin() {
-    debugger;
+
     this.setState({ loginModal: true});
   }
 
@@ -240,7 +244,6 @@ class NavBar extends React.Component {
   render() {
     let currentUser = this.props.currentUser;
     let logout = this.props.logOut;
-    debugger;
     // let guestUser = {user:{username:"Guest",password:"password1"}};
     // let loginGuest = this.props.logIn(guestUser);
     if (currentUser){

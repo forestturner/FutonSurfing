@@ -16,12 +16,15 @@ class IndexItem extends React.Component {
   render() {
     const futon = this.props.futon;
     return (
-      <div className="futon-index-item"
-           onClick={this.handleClick}>
-          <div className="index-item-copy futon-image">
+      <div className="futon-image-container">
+
+        <div className="index-item-image"
+             onClick={this.handleClick}>
+              <img src={futon.futon_img_url}/>
+        </div>
+        <div className="futon-info">
             <h4>* click here to book *  Description: {futon.description}</h4>
-            <img src={futon.futon_img_url}/>
-          </div>
+        </div>
       </div>
     );
   }

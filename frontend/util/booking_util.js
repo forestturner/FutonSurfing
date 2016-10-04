@@ -7,6 +7,16 @@ export const fetchBookings = (success, errors) => {
   });
 };
 
+
+// export const fetchGuests = (success, errors) => {
+//   $.ajax({
+//     url: "api/bookings",
+//     method: "GET",
+//     success,
+//     errors
+//   });
+// };
+
 export const fetchBooking = (booking, success, errors) => {
   $.ajax({
     url: "api/bookings",

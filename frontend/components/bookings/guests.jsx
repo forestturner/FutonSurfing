@@ -1,5 +1,5 @@
 import React from 'react';
-import Guest from './guest';
+import Guesting from './guest';
 
 const Guests = ({guests, deleteBooking}) => {
   // let guestMapped = guests.map((guest) => (
@@ -13,16 +13,20 @@ const Guests = ({guests, deleteBooking}) => {
   //   </section>
   // );
   const guestKeys = Object.keys(guests);
+  if(guestKeys){
+
   return (
     <div>
       {
         guestKeys.map( key => (
-        <li><Guest guest={guests[key]} key={key} deleteBooking={deleteBooking} /></li>
+        <div><Guesting guest={guests[key]} key={key} deleteBooking={deleteBooking} /></div>
         ))
       }
     </div>
   );
-
+} else {
+  return (<div> Sorry {currentUser.username} you have no bookings.</div>)
+}
 
 
 }

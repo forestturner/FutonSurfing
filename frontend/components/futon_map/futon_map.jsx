@@ -8,30 +8,49 @@ class FutonMap extends React.Component{
   constructor(props) {
    super(props);
    this.defaultProps = props;
- }
+   this.count = 0;
+   this.state = {
+     lat:"",
+     lng:""
+   };
+   this.moved = false;
+  //  this.fixMyPageOnce = this.fixMyPageOnce.bind(this);
+}
+// componentWillUnmount(){
+//   debugger;
+//   const { north, south, east, west } = this.map.getBounds().toJSON();
+//   const bounds = {
+//     northEast: { lat:north, lng: east },
+//     southWest: { lat: south, lng: west }
+//    };
+//     this.props.updateFilter('bounds', bounds);
+//
+// }
+
 
   componentDidMount() {
     const map = this.refs.map;
     let options = {
      center: {lat: this.props.coords.lat, lng: this.props.coords.lng},
-     zoom: 9
+     zoom: 13
    };
 
-    //
+   this.map = new google.maps.Map(map, options);
+   this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+   this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
+
+  //  if(this.props.singleFuton){
+  //    this.props.requestFuton(this.props.futonId);
+  //  } else {
+     this._registerListeners();
+     this.MarkerManager.updateMarkers(this.props.futons);
+  //  }
+  //  google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.fixMyPageOnce);
+  //   //
     // var input = document.getElementById('pac-input');
     // var searchBox = new google.maps.places.SearchBox(input);
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    this.map = new google.maps.Map(map, options);
-    this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
-
-    this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
-    if(this.props.singleFuton){
-      this.props.requestFuton(this.props.futonId);
-    } else {
-      this._registerListeners();
-      this.MarkerManager.updateMarkers(this.props.futons);
-    }
     // const { north, south, east, west } = this.map.getBounds().toJSON();
     //      const bounds = {
     //        northEast: { lat:north, lng: east },
@@ -46,35 +65,57 @@ class FutonMap extends React.Component{
 
   }
 
-  componentDidUpdate(){
+//
+// componentWillReceiveProps(){
+//   debugger;
+//   // this.setState({lat: this.props.coords.lat, lng: this.props.coords.lng});
+//   // //  this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+// }
+
+  componentDidUpdate(prevProps){
     const map = this.refs.map;
     let options = {
      center: {lat: this.props.coords.lat, lng: this.props.coords.lng},
-     zoom: 9
+     zoom: 13
    };
 
-    //
+  //  if (this.props.coords.once === true && count === 0){
+  //    this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+  //    count++;
+  //  } else {
+  //    count = 0;
+  //  }
+      // debugger;
+      // if(this.moved === false) {
+      //   this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});//this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+      //   this.moved = false;
+      // } else{
+      //   this.moved = false;
+      // }
     // var input = document.getElementById('pac-input');
     // var searchBox = new google.maps.places.SearchBox(input);
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // this.map = new google.maps.Map(map, options);
 
-
-    this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
-    if(this.props.singleFuton){
-      this.props.requestFuton(this.props.futonId);
-    } else {
-      this._registerListeners();
-      this.MarkerManager.updateMarkers(this.props.futons);
+    //
+    if(this.props.coords !== prevProps.coords) {
+      this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
     }
 
+    // if(this.props.singleFuton){
+      // this.props.requestFuton(this.props.futonId);
+    // } else {
+      this._registerListeners();
+      this.MarkerManager.updateMarkers(this.props.futons);
+    // }
+    // this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
 
 
 
-    this.MarkerManager.updateMarkers(this.props.futons);
+    //
+    // this.MarkerManager.updateMarkers(this.props.futons);
     if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
-
       this.defaultProps = this.props
     }
 
@@ -83,18 +124,42 @@ class FutonMap extends React.Component{
 
 
 
+
   }
+
+  // fixMyPageOnce(){
+  //   debugger;
+  //   const { north, south, east, west } = this.map.getBounds().toJSON();
+  //   const bounds = {
+  //     northEast: { lat:north, lng: east },
+  //     southWest: { lat: south, lng: west } };
+  //     this.count = this.count + 1;
+  //     this.props.updateFilter('bounds', bounds);
+  //   }
 
 
 
   _registerListeners() {
+    // const { north, south, east, west } = this.map.getBounds().toJSON();
+    // const bounds = {
+    //   northEast: { lat:north, lng: east },
+    //   southWest: { lat: south, lng: west } };
+    // this.props.updateFilter('bounds', bounds);
+ debugger;
     google.maps.event.addListener(this.map, 'idle', () => {
       const { north, south, east, west } = this.map.getBounds().toJSON();
       const bounds = {
         northEast: { lat:north, lng: east },
         southWest: { lat: south, lng: west } };
       this.props.updateFilter('bounds', bounds);
+      this.moved = true;
     });
+    // debugger;
+    // const { north, south, east, west } = this.map.getBounds().toJSON();
+    // const bounds = {
+    //   northEast: { lat:north, lng: east },
+    //   southWest: { lat: south, lng: west } };
+    // this.props.updateFilter('bounds', bounds);
     // google.maps.event.addListener(this.map, 'click', event => {
     //   const coords = _getCoordsObj(event.latLng);
     //   this._handleClick(coords);
@@ -117,13 +182,11 @@ class FutonMap extends React.Component{
 
 
   render() {
-
+    // if(this.map !== undefined){
+    //   this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+    // }
     return (
-
-
         <div className="map" ref="map">Map</div>
-
-
     );
   }
 }

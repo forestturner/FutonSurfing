@@ -1,7 +1,8 @@
 class Api::FutonsController < ApplicationController
   def index()
 
-    futons = bounds ? Futon.in_bounds(bounds) : Futon.all
+    futons = bounds ? Futon.in_bounds(bounds) : []
+    # byebug
     @futons = futons
     render :index
   end

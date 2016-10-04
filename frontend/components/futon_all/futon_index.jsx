@@ -5,10 +5,10 @@ const FutonIndex = function(props) {
   const futons = props.futons;
   const futonKeys = Object.keys(futons);
   return (
-    <div>
+    <div className="index">
       {
         futonKeys.map( key => (
-        <li key={futons[key].id} ><FutonIndexItem futon={futons[key]} key={futons[key].id} /></li>
+        <div className="futon-index-item" key={futons[key].id} ><FutonIndexItem futon={futons[key]} key={futons[key].id} /></div>
         ))
       }
     </div>

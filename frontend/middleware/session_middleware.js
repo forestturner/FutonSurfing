@@ -2,11 +2,11 @@ import { receiveCurrentUser, receiveErrors, SessionConstants} from '../actions/s
 import { hashHistory } from 'react-router';
 import { login, signup, logout, editCurrentUser } from '../util/session_util';
 import { requestBookings } from '../actions/booking_actions';
-
+import {createFuton } from '../actions/futon_actions';
 
 export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
-    debugger;
+
     dispatch(receiveCurrentUser(data));
     dispatch(requestBookings());
     hashHistory.push("/profile");
@@ -23,7 +23,7 @@ export default ({getState, dispatch}) => next => action => {
   switch(action.type) {
 
     case SessionConstants.LOG_IN:
-    debugger;
+
       login(action.user,loginSuccess,errorsCallback);
       return next(action);
       break;
@@ -33,6 +33,7 @@ export default ({getState, dispatch}) => next => action => {
     case SessionConstants.SIGN_UP:
 
       signup(action.user, loginSuccess, errorsCallback);
+      createFuton({address: "unknown", lat: 123, lng: 38, description: "unknown"});
       return next(action);
     case SessionConstants.EDIT_USER:
 

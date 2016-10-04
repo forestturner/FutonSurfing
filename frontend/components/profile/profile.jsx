@@ -6,13 +6,11 @@ import Guests from '../bookings/guests.jsx';
 import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
-
-console.log(Modal);
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
     this.state = {
+      showEdit: false,
       lat: this.props.coords.lat,
       lng: this.props.coords.lng,
       location: "",
@@ -30,6 +28,8 @@ class Profile extends React.Component {
       places: this.props.currentUser.places,
       languages: this.props.currentUser.languages
     };
+    this.handleDone = this.handleDone.bind(this);
+    this.handleOpenedit = this.handleOpenedit.bind(this);
     this.acceptGuests = this.acceptGuests.bind(this);
     this.getBookings = this.getBookings.bind(this);
     this.renderUserProfile = this.renderUserProfile.bind(this);
@@ -179,6 +179,7 @@ componentWillReceiveProps(newProps){
 }
 componentDidMount() {
   this.props.requestBookings();
+  this.props.requestGuests();
 
 }
 // componentDidUpdate(){
@@ -288,7 +289,7 @@ futonDescriptionClose(){
 
 renderUserProfile() {
     // let guests = this.props.booking.guests
-    debugger;
+
     let divStyle ={fontSize: 14 };
     let currentUser = this.props.currentUser;
     let listedFuton = `/futons/${currentUser.id}`
@@ -364,6 +365,7 @@ renderProfileInfo(){
     }
   };
   // let guests = this.props.booking.guests
+
  let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
  let divStyle ={fontSize: 16,float:'right' };
  let h3Style = {display: 'initial', fontSize: 14};
@@ -393,7 +395,6 @@ return (
       <li><Link to={listedFuton} >MY FUTON</Link></li>
       <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
       <li><Link to={editFuton} >EDIT MY FUTON</Link></li>
-      <li><Link to={editInfo} >EDIT MY INFO</Link></li>
       <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
       <li><Link to={createFuton} >CREATE FUTON</Link></li>
     </ul>
@@ -401,16 +402,16 @@ return (
   </section>
   <section className="content-main">
 
-    <h1 className="content-header">
-      Info
-    </h1>
 
     <div className="bookings-container">
     <article className="profile-section-main">
       <section className="profile-section-heading">
         <h2>About Me</h2>
       </section>
+      <div>
 
+      <h3 style={h3Style}>*click on profile picture to upload new picture*</h3>
+      </div>
       <h3 style={h3Style}>First Name: {this.state.firstname}</h3>
       <i className="fa fa-pencil-square-o" style={divStyle} onClick={this.onClickEditFirstName}></i>
       <div>
@@ -474,7 +475,7 @@ return (
              onRequestClose={this.closePlaces}
              style={customStyles} >
 
-             <button onClick={this.placesClose}>close</button>
+             <button onClick={this.placeClose}>close</button>
              <div>Please update places you have visited.</div>
              <form>
                <input type="text" name="places" value={this.state.places} onChange={this.update("places")} />
@@ -501,7 +502,7 @@ return (
                </form>
             </Modal>
             </div>
-
+            <button className="done-button" onClick={this.handleDone} >Done</button>
 
 
 
@@ -534,17 +535,112 @@ return (
 }
 
 
+renderBookings(){
+  const customStyles = {
+    content : {
+      fontSize              : 14,
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
+
+ let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
+ let divStyle ={fontSize: 16,float:'right' };
+ let h3Style = {display: 'initial', fontSize: 14};
+ let currentUser = this.props.currentUser;
+ let listedFuton = `/futons/${currentUser.id}`
+ let allFutons =  "/futons"
+ let UserProfile = `/users/${currentUser.id}`
+ let allUsers =  "/users"
+ let editFuton = '/editfuton';
+ let editInfo = '/editprofile'
+ let createFuton = '/createfuton';
+return (
+  <div>
+    <main className="content group">
+      <section className="content-sidebar">
+        <div className="profile-picture">
+          <img src={profilePic}/>
+        </div>
+        <div className="profile-info">
+        <h2> {this.state.firstname +" "+ this.state.lastname}</h2>
+          <p>
+            Welcome!
+          </p>
+        </div>
+
+    <ul className="profile-nav">
+      <li><Link to={'/profile'} onClick={this.handleOpenedit}>EDIT PROFILE INFORMATION</Link></li>
+      <li><Link to={listedFuton} >MY FUTON</Link></li>
+      <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
+      <li><Link to={editFuton} >EDIT MY FUTON</Link></li>
+      <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
+      <li><Link to={createFuton} >CREATE FUTON</Link></li>
+    </ul>
+
+  </section>
+  <section className="content-main">
+
+
+    <div className="bookings-container">
+    <article className="profile-section-main">
+      <section className="profile-section-heading">
+        <h2> My Bookings </h2>
+      </section>
+        <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} />
+    </article>
+
+
+      </div>
+
+      <div className="bookings-container">
+      <article className="profile-section-main">
+        <section className="profile-section-heading">
+          <h2> Guests </h2>
+        </section>
+          <Guests guests={this.props.guests} deleteBooking={this.props.deleteBooking} />
+      </article>
+
+
+        </div>
+
+
+  </section>
+</main>
+
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/overlay.js"></script>
+
+</div>
+);
+
+}
+
+handleDone(){
+    this.setState({ showEdit: false })
+}
+handleOpenedit(){
+    this.setState({ showEdit: true })
+}
 
 
 
 
 
   render() {
-    debugger;
-    if(this.props.currentUser){
-      return (<div>{this.renderProfileInfo()}</div>);
+    if(this.props.currentUser && this.state.showEdit){
+      return (<div className="profile-background">{this.renderProfileInfo()}</div>);
       // return (<div>{this.renderUserProfile()}</div>);
-    } else {
+    } else if (this.props.currentUser && !this.state.showEdit) {
+      return (<div className="profile-background">{this.renderBookings()}</div>);
+    } {
       return( <div> loading... </div>);
     }
   }

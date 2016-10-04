@@ -23262,7 +23262,7 @@
 	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'guest', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'futons', component: _futons_show_container2.default, onEnter: this.getFutons }),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'futons/:futonId', component: _futon_show_container2.default, onEnter: this.getFuton }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'futons/:futonId', component: _futon_show_container2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: '/futons/:futonId/request', component: _request_booking_container2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _users_show_container2.default, onEnter: this.getUsers }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users/:userId', component: _user_show_container2.default, onEnter: this.getUser }),
@@ -29044,7 +29044,6 @@
 	
 	    _this.handleGuest = _this.handleGuest.bind(_this);
 	    _this.search = _this.search.bind(_this);
-	    _this.updateSearch = _this.updateSearch.bind(_this);
 	    _this.handleLogin = _this.handleLogin.bind(_this);
 	    _this.handleCloseLogin = _this.handleCloseLogin.bind(_this);
 	    _this.handleSignUp = _this.handleSignUp.bind(_this);
@@ -29052,19 +29051,22 @@
 	    _this.handleSubmitSignUpForm = _this.handleSubmitSignUpForm.bind(_this);
 	    _this.handleSubmitLoginForm = _this.handleSubmitLoginForm.bind(_this);
 	    _this.update = _this.update.bind(_this);
+	    _this.updateSearch = _this.updateSearch.bind(_this);
+	
 	    return _this;
 	  }
 	
 	  _createClass(NavBar, [{
 	    key: 'handleGuest',
 	    value: function handleGuest(e) {
-	      debugger;
 	      var user = { user: { username: "Guest", password: "password1" } };
 	      this.props.logIn(user);
 	    }
+	    //
+	
 	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
 	      var input = document.getElementById('nav-search');
 	      var options = { types: ['(cities)'] };
 	      this.autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -29074,10 +29076,12 @@
 	    key: 'search',
 	    value: function search() {
 	      var place = this.autocomplete.getPlace();
+	
 	      this.setState({
 	        lat: place.geometry.location.lat(),
 	        lng: place.geometry.location.lng(),
-	        location: ""
+	        location: "",
+	        once: true
 	      });
 	      this.props.updateCoords(this.state);
 	      _reactRouter.hashHistory.push("/futons");
@@ -29095,7 +29099,7 @@
 	  }, {
 	    key: 'handleLogin',
 	    value: function handleLogin() {
-	      debugger;
+	
 	      this.setState({ loginModal: true });
 	    }
 	  }, {
@@ -29380,7 +29384,6 @@
 	    value: function render() {
 	      var currentUser = this.props.currentUser;
 	      var logout = this.props.logOut;
-	      debugger;
 	      // let guestUser = {user:{username:"Guest",password:"password1"}};
 	      // let loginGuest = this.props.logIn(guestUser);
 	      if (currentUser) {
@@ -53765,7 +53768,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  debugger;
 	  var currentUser = state.session.currentUser;
 	  var bookings = state.bookings.bookings;
 	  var guests = state.bookings.guests;
@@ -53796,6 +53798,9 @@
 	    },
 	    requestBookings: function requestBookings() {
 	      return dispatch((0, _booking_actions.requestBookings)());
+	    },
+	    requestGuests: function requestGuests() {
+	      return dispatch((0, _booking_actions.requestGuests)());
 	    },
 	    updateCoords: function updateCoords(search) {
 	      return dispatch((0, _coords_actions.updateCoords)(search));
@@ -53854,8 +53859,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	console.log(_reactModal2.default);
-	
 	var Profile = function (_React$Component) {
 	  _inherits(Profile, _React$Component);
 	
@@ -53864,8 +53867,8 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 	
-	    debugger;
 	    _this.state = {
+	      showEdit: false,
 	      lat: _this.props.coords.lat,
 	      lng: _this.props.coords.lng,
 	      location: "",
@@ -53883,6 +53886,8 @@
 	      places: _this.props.currentUser.places,
 	      languages: _this.props.currentUser.languages
 	    };
+	    _this.handleDone = _this.handleDone.bind(_this);
+	    _this.handleOpenedit = _this.handleOpenedit.bind(_this);
 	    _this.acceptGuests = _this.acceptGuests.bind(_this);
 	    _this.getBookings = _this.getBookings.bind(_this);
 	    _this.renderUserProfile = _this.renderUserProfile.bind(_this);
@@ -54045,6 +54050,7 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.props.requestBookings();
+	      this.props.requestGuests();
 	    }
 	    // componentDidUpdate(){
 	    //   let input = document.getElementById('nav-search-profile')
@@ -54179,7 +54185,7 @@
 	    key: 'renderUserProfile',
 	    value: function renderUserProfile() {
 	      // let guests = this.props.booking.guests
-	      debugger;
+	
 	      var divStyle = { fontSize: 14 };
 	      var currentUser = this.props.currentUser;
 	      var listedFuton = '/futons/' + currentUser.id;
@@ -54325,6 +54331,7 @@
 	        }
 	      };
 	      // let guests = this.props.booking.guests
+	
 	      var profilePic = this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg";
 	      var divStyle = { fontSize: 16, float: 'right' };
 	      var h3Style = { display: 'initial', fontSize: 14 };
@@ -54400,15 +54407,6 @@
 	                null,
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
-	                  { to: editInfo },
-	                  'EDIT MY INFO'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
 	                  { to: UserProfile },
 	                  'MY PUBLIC PROFILE'
 	                )
@@ -54428,11 +54426,6 @@
 	            'section',
 	            { className: 'content-main' },
 	            _react2.default.createElement(
-	              'h1',
-	              { className: 'content-header' },
-	              'Info'
-	            ),
-	            _react2.default.createElement(
 	              'div',
 	              { className: 'bookings-container' },
 	              _react2.default.createElement(
@@ -54445,6 +54438,15 @@
 	                    'h2',
 	                    null,
 	                    'About Me'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  _react2.default.createElement(
+	                    'h3',
+	                    { style: h3Style },
+	                    '*click on profile picture to upload new picture*'
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -54579,7 +54581,7 @@
 	                      style: customStyles },
 	                    _react2.default.createElement(
 	                      'button',
-	                      { onClick: this.placesClose },
+	                      { onClick: this.placeClose },
 	                      'close'
 	                    ),
 	                    _react2.default.createElement(
@@ -54636,6 +54638,11 @@
 	                      )
 	                    )
 	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'done-button', onClick: this.handleDone },
+	                  'Done'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -54660,17 +54667,191 @@
 	      );
 	    }
 	  }, {
+	    key: 'renderBookings',
+	    value: function renderBookings() {
+	      var customStyles = {
+	        content: {
+	          fontSize: 14,
+	          top: '50%',
+	          left: '50%',
+	          right: 'auto',
+	          bottom: 'auto',
+	          marginRight: '-50%',
+	          transform: 'translate(-50%, -50%)'
+	        }
+	      };
+	
+	      var profilePic = this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg";
+	      var divStyle = { fontSize: 16, float: 'right' };
+	      var h3Style = { display: 'initial', fontSize: 14 };
+	      var currentUser = this.props.currentUser;
+	      var listedFuton = '/futons/' + currentUser.id;
+	      var allFutons = "/futons";
+	      var UserProfile = '/users/' + currentUser.id;
+	      var allUsers = "/users";
+	      var editFuton = '/editfuton';
+	      var editInfo = '/editprofile';
+	      var createFuton = '/createfuton';
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'main',
+	          { className: 'content group' },
+	          _react2.default.createElement(
+	            'section',
+	            { className: 'content-sidebar' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'profile-picture' },
+	              _react2.default.createElement('img', { src: profilePic })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'profile-info' },
+	              _react2.default.createElement(
+	                'h2',
+	                null,
+	                ' ',
+	                this.state.firstname + " " + this.state.lastname
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Welcome!'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'profile-nav' },
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/profile', onClick: this.handleOpenedit },
+	                  'EDIT PROFILE INFORMATION'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: listedFuton },
+	                  'MY FUTON'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: allFutons },
+	                  'All FUTONS IN MY AREA'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: editFuton },
+	                  'EDIT MY FUTON'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: UserProfile },
+	                  'MY PUBLIC PROFILE'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: createFuton },
+	                  'CREATE FUTON'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'section',
+	            { className: 'content-main' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'bookings-container' },
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-section-main' },
+	                _react2.default.createElement(
+	                  'section',
+	                  { className: 'profile-section-heading' },
+	                  _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' My Bookings '
+	                  )
+	                ),
+	                _react2.default.createElement(_bookings2.default, { bookings: this.props.bookings, deleteBooking: this.props.deleteBooking })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'bookings-container' },
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-section-main' },
+	                _react2.default.createElement(
+	                  'section',
+	                  { className: 'profile-section-heading' },
+	                  _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' Guests '
+	                  )
+	                ),
+	                _react2.default.createElement(_guests2.default, { guests: this.props.guests, deleteBooking: this.props.deleteBooking })
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement('script', { src: 'js/jquery.min.js' }),
+	        _react2.default.createElement('script', { src: 'js/overlay.js' })
+	      );
+	    }
+	  }, {
+	    key: 'handleDone',
+	    value: function handleDone() {
+	      this.setState({ showEdit: false });
+	    }
+	  }, {
+	    key: 'handleOpenedit',
+	    value: function handleOpenedit() {
+	      this.setState({ showEdit: true });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      debugger;
-	      if (this.props.currentUser) {
+	      if (this.props.currentUser && this.state.showEdit) {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'profile-background' },
 	          this.renderProfileInfo()
 	        );
 	        // return (<div>{this.renderUserProfile()}</div>);
-	      } else {
+	      } else if (this.props.currentUser && !this.state.showEdit) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'profile-background' },
+	          this.renderBookings()
+	        );
+	      }{
 	        return _react2.default.createElement(
 	          'div',
 	          null,
@@ -54776,7 +54957,7 @@
 	  var booking = _ref.booking;
 	  var deleteBooking = _ref.deleteBooking;
 	  return _react2.default.createElement(
-	    "li",
+	    "div",
 	    null,
 	    _react2.default.createElement(
 	      "article",
@@ -54784,14 +54965,15 @@
 	      _react2.default.createElement(
 	        "div",
 	        { className: "futonHost" },
-	        _react2.default.createElement("img", { src: booking.futon.futon_img_url })
+	        _react2.default.createElement("img", { className: "futonHost-img", src: booking.futon.futon_img_url }),
+	        _react2.default.createElement("img", { className: "image-nav-booking", src: booking.host.profile_img_url })
 	      ),
 	      _react2.default.createElement(
 	        "section",
 	        { className: "booking-info" },
 	        _react2.default.createElement(
 	          "h3",
-	          null,
+	          { className: "fontSize" },
 	          _react2.default.createElement(
 	            "a",
 	            { href: "/#/futons/" + booking.futon.id },
@@ -54803,12 +54985,12 @@
 	        ),
 	        _react2.default.createElement(
 	          "h4",
-	          null,
+	          { className: "fontSize" },
 	          booking.host.city
 	        ),
 	        _react2.default.createElement(
 	          "h4",
-	          null,
+	          { className: "fontSize" },
 	          booking.start_date,
 	          " to ",
 	          booking.end_date
@@ -54862,17 +55044,28 @@
 	  //   </section>
 	  // );
 	  var guestKeys = Object.keys(guests);
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    guestKeys.map(function (key) {
-	      return _react2.default.createElement(
-	        'li',
-	        null,
-	        _react2.default.createElement(_guest2.default, { guest: guests[key], key: key, deleteBooking: deleteBooking })
-	      );
-	    })
-	  );
+	  if (guestKeys) {
+	
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      guestKeys.map(function (key) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_guest2.default, { guest: guests[key], key: key, deleteBooking: deleteBooking })
+	        );
+	      })
+	    );
+	  } else {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      ' Sorry ',
+	      currentUser.username,
+	      ' you have no bookings.'
+	    );
+	  }
 	};
 	
 	exports.default = Guests;
@@ -54893,46 +55086,47 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Booking = function Booking(_ref) {
+	var Guesting = function Guesting(_ref) {
 	  var guest = _ref.guest;
 	  var deleteBooking = _ref.deleteBooking;
+	
 	  return _react2.default.createElement(
-	    "li",
+	    "div",
 	    null,
 	    _react2.default.createElement(
 	      "article",
-	      { className: "guest" },
+	      { className: "booking" },
 	      _react2.default.createElement(
 	        "div",
 	        { className: "futonHost" },
-	        _react2.default.createElement("img", { src: guest.profile_img_url })
+	        _react2.default.createElement("img", { className: "futonHost-img", src: guest.profile_img_url })
 	      ),
 	      _react2.default.createElement(
 	        "section",
 	        { className: "guest-info" },
 	        _react2.default.createElement(
 	          "h3",
-	          null,
+	          { className: "fontSize" },
 	          _react2.default.createElement(
 	            "a",
 	            { href: "/#/users/" + guest.id },
 	            " with ",
-	            guest.host.firstname,
+	            guest.firstname,
 	            " ",
-	            guest.host.lastname
+	            guest.lastname
 	          )
 	        ),
 	        _react2.default.createElement(
 	          "h4",
-	          null,
-	          guest.booking.start_date,
+	          { className: "fontSize" },
+	          guest.start_date,
 	          " to ",
-	          guest.booking.end_date
+	          guest.end_date
 	        )
 	      ),
 	      _react2.default.createElement(
 	        "button",
-	        { className: "guest-button", onClick: function onClick() {
+	        { className: "booking-button", onClick: function onClick() {
 	            return deleteBooking(guest.booking.id);
 	          } },
 	        "Cancel"
@@ -54941,7 +55135,7 @@
 	  );
 	};
 	
-	exports.default = Booking;
+	exports.default = Guesting;
 
 /***/ },
 /* 651 */
@@ -55032,7 +55226,21 @@
 	  DELETE_BOOKING: "DELETE_BOOKING",
 	  CREATE_BOOKING: "CREATE_BOOKING",
 	  RECEIVE_BOOKING: "RECEIVE_BOOKING",
-	  RECEIVE_BOOKING_ERRORS: "RECEIVE_BOOKING_ERRORS"
+	  RECEIVE_BOOKING_ERRORS: "RECEIVE_BOOKING_ERRORS",
+	  REQUESTS_GUESTS: "REQUESTS_GUESTS",
+	  RECEIVE_GUESTS: "RECEIVE_GUESTS"
+	};
+	
+	var receiveGuests = exports.receiveGuests = function receiveGuests(guests) {
+	  return {
+	    type: BookingConstants.RECEIVE_GUESTS,
+	    guests: guests
+	  };
+	};
+	var requestGuests = exports.requestGuests = function requestGuests() {
+	  return {
+	    type: BookingConstants.REQUESTS_GUESTS
+	  };
 	};
 	
 	var requestBookings = exports.requestBookings = function requestBookings() {
@@ -55472,26 +55680,34 @@
 	
 	var _futon_actions = __webpack_require__(651);
 	
+	var _filter_actions = __webpack_require__(668);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  var currentUserFutonId = state.session.currentUser.futon.id;
+	  // const currentUserFutonId = state.session.currentUser.futon.id
 	  var futonId = parseInt(ownProps.params.futonId);
+	  var futons = state.futons[futonId] || {};
 	  var futon = state.futons[futonId] || {};
 	  return {
 	    futonId: futonId,
-	    currentUserFutonId: currentUserFutonId,
-	    futon: futon
+	    futon: futon,
+	    // currentUserFutonId,
+	    futons: futons
+	  };
+	};
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    updateFilter: function updateFilter(filter, value) {
+	      return dispatch((0, _filter_actions.updateFilter)(filter, value));
+	    },
+	    requestFutons: function requestFutons() {
+	      return dispatch((0, _futon_actions.requestFutons)());
+	    }
 	  };
 	};
 	
-	// const mapdispatchToProps = dispatch => ({
-	//   requestFuton: id => dispatch(requestFuton(id))
-	// });
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps
-	// mapdispatchToProps
-	)(_futon_show2.default);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_futon_show2.default);
 
 /***/ },
 /* 659 */
@@ -55513,8 +55729,13 @@
 	
 	var _futon_details2 = _interopRequireDefault(_futon_details);
 	
+	var _futon_map = __webpack_require__(665);
+	
+	var _futon_map2 = _interopRequireDefault(_futon_map);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import FilterForm from './filter_form';
 	// import FutonMap from './futon_map/futon_map';
 	// import ReviewButton from './review_button';
 	
@@ -55526,59 +55747,64 @@
 	  var futon = _ref.futon;
 	  var futonId = _ref.futonId;
 	  var currentUserFutonId = _ref.currentUserFutonId;
+	  var updateFilter = _ref.updateFilter;
+	  var futons = _ref.futons;
 	
 	  var url = '/futons/' + futonId + '/request';
-	  if (currentUserFutonId != futon.id) {
-	    return _react2.default.createElement(
+	  debugger;
+	  var coords = { lat: futon.lat, lng: futon.lng };
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'single-futon-show' },
+	    _react2.default.createElement(
 	      'div',
 	      { className: 'single-futon-show' },
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'single-futon-show' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/profile' },
-	          ' Back to Dashboard '
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'futon-details' },
-	        _react2.default.createElement(_futon_details2.default, { futon: futon })
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'requestFuton' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: url },
-	          ' Request a booking! '
-	        )
+	        _reactRouter.Link,
+	        { to: '/profile' },
+	        ' Back to Dashboard '
 	      )
-	    );
-	  } else {
-	    return _react2.default.createElement(
+	    ),
+	    _react2.default.createElement(
 	      'div',
-	      { className: 'single-futon-show' },
+	      null,
+	      _react2.default.createElement(_futon_map2.default, { futons: futons, coords: coords, updateFilter: updateFilter, singleFuton: true })
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'futon-details' },
+	      _react2.default.createElement(_futon_details2.default, { futon: futon })
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'requestFuton' },
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'single-futon-show' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/profile' },
-	          ' Back to Dashboard '
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'futon-details' },
-	        _react2.default.createElement(_futon_details2.default, { futon: futon })
+	        _reactRouter.Link,
+	        { to: url },
+	        ' Request a booking! '
 	      )
-	    );
-	  }
+	    )
+	  );
 	};
+	
+	// import FutonIndex from './futon_index';
 	exports.default = FutonShow;
 	
+	// if (currentUserFutonId != futon.id){
+	//   }
+	//   else {
+	//     return(
+	//       <div className='single-futon-show'>
+	//         <div className='single-futon-show'>
+	//           <Link to="/profile"> Back to Dashboard </Link>
+	//         </div>
+	//         <div className="futon-details">
+	//           <FutonDetail futon={futon} />
+	//         </div>
+	//       </div>
+	//     );
+	//   }
+	// };
 	
 	{/* <FutonMap futons={futons} futonId={futonId} singleFuton={true} requestFuton={requestFuton}/> */}
 	
@@ -55743,17 +55969,18 @@
 	  _createClass(FutonShow, [{
 	    key: 'render',
 	    value: function render() {
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container-fluid' },
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_futon_map2.default, { futons: this.props.futons, coords: this.props.coords, updateFilter: this.props.updateFilter, singleFuton: false, height: this.props.height, width: this.props.width })
+	          _react2.default.createElement(_futon_map2.default, { futons: this.props.futons, coords: this.props.coords, updateFilter: this.props.updateFilter, singleFuton: false })
 	        ),
 	        _react2.default.createElement(
-	          'ul',
-	          null,
+	          'div',
+	          { className: 'futon-list-container' },
 	          _react2.default.createElement(_futon_index2.default, { futons: this.props.futons })
 	        )
 	      );
@@ -55797,11 +56024,11 @@
 	  var futonKeys = Object.keys(futons);
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'index' },
 	    futonKeys.map(function (key) {
 	      return _react2.default.createElement(
-	        'li',
-	        { key: futons[key].id },
+	        'div',
+	        { className: 'futon-index-item', key: futons[key].id },
 	        _react2.default.createElement(_futon_index_item2.default, { futon: futons[key], key: futons[key].id })
 	      );
 	    })
@@ -55860,18 +56087,22 @@
 	      var futon = this.props.futon;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'futon-index-item',
-	          onClick: this.handleClick },
+	        { className: 'futon-image-container' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'index-item-copy futon-image' },
+	          { className: 'index-item-image',
+	            onClick: this.handleClick },
+	          _react2.default.createElement('img', { src: futon.futon_img_url })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'futon-info' },
 	          _react2.default.createElement(
 	            'h4',
 	            null,
 	            '* click here to book *  Description: ',
 	            futon.description
-	          ),
-	          _react2.default.createElement('img', { src: futon.futon_img_url })
+	          )
 	        )
 	      );
 	    }
@@ -55935,8 +56166,26 @@
 	    var _this = _possibleConstructorReturn(this, (FutonMap.__proto__ || Object.getPrototypeOf(FutonMap)).call(this, props));
 	
 	    _this.defaultProps = props;
+	    _this.count = 0;
+	    _this.state = {
+	      lat: "",
+	      lng: ""
+	    };
+	    _this.moved = false;
+	    //  this.fixMyPageOnce = this.fixMyPageOnce.bind(this);
 	    return _this;
 	  }
+	  // componentWillUnmount(){
+	  //   debugger;
+	  //   const { north, south, east, west } = this.map.getBounds().toJSON();
+	  //   const bounds = {
+	  //     northEast: { lat:north, lng: east },
+	  //     southWest: { lat: south, lng: west }
+	  //    };
+	  //     this.props.updateFilter('bounds', bounds);
+	  //
+	  // }
+	
 	
 	  _createClass(FutonMap, [{
 	    key: 'componentDidMount',
@@ -55944,24 +56193,25 @@
 	      var map = this.refs.map;
 	      var options = {
 	        center: { lat: this.props.coords.lat, lng: this.props.coords.lng },
-	        zoom: 9
+	        zoom: 13
 	      };
 	
-	      //
+	      this.map = new google.maps.Map(map, options);
+	      this.map.setCenter({ lat: this.props.coords.lat, lng: this.props.coords.lng });
+	      this.MarkerManager = new _maker_manger2.default(this.map, this._handleMarkerClick.bind(this));
+	
+	      //  if(this.props.singleFuton){
+	      //    this.props.requestFuton(this.props.futonId);
+	      //  } else {
+	      this._registerListeners();
+	      this.MarkerManager.updateMarkers(this.props.futons);
+	      //  }
+	      //  google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.fixMyPageOnce);
+	      //   //
 	      // var input = document.getElementById('pac-input');
 	      // var searchBox = new google.maps.places.SearchBox(input);
 	      // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 	
-	      this.map = new google.maps.Map(map, options);
-	      this.map.setCenter({ lat: this.props.coords.lat, lng: this.props.coords.lng });
-	
-	      this.MarkerManager = new _maker_manger2.default(this.map, this._handleMarkerClick.bind(this));
-	      if (this.props.singleFuton) {
-	        this.props.requestFuton(this.props.futonId);
-	      } else {
-	        this._registerListeners();
-	        this.MarkerManager.updateMarkers(this.props.futons);
-	      }
 	      // const { north, south, east, west } = this.map.getBounds().toJSON();
 	      //      const bounds = {
 	      //        northEast: { lat:north, lng: east },
@@ -55970,42 +56220,85 @@
 	      //      this.props.updateFilter('bounds', bounds);
 	
 	    }
+	
+	    //
+	    // componentWillReceiveProps(){
+	    //   debugger;
+	    //   // this.setState({lat: this.props.coords.lat, lng: this.props.coords.lng});
+	    //   // //  this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+	    // }
+	
 	  }, {
 	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
+	    value: function componentDidUpdate(prevProps) {
 	      var map = this.refs.map;
 	      var options = {
 	        center: { lat: this.props.coords.lat, lng: this.props.coords.lng },
-	        zoom: 9
+	        zoom: 13
 	      };
 	
-	      //
+	      //  if (this.props.coords.once === true && count === 0){
+	      //    this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+	      //    count++;
+	      //  } else {
+	      //    count = 0;
+	      //  }
+	      // debugger;
+	      // if(this.moved === false) {
+	      //   this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});//this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+	      //   this.moved = false;
+	      // } else{
+	      //   this.moved = false;
+	      // }
 	      // var input = document.getElementById('pac-input');
 	      // var searchBox = new google.maps.places.SearchBox(input);
 	      // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 	
 	      // this.map = new google.maps.Map(map, options);
 	
-	
-	      this.MarkerManager = new _maker_manger2.default(this.map, this._handleMarkerClick.bind(this));
-	      if (this.props.singleFuton) {
-	        this.props.requestFuton(this.props.futonId);
-	      } else {
-	        this._registerListeners();
-	        this.MarkerManager.updateMarkers(this.props.futons);
+	      //
+	      if (this.props.coords !== prevProps.coords) {
+	        this.map.setCenter({ lat: this.props.coords.lat, lng: this.props.coords.lng });
 	      }
 	
+	      // if(this.props.singleFuton){
+	      // this.props.requestFuton(this.props.futonId);
+	      // } else {
+	      this._registerListeners();
 	      this.MarkerManager.updateMarkers(this.props.futons);
-	      if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
+	      // }
+	      // this.MarkerManager = new MarkerManager(this.map, this._handleMarkerClick.bind(this));
 	
+	
+	      //
+	      // this.MarkerManager.updateMarkers(this.props.futons);
+	      if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
 	        this.defaultProps = this.props;
 	      }
 	    }
+	
+	    // fixMyPageOnce(){
+	    //   debugger;
+	    //   const { north, south, east, west } = this.map.getBounds().toJSON();
+	    //   const bounds = {
+	    //     northEast: { lat:north, lng: east },
+	    //     southWest: { lat: south, lng: west } };
+	    //     this.count = this.count + 1;
+	    //     this.props.updateFilter('bounds', bounds);
+	    //   }
+	
+	
 	  }, {
 	    key: '_registerListeners',
 	    value: function _registerListeners() {
 	      var _this2 = this;
 	
+	      // const { north, south, east, west } = this.map.getBounds().toJSON();
+	      // const bounds = {
+	      //   northEast: { lat:north, lng: east },
+	      //   southWest: { lat: south, lng: west } };
+	      // this.props.updateFilter('bounds', bounds);
+	      debugger;
 	      google.maps.event.addListener(this.map, 'idle', function () {
 	        var _map$getBounds$toJSON = _this2.map.getBounds().toJSON();
 	
@@ -56018,7 +56311,14 @@
 	          northEast: { lat: north, lng: east },
 	          southWest: { lat: south, lng: west } };
 	        _this2.props.updateFilter('bounds', bounds);
+	        _this2.moved = true;
 	      });
+	      // debugger;
+	      // const { north, south, east, west } = this.map.getBounds().toJSON();
+	      // const bounds = {
+	      //   northEast: { lat:north, lng: east },
+	      //   southWest: { lat: south, lng: west } };
+	      // this.props.updateFilter('bounds', bounds);
 	      // google.maps.event.addListener(this.map, 'click', event => {
 	      //   const coords = _getCoordsObj(event.latLng);
 	      //   this._handleClick(coords);
@@ -56041,7 +56341,9 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
+	      // if(this.map !== undefined){
+	      //   this.map.setCenter({lat: this.props.coords.lat, lng: this.props.coords.lng});
+	      // }
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'map', ref: 'map' },
@@ -57350,14 +57652,14 @@
 	  function Request(props) {
 	    _classCallCheck(this, Request);
 	
+	    // let from = this.props.user.futon.start_date;
+	    // let to = this.props.user.futon.end_date;
+	
 	    var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this, props));
 	
-	    var from = _this.props.user.futon.start_date;
-	    var to = _this.props.user.futon.end_date;
-	
 	    _this.state = {
-	      start_date: from,
-	      end_date: to
+	      start_date: "",
+	      end_date: ""
 	    };
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.updateField = _this.updateField.bind(_this);
@@ -57648,13 +57950,7 @@
 	              'label',
 	              null,
 	              ' description:',
-	              _react2.default.createElement('input', { type: 'text', value: this.state.email, onChange: this.update("description"), className: 'login-input' })
-	            ),
-	            _react2.default.createElement(
-	              'label',
-	              null,
-	              ' futon image url:',
-	              _react2.default.createElement('input', { type: 'text', value: this.state.username, onChange: this.update("futon_img_url"), className: 'login-input' })
+	              _react2.default.createElement('input', { type: 'text', value: this.state.description, onChange: this.update("description"), className: 'login-input' })
 	            ),
 	            _react2.default.createElement('input', { type: 'submit', value: 'Create' })
 	          ),
@@ -57829,7 +58125,6 @@
 	      var editedUser = action.user;
 	      return (0, _merge2.default)({}, state, { currentUser: editedUser });
 	    case _session_actions.SessionConstants.RECEIVE_CURRENT_USER:
-	      debugger;
 	      var newUser = action.currentUser;
 	      return (0, _merge2.default)({}, state, { currentUser: newUser });
 	    case _session_actions.SessionConstants.RECEIVE_ERRORS:
@@ -74749,27 +75044,28 @@
 	
 	var _lodash = __webpack_require__(691);
 	
-	var defaultState = { bookings: {}, guests: {}, errors: [], received: false };
+	var defaultState = { bookings: [], guests: [], errors: [], received: false };
 	
 	var BookingReducer = function BookingReducer() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
 	  var action = arguments[1];
 	
 	  var newState = void 0;
+	  // debugger;
 	  switch (action.type) {
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKINGS:
-	
-	      newState = { bookings: action.bookings, guests: action.bookings.guests, errors: action.errors, received: action.received };
+	      newState = (0, _lodash.merge)({}, state, { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] });
+	      // newState = {bookings: action.bookings, guests: action.bookings.guests, errors: []};
 	      newState.received = false;
 	      return newState;
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING:
-	      newState = (0, _lodash.merge)({}, state, action.booking);
-	      // newState.bookings.push(action.booking);
+	      newState = (0, _lodash.merge)({}, state);
+	      newState.bookings.push(action.booking);
 	      newState.received = true;
 	      return newState;
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING_ERRORS:
-	
 	      newState = (0, _lodash.merge)({}, state);
+	      console.log(action.errors);
 	      newState.errors = action.errors;
 	      newState.received = false;
 	      return newState;
@@ -74794,8 +75090,7 @@
 	
 	var _lodash = __webpack_require__(691);
 	
-	var defaultState = { lat: 38, lng: -122 };
-	
+	var defaultState = { lat: 37.7820468, lng: -122.4415872 };
 	var SpacetimeReducer = function SpacetimeReducer() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
 	  var action = arguments[1];
@@ -74984,13 +75279,15 @@
 	
 	var _booking_actions = __webpack_require__(652);
 	
+	var _futon_actions = __webpack_require__(651);
+	
 	exports.default = function (_ref) {
 	  var getState = _ref.getState;
 	  var dispatch = _ref.dispatch;
 	  return function (next) {
 	    return function (action) {
 	      var loginSuccess = function loginSuccess(data) {
-	        debugger;
+	
 	        dispatch((0, _session_actions.receiveCurrentUser)(data));
 	        dispatch((0, _booking_actions.requestBookings)());
 	        _reactRouter.hashHistory.push("/profile");
@@ -75007,7 +75304,7 @@
 	      switch (action.type) {
 	
 	        case _session_actions.SessionConstants.LOG_IN:
-	          debugger;
+	
 	          (0, _session_util.login)(action.user, loginSuccess, errorsCallback);
 	          return next(action);
 	          break;
@@ -75019,6 +75316,7 @@
 	        case _session_actions.SessionConstants.SIGN_UP:
 	
 	          (0, _session_util.signup)(action.user, loginSuccess, errorsCallback);
+	          (0, _futon_actions.createFuton)({ address: "unknown", lat: 123, lng: 38, description: "unknown" });
 	          return next(action);
 	        case _session_actions.SessionConstants.EDIT_USER:
 	
@@ -75437,6 +75735,11 @@
 	          };
 	          (0, _booking_util.fetchBookings)(success, errors);
 	          return next(action);
+	        // case BookingConstants.REQUESTS_GUESTS:
+	        //   success = (guests) => dispatch(receiveGuests(guests));
+	        //   errors = (errors) => dispatch(receiveBookingErrors(errors.responseJSON));
+	        //   fetchGuests(success, errors);
+	        //   return next(action);
 	        case _booking_actions.BookingConstants.CREATE_BOOKING:
 	          success = function success(booking) {
 	            return dispatch((0, _booking_actions.receiveBooking)(booking));
@@ -75481,6 +75784,15 @@
 	    errors: errors
 	  });
 	};
+	
+	// export const fetchGuests = (success, errors) => {
+	//   $.ajax({
+	//     url: "api/bookings",
+	//     method: "GET",
+	//     success,
+	//     errors
+	//   });
+	// };
 	
 	var fetchBooking = exports.fetchBooking = function fetchBooking(booking, success, errors) {
 	  $.ajax({

@@ -57,6 +57,17 @@
 
  /* --- CONTENT --- */
 
+
+.profile-background {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(http://res.cloudinary.com/dnuopy1ir/image/upload/v1475448536/6811043-street-wallpapers_hpgvpe.jpg);
+      background-size: cover;
+}
+
  .content {
      margin: 0 auto;
      background: #fff;
@@ -223,22 +234,51 @@
     cursor: pointer;
 }
 
+.futon-list-container{
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    width: 30%;
+}
+.futon-info h4{
+  font-size: 14px;
+  line-height: 17px;
+}
+
 .futon-index-item {
-  width: 66%;
-  display: flex;
-  height: 600px;
-  border: 1px solid #ccc;
-  justify-content: space-between;
-  background: white;
+  box-sizing: border-box;
+  display: inline;
+  margin: 0 auto;
+  height: 250px;
+  padding: 20px 5px;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
 }
 .index-item-info {
-  padding: 30px 20px;
-  float: right;
-  background: white;
+  box-sizing: border-box;
+  display: inline;
+  margin: 0 auto;
+  height: 250px;
+  padding: 20px 5px;
+}
+.index {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 2%;
+  width: 100%;
+  height: 100%;
+
 }
 .index-item-category {
-  display: flex;
-  float:left;
+  max-width: 300px;
+  max-height: 200px;
+  border: 1px solid lightgrey;
+  display: block;
 }
  span img {
    display: table-cell;
@@ -253,12 +293,12 @@
   height: 300px;
 }
 
-.map {
-  width: 500px;
-  height: 500px;
-  float: right;;
-  position: relative;
-}
+// .map {
+//   width: 500px;
+//   height: 500px;
+//   float: right;;
+//   position: relative;
+// }
 user-index-item {
 width: 500px;
 display: flex;
@@ -310,16 +350,44 @@ ul {
   position: inherit;
 }
 
+.futon-image-container{
+  max-width: 300px;
+max-height: 200px;
+border: 1px solid lightgrey;
+display: block;
+}
+
+.futon-info{
+  position: relative;
+  text-align: center;
+  margin: 5px auto;
+}
+
+.index-item-image{
+  width: 300px;
+  height: 200px;
+  border: 1px solid lightgrey;
+  display: block
+}
+
+.index-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
 .index-item-copy futon-image {
-  float: right;
-  width: 39%;
-  padding: 10px;
-  height: auto;
+    width: 300px;
+    height: 200px;
+    border: 1px solid lightgrey;
+    display: block
 }
 
 .index-item-copy futon-image img {
-  width: 99%;
-  height: 80%
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 //nav
@@ -381,57 +449,91 @@ color: gray;
   border-bottom: 1px solid #ccc;
 }
 
+.booking{
+  width:200px;
+  height: 250px;
+  box-shadow: 5px 3px 15px;
+  list-style: none;
+  float:left;
+  margin: 10px;
+}
 
+.futonHost-img {
+  width: 200px;
+  height: 135px;
+  border-bottom: 1px solid black;
+
+}
+
+.image-nav-booking{
+  width:45px;
+  height:45px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: block;
+  position: absolute;
+  top: 110px;
+  left: 75px;
+
+}
+.fontSize{
+  font-size: 12px;
+  margin-left: 40px;
+
+}
+.booking-button{
+  margin-left:65px;
+}
 //google map css
 
 
-#map {
-        height: 100%;
-      }
-      .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 300px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      .pac-container {
-        font-family: Roboto;
-      }
-
-      #type-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-      }
-
-      #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-      #target {
-        width: 345px;
-      }
+// #map {
+//         height: 100%;
+//       }
+//       .controls {
+//         margin-top: 10px;
+//         border: 1px solid transparent;
+//         border-radius: 2px 0 0 2px;
+//         box-sizing: border-box;
+//         -moz-box-sizing: border-box;
+//         height: 32px;
+//         outline: none;
+//         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+//       }
+//
+//       #pac-input {
+//         background-color: #fff;
+//         font-family: Roboto;
+//         font-size: 15px;
+//         font-weight: 300;
+//         margin-left: 12px;
+//         padding: 0 11px 0 13px;
+//         text-overflow: ellipsis;
+//         width: 300px;
+//       }
+//
+//       #pac-input:focus {
+//         border-color: #4d90fe;
+//       }
+//
+//       .pac-container {
+//         font-family: Roboto;
+//       }
+//
+//       #type-selector {
+//         color: #fff;
+//         background-color: #4d90fe;
+//         padding: 5px 11px 0px 11px;
+//       }
+//
+//       #type-selector label {
+//         font-family: Roboto;
+//         font-size: 13px;
+//         font-weight: 300;
+//       }
+//       #target {
+//         width: 345px;
+//       }
 
 
 //Splash@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
@@ -472,7 +574,7 @@ p {
 }
 
 main {
-  max-width: 500px;
+  max-width: 800px;
   margin: 20px auto;
 }
 
@@ -594,9 +696,20 @@ main {
   display: inline-flex;
 }
 
-
-
-
+.map {
+  top: 60px;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 70%;
+  z-index: 10;
+}
+.bookings-info h4 {
+  font-size: 12px;
+}
+.futonHost{
+  position: relative;
+}
 // .title-in-pic {
 //   display: block;
 //  position: absolute;

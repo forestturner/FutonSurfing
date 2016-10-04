@@ -1,23 +1,27 @@
 import {connect} from 'react-redux';
 import FutonShow from './futon_show';
 import {requestFuton} from '../../actions/futon_actions';
+import {updateFilter} from '../../actions/filter_actions';
+import {requestFutons} from '../../actions/futon_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const currentUserFutonId = state.session.currentUser.futon.id
+  // const currentUserFutonId = state.session.currentUser.futon.id
   const futonId = parseInt(ownProps.params.futonId);
+  const futons = state.futons[futonId] || {};
   const futon = state.futons[futonId] || {};
   return {
     futonId,
-    currentUserFutonId,
-    futon
+    futon,
+    // currentUserFutonId,
+    futons
   };
 };
-
-// const mapdispatchToProps = dispatch => ({
-//   requestFuton: id => dispatch(requestFuton(id))
-// });
+const mapDispatchToProps = dispatch => ({
+  updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
+  requestFutons: () => dispatch(requestFutons())
+});
 
 export default connect(
-  mapStateToProps
-  // mapdispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(FutonShow);

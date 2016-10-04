@@ -1,8 +1,7 @@
 import { CoordsConstants } from '../actions/coords_actions.js';
 import { merge } from 'lodash';
 
-let defaultState = {lat: 38, lng: -122 }
-
+let defaultState = {lat: 37.7820468, lng: -122.4415872 }
 const SpacetimeReducer = (state = defaultState, action) => {
   let newState;
   switch (action.type) {
