@@ -10,12 +10,14 @@ export default class MarkerManager {
   }
 
   updateMarkers(futons){
+
     this.futons = futons;
     this._futonsToAdd().forEach(this._createMarkerFromFuton);
     this._markersToRemove().forEach(this._removeMarker);
   }
 
   _futonsToAdd(){
+
     const currentFutonIds = this.markers.map( marker => marker.futonId );
     const newFutons = this.futons;
     const newFutonIds = Object.keys(newFutons);
@@ -34,6 +36,7 @@ export default class MarkerManager {
   }
 
   _createMarkerFromFuton(futon) {
+    debugger;
     const pos = new google.maps.LatLng(futon.lat, futon.lng);
     const marker = new google.maps.Marker({
       position: pos,
@@ -45,6 +48,7 @@ export default class MarkerManager {
   }
 
   _removeMarker(marker) {
+    debugger;
     const idx = this.markers.indexOf( marker );
     this.markers[idx].setMap(null);
     this.markers.splice(idx, 1);

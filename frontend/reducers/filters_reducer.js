@@ -1,17 +1,20 @@
 import { FilterConstants } from '../actions/filter_actions';
 import merge from 'lodash/merge';
 
-const _defaultFilters = Object.freeze({
-  bounds:{}
-});
 
-const FiltersReducer = function(state = _defaultFilters, action){
-  if (action.type === FilterConstants.UPDATE_FILTER){
-    const newFilter = {[action.filter]: action.value};
-    return merge({}, state, newFilter);
-  } else {
-    return state;
+let defaultState = {bounds: {northEast:{lat: 60, lng: 130}, southWest: {lat: -60, lng: -130}}, location: {} }
+
+const FilterReducer = (state = defaultState, action) => {
+  let newState;
+  switch (action.type) {
+    case FilterConstants.UPDATE_BOUNDS:
+    debugger;
+      newState = merge({}, state);
+      newState.bounds = action.bounds;
+      return newState;
+    default:
+      return state;
   }
 };
 
-export default FiltersReducer;
+export default FilterReducer;

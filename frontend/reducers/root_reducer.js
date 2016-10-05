@@ -13,7 +13,7 @@ export default combineReducers({
   session: SessionReducer,
   users: UsersReducer,
   search: SearchReducer,
-  filter: FiltersReducer,
+  filters: FiltersReducer,
   bookings: BookingReducer,
   coords: CoordsReducer
 

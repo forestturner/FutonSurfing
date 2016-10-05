@@ -9,7 +9,10 @@ export default ({getState, dispatch}) => next => action => {
   const ownerSuccess = data => dispatch(receiveOwner(data));
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
-      const filters = getState().filter;
+    debugger;
+      // success = (sites) => dispatch(receiveFutons(sites));
+      // error = (errors) => dispatch(receiveSiteErrors(errors));
+      let filters = getState().filters;
       fetchFutons(filters, futonsSuccess);
       return next(action);
     case FutonConstants.REQUEST_FUTON:
