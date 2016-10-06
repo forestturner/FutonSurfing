@@ -18,6 +18,38 @@
  @import "bootstrap";
 
 
+ html, body, header, nav, h1, a,
+ ul, li, strong, main, button, i,
+ section, img, div, h2, p, form,
+ fieldset, label, input, textarea,
+ span, article, footer, time, small {
+   margin: 0;
+   padding: 0;
+
+ }
+
+ ul {
+   list-style: none;
+ }
+
+ img {
+   display: block;
+   width: 100%;
+   height: auto;
+ }
+
+ button,
+ input[type="submit"] {
+   cursor: pointer;
+ }
+
+ /* Clearfix */
+
+ .group:after {
+   content: "";
+   display: block;
+   clear: both;
+ }
 
 .navbar {
   margin-bottom: 0px;
@@ -175,7 +207,6 @@
    height: auto;
  }
  .futon_show {
-   width:50%;
    height:auto;
  }
 
@@ -242,7 +273,9 @@
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
-    width: 30%;
+    width: 306px;
+    background: white;
+
 }
 .futon-info h4{
   font-size: 14px;
@@ -481,6 +514,26 @@ color: gray;
   margin-left: 40px;
 
 }
+.futonHost-img-show {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid black;
+
+}
+
+.image-nav-booking-show{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 106px;
+  left: 200px;
+}
+
+
+
+
 .booking-button{
   margin-left:65px;
 }
@@ -709,6 +762,15 @@ main {
 }
 .futonHost{
   position: relative;
+}
+.li-futon-show{
+  margin-left: 50px;
+  margin-top: 25px;
+  margin-right: 10px;
+  margin: 10px;
+}
+.padding{
+  padding:10px;
 }
 // .title-in-pic {
 //   display: block;

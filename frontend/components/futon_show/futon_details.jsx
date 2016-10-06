@@ -2,12 +2,16 @@ import React from 'react';
 import {Link} from 'react-router';
 // import ReviewShow from './review_show';
 
-const FutonDetail = ({futon}) => (
+const FutonDetail = ({futon ,user}) => (
   <div>
     <ul className="futon-list">
-      <img className="futon_show" src={futon.futon_img_url}/>
-      <li> Address: {futon.address} </li>
-      <li> Description: {futon.description} </li>
+      <img className="futonHost-img-show " src={futon.futon_img_url}/>
+      <img className="image-nav-booking-show" src={user.profile_img_url}/>
+      <li className="li-futon-show"> Host: {user.firstname} {user.lastname}</li>
+      <li className="li-futon-show"> Languages: {user.languages}</li>
+      <li className="li-futon-show"> About: {user.description}</li>
+      <li className="li-futon-show"> Address: {futon.address} </li>
+      <li className="li-futon-show">  Futon Description: {futon.description} </li>
     </ul>
   </div>
 );

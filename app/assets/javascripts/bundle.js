@@ -58,7 +58,7 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _store = __webpack_require__(683);
+	var _store = __webpack_require__(685);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -23148,31 +23148,31 @@
 	
 	var _futon_show_container2 = _interopRequireDefault(_futon_show_container);
 	
-	var _futons_show_container = __webpack_require__(663);
+	var _futons_show_container = __webpack_require__(665);
 	
 	var _futons_show_container2 = _interopRequireDefault(_futons_show_container);
 	
-	var _user_show_container = __webpack_require__(668);
+	var _user_show_container = __webpack_require__(670);
 	
 	var _user_show_container2 = _interopRequireDefault(_user_show_container);
 	
-	var _users_show_container = __webpack_require__(671);
+	var _users_show_container = __webpack_require__(673);
 	
 	var _users_show_container2 = _interopRequireDefault(_users_show_container);
 	
-	var _edit_profile_container = __webpack_require__(675);
+	var _edit_profile_container = __webpack_require__(677);
 	
 	var _edit_profile_container2 = _interopRequireDefault(_edit_profile_container);
 	
-	var _edit_futon_container = __webpack_require__(677);
+	var _edit_futon_container = __webpack_require__(679);
 	
 	var _edit_futon_container2 = _interopRequireDefault(_edit_futon_container);
 	
-	var _request_booking_container = __webpack_require__(679);
+	var _request_booking_container = __webpack_require__(681);
 	
 	var _request_booking_container2 = _interopRequireDefault(_request_booking_container);
 	
-	var _createFutonContainer = __webpack_require__(681);
+	var _createFutonContainer = __webpack_require__(683);
 	
 	var _createFutonContainer2 = _interopRequireDefault(_createFutonContainer);
 	
@@ -29275,7 +29275,7 @@
 	                  _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    'Pleas Login.'
+	                    'Please Login.'
 	                  ),
 	                  _react2.default.createElement(
 	                    'div',
@@ -55680,20 +55680,31 @@
 	
 	var _futon_actions = __webpack_require__(651);
 	
-	var _filter_actions = __webpack_require__(662);
+	var _filter_actions = __webpack_require__(664);
+	
+	var _booking_actions = __webpack_require__(652);
+	
+	var _session_actions = __webpack_require__(261);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	  // const currentUserFutonId = state.session.currentUser.futon.id
+	  var currentUser = state.session.currentUser;
 	  var futonId = parseInt(ownProps.params.futonId);
-	  var futons = state.futons;
+	  var futons = state.futons.futons;
 	  var filters = state.filters;
 	  // const futons = state.futons[futonId] || {};
-	  var futon = state.futons[futonId] || {};
+	  var futon = state.futons.futons[futonId] || {};
+	  var host = futon.user;
+	  var errors = state.bookings.errors;
+	  var received = state.bookings.received;
 	  return {
 	    futonId: futonId,
 	    futon: futon,
+	    filters: filters,
+	    host: host,
+	    currentUser: currentUser,
 	    // currentUserFutonId,
 	    futons: futons
 	  };
@@ -55708,6 +55719,12 @@
 	    },
 	    requestFutons: function requestFutons() {
 	      return dispatch((0, _futon_actions.requestFutons)());
+	    },
+	    logIn: function logIn(user) {
+	      return dispatch((0, _session_actions.logIn)(user));
+	    },
+	    createBooking: function createBooking(booking) {
+	      return dispatch((0, _booking_actions.createBooking)(booking));
 	    }
 	  };
 	};
@@ -55740,6 +55757,10 @@
 	
 	var _futon_map2 = _interopRequireDefault(_futon_map);
 	
+	var _request_booking = __webpack_require__(663);
+	
+	var _request_booking2 = _interopRequireDefault(_request_booking);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55768,22 +55789,11 @@
 	  _createClass(FutonShow, [{
 	    key: 'render',
 	    value: function render() {
-	
 	      var url = '/futons/' + this.props.futonId + '/request';
-	      debugger;
 	      var coords = { lat: this.props.futon.lat, lng: this.props.futon.lng };
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'single-futon-show' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'single-futon-show' },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/profile' },
-	            ' Back to Dashboard '
-	          )
-	        ),
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -55791,17 +55801,9 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'futon-details' },
-	          _react2.default.createElement(_futon_details2.default, { futon: this.props.futon })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'requestFuton' },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: url },
-	            ' Request a booking! '
-	          )
+	          { className: 'futon-list-container' },
+	          _react2.default.createElement(_futon_details2.default, { futon: this.props.futon, user: this.props.host }),
+	          _react2.default.createElement(_request_booking2.default, { logIn: this.props.LogIn, futonId: this.props.futonId, user: this.props.currentUser, errors: this.props.errors, received: this.props.received })
 	        )
 	      );
 	    }
@@ -55854,24 +55856,46 @@
 	
 	var FutonDetail = function FutonDetail(_ref) {
 	  var futon = _ref.futon;
+	  var user = _ref.user;
 	  return _react2.default.createElement(
 	    'div',
 	    null,
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'futon-list' },
-	      _react2.default.createElement('img', { className: 'futon_show', src: futon.futon_img_url }),
+	      _react2.default.createElement('img', { className: 'futonHost-img-show ', src: futon.futon_img_url }),
+	      _react2.default.createElement('img', { className: 'image-nav-booking-show', src: user.profile_img_url }),
 	      _react2.default.createElement(
 	        'li',
-	        null,
+	        { className: 'li-futon-show' },
+	        ' Host: ',
+	        user.firstname,
+	        ' ',
+	        user.lastname
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        { className: 'li-futon-show' },
+	        ' Languages: ',
+	        user.languages
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        { className: 'li-futon-show' },
+	        ' About: ',
+	        user.description
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        { className: 'li-futon-show' },
 	        ' Address: ',
 	        futon.address,
 	        ' '
 	      ),
 	      _react2.default.createElement(
 	        'li',
-	        null,
-	        ' Description: ',
+	        { className: 'li-futon-show' },
+	        '  Futon Description: ',
 	        futon.description,
 	        ' '
 	      )
@@ -55912,7 +55936,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _maker_manger = __webpack_require__(705);
+	var _maker_manger = __webpack_require__(662);
 	
 	var _maker_manger2 = _interopRequireDefault(_maker_manger);
 	
@@ -55969,7 +55993,6 @@
 	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate(prevProps) {
-	      debugger;
 	      this.MarkerManager.updateMarkers(this.props.futons);
 	      if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
 	        this.map.setCenter({ lat: this.props.coords.lat, lng: this.props.coords.lng });
@@ -56001,6 +56024,360 @@
 /* 662 */
 /***/ function(module, exports) {
 
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var MarkerManager = function () {
+	  function MarkerManager(map, handleClick) {
+	    _classCallCheck(this, MarkerManager);
+	
+	    this.map = map;
+	    this.handleClick = handleClick;
+	    this.markers = [];
+	    //permanently bind instance methods
+	    this._createMarkerFromFuton = this._createMarkerFromFuton.bind(this);
+	    this._removeMarker = this._removeMarker.bind(this);
+	  }
+	
+	  _createClass(MarkerManager, [{
+	    key: 'updateMarkers',
+	    value: function updateMarkers(futons) {
+	
+	      this.futons = futons;
+	      this._futonsToAdd().forEach(this._createMarkerFromFuton);
+	      this._markersToRemove().forEach(this._removeMarker);
+	    }
+	  }, {
+	    key: '_futonsToAdd',
+	    value: function _futonsToAdd() {
+	
+	      var currentFutonIds = this.markers.map(function (marker) {
+	        return marker.futonId;
+	      });
+	      var newFutons = this.futons;
+	      var newFutonIds = Object.keys(newFutons);
+	
+	      return newFutonIds.reduce(function (collection, futonId) {
+	        if (!currentFutonIds.includes(futonId)) {
+	          return collection.concat([newFutons[futonId]]);
+	        }
+	      }, []);
+	    }
+	  }, {
+	    key: '_markersToRemove',
+	    value: function _markersToRemove() {
+	      var _this = this;
+	
+	      return this.markers.filter(function (marker) {
+	        return !_this.futons.hasOwnProperty(marker.futonId);
+	      });
+	    }
+	  }, {
+	    key: '_createMarkerFromFuton',
+	    value: function _createMarkerFromFuton(futon) {
+	      var _this2 = this;
+	
+	      var pos = new google.maps.LatLng(futon.lat, futon.lng);
+	      var marker = new google.maps.Marker({
+	        position: pos,
+	        map: this.map,
+	        futonId: futon.id
+	      });
+	      marker.addListener('click', function () {
+	        return _this2.handleClick(futon);
+	      });
+	      this.markers.push(marker);
+	    }
+	  }, {
+	    key: '_removeMarker',
+	    value: function _removeMarker(marker) {
+	      var idx = this.markers.indexOf(marker);
+	      this.markers[idx].setMap(null);
+	      this.markers.splice(idx, 1);
+	    }
+	  }]);
+	
+	  return MarkerManager;
+	}();
+	
+	exports.default = MarkerManager;
+
+/***/ },
+/* 663 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactModal = __webpack_require__(514);
+	
+	var _reactModal2 = _interopRequireDefault(_reactModal);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Request = function (_React$Component) {
+	  _inherits(Request, _React$Component);
+	
+	  function Request(props) {
+	    _classCallCheck(this, Request);
+	
+	    // let from = this.props.user.futon.start_date;
+	    // let to = this.props.user.futon.end_date;
+	
+	    var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this, props));
+	
+	    _this.state = {
+	      start_date: "",
+	      end_date: "",
+	      username: "",
+	      password: "",
+	      firstname: "",
+	      lastname: "",
+	      email: "",
+	      profile_img_url: "",
+	      location: "",
+	      loginModal: false,
+	      signUpModal: false
+	    };
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.updateField = _this.updateField.bind(_this);
+	    _this.renderMethod = _this.renderMethod.bind(_this);
+	
+	    _this.handleLogin = _this.handleLogin.bind(_this);
+	    _this.handleCloseLogin = _this.handleCloseLogin.bind(_this);
+	    _this.handleSubmitLoginForm = _this.handleSubmitLoginForm.bind(_this);
+	    _this.update = _this.update.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Request, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      document.getElementById("first-field").focus();
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      if (this.props.currentUser) {
+	
+	        var from = void 0;
+	        var to = void 0;
+	        if (this.state.start_date && this.state.end_date) {
+	          from = this.state.start_date;
+	          to = this.state.end_date;
+	        }
+	
+	        var updates = {
+	          start_date: from,
+	          end_date: to,
+	          futon_id: this.props.futonId
+	        };
+	
+	        this.props.createBooking(updates);
+	      } else {
+	        this.handleLogin();
+	      }
+	    }
+	  }, {
+	    key: 'updateField',
+	    value: function updateField(event) {
+	      var updates = {};
+	      var key = event.target.name;
+	      updates[key] = event.target.value;
+	      this.setState(updates);
+	    }
+	  }, {
+	    key: 'renderErrors',
+	    value: function renderErrors() {
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        this.props.errors.map(function (error, i) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: 'error-' + i },
+	            error
+	          );
+	        })
+	      );
+	    }
+	  }, {
+	    key: 'handleLogin',
+	    value: function handleLogin() {
+	
+	      this.setState({ loginModal: true });
+	    }
+	  }, {
+	    key: 'handleCloseLogin',
+	    value: function handleCloseLogin() {
+	      this.setState({ loginModal: false });
+	    }
+	  }, {
+	    key: 'update',
+	    value: function update(field) {
+	      var _this2 = this;
+	
+	      return function (e) {
+	        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+	      };
+	    }
+	  }, {
+	    key: 'handleSubmitLoginForm',
+	    value: function handleSubmitLoginForm(e) {
+	      debugger;
+	      e.preventDefault();
+	      var user = this.state;
+	      this.props.logIn({ user: user });
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      _reactModal2.default.setAppElement('body');
+	    }
+	  }, {
+	    key: 'handleGuest',
+	    value: function handleGuest(e) {
+	      debugger;
+	      var user = { user: { username: "Guest", password: "password1" } };
+	      this.props.logIn(user);
+	    }
+	    //
+	
+	  }, {
+	    key: 'renderMethod',
+	    value: function renderMethod() {
+	
+	      var customStyles = {
+	        content: {
+	          fontSize: 14,
+	          top: '50%',
+	          left: '15%',
+	          right: 'auto',
+	          bottom: 'auto',
+	          marginRight: '-50%',
+	          transform: 'translate(-50%, -50%)'
+	        }
+	      };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'padding' },
+	        _react2.default.createElement('div', { className: 'overlay' }),
+	        _react2.default.createElement(
+	          'section',
+	          { className: 'request-form' },
+	          _react2.default.createElement('div', { className: 'errors' }),
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Request Booking'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'request', onSubmit: this.handleSubmit },
+	            _react2.default.createElement(
+	              'label',
+	              { className: 'request-label' },
+	              'Start date:',
+	              _react2.default.createElement('input', { className: 'request-input', type: 'date', id: 'first-field', name: 'start_date', value: this.state.start_date, onChange: this.updateField })
+	            ),
+	            _react2.default.createElement(
+	              'label',
+	              { className: 'request-label' },
+	              'End date:',
+	              _react2.default.createElement('input', { className: 'request-input', type: 'date', name: 'end_date', value: this.state.end_date, onChange: this.updateField })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn-guest' },
+	              'Request'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            _reactModal2.default,
+	            {
+	              isOpen: this.state.loginModal,
+	              onRequestClose: this.handleCloseLogin,
+	              style: customStyles },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/profile', className: 'btn btn-guest join', onClick: this.handleGuest },
+	              ' Guest Login '
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              'Please Login.'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'login-form' },
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                ' Username:',
+	                _react2.default.createElement('input', { type: 'text', value: this.state.username, onChange: this.update("username"), className: 'login-input' })
+	              ),
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                ' Password:',
+	                _react2.default.createElement('input', { type: 'password', value: this.state.password, onChange: this.update("password"), className: 'login-input' })
+	              ),
+	              _react2.default.createElement('input', { type: 'submit', value: 'login', onClick: this.handleSubmitLoginForm })
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      debugger;
+	      return this.renderMethod();
+	    }
+	  }]);
+	
+	  return Request;
+	}(_react2.default.Component);
+	
+	exports.default = Request;
+
+/***/ },
+/* 664 */
+/***/ function(module, exports) {
+
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -56026,7 +56403,7 @@
 	};
 
 /***/ },
-/* 663 */
+/* 665 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56037,18 +56414,17 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _futons_show = __webpack_require__(664);
+	var _futons_show = __webpack_require__(666);
 	
 	var _futons_show2 = _interopRequireDefault(_futons_show);
 	
-	var _filter_actions = __webpack_require__(662);
+	var _filter_actions = __webpack_require__(664);
 	
 	var _futon_actions = __webpack_require__(651);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  debugger;
 	  var futons = state.futons.futons;
 	  var width = state.session.width;
 	  var height = state.session.height;
@@ -56080,7 +56456,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_futons_show2.default);
 
 /***/ },
-/* 664 */
+/* 666 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56097,7 +56473,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _futon_index = __webpack_require__(665);
+	var _futon_index = __webpack_require__(667);
 	
 	var _futon_index2 = _interopRequireDefault(_futon_index);
 	
@@ -56105,7 +56481,7 @@
 	
 	var _futon_map2 = _interopRequireDefault(_futon_map);
 	
-	var _filter_form = __webpack_require__(667);
+	var _filter_form = __webpack_require__(669);
 	
 	var _filter_form2 = _interopRequireDefault(_filter_form);
 	
@@ -56163,7 +56539,7 @@
 	  </div> */}
 
 /***/ },
-/* 665 */
+/* 667 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56176,7 +56552,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _futon_index_item = __webpack_require__(666);
+	var _futon_index_item = __webpack_require__(668);
 	
 	var _futon_index_item2 = _interopRequireDefault(_futon_index_item);
 	
@@ -56201,7 +56577,7 @@
 	exports.default = FutonIndex;
 
 /***/ },
-/* 666 */
+/* 668 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56287,7 +56663,7 @@
 	// #   end
 
 /***/ },
-/* 667 */
+/* 669 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -56340,7 +56716,7 @@
 	exports.default = FilterForm;
 
 /***/ },
-/* 668 */
+/* 670 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56351,7 +56727,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _user_show = __webpack_require__(669);
+	var _user_show = __webpack_require__(671);
 	
 	var _user_show2 = _interopRequireDefault(_user_show);
 	
@@ -56368,7 +56744,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_user_show2.default);
 
 /***/ },
-/* 669 */
+/* 671 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56383,7 +56759,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _user_details = __webpack_require__(670);
+	var _user_details = __webpack_require__(672);
 	
 	var _user_details2 = _interopRequireDefault(_user_details);
 	
@@ -56417,7 +56793,7 @@
 	exports.default = UserShow;
 
 /***/ },
-/* 670 */
+/* 672 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56508,7 +56884,7 @@
 	// end
 
 /***/ },
-/* 671 */
+/* 673 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56519,7 +56895,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _users_show = __webpack_require__(672);
+	var _users_show = __webpack_require__(674);
 	
 	var _users_show2 = _interopRequireDefault(_users_show);
 	
@@ -56534,7 +56910,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_users_show2.default);
 
 /***/ },
-/* 672 */
+/* 674 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56549,7 +56925,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _user_index = __webpack_require__(673);
+	var _user_index = __webpack_require__(675);
 	
 	var _user_index2 = _interopRequireDefault(_user_index);
 	
@@ -56580,7 +56956,7 @@
 	exports.default = UserShow;
 
 /***/ },
-/* 673 */
+/* 675 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56593,7 +56969,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _user_index_item = __webpack_require__(674);
+	var _user_index_item = __webpack_require__(676);
 	
 	var _user_index_item2 = _interopRequireDefault(_user_index_item);
 	
@@ -56618,7 +56994,7 @@
 	exports.default = UserIndex;
 
 /***/ },
-/* 674 */
+/* 676 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56733,7 +57109,7 @@
 	// end
 
 /***/ },
-/* 675 */
+/* 677 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56744,7 +57120,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _edit_profile = __webpack_require__(676);
+	var _edit_profile = __webpack_require__(678);
 	
 	var _edit_profile2 = _interopRequireDefault(_edit_profile);
 	
@@ -56770,7 +57146,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_edit_profile2.default);
 
 /***/ },
-/* 676 */
+/* 678 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57019,7 +57395,7 @@
 	// }
 
 /***/ },
-/* 677 */
+/* 679 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57030,7 +57406,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _edit_futon = __webpack_require__(678);
+	var _edit_futon = __webpack_require__(680);
 	
 	var _edit_futon2 = _interopRequireDefault(_edit_futon);
 	
@@ -57062,7 +57438,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_edit_futon2.default);
 
 /***/ },
-/* 678 */
+/* 680 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57324,7 +57700,7 @@
 	exports.default = EditFuton;
 
 /***/ },
-/* 679 */
+/* 681 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57337,7 +57713,7 @@
 	
 	var _booking_actions = __webpack_require__(652);
 	
-	var _request_booking = __webpack_require__(680);
+	var _request_booking = __webpack_require__(682);
 	
 	var _request_booking2 = _interopRequireDefault(_request_booking);
 	
@@ -57374,7 +57750,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_request_booking2.default);
 
 /***/ },
-/* 680 */
+/* 682 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57532,7 +57908,7 @@
 	exports.default = Request;
 
 /***/ },
-/* 681 */
+/* 683 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57545,7 +57921,7 @@
 	
 	var _futon_actions = __webpack_require__(651);
 	
-	var _create_futon_form = __webpack_require__(682);
+	var _create_futon_form = __webpack_require__(684);
 	
 	var _create_futon_form2 = _interopRequireDefault(_create_futon_form);
 	
@@ -57570,7 +57946,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_create_futon_form2.default);
 
 /***/ },
-/* 682 */
+/* 684 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57723,7 +58099,7 @@
 	exports.default = createFutonForm;
 
 /***/ },
-/* 683 */
+/* 685 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57734,11 +58110,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _root_reducer = __webpack_require__(684);
+	var _root_reducer = __webpack_require__(686);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _root_middleware = __webpack_require__(695);
+	var _root_middleware = __webpack_require__(697);
 	
 	var _root_middleware2 = _interopRequireDefault(_root_middleware);
 	
@@ -57752,7 +58128,7 @@
 	exports.default = configureStore;
 
 /***/ },
-/* 684 */
+/* 686 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57763,35 +58139,35 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _futon_reducer = __webpack_require__(685);
+	var _futon_reducer = __webpack_require__(687);
 	
 	var _futon_reducer2 = _interopRequireDefault(_futon_reducer);
 	
-	var _session_reducer = __webpack_require__(686);
+	var _session_reducer = __webpack_require__(688);
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
-	var _user_reducer = __webpack_require__(687);
+	var _user_reducer = __webpack_require__(689);
 	
 	var _user_reducer2 = _interopRequireDefault(_user_reducer);
 	
-	var _search_reducer = __webpack_require__(688);
+	var _search_reducer = __webpack_require__(690);
 	
 	var _search_reducer2 = _interopRequireDefault(_search_reducer);
 	
-	var _filters_reducer = __webpack_require__(691);
+	var _filters_reducer = __webpack_require__(693);
 	
 	var _filters_reducer2 = _interopRequireDefault(_filters_reducer);
 	
-	var _form_reducer = __webpack_require__(692);
+	var _form_reducer = __webpack_require__(694);
 	
 	var _form_reducer2 = _interopRequireDefault(_form_reducer);
 	
-	var _booking_reducer = __webpack_require__(693);
+	var _booking_reducer = __webpack_require__(695);
 	
 	var _booking_reducer2 = _interopRequireDefault(_booking_reducer);
 	
-	var _coords_reducer = __webpack_require__(694);
+	var _coords_reducer = __webpack_require__(696);
 	
 	var _coords_reducer2 = _interopRequireDefault(_coords_reducer);
 	
@@ -57809,7 +58185,7 @@
 	});
 
 /***/ },
-/* 685 */
+/* 687 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57835,7 +58211,6 @@
 	  var newState = void 0;
 	  switch (action.type) {
 	    case _futon_actions.FutonConstants.RECEIVE_FUTONS:
-	      debugger;
 	      newState = { futons: action.futons, errors: [] };
 	      return newState;
 	    case _futon_actions.FutonConstants.RECEIVE_FUTON:
@@ -57849,7 +58224,7 @@
 	exports.default = FutonsReducer;
 
 /***/ },
-/* 686 */
+/* 688 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57895,7 +58270,7 @@
 	exports.default = SessionReducer;
 
 /***/ },
-/* 687 */
+/* 689 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57933,7 +58308,7 @@
 	exports.default = UsersReducer;
 
 /***/ },
-/* 688 */
+/* 690 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57942,9 +58317,9 @@
 	  value: true
 	});
 	
-	var _search_actions = __webpack_require__(689);
+	var _search_actions = __webpack_require__(691);
 	
-	var _lodash = __webpack_require__(690);
+	var _lodash = __webpack_require__(692);
 	
 	var defaultState = { lat: 37, lng: -122 };
 	
@@ -57965,7 +58340,7 @@
 	exports.default = SearchReducer;
 
 /***/ },
-/* 689 */
+/* 691 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -57985,7 +58360,7 @@
 	};
 
 /***/ },
-/* 690 */
+/* 692 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -74725,7 +75100,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(630)(module)))
 
 /***/ },
-/* 691 */
+/* 693 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74734,7 +75109,7 @@
 	  value: true
 	});
 	
-	var _filter_actions = __webpack_require__(662);
+	var _filter_actions = __webpack_require__(664);
 	
 	var _merge = __webpack_require__(534);
 	
@@ -74751,7 +75126,6 @@
 	  var newState = void 0;
 	  switch (action.type) {
 	    case _filter_actions.FilterConstants.UPDATE_BOUNDS:
-	      debugger;
 	      newState = (0, _merge2.default)({}, state);
 	      newState.bounds = action.bounds;
 	      return newState;
@@ -74763,7 +75137,7 @@
 	exports.default = FilterReducer;
 
 /***/ },
-/* 692 */
+/* 694 */
 /***/ function(module, exports) {
 
 	// import { FormConstants } from '../actions/form_actions.js';
@@ -74787,7 +75161,7 @@
 	"use strict";
 
 /***/ },
-/* 693 */
+/* 695 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74798,7 +75172,7 @@
 	
 	var _booking_actions = __webpack_require__(652);
 	
-	var _lodash = __webpack_require__(690);
+	var _lodash = __webpack_require__(692);
 	
 	var defaultState = { bookings: [], guests: [], errors: [], received: false };
 	
@@ -74833,7 +75207,7 @@
 	exports.default = BookingReducer;
 
 /***/ },
-/* 694 */
+/* 696 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74844,7 +75218,7 @@
 	
 	var _coords_actions = __webpack_require__(642);
 	
-	var _lodash = __webpack_require__(690);
+	var _lodash = __webpack_require__(692);
 	
 	var defaultState = { lat: 37.7820468, lng: -122.4415872 };
 	var SpacetimeReducer = function SpacetimeReducer() {
@@ -74864,7 +75238,7 @@
 	exports.default = SpacetimeReducer;
 
 /***/ },
-/* 695 */
+/* 697 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74875,23 +75249,23 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _futon_middleware = __webpack_require__(696);
+	var _futon_middleware = __webpack_require__(698);
 	
 	var _futon_middleware2 = _interopRequireDefault(_futon_middleware);
 	
-	var _session_middleware = __webpack_require__(698);
+	var _session_middleware = __webpack_require__(700);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
-	var _user_middleware = __webpack_require__(700);
+	var _user_middleware = __webpack_require__(702);
 	
 	var _user_middleware2 = _interopRequireDefault(_user_middleware);
 	
-	var _reduxLogger = __webpack_require__(702);
+	var _reduxLogger = __webpack_require__(704);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _booking_middleware = __webpack_require__(703);
+	var _booking_middleware = __webpack_require__(705);
 	
 	var _booking_middleware2 = _interopRequireDefault(_booking_middleware);
 	
@@ -74901,7 +75275,7 @@
 	exports.default = RootMiddleware;
 
 /***/ },
-/* 696 */
+/* 698 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74910,11 +75284,11 @@
 	  value: true
 	});
 	
-	var _futon_util = __webpack_require__(697);
+	var _futon_util = __webpack_require__(699);
 	
 	var _futon_actions = __webpack_require__(651);
 	
-	var _filter_actions = __webpack_require__(662);
+	var _filter_actions = __webpack_require__(664);
 	
 	// Futon Action
 	exports.default = function (_ref) {
@@ -74933,7 +75307,6 @@
 	      };
 	      switch (action.type) {
 	        case _futon_actions.FutonConstants.REQUEST_FUTONS:
-	          debugger;
 	          // success = (sites) => dispatch(receiveFutons(sites));
 	          // error = (errors) => dispatch(receiveSiteErrors(errors));
 	          var filters = getState().filters;
@@ -74954,6 +75327,10 @@
 	        case _filter_actions.FilterConstants.UPDATE_FILTER:
 	          dispatch((0, _futon_actions.requestFutons)());
 	          return next(action);
+	        case _filter_actions.FilterConstants.UPDATE_BOUNDS:
+	          next(action);
+	          dispatch((0, _futon_actions.requestFutons)());
+	          break;
 	        default:
 	          return next(action);
 	      }
@@ -74966,7 +75343,7 @@
 	//   break;
 
 /***/ },
-/* 697 */
+/* 699 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -75021,7 +75398,7 @@
 	};
 
 /***/ },
-/* 698 */
+/* 700 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75034,7 +75411,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _session_util = __webpack_require__(699);
+	var _session_util = __webpack_require__(701);
 	
 	var _booking_actions = __webpack_require__(652);
 	
@@ -75089,7 +75466,7 @@
 	};
 
 /***/ },
-/* 699 */
+/* 701 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75150,7 +75527,7 @@
 	};
 
 /***/ },
-/* 700 */
+/* 702 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75159,7 +75536,7 @@
 	  value: true
 	});
 	
-	var _user_util = __webpack_require__(701);
+	var _user_util = __webpack_require__(703);
 	
 	var _user_actions = __webpack_require__(653);
 	
@@ -75194,7 +75571,7 @@
 	};
 
 /***/ },
-/* 701 */
+/* 703 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -75231,7 +75608,7 @@
 	};
 
 /***/ },
-/* 702 */
+/* 704 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75464,7 +75841,7 @@
 	module.exports = createLogger;
 
 /***/ },
-/* 703 */
+/* 705 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75475,7 +75852,7 @@
 	
 	var _booking_actions = __webpack_require__(652);
 	
-	var _booking_util = __webpack_require__(704);
+	var _booking_util = __webpack_require__(706);
 	
 	var BookingMiddleware = function BookingMiddleware(_ref) {
 	  var getState = _ref.getState;
@@ -75527,7 +75904,7 @@
 	exports.default = BookingMiddleware;
 
 /***/ },
-/* 704 */
+/* 706 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75571,97 +75948,6 @@
 	    errors: errors
 	  });
 	};
-
-/***/ },
-/* 705 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var MarkerManager = function () {
-	  function MarkerManager(map, handleClick) {
-	    _classCallCheck(this, MarkerManager);
-	
-	    this.map = map;
-	    this.handleClick = handleClick;
-	    this.markers = [];
-	    //permanently bind instance methods
-	    this._createMarkerFromFuton = this._createMarkerFromFuton.bind(this);
-	    this._removeMarker = this._removeMarker.bind(this);
-	  }
-	
-	  _createClass(MarkerManager, [{
-	    key: 'updateMarkers',
-	    value: function updateMarkers(futons) {
-	
-	      this.futons = futons;
-	      this._futonsToAdd().forEach(this._createMarkerFromFuton);
-	      this._markersToRemove().forEach(this._removeMarker);
-	    }
-	  }, {
-	    key: '_futonsToAdd',
-	    value: function _futonsToAdd() {
-	
-	      var currentFutonIds = this.markers.map(function (marker) {
-	        return marker.futonId;
-	      });
-	      var newFutons = this.futons;
-	      var newFutonIds = Object.keys(newFutons);
-	
-	      return newFutonIds.reduce(function (collection, futonId) {
-	        if (!currentFutonIds.includes(futonId)) {
-	          return collection.concat([newFutons[futonId]]);
-	        }
-	      }, []);
-	    }
-	  }, {
-	    key: '_markersToRemove',
-	    value: function _markersToRemove() {
-	      var _this = this;
-	
-	      return this.markers.filter(function (marker) {
-	        return !_this.futons.hasOwnProperty(marker.futonId);
-	      });
-	    }
-	  }, {
-	    key: '_createMarkerFromFuton',
-	    value: function _createMarkerFromFuton(futon) {
-	      var _this2 = this;
-	
-	      debugger;
-	      var pos = new google.maps.LatLng(futon.lat, futon.lng);
-	      var marker = new google.maps.Marker({
-	        position: pos,
-	        map: this.map,
-	        futonId: futon.id
-	      });
-	      marker.addListener('click', function () {
-	        return _this2.handleClick(futon);
-	      });
-	      this.markers.push(marker);
-	    }
-	  }, {
-	    key: '_removeMarker',
-	    value: function _removeMarker(marker) {
-	      debugger;
-	      var idx = this.markers.indexOf(marker);
-	      this.markers[idx].setMap(null);
-	      this.markers.splice(idx, 1);
-	    }
-	  }]);
-	
-	  return MarkerManager;
-	}();
-	
-	exports.default = MarkerManager;
 
 /***/ }
 /******/ ]);

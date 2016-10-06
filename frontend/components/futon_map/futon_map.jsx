@@ -37,7 +37,6 @@ class FutonMap extends React.Component{
    }
  }
   componentDidUpdate(prevProps){
-    debugger;
     this.MarkerManager.updateMarkers(this.props.futons);
     if (this.defaultProps.coords.lat != this.props.coords.lat && this.defaultProps.coords.lng != this.props.coords.lng) {
       this.map.setCenter({lat: this.props.coords.lat,   lng: this.props.coords.lng});

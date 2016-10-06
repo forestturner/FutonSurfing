@@ -8,7 +8,6 @@ const FilterReducer = (state = defaultState, action) => {
   let newState;
   switch (action.type) {
     case FilterConstants.UPDATE_BOUNDS:
-    debugger;
       newState = merge({}, state);
       newState.bounds = action.bounds;
       return newState;

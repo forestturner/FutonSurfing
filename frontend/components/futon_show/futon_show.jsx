@@ -5,6 +5,7 @@ import FutonDetail from './futon_details';
 
 // import FutonIndex from './futon_index';
 import FutonMap from '../futon_map/futon_map';
+import Request from './request_booking.jsx';
 // import FilterForm from './filter_form';
 // import FutonMap from './futon_map/futon_map';
 // import ReviewButton from './review_button';
@@ -17,29 +18,25 @@ class FutonShow extends React.Component {
 
 
  render () {
-
   let url = `/futons/${this.props.futonId}/request`;
-  debugger;
   let coords = {lat: this.props.futon.lat, lng: this.props.futon.lng}
     return(
-      <div className='single-futon-show'>
-        <div className='single-futon-show'>
-          <Link to="/profile"> Back to Dashboard </Link>
-        </div>
+      <div className='container-fluid'>
         <div>
-          <FutonMap futons={this.props.futons} updateBounds={this.props.updateBounds}  coords={coords} updateFilter={this.props.updateFilter} singleFuton={true} />
+        <FutonMap futons={this.props.futons} updateBounds={this.props.updateBounds}  coords={coords} updateFilter={this.props.updateFilter} singleFuton={true} />
         </div>
-        <div className="futon-details">
-          <FutonDetail futon={this.props.futon} />
+        <div className="futon-list-container">
+          <FutonDetail futon={this.props.futon} user={this.props.host}/>
+          <Request logIn={this.props.LogIn} futonId= {this.props.futonId} user={this.props.currentUser} errors={this.props.errors} received={this.props.received}/>
         </div>
-        <div className='requestFuton'>
-          <Link to={url}> Request a booking! </Link>
-        </div>
+
       </div>
     );
   }
 }
 export default FutonShow;
+
+
 
 // if (currentUserFutonId != futon.id){
 //   }

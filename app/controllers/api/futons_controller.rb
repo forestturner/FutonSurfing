@@ -32,7 +32,7 @@ class Api::FutonsController < ApplicationController
 
   private
   def futon_params()
-    params.require(:futon).permit(:lat,:lng,:description,:futon_img_url,:address, :bookings)
+    params.require(:futon).permit(:lat,:lng,:description,:futon_img_url,:address, :bookings, :user)
   end
 
 

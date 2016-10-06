@@ -5,7 +5,6 @@ const FutonsReducer = function(state = {futons: [],errors: []}, action){
   let newState;
   switch(action.type){
     case FutonConstants.RECEIVE_FUTONS:
-    debugger;
       newState = {futons: action.futons, errors: []};
       return newState;
     case FutonConstants.RECEIVE_FUTON:

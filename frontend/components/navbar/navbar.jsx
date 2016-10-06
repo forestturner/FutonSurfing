@@ -176,7 +176,7 @@ class NavBar extends React.Component {
                style={customStyles} >
 
                <Link to="/profile" className="btn btn-guest join" onClick={this.handleGuest}> Guest Login </Link>
-               <div>Pleas Login.</div>
+               <div>Please Login.</div>
                <div className="login-form">
                  <label> Username:
                    <input type="text" value={this.state.username}	onChange={this.update("username")} className="login-input" />

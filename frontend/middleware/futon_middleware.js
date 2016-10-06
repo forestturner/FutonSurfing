@@ -9,7 +9,6 @@ export default ({getState, dispatch}) => next => action => {
   const ownerSuccess = data => dispatch(receiveOwner(data));
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
-    debugger;
       // success = (sites) => dispatch(receiveFutons(sites));
       // error = (errors) => dispatch(receiveSiteErrors(errors));
       let filters = getState().filters;
@@ -30,6 +29,10 @@ export default ({getState, dispatch}) => next => action => {
     case FilterConstants.UPDATE_FILTER:
       dispatch(requestFutons());
       return next(action);
+    case FilterConstants.UPDATE_BOUNDS:
+      next(action);
+      dispatch(requestFutons());
+      break;
     default:
       return next(action);
   }

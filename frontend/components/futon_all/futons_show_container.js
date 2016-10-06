@@ -4,7 +4,6 @@ import {updateFilter, updateBounds} from '../../actions/filter_actions';
 import {requestFutons} from '../../actions/futon_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
    let futons = state.futons.futons;
    let width = state.session.width;
    let height = state.session.height;
