@@ -76,7 +76,11 @@ getBookings(nextState, replace) {
           <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="futons" component={ FutonsShowContainer} onEnter ={this.getFutons }/>
+<<<<<<< HEAD
           <Route path="futons/:futonId" component={FutonShowContainer} />
+=======
+          <Route path="futons/:futonId" component={FutonShowContainer} onEnter={this.getFuton}/>
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 
           <Route path="/futons/:futonId/request" component={RequestBookingsContainer} />
 

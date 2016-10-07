@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import FutonShow from './futon_show';
 import {requestFuton} from '../../actions/futon_actions';
+<<<<<<< HEAD
 import {updateFilter,updateBounds} from '../../actions/filter_actions';
 import {requestFutons} from '../../actions/futon_actions';
 import { createBooking } from '../../actions/booking_actions';
@@ -38,4 +39,25 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
+=======
+
+const mapStateToProps = (state, ownProps) => {
+  const currentUserFutonId = state.session.currentUser.futon.id
+  const futonId = parseInt(ownProps.params.futonId);
+  const futon = state.futons[futonId] || {};
+  return {
+    futonId,
+    currentUserFutonId,
+    futon
+  };
+};
+
+// const mapdispatchToProps = dispatch => ({
+//   requestFuton: id => dispatch(requestFuton(id))
+// });
+
+export default connect(
+  mapStateToProps
+  // mapdispatchToProps
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 )(FutonShow);

@@ -1,6 +1,10 @@
 /tmp
 node_modules/
+<<<<<<< HEAD
 /log
 log/
+=======
+
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 # Ignore application configuration
 /config/application.yml

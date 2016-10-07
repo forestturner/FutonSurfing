@@ -2,15 +2,19 @@ import React from 'react';
 import {Link} from 'react-router';
 
 import FutonDetail from './futon_details';
+<<<<<<< HEAD
 
 // import FutonIndex from './futon_index';
 import FutonMap from '../futon_map/futon_map';
 import Request from './request_booking.jsx';
 // import FilterForm from './filter_form';
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 // import FutonMap from './futon_map/futon_map';
 // import ReviewButton from './review_button';
 
 
+<<<<<<< HEAD
 class FutonShow extends React.Component {
   constructor(props) {
     super(props)
@@ -54,6 +58,41 @@ export default FutonShow;
 //   }
 // };
 
+=======
+const FutonShow = function({ currentUserId, requestFuton, children, futon, futonId, currentUserFutonId}) {
+  let url = `/futons/${futonId}/request`;
+  if (currentUserFutonId != futon.id){
+    return(
+      <div className='single-futon-show'>
+        <div className='single-futon-show'>
+          <Link to="/profile"> Back to Dashboard </Link>
+        </div>
+        <div className="futon-details">
+          <FutonDetail futon={futon} />
+        </div>
+        <div className='requestFuton'>
+          <Link to={url}> Request a booking! </Link>
+        </div>
+      </div>
+    );
+  }
+  else {
+    return(
+      <div className='single-futon-show'>
+        <div className='single-futon-show'>
+          <Link to="/profile"> Back to Dashboard </Link>
+        </div>
+        <div className="futon-details">
+          <FutonDetail futon={futon} />
+        </div>
+      </div>
+    );
+  }
+};
+export default FutonShow;
+
+
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 {/* <FutonMap futons={futons} futonId={futonId} singleFuton={true} requestFuton={requestFuton}/> */}
 
 {/* {children || <ReviewButton futonId={futon.id}/>} */}

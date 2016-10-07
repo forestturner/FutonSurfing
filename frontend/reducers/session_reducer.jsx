@@ -14,6 +14,10 @@ const SessionReducer = function(state =_freshUser, action){
       const editedUser = action.user;
       return merge({},state,{currentUser: editedUser});
     case SessionConstants.RECEIVE_CURRENT_USER:
+<<<<<<< HEAD
+=======
+    debugger;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       const newUser = action.currentUser;
       return merge({},state,{currentUser: newUser});
     case SessionConstants.RECEIVE_ERRORS:

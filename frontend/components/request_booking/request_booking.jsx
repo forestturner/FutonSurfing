@@ -4,12 +4,21 @@ import { hashHistory, Link } from 'react-router';
 class Request extends React.Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     // let from = this.props.user.futon.start_date;
     // let to = this.props.user.futon.end_date;
 
     this.state = {
       start_date: "",
       end_date: "",
+=======
+    let from = this.props.user.futon.start_date;
+    let to = this.props.user.futon.end_date;
+
+    this.state = {
+      start_date: from,
+      end_date: to,
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);

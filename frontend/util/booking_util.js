@@ -7,6 +7,7 @@ export const fetchBookings = (success, errors) => {
   });
 };
 
+<<<<<<< HEAD
 
 // export const fetchGuests = (success, errors) => {
 //   $.ajax({
@@ -17,6 +18,8 @@ export const fetchBookings = (success, errors) => {
 //   });
 // };
 
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 export const fetchBooking = (booking, success, errors) => {
   $.ajax({
     url: "api/bookings",

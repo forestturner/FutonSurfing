@@ -6,11 +6,21 @@ import Guests from '../bookings/guests.jsx';
 import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
+<<<<<<< HEAD
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showEdit: false,
+=======
+
+console.log(Modal);
+class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    debugger;
+    this.state = {
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       lat: this.props.coords.lat,
       lng: this.props.coords.lng,
       location: "",
@@ -28,8 +38,11 @@ class Profile extends React.Component {
       places: this.props.currentUser.places,
       languages: this.props.currentUser.languages
     };
+<<<<<<< HEAD
     this.handleDone = this.handleDone.bind(this);
     this.handleOpenedit = this.handleOpenedit.bind(this);
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     this.acceptGuests = this.acceptGuests.bind(this);
     this.getBookings = this.getBookings.bind(this);
     this.renderUserProfile = this.renderUserProfile.bind(this);
@@ -179,7 +192,10 @@ componentWillReceiveProps(newProps){
 }
 componentDidMount() {
   this.props.requestBookings();
+<<<<<<< HEAD
   this.props.requestGuests();
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 
 }
 // componentDidUpdate(){
@@ -289,7 +305,11 @@ futonDescriptionClose(){
 
 renderUserProfile() {
     // let guests = this.props.booking.guests
+<<<<<<< HEAD
 
+=======
+    debugger;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     let divStyle ={fontSize: 14 };
     let currentUser = this.props.currentUser;
     let listedFuton = `/futons/${currentUser.id}`
@@ -365,7 +385,10 @@ renderProfileInfo(){
     }
   };
   // let guests = this.props.booking.guests
+<<<<<<< HEAD
 
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
  let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
  let divStyle ={fontSize: 16,float:'right' };
  let h3Style = {display: 'initial', fontSize: 14};
@@ -395,6 +418,10 @@ return (
       <li><Link to={listedFuton} >MY FUTON</Link></li>
       <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
       <li><Link to={editFuton} >EDIT MY FUTON</Link></li>
+<<<<<<< HEAD
+=======
+      <li><Link to={editInfo} >EDIT MY INFO</Link></li>
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
       <li><Link to={createFuton} >CREATE FUTON</Link></li>
     </ul>
@@ -402,16 +429,26 @@ return (
   </section>
   <section className="content-main">
 
+<<<<<<< HEAD
+=======
+    <h1 className="content-header">
+      Info
+    </h1>
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 
     <div className="bookings-container">
     <article className="profile-section-main">
       <section className="profile-section-heading">
         <h2>About Me</h2>
       </section>
+<<<<<<< HEAD
       <div>
 
       <h3 style={h3Style}>*click on profile picture to upload new picture*</h3>
       </div>
+=======
+
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       <h3 style={h3Style}>First Name: {this.state.firstname}</h3>
       <i className="fa fa-pencil-square-o" style={divStyle} onClick={this.onClickEditFirstName}></i>
       <div>
@@ -475,7 +512,11 @@ return (
              onRequestClose={this.closePlaces}
              style={customStyles} >
 
+<<<<<<< HEAD
              <button onClick={this.placeClose}>close</button>
+=======
+             <button onClick={this.placesClose}>close</button>
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
              <div>Please update places you have visited.</div>
              <form>
                <input type="text" name="places" value={this.state.places} onChange={this.update("places")} />
@@ -502,7 +543,11 @@ return (
                </form>
             </Modal>
             </div>
+<<<<<<< HEAD
             <button className="done-button" onClick={this.handleDone} >Done</button>
+=======
+
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 
 
 
@@ -535,6 +580,7 @@ return (
 }
 
 
+<<<<<<< HEAD
 renderBookings(){
   const customStyles = {
     content : {
@@ -629,18 +675,28 @@ handleDone(){
 handleOpenedit(){
     this.setState({ showEdit: true })
 }
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 
 
 
 
 
   render() {
+<<<<<<< HEAD
     if(this.props.currentUser && this.state.showEdit){
       return (<div className="profile-background">{this.renderProfileInfo()}</div>);
       // return (<div>{this.renderUserProfile()}</div>);
     } else if (this.props.currentUser && !this.state.showEdit) {
       return (<div className="profile-background">{this.renderBookings()}</div>);
     } {
+=======
+    debugger;
+    if(this.props.currentUser){
+      return (<div>{this.renderProfileInfo()}</div>);
+      // return (<div>{this.renderUserProfile()}</div>);
+    } else {
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       return( <div> loading... </div>);
     }
   }

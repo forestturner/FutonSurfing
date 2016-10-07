@@ -2,11 +2,19 @@ import { receiveCurrentUser, receiveErrors, SessionConstants} from '../actions/s
 import { hashHistory } from 'react-router';
 import { login, signup, logout, editCurrentUser } from '../util/session_util';
 import { requestBookings } from '../actions/booking_actions';
+<<<<<<< HEAD
 import {createFuton } from '../actions/futon_actions';
 
 export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
 
+=======
+
+
+export default ({getState, dispatch}) => next => action => {
+  const loginSuccess = data => {
+    debugger;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     dispatch(receiveCurrentUser(data));
     dispatch(requestBookings());
     hashHistory.push("/profile");
@@ -23,7 +31,11 @@ export default ({getState, dispatch}) => next => action => {
   switch(action.type) {
 
     case SessionConstants.LOG_IN:
+<<<<<<< HEAD
 
+=======
+    debugger;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       login(action.user,loginSuccess,errorsCallback);
       return next(action);
       break;
@@ -33,7 +45,10 @@ export default ({getState, dispatch}) => next => action => {
     case SessionConstants.SIGN_UP:
 
       signup(action.user, loginSuccess, errorsCallback);
+<<<<<<< HEAD
       createFuton({address: "unknown", lat: 123, lng: 38, description: "unknown"});
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       return next(action);
     case SessionConstants.EDIT_USER:
 

@@ -24,6 +24,10 @@ class NavBar extends React.Component {
 
     this.handleGuest = this.handleGuest.bind(this);
     this.search = this.search.bind(this);
+<<<<<<< HEAD
+=======
+    this.updateSearch = this.updateSearch.bind(this);
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     this.handleLogin = this.handleLogin.bind(this);
     this.handleCloseLogin = this.handleCloseLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -31,6 +35,7 @@ class NavBar extends React.Component {
     this.handleSubmitSignUpForm = this.handleSubmitSignUpForm.bind(this);
     this.handleSubmitLoginForm = this.handleSubmitLoginForm.bind(this);
     this.update = this.update.bind(this);
+<<<<<<< HEAD
     this.updateSearch =this.updateSearch.bind(this);
 
 
@@ -57,6 +62,29 @@ class NavBar extends React.Component {
       lng: place.geometry.location.lng(),
       location: "",
       once: true
+=======
+  }
+
+  handleGuest(e) {
+    debugger;
+		const user = {user: {username: "Guest",password:"password1"}};
+		this.props.logIn(user);
+	}
+
+  componentDidUpdate() {
+    let input = document.getElementById('nav-search')
+    let options = {types: ['(cities)']};
+    this.autocomplete = new google.maps.places.Autocomplete(input, options);
+    this.autocomplete.addListener('place_changed', this.search);
+  }
+
+  search() {
+    let place = this.autocomplete.getPlace();
+    this.setState({
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+      location: ""
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     });
     this.props.updateCoords(this.state);
     hashHistory.push("/futons");
@@ -69,7 +97,11 @@ class NavBar extends React.Component {
   }
 
   handleLogin() {
+<<<<<<< HEAD
 
+=======
+    debugger;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     this.setState({ loginModal: true});
   }
 
@@ -176,7 +208,11 @@ class NavBar extends React.Component {
                style={customStyles} >
 
                <Link to="/profile" className="btn btn-guest join" onClick={this.handleGuest}> Guest Login </Link>
+<<<<<<< HEAD
                <div>Please Login.</div>
+=======
+               <div>Pleas Login.</div>
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
                <div className="login-form">
                  <label> Username:
                    <input type="text" value={this.state.username}	onChange={this.update("username")} className="login-input" />
@@ -244,6 +280,10 @@ class NavBar extends React.Component {
   render() {
     let currentUser = this.props.currentUser;
     let logout = this.props.logOut;
+<<<<<<< HEAD
+=======
+    debugger;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     // let guestUser = {user:{username:"Guest",password:"password1"}};
     // let loginGuest = this.props.logIn(guestUser);
     if (currentUser){

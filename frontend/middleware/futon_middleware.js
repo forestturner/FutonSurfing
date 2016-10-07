@@ -9,9 +9,13 @@ export default ({getState, dispatch}) => next => action => {
   const ownerSuccess = data => dispatch(receiveOwner(data));
   switch(action.type){
     case FutonConstants.REQUEST_FUTONS:
+<<<<<<< HEAD
       // success = (sites) => dispatch(receiveFutons(sites));
       // error = (errors) => dispatch(receiveSiteErrors(errors));
       let filters = getState().filters;
+=======
+      const filters = getState().filter;
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
       fetchFutons(filters, futonsSuccess);
       return next(action);
     case FutonConstants.REQUEST_FUTON:
@@ -29,10 +33,13 @@ export default ({getState, dispatch}) => next => action => {
     case FilterConstants.UPDATE_FILTER:
       dispatch(requestFutons());
       return next(action);
+<<<<<<< HEAD
     case FilterConstants.UPDATE_BOUNDS:
       next(action);
       dispatch(requestFutons());
       break;
+=======
+>>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     default:
       return next(action);
   }
