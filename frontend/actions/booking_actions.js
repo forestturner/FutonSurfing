@@ -4,7 +4,6 @@ export const BookingConstants = {
   DELETE_BOOKING: "DELETE_BOOKING",
   CREATE_BOOKING: "CREATE_BOOKING",
   RECEIVE_BOOKING: "RECEIVE_BOOKING",
-<<<<<<< HEAD
   RECEIVE_BOOKING_ERRORS: "RECEIVE_BOOKING_ERRORS",
   REQUESTS_GUESTS: "REQUESTS_GUESTS",
   RECEIVE_GUESTS: "RECEIVE_GUESTS"
@@ -18,11 +17,6 @@ export const requestGuests = () => ({
   type:BookingConstants.REQUESTS_GUESTS
 });
 
-=======
-  RECEIVE_BOOKING_ERRORS: "RECEIVE_BOOKING_ERRORS"
-};
-
->>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
 export const requestBookings = () => ({
   type: BookingConstants.REQUEST_BOOKINGS
 });

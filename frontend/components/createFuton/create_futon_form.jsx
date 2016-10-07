@@ -80,14 +80,7 @@ render(){
           <input type="text" value={this.state.lat}	onChange={this.update("lat")} className="login-input" />
         </label>
         <label> description:
-<<<<<<< HEAD
           <input type="text" value={this.state.description}	onChange={this.update("description")} className="login-input" />
-=======
-          <input type="text" value={this.state.email}	onChange={this.update("description")} className="login-input" />
-        </label>
-        <label> futon image url:
-          <input type="text" value={this.state.username}	onChange={this.update("futon_img_url")} className="login-input" />
->>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
         </label>
         <input type="submit" value="Create"/>
       </div>

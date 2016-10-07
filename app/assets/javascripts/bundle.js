@@ -23048,7 +23048,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _router = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./router\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _router = __webpack_require__(197);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
@@ -23056,7 +23056,7 @@
 	
 	var _user_actions = __webpack_require__(653);
 	
-	var _booking_actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions/booking_actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _booking_actions = __webpack_require__(652);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23107,587 +23107,934 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_router2.default);
 
 /***/ },
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */
-/***/ function(module, exports) {
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var SessionConstants = exports.SessionConstants = {
-	  LOG_IN: "LOG_IN",
-	  LOG_OUT: "LOG_OUT",
-	  SIGN_UP: "SIGN_UP",
-	  RECEIVE_CURRENT_USER: "RECEIVE_CURRENT_USER",
-	  RECEIVE_ERRORS: "RECEIVE_ERRORS",
-	  EDIT_USER: "EDIT_USER"
-	};
 	
-	var logIn = exports.logIn = function logIn(user) {
-	  return {
-	    type: SessionConstants.LOG_IN,
-	    user: user
-	  };
-	};
-	var logOut = exports.logOut = function logOut() {
-	  return {
-	    type: SessionConstants.LOG_OUT
-	  };
-	};
-	var signUp = exports.signUp = function signUp(user) {
-	  return {
-	    type: SessionConstants.SIGN_UP,
-	    user: user
-	  };
-	};
-	var receiveCurrentUser = exports.receiveCurrentUser = function receiveCurrentUser(currentUser) {
-	  return {
-	    type: SessionConstants.RECEIVE_CURRENT_USER,
-	    currentUser: currentUser
-	  };
-	};
-	var receiveErrors = exports.receiveErrors = function receiveErrors(errors) {
-	  return {
-	    type: SessionConstants.RECEIVE_ERRORS,
-	    errors: errors
-	  };
-	};
-	var editUser = exports.editUser = function editUser(user) {
-	  return {
-	    type: SessionConstants.EDIT_USER,
-	    user: user
-	  };
-	};
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _app = __webpack_require__(259);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _navbar_container = __webpack_require__(260);
+	
+	var _navbar_container2 = _interopRequireDefault(_navbar_container);
+	
+	var _session_form_container = __webpack_require__(643);
+	
+	var _session_form_container2 = _interopRequireDefault(_session_form_container);
+	
+	var _profile_container = __webpack_require__(645);
+	
+	var _profile_container2 = _interopRequireDefault(_profile_container);
+	
+	var _splash_container = __webpack_require__(654);
+	
+	var _splash_container2 = _interopRequireDefault(_splash_container);
+	
+	var _futon_show_container = __webpack_require__(658);
+	
+	var _futon_show_container2 = _interopRequireDefault(_futon_show_container);
+	
+	var _futons_show_container = __webpack_require__(665);
+	
+	var _futons_show_container2 = _interopRequireDefault(_futons_show_container);
+	
+	var _user_show_container = __webpack_require__(670);
+	
+	var _user_show_container2 = _interopRequireDefault(_user_show_container);
+	
+	var _users_show_container = __webpack_require__(673);
+	
+	var _users_show_container2 = _interopRequireDefault(_users_show_container);
+	
+	var _edit_profile_container = __webpack_require__(677);
+	
+	var _edit_profile_container2 = _interopRequireDefault(_edit_profile_container);
+	
+	var _edit_futon_container = __webpack_require__(679);
+	
+	var _edit_futon_container2 = _interopRequireDefault(_edit_futon_container);
+	
+	var _request_booking_container = __webpack_require__(681);
+	
+	var _request_booking_container2 = _interopRequireDefault(_request_booking_container);
+	
+	var _createFutonContainer = __webpack_require__(683);
+	
+	var _createFutonContainer2 = _interopRequireDefault(_createFutonContainer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AppRouter = function (_React$Component) {
+	  _inherits(AppRouter, _React$Component);
+	
+	  function AppRouter(props) {
+	    _classCallCheck(this, AppRouter);
+	
+	    var _this = _possibleConstructorReturn(this, (AppRouter.__proto__ || Object.getPrototypeOf(AppRouter)).call(this, props));
+	
+	    _this._ensureLoggedIn = _this._ensureLoggedIn.bind(_this);
+	    _this._redirectIfLoggedIn = _this._redirectIfLoggedIn.bind(_this);
+	    _this.getFuton = _this.getFuton.bind(_this);
+	    _this.getFutons = _this.getFutons.bind(_this);
+	    _this.getUser = _this.getUser.bind(_this);
+	    _this.getUsers = _this.getUsers.bind(_this);
+	    _this.getBookings = _this.getBookings.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(AppRouter, [{
+	    key: '_ensureLoggedIn',
+	    value: function _ensureLoggedIn(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	      if (!currentUser) {
+	        replace('/login');
+	      }
+	    }
+	  }, {
+	    key: '_redirectIfLoggedIn',
+	    value: function _redirectIfLoggedIn(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	      if (currentUser) {
+	        replace('/profile');
+	      }
+	    }
+	  }, {
+	    key: 'getFuton',
+	    value: function getFuton(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	
+	      this.props.requestFuton(currentUser.id);
+	      this.props.requestUser(currentUser.id);
+	    }
+	  }, {
+	    key: 'getFutons',
+	    value: function getFutons(nextState, replace) {
+	      this.props.requestFutons();
+	    }
+	  }, {
+	    key: 'getUser',
+	    value: function getUser(nextState, replace) {
+	      var currentUser = this.props.currentUser;
+	
+	      this.props.requestUser(currentUser.id);
+	    }
+	  }, {
+	    key: 'getUsers',
+	    value: function getUsers(nextState, replace) {
+	      this.props.requestUsers();
+	    }
+	  }, {
+	    key: 'getBookings',
+	    value: function getBookings(nextState, replace) {
+	      this.props.requestBookings();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactRouter.Router,
+	        { history: _reactRouter.hashHistory },
+	        _react2.default.createElement(
+	          _reactRouter.Route,
+	          { path: '/', component: _app2.default },
+	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _splash_container2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'guest', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'futons', component: _futons_show_container2.default, onEnter: this.getFutons }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'futons/:futonId', component: _futon_show_container2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: '/futons/:futonId/request', component: _request_booking_container2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _users_show_container2.default, onEnter: this.getUsers }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'users/:userId', component: _user_show_container2.default, onEnter: this.getUser }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'createfuton', component: _createFutonContainer2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'editprofile', component: _edit_profile_container2.default, onEnter: this.getFutons }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'editfuton', component: _edit_futon_container2.default, onEnter: this.getFutons })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AppRouter;
+	}(_react2.default.Component);
+	
+	exports.default = (0, _reactRouter.withRouter)(AppRouter);
+	
+	// {/* <Route path="/navbar" component= { navbarContainer } /> */}
+	
+	
+	// }
+	
+	{} /* <Route path="/login" component={ SessionFormContainer }/> //onEnter={this.redirectIfLoggedIn}/>
+	   <Route path="/signup" component={ SessionFormContainer }/> //onEnter={this.redirectIfLoggedIn}/>
+	   */
+	
+	//
+	//
+	//
+	//
+	//
+	//
 
 /***/ },
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */,
-/* 344 */,
-/* 345 */,
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */,
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */,
-/* 361 */,
-/* 362 */,
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */,
-/* 447 */,
-/* 448 */,
-/* 449 */,
-/* 450 */,
-/* 451 */,
-/* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */,
-/* 457 */,
-/* 458 */,
-/* 459 */,
-/* 460 */,
-/* 461 */,
-/* 462 */,
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */,
-/* 561 */,
-/* 562 */,
-/* 563 */,
-/* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */,
-/* 568 */,
-/* 569 */,
-/* 570 */,
-/* 571 */,
-/* 572 */,
-/* 573 */,
-/* 574 */,
-/* 575 */,
-/* 576 */,
-/* 577 */,
-/* 578 */,
-/* 579 */,
-/* 580 */,
-/* 581 */,
-/* 582 */,
-/* 583 */,
-/* 584 */,
-/* 585 */,
-/* 586 */,
-/* 587 */,
-/* 588 */,
-/* 589 */,
-/* 590 */,
-/* 591 */,
-/* 592 */,
-/* 593 */,
-/* 594 */,
-/* 595 */,
-/* 596 */,
-/* 597 */,
-/* 598 */,
-/* 599 */,
-/* 600 */,
-/* 601 */,
-/* 602 */,
-/* 603 */,
-/* 604 */,
-/* 605 */,
-/* 606 */,
-/* 607 */,
-/* 608 */,
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */,
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */,
-/* 620 */,
-/* 621 */,
-/* 622 */,
-/* 623 */,
-/* 624 */,
-/* 625 */,
-/* 626 */,
-/* 627 */,
-/* 628 */,
-/* 629 */,
-/* 630 */,
-/* 631 */,
-/* 632 */,
-/* 633 */,
-/* 634 */,
-/* 635 */,
-/* 636 */,
-/* 637 */,
-/* 638 */,
-/* 639 */,
-/* 640 */,
-/* 641 */,
-/* 642 */,
-/* 643 */,
-/* 644 */,
-/* 645 */,
-/* 646 */,
-/* 647 */,
-/* 648 */,
-/* 649 */,
-/* 650 */,
-/* 651 */
-/***/ function(module, exports) {
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	exports.__esModule = true;
+	exports.createMemoryHistory = exports.hashHistory = exports.browserHistory = exports.applyRouterMiddleware = exports.formatPattern = exports.useRouterHistory = exports.match = exports.routerShape = exports.locationShape = exports.PropTypes = exports.RoutingContext = exports.RouterContext = exports.createRoutes = exports.useRoutes = exports.RouteContext = exports.Lifecycle = exports.History = exports.Route = exports.Redirect = exports.IndexRoute = exports.IndexRedirect = exports.withRouter = exports.IndexLink = exports.Link = exports.Router = undefined;
+	
+	var _RouteUtils = __webpack_require__(199);
+	
+	Object.defineProperty(exports, 'createRoutes', {
+	  enumerable: true,
+	  get: function get() {
+	    return _RouteUtils.createRoutes;
+	  }
 	});
-	var FutonConstants = exports.FutonConstants = {
-	  RECEIVE_FUTONS: "RECEIVE_FUTONS",
-	  RECEIVE_FUTON: "RECEIVE_FUTON",
-	  REQUEST_FUTONS: "REQUEST_FUTONS",
-	  REQUEST_FUTON: "REQUEST_FUTON",
-	  CREATE_FUTON: "CREATE_FUTON",
-	  REQUEST_OWNER: "REQUEST_OWNER",
-	  UPDATE_FUTON: "UPDATE_FUTON",
-	  DELETE_FUTON: "DELETE_FUTON"
+	
+	var _PropTypes2 = __webpack_require__(200);
+	
+	Object.defineProperty(exports, 'locationShape', {
+	  enumerable: true,
+	  get: function get() {
+	    return _PropTypes2.locationShape;
+	  }
+	});
+	Object.defineProperty(exports, 'routerShape', {
+	  enumerable: true,
+	  get: function get() {
+	    return _PropTypes2.routerShape;
+	  }
+	});
+	
+	var _PatternUtils = __webpack_require__(205);
+	
+	Object.defineProperty(exports, 'formatPattern', {
+	  enumerable: true,
+	  get: function get() {
+	    return _PatternUtils.formatPattern;
+	  }
+	});
+	
+	var _Router2 = __webpack_require__(206);
+	
+	var _Router3 = _interopRequireDefault(_Router2);
+	
+	var _Link2 = __webpack_require__(237);
+	
+	var _Link3 = _interopRequireDefault(_Link2);
+	
+	var _IndexLink2 = __webpack_require__(238);
+	
+	var _IndexLink3 = _interopRequireDefault(_IndexLink2);
+	
+	var _withRouter2 = __webpack_require__(239);
+	
+	var _withRouter3 = _interopRequireDefault(_withRouter2);
+	
+	var _IndexRedirect2 = __webpack_require__(240);
+	
+	var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
+	
+	var _IndexRoute2 = __webpack_require__(242);
+	
+	var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
+	
+	var _Redirect2 = __webpack_require__(241);
+	
+	var _Redirect3 = _interopRequireDefault(_Redirect2);
+	
+	var _Route2 = __webpack_require__(243);
+	
+	var _Route3 = _interopRequireDefault(_Route2);
+	
+	var _History2 = __webpack_require__(244);
+	
+	var _History3 = _interopRequireDefault(_History2);
+	
+	var _Lifecycle2 = __webpack_require__(245);
+	
+	var _Lifecycle3 = _interopRequireDefault(_Lifecycle2);
+	
+	var _RouteContext2 = __webpack_require__(246);
+	
+	var _RouteContext3 = _interopRequireDefault(_RouteContext2);
+	
+	var _useRoutes2 = __webpack_require__(247);
+	
+	var _useRoutes3 = _interopRequireDefault(_useRoutes2);
+	
+	var _RouterContext2 = __webpack_require__(234);
+	
+	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
+	
+	var _RoutingContext2 = __webpack_require__(248);
+	
+	var _RoutingContext3 = _interopRequireDefault(_RoutingContext2);
+	
+	var _PropTypes3 = _interopRequireDefault(_PropTypes2);
+	
+	var _match2 = __webpack_require__(249);
+	
+	var _match3 = _interopRequireDefault(_match2);
+	
+	var _useRouterHistory2 = __webpack_require__(253);
+	
+	var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
+	
+	var _applyRouterMiddleware2 = __webpack_require__(254);
+	
+	var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
+	
+	var _browserHistory2 = __webpack_require__(255);
+	
+	var _browserHistory3 = _interopRequireDefault(_browserHistory2);
+	
+	var _hashHistory2 = __webpack_require__(258);
+	
+	var _hashHistory3 = _interopRequireDefault(_hashHistory2);
+	
+	var _createMemoryHistory2 = __webpack_require__(250);
+	
+	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.Router = _Router3.default; /* components */
+	
+	exports.Link = _Link3.default;
+	exports.IndexLink = _IndexLink3.default;
+	exports.withRouter = _withRouter3.default;
+	
+	/* components (configuration) */
+	
+	exports.IndexRedirect = _IndexRedirect3.default;
+	exports.IndexRoute = _IndexRoute3.default;
+	exports.Redirect = _Redirect3.default;
+	exports.Route = _Route3.default;
+	
+	/* mixins */
+	
+	exports.History = _History3.default;
+	exports.Lifecycle = _Lifecycle3.default;
+	exports.RouteContext = _RouteContext3.default;
+	
+	/* utils */
+	
+	exports.useRoutes = _useRoutes3.default;
+	exports.RouterContext = _RouterContext3.default;
+	exports.RoutingContext = _RoutingContext3.default;
+	exports.PropTypes = _PropTypes3.default;
+	exports.match = _match3.default;
+	exports.useRouterHistory = _useRouterHistory3.default;
+	exports.applyRouterMiddleware = _applyRouterMiddleware3.default;
+	
+	/* histories */
+	
+	exports.browserHistory = _browserHistory3.default;
+	exports.hashHistory = _hashHistory3.default;
+	exports.createMemoryHistory = _createMemoryHistory3.default;
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	exports.isReactChildren = isReactChildren;
+	exports.createRouteFromReactElement = createRouteFromReactElement;
+	exports.createRoutesFromReactChildren = createRoutesFromReactChildren;
+	exports.createRoutes = createRoutes;
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function isValidChild(object) {
+	  return object == null || _react2.default.isValidElement(object);
+	}
+	
+	function isReactChildren(object) {
+	  return isValidChild(object) || Array.isArray(object) && object.every(isValidChild);
+	}
+	
+	function createRoute(defaultProps, props) {
+	  return _extends({}, defaultProps, props);
+	}
+	
+	function createRouteFromReactElement(element) {
+	  var type = element.type;
+	  var route = createRoute(type.defaultProps, element.props);
+	
+	  if (route.children) {
+	    var childRoutes = createRoutesFromReactChildren(route.children, route);
+	
+	    if (childRoutes.length) route.childRoutes = childRoutes;
+	
+	    delete route.children;
+	  }
+	
+	  return route;
+	}
+	
+	/**
+	 * Creates and returns a routes object from the given ReactChildren. JSX
+	 * provides a convenient way to visualize how routes in the hierarchy are
+	 * nested.
+	 *
+	 *   import { Route, createRoutesFromReactChildren } from 'react-router'
+	 *
+	 *   const routes = createRoutesFromReactChildren(
+	 *     <Route component={App}>
+	 *       <Route path="home" component={Dashboard}/>
+	 *       <Route path="news" component={NewsFeed}/>
+	 *     </Route>
+	 *   )
+	 *
+	 * Note: This method is automatically used when you provide <Route> children
+	 * to a <Router> component.
+	 */
+	function createRoutesFromReactChildren(children, parentRoute) {
+	  var routes = [];
+	
+	  _react2.default.Children.forEach(children, function (element) {
+	    if (_react2.default.isValidElement(element)) {
+	      // Component classes may have a static create* method.
+	      if (element.type.createRouteFromReactElement) {
+	        var route = element.type.createRouteFromReactElement(element, parentRoute);
+	
+	        if (route) routes.push(route);
+	      } else {
+	        routes.push(createRouteFromReactElement(element));
+	      }
+	    }
+	  });
+	
+	  return routes;
+	}
+	
+	/**
+	 * Creates and returns an array of routes from the given object which
+	 * may be a JSX route, a plain object route, or an array of either.
+	 */
+	function createRoutes(routes) {
+	  if (isReactChildren(routes)) {
+	    routes = createRoutesFromReactChildren(routes);
+	  } else if (routes && !Array.isArray(routes)) {
+	    routes = [routes];
+	  }
+	
+	  return routes;
+	}
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	exports.router = exports.routes = exports.route = exports.components = exports.component = exports.location = exports.history = exports.falsy = exports.locationShape = exports.routerShape = undefined;
+	
+	var _react = __webpack_require__(1);
+	
+	var _deprecateObjectProperties = __webpack_require__(201);
+	
+	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
+	
+	var _InternalPropTypes = __webpack_require__(204);
+	
+	var InternalPropTypes = _interopRequireWildcard(_InternalPropTypes);
+	
+	var _routerWarning = __webpack_require__(202);
+	
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var func = _react.PropTypes.func;
+	var object = _react.PropTypes.object;
+	var shape = _react.PropTypes.shape;
+	var string = _react.PropTypes.string;
+	var routerShape = exports.routerShape = shape({
+	  push: func.isRequired,
+	  replace: func.isRequired,
+	  go: func.isRequired,
+	  goBack: func.isRequired,
+	  goForward: func.isRequired,
+	  setRouteLeaveHook: func.isRequired,
+	  isActive: func.isRequired
+	});
+	
+	var locationShape = exports.locationShape = shape({
+	  pathname: string.isRequired,
+	  search: string.isRequired,
+	  state: object,
+	  action: string.isRequired,
+	  key: string
+	});
+	
+	// Deprecated stuff below:
+	
+	var falsy = exports.falsy = InternalPropTypes.falsy;
+	var history = exports.history = InternalPropTypes.history;
+	var location = exports.location = locationShape;
+	var component = exports.component = InternalPropTypes.component;
+	var components = exports.components = InternalPropTypes.components;
+	var route = exports.route = InternalPropTypes.route;
+	var routes = exports.routes = InternalPropTypes.routes;
+	var router = exports.router = routerShape;
+	
+	if (process.env.NODE_ENV !== 'production') {
+	  (function () {
+	    var deprecatePropType = function deprecatePropType(propType, message) {
+	      return function () {
+	        process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, message) : void 0;
+	        return propType.apply(undefined, arguments);
+	      };
+	    };
+	
+	    var deprecateInternalPropType = function deprecateInternalPropType(propType) {
+	      return deprecatePropType(propType, 'This prop type is not intended for external use, and was previously exported by mistake. These internal prop types are deprecated for external use, and will be removed in a later version.');
+	    };
+	
+	    var deprecateRenamedPropType = function deprecateRenamedPropType(propType, name) {
+	      return deprecatePropType(propType, 'The `' + name + '` prop type is now exported as `' + name + 'Shape` to avoid name conflicts. This export is deprecated and will be removed in a later version.');
+	    };
+	
+	    exports.falsy = falsy = deprecateInternalPropType(falsy);
+	    exports.history = history = deprecateInternalPropType(history);
+	    exports.component = component = deprecateInternalPropType(component);
+	    exports.components = components = deprecateInternalPropType(components);
+	    exports.route = route = deprecateInternalPropType(route);
+	    exports.routes = routes = deprecateInternalPropType(routes);
+	
+	    exports.location = location = deprecateRenamedPropType(location, 'location');
+	    exports.router = router = deprecateRenamedPropType(router, 'router');
+	  })();
+	}
+	
+	var defaultExport = {
+	  falsy: falsy,
+	  history: history,
+	  location: location,
+	  component: component,
+	  components: components,
+	  route: route,
+	  // For some reason, routes was never here.
+	  router: router
 	};
 	
-	var requestFutons = exports.requestFutons = function requestFutons() {
-	  return {
-	    type: FutonConstants.REQUEST_FUTONS
-	  };
+	if (process.env.NODE_ENV !== 'production') {
+	  defaultExport = (0, _deprecateObjectProperties2.default)(defaultExport, 'The default export from `react-router/lib/PropTypes` is deprecated. Please use the named exports instead.');
+	}
+	
+	exports.default = defaultExport;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	exports.canUseMembrane = undefined;
+	
+	var _routerWarning = __webpack_require__(202);
+	
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var canUseMembrane = exports.canUseMembrane = false;
+	
+	// No-op by default.
+	var deprecateObjectProperties = function deprecateObjectProperties(object) {
+	  return object;
 	};
 	
-	var requestFuton = exports.requestFuton = function requestFuton(id) {
-	  return {
-	    type: FutonConstants.REQUEST_FUTON,
-	    id: id
-	  };
-	};
+	if (process.env.NODE_ENV !== 'production') {
+	  try {
+	    if (Object.defineProperty({}, 'x', {
+	      get: function get() {
+	        return true;
+	      }
+	    }).x) {
+	      exports.canUseMembrane = canUseMembrane = true;
+	    }
+	    /* eslint-disable no-empty */
+	  } catch (e) {}
+	  /* eslint-enable no-empty */
 	
-	var receiveFutons = exports.receiveFutons = function receiveFutons(futons) {
-	  return {
-	    type: FutonConstants.RECEIVE_FUTONS,
-	    futons: futons
-	  };
-	};
+	  if (canUseMembrane) {
+	    deprecateObjectProperties = function deprecateObjectProperties(object, message) {
+	      // Wrap the deprecated object in a membrane to warn on property access.
+	      var membrane = {};
 	
-	var deleteFuton = exports.deleteFuton = function deleteFuton(id) {
-	  return {
-	    type: BookingConstants.DELETE_BOOKING,
-	    id: id
-	  };
-	};
+	      var _loop = function _loop(prop) {
+	        if (!Object.prototype.hasOwnProperty.call(object, prop)) {
+	          return 'continue';
+	        }
 	
-	var receiveFuton = exports.receiveFuton = function receiveFuton(futon) {
-	  return {
-	    type: FutonConstants.RECEIVE_FUTON,
-	    futon: futon
-	  };
-	};
+	        if (typeof object[prop] === 'function') {
+	          // Can't use fat arrow here because of use of arguments below.
+	          membrane[prop] = function () {
+	            process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, message) : void 0;
+	            return object[prop].apply(object, arguments);
+	          };
+	          return 'continue';
+	        }
 	
-	var createFuton = exports.createFuton = function createFuton(futon) {
-	  return {
-	    type: FutonConstants.CREATE_FUTON,
-	    futon: futon
+	        // These properties are non-enumerable to prevent React dev tools from
+	        // seeing them and causing spurious warnings when accessing them. In
+	        // principle this could be done with a proxy, but support for the
+	        // ownKeys trap on proxies is not universal, even among browsers that
+	        // otherwise support proxies.
+	        Object.defineProperty(membrane, prop, {
+	          get: function get() {
+	            process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(false, message) : void 0;
+	            return object[prop];
+	          }
+	        });
+	      };
+	
+	      for (var prop in object) {
+	        var _ret = _loop(prop);
+	
+	        if (_ret === 'continue') continue;
+	      }
+	
+	      return membrane;
+	    };
+	  }
+	}
+	
+	exports.default = deprecateObjectProperties;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.default = routerWarning;
+	exports._resetWarned = _resetWarned;
+	
+	var _warning = __webpack_require__(203);
+	
+	var _warning2 = _interopRequireDefault(_warning);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var warned = {};
+	
+	function routerWarning(falseToWarn, message) {
+	  // Only issue deprecation warnings once.
+	  if (message.indexOf('deprecated') !== -1) {
+	    if (warned[message]) {
+	      return;
+	    }
+	
+	    warned[message] = true;
+	  }
+	
+	  message = '[react-router] ' + message;
+	
+	  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	    args[_key - 2] = arguments[_key];
+	  }
+	
+	  _warning2.default.apply(undefined, [falseToWarn, message].concat(args));
+	}
+	
+	function _resetWarned() {
+	  warned = {};
+	}
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
+	'use strict';
+	
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+	
+	var warning = function() {};
+	
+	if (process.env.NODE_ENV !== 'production') {
+	  warning = function(condition, format, args) {
+	    var len = arguments.length;
+	    args = new Array(len > 2 ? len - 2 : 0);
+	    for (var key = 2; key < len; key++) {
+	      args[key - 2] = arguments[key];
+	    }
+	    if (format === undefined) {
+	      throw new Error(
+	        '`warning(condition, format, ...args)` requires a warning ' +
+	        'message argument'
+	      );
+	    }
+	
+	    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
+	      throw new Error(
+	        'The warning format should be able to uniquely identify this ' +
+	        'warning. Please, use a more descriptive format than: ' + format
+	      );
+	    }
+	
+	    if (!condition) {
+	      var argIndex = 0;
+	      var message = 'Warning: ' +
+	        format.replace(/%s/g, function() {
+	          return args[argIndex++];
+	        });
+	      if (typeof console !== 'undefined') {
+	        console.error(message);
+	      }
+	      try {
+	        // This error was thrown as a convenience so that you can use this stack
+	        // to find the callsite that caused this warning to fire.
+	        throw new Error(message);
+	      } catch(x) {}
+	    }
 	  };
-	};
-	var reciveOwner = exports.reciveOwner = function reciveOwner(owner) {
+	}
+	
+	module.exports = warning;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.routes = exports.route = exports.components = exports.component = exports.history = undefined;
+	exports.falsy = falsy;
+	
+	var _react = __webpack_require__(1);
+	
+	var func = _react.PropTypes.func;
+	var object = _react.PropTypes.object;
+	var arrayOf = _react.PropTypes.arrayOf;
+	var oneOfType = _react.PropTypes.oneOfType;
+	var element = _react.PropTypes.element;
+	var shape = _react.PropTypes.shape;
+	var string = _react.PropTypes.string;
+	function falsy(props, propName, componentName) {
+	  if (props[propName]) return new Error('<' + componentName + '> should not have a "' + propName + '" prop');
+	}
+	
+	var history = exports.history = shape({
+	  listen: func.isRequired,
+	  push: func.isRequired,
+	  replace: func.isRequired,
+	  go: func.isRequired,
+	  goBack: func.isRequired,
+	  goForward: func.isRequired
+	});
+	
+	var component = exports.component = oneOfType([func, string]);
+	var components = exports.components = oneOfType([component, object]);
+	var route = exports.route = oneOfType([object, element]);
+	var routes = exports.routes = oneOfType([route, arrayOf(route)]);
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	exports.compilePattern = compilePattern;
+	exports.matchPattern = matchPattern;
+	exports.getParamNames = getParamNames;
+	exports.getParams = getParams;
+	exports.formatPattern = formatPattern;
+	
+	var _invariant = __webpack_require__(195);
+	
+	var _invariant2 = _interopRequireDefault(_invariant);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function escapeRegExp(string) {
+	  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	}
+	
+	function _compilePattern(pattern) {
+	  var regexpSource = '';
+	  var paramNames = [];
+	  var tokens = [];
+	
+	  var match = void 0,
+	      lastIndex = 0,
+	      matcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|\*\*|\*|\(|\)/g;
+	  while (match = matcher.exec(pattern)) {
+	    if (match.index !== lastIndex) {
+	      tokens.push(pattern.slice(lastIndex, match.index));
+	      regexpSource += escapeRegExp(pattern.slice(lastIndex, match.index));
+	    }
+	
+	    if (match[1]) {
+	      regexpSource += '([^/]+)';
+	      paramNames.push(match[1]);
+	    } else if (match[0] === '**') {
+	      regexpSource += '(.*)';
+	      paramNames.push('splat');
+	    } else if (match[0] === '*') {
+	      regexpSource += '(.*?)';
+	      paramNames.push('splat');
+	    } else if (match[0] === '(') {
+	      regexpSource += '(?:';
+	    } else if (match[0] === ')') {
+	      regexpSource += ')?';
+	    }
+	
+	    tokens.push(match[0]);
+	
+	    lastIndex = matcher.lastIndex;
+	  }
+	
+	  if (lastIndex !== pattern.length) {
+	    tokens.push(pattern.slice(lastIndex, pattern.length));
+	    regexpSource += escapeRegExp(pattern.slice(lastIndex, pattern.length));
+	  }
+	
 	  return {
-	    type: FutonConstants.REQUEST_OWNER,
-	    owner: owner
+	    pattern: pattern,
+	    regexpSource: regexpSource,
+	    paramNames: paramNames,
+	    tokens: tokens
 	  };
-	};
-	var updateFuton = exports.updateFuton = function updateFuton(id, futon) {
+	}
+	
+	var CompiledPatternsCache = Object.create(null);
+	
+	function compilePattern(pattern) {
+	  if (!CompiledPatternsCache[pattern]) CompiledPatternsCache[pattern] = _compilePattern(pattern);
+	
+	  return CompiledPatternsCache[pattern];
+	}
+	
+	/**
+	 * Attempts to match a pattern on the given pathname. Patterns may use
+	 * the following special characters:
+	 *
+	 * - :paramName     Matches a URL segment up to the next /, ?, or #. The
+	 *                  captured string is considered a "param"
+	 * - ()             Wraps a segment of the URL that is optional
+	 * - *              Consumes (non-greedy) all characters up to the next
+	 *                  character in the pattern, or to the end of the URL if
+	 *                  there is none
+	 * - **             Consumes (greedy) all characters up to the next character
+	 *                  in the pattern, or to the end of the URL if there is none
+	 *
+	 *  The function calls callback(error, matched) when finished.
+	 * The return value is an object with the following properties:
+	 *
+	 * - remainingPathname
+	 * - paramNames
+	 * - paramValues
+	 */
+	function matchPattern(pattern, pathname) {
+	  // Ensure pattern starts with leading slash for consistency with pathname.
+	  if (pattern.charAt(0) !== '/') {
+	    pattern = '/' + pattern;
+	  }
+	
+	  var _compilePattern2 = compilePattern(pattern);
+	
+	  var regexpSource = _compilePattern2.regexpSource;
+	  var paramNames = _compilePattern2.paramNames;
+	  var tokens = _compilePattern2.tokens;
+	
+	
+	  if (pattern.charAt(pattern.length - 1) !== '/') {
+	    regexpSource += '/?'; // Allow optional path separator at end.
+	  }
+	
+	  // Special-case patterns like '*' for catch-all routes.
+	  if (tokens[tokens.length - 1] === '*') {
+	    regexpSource += '$';
+	  }
+	
+	  var match = pathname.match(new RegExp('^' + regexpSource, 'i'));
+	  if (match == null) {
+	    return null;
+	  }
+	
+	  var matchedPath = match[0];
+	  var remainingPathname = pathname.substr(matchedPath.length);
+	
+	  if (remainingPathname) {
+	    // Require that the match ends at a path separator, if we didn't match
+	    // the full path, so any remaining pathname is a new path segment.
+	    if (matchedPath.charAt(matchedPath.length - 1) !== '/') {
+	      return null;
+	    }
+	
+	    // If there is a remaining pathname, treat the path separator as part of
+	    // the remaining pathname for properly continuing the match.
+	    remainingPathname = '/' + remainingPathname;
+	  }
+	
 	  return {
-	    type: FutonConstants.UPDATE_FUTON,
-	    id: id,
-	    futon: futon
+	    remainingPathname: remainingPathname,
+	    paramNames: paramNames,
+	    paramValues: match.slice(1).map(function (v) {
+	      return v && decodeURIComponent(v);
+	    })
 	  };
-<<<<<<< HEAD
-	};
-=======
 	}
 	
 	function getParamNames(pattern) {
@@ -55627,7 +55974,7 @@
 	      var mapEl = document.getElementById('map');
 	      var options = {
 	        center: { lat: this.props.coords.lat, lng: this.props.coords.lng },
-	        zoom: 13
+	        zoom: 11
 	      };
 	      this.map = new google.maps.Map(mapEl, options);
 	      this.MarkerManager = new _maker_manger2.default(this.map);
@@ -74812,95 +75159,9 @@
 	//
 	// export default FiltersReducer;
 	"use strict";
->>>>>>> parent of da6e22e... add seed data
 
 /***/ },
-/* 652 */,
-/* 653 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var UserConstants = exports.UserConstants = {
-	  RECEIVE_USERS: "RECEIVE_USERS",
-	  RECEIVE_USER: "RECEIVE_USER",
-	  REQUEST_USERS: "REQUEST_USERS",
-	  REQUEST_USER: "REQUEST_USER",
-	  CREATE_USER: "CREATE_USER",
-	  CREATE_REVIEW: "CREATE_REVIEW",
-	  UPDATE_USER: "UPDATE_USER"
-	};
-	
-	var requestUsers = exports.requestUsers = function requestUsers() {
-	  return {
-	    type: UserConstants.REQUEST_USERS
-	  };
-	};
-	
-	var requestUser = exports.requestUser = function requestUser(id) {
-	  return {
-	    type: UserConstants.REQUEST_USER,
-	    id: id
-	  };
-	};
-	
-	var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
-	  return {
-	    type: UserConstants.RECEIVE_USERS,
-	    users: users
-	  };
-	};
-	
-	var receiveUser = exports.receiveUser = function receiveUser(user) {
-	  return {
-	    type: UserConstants.RECEIVE_USER,
-	    user: user
-	  };
-	};
-	var updateUser = exports.updateUser = function updateUser(id, user) {
-	  return {
-	    type: UserConstants.UPDATE_USER,
-	    id: id,
-	    user: user
-	  };
-	};
-
-/***/ },
-/* 654 */,
-/* 655 */,
-/* 656 */,
-/* 657 */,
-/* 658 */,
-/* 659 */,
-/* 660 */,
-/* 661 */,
-/* 662 */,
-/* 663 */,
-/* 664 */,
-/* 665 */,
-/* 666 */,
-/* 667 */,
-/* 668 */,
-/* 669 */,
-/* 670 */,
-/* 671 */,
-/* 672 */,
-/* 673 */,
-/* 674 */,
-/* 675 */,
-/* 676 */,
-/* 677 */,
-/* 678 */,
-/* 679 */,
-/* 680 */,
-/* 681 */,
-/* 682 */,
-/* 683 */,
-/* 684 */,
-/* 685 */
+/* 695 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74909,37 +75170,74 @@
 	  value: true
 	});
 	
-	var _redux = __webpack_require__(180);
+	var _booking_actions = __webpack_require__(652);
 	
-	var _root_reducer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../reducers/root_reducer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _lodash = __webpack_require__(692);
 	
-	var _root_reducer2 = _interopRequireDefault(_root_reducer);
+	var defaultState = { bookings: [], guests: [], errors: [], received: false };
 	
-	var _root_middleware = __webpack_require__(697);
+	var BookingReducer = function BookingReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
+	  var action = arguments[1];
 	
-	var _root_middleware2 = _interopRequireDefault(_root_middleware);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var configureStore = function configureStore() {
-	  var preloadedState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, _root_middleware2.default);
+	  var newState = void 0;
+	  // debugger;
+	  switch (action.type) {
+	    case _booking_actions.BookingConstants.RECEIVE_BOOKINGS:
+	      newState = (0, _lodash.merge)({}, state, { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] });
+	      // newState = {bookings: action.bookings, guests: action.bookings.guests, errors: []};
+	      newState.received = false;
+	      return newState;
+	    case _booking_actions.BookingConstants.RECEIVE_BOOKING:
+	      newState = (0, _lodash.merge)({}, state);
+	      newState.bookings.push(action.booking);
+	      newState.received = true;
+	      return newState;
+	    case _booking_actions.BookingConstants.RECEIVE_BOOKING_ERRORS:
+	      newState = (0, _lodash.merge)({}, state);
+	      console.log(action.errors);
+	      newState.errors = action.errors;
+	      newState.received = false;
+	      return newState;
+	    default:
+	      return state;
+	  }
 	};
 	
-	exports.default = configureStore;
+	exports.default = BookingReducer;
 
 /***/ },
-/* 686 */,
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */,
-/* 691 */,
-/* 692 */,
-/* 693 */,
-/* 694 */,
-/* 695 */,
-/* 696 */,
+/* 696 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _coords_actions = __webpack_require__(642);
+	
+	var _lodash = __webpack_require__(692);
+	
+	var defaultState = { lat: 37.7820468, lng: -122.4415872 };
+	var SpacetimeReducer = function SpacetimeReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
+	  var action = arguments[1];
+	
+	  var newState = void 0;
+	  switch (action.type) {
+	    case _coords_actions.CoordsConstants.UPDATE_COORDS:
+	      newState = action.coords;
+	      return newState;
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = SpacetimeReducer;
+
+/***/ },
 /* 697 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -74951,11 +75249,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _futon_middleware = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./futon_middleware\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _futon_middleware = __webpack_require__(698);
 	
 	var _futon_middleware2 = _interopRequireDefault(_futon_middleware);
 	
-	var _session_middleware = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./session_middleware\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _session_middleware = __webpack_require__(700);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
@@ -74967,7 +75265,7 @@
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _booking_middleware = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./booking_middleware\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _booking_middleware = __webpack_require__(705);
 	
 	var _booking_middleware2 = _interopRequireDefault(_booking_middleware);
 	
@@ -74977,10 +75275,258 @@
 	exports.default = RootMiddleware;
 
 /***/ },
-/* 698 */,
-/* 699 */,
-/* 700 */,
-/* 701 */,
+/* 698 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _futon_util = __webpack_require__(699);
+	
+	var _futon_actions = __webpack_require__(651);
+	
+	var _filter_actions = __webpack_require__(664);
+	
+	// Futon Action
+	exports.default = function (_ref) {
+	  var getState = _ref.getState;
+	  var dispatch = _ref.dispatch;
+	  return function (next) {
+	    return function (action) {
+	      var futonsSuccess = function futonsSuccess(data) {
+	        return dispatch((0, _futon_actions.receiveFutons)(data));
+	      };
+	      var futonSuccess = function futonSuccess(data) {
+	        return dispatch((0, _futon_actions.receiveFuton)(data));
+	      };
+	      var ownerSuccess = function ownerSuccess(data) {
+	        return dispatch(receiveOwner(data));
+	      };
+	      switch (action.type) {
+	        case _futon_actions.FutonConstants.REQUEST_FUTONS:
+	          // success = (sites) => dispatch(receiveFutons(sites));
+	          // error = (errors) => dispatch(receiveSiteErrors(errors));
+	          var filters = getState().filters;
+	          (0, _futon_util.fetchFutons)(filters, futonsSuccess);
+	          return next(action);
+	        case _futon_actions.FutonConstants.REQUEST_FUTON:
+	          (0, _futon_util.fetchFuton)(action.id, futonSuccess);
+	          return next(action);
+	        case _futon_actions.FutonConstants.REQUEST_OWNER:
+	          (0, _futon_util.fetchOwner)(action.id, ownerSuccess);
+	          return next(action);
+	        case _futon_actions.FutonConstants.CREATE_FUTON:
+	          (0, _futon_util.createFuton)(action.futon, futonSuccess);
+	          return next(action);
+	        case _futon_actions.FutonConstants.UPDATE_FUTON:
+	          (0, _futon_util.updateFuton)(action.id, action.futon, futonSuccess);
+	          return next(action);
+	        case _filter_actions.FilterConstants.UPDATE_FILTER:
+	          dispatch((0, _futon_actions.requestFutons)());
+	          return next(action);
+	        case _filter_actions.FilterConstants.UPDATE_BOUNDS:
+	          next(action);
+	          dispatch((0, _futon_actions.requestFutons)());
+	          break;
+	        default:
+	          return next(action);
+	      }
+	    };
+	  };
+	};
+	
+	// case FilterConstants.UPDATE_FILTER:
+	//   dispatch(requestFutons());
+	//   break;
+
+/***/ },
+/* 699 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var fetchFutons = exports.fetchFutons = function fetchFutons(filters, success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/futons',
+	    data: filters,
+	    success: success
+	  });
+	};
+	
+	var fetchFuton = exports.fetchFuton = function fetchFuton(id, success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/futons/' + id,
+	    success: success
+	  });
+	};
+	
+	var fetchOwner = exports.fetchOwner = function fetchOwner(id, success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: 'api/users/' + id,
+	    success: success
+	  });
+	};
+	
+	var createFuton = exports.createFuton = function createFuton(futon, success) {
+	  $.ajax({
+	    method: 'POST',
+	    url: 'api/futons',
+	    data: futon,
+	    success: success
+	  });
+	};
+	
+	var updateFuton = exports.updateFuton = function updateFuton(id, futon, success) {
+	  $.ajax({
+	    url: 'api/futons/' + id,
+	    method: "PATCH",
+	    data: { futon: futon },
+	    success: success,
+	    error: function error(_error) {
+	      return console.log(_error);
+	    }
+	  });
+	};
+
+/***/ },
+/* 700 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _session_actions = __webpack_require__(261);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _session_util = __webpack_require__(701);
+	
+	var _booking_actions = __webpack_require__(652);
+	
+	var _futon_actions = __webpack_require__(651);
+	
+	exports.default = function (_ref) {
+	  var getState = _ref.getState;
+	  var dispatch = _ref.dispatch;
+	  return function (next) {
+	    return function (action) {
+	      var loginSuccess = function loginSuccess(data) {
+	
+	        dispatch((0, _session_actions.receiveCurrentUser)(data));
+	        dispatch((0, _booking_actions.requestBookings)());
+	        _reactRouter.hashHistory.push("/profile");
+	      };
+	      var editSuccess = function editSuccess(data) {
+	        dispatch((0, _session_actions.receiveCurrentUser)(data));
+	        _reactRouter.hashHistory.push("/profile");
+	      };
+	      // const successCallback = data => dispatch(signUp(data))
+	      var errorsCallback = function errorsCallback(xhr) {
+	        var errors = xhr.responseJSON;
+	        dispatch((0, _session_actions.receiveErrors)(errors));
+	      };
+	      switch (action.type) {
+	
+	        case _session_actions.SessionConstants.LOG_IN:
+	
+	          (0, _session_util.login)(action.user, loginSuccess, errorsCallback);
+	          return next(action);
+	          break;
+	        case _session_actions.SessionConstants.LOG_OUT:
+	          (0, _session_util.logout)(function () {
+	            return next(action);
+	          });
+	          break;
+	        case _session_actions.SessionConstants.SIGN_UP:
+	
+	          (0, _session_util.signup)(action.user, loginSuccess, errorsCallback);
+	          (0, _futon_actions.createFuton)({ address: "unknown", lat: 123, lng: 38, description: "unknown" });
+	          return next(action);
+	        case _session_actions.SessionConstants.EDIT_USER:
+	
+	          (0, _session_util.editCurrentUser)(action.user, editSuccess, errorsCallback);
+	          return next(action);
+	        default:
+	          return next(action);
+	      }
+	    };
+	  };
+	};
+
+/***/ },
+/* 701 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.logout = exports.signup = exports.login = exports.editCurrentUser = undefined;
+	
+	var _session_actions = __webpack_require__(261);
+	
+	var editCurrentUser = exports.editCurrentUser = function editCurrentUser(user, success, error) {
+		$.ajax({
+			method: 'PATCH',
+			url: '/api/user/' + user.id,
+			data: user,
+			success: success,
+			error: error
+		});
+	}; // import { receiveCurrentUser, receiveErrors } from '/home/forest/Development/FutonSurfing/frontend/actions/session_actions.js';
+	//
+	// $.ajax({
+	//   method: 'POST',
+	//   url: 'api/users',
+	//   data: {user: {username: "forest",profile_img_url: "test",firstname: "forest",lastname:"turner",email:"mrforestranger@gmail.com",password:"password1"}}
+	// });
+	
+	
+	var login = exports.login = function login(user, success, error) {
+		$.ajax({
+			method: 'POST',
+			url: '/api/session',
+			data: user,
+			success: success,
+			error: error
+		});
+	};
+	
+	var signup = exports.signup = function signup(user, success, error) {
+		$.ajax({
+			method: 'POST',
+			url: '/api/users',
+			data: user,
+			success: success,
+			error: error
+		});
+	};
+	
+	var logout = exports.logout = function logout(success) {
+		$.ajax({
+			method: 'delete',
+			url: '/api/session',
+			success: success,
+			error: function error() {
+				console.log("error in ajax");
+			}
+		});
+	};
+
+/***/ },
 /* 702 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -75293,6 +75839,115 @@
 	}
 	
 	module.exports = createLogger;
+
+/***/ },
+/* 705 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _booking_actions = __webpack_require__(652);
+	
+	var _booking_util = __webpack_require__(706);
+	
+	var BookingMiddleware = function BookingMiddleware(_ref) {
+	  var getState = _ref.getState;
+	  var dispatch = _ref.dispatch;
+	  return function (next) {
+	    return function (action) {
+	      var success = void 0;
+	      var errors = void 0;
+	      switch (action.type) {
+	        case _booking_actions.BookingConstants.REQUEST_BOOKINGS:
+	          success = function success(bookings) {
+	            return dispatch((0, _booking_actions.receiveBookings)(bookings));
+	          };
+	          errors = function errors(_errors) {
+	            return dispatch((0, _booking_actions.receiveBookingErrors)(_errors.responseJSON));
+	          };
+	          (0, _booking_util.fetchBookings)(success, errors);
+	          return next(action);
+	        // case BookingConstants.REQUESTS_GUESTS:
+	        //   success = (guests) => dispatch(receiveGuests(guests));
+	        //   errors = (errors) => dispatch(receiveBookingErrors(errors.responseJSON));
+	        //   fetchGuests(success, errors);
+	        //   return next(action);
+	        case _booking_actions.BookingConstants.CREATE_BOOKING:
+	          success = function success(booking) {
+	            return dispatch((0, _booking_actions.receiveBooking)(booking));
+	          };
+	          errors = function errors(_errors2) {
+	            return dispatch((0, _booking_actions.receiveBookingErrors)(_errors2.responseJSON));
+	          };
+	          (0, _booking_util.fetchBooking)(action.booking, success, errors);
+	          return next(action);
+	        case _booking_actions.BookingConstants.DELETE_BOOKING:
+	          success = function success() {
+	            return dispatch((0, _booking_actions.requestBookings)());
+	          };
+	          errors = function errors(_errors3) {
+	            return console.log(_errors3);
+	          };
+	          (0, _booking_util.deleteBooking)(action.id, success, errors);
+	          return next(action);
+	        default:
+	          return next(action);
+	      }
+	    };
+	  };
+	};
+	
+	exports.default = BookingMiddleware;
+
+/***/ },
+/* 706 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var fetchBookings = exports.fetchBookings = function fetchBookings(success, errors) {
+	  $.ajax({
+	    url: "api/bookings",
+	    method: "GET",
+	    success: success,
+	    errors: errors
+	  });
+	};
+	
+	// export const fetchGuests = (success, errors) => {
+	//   $.ajax({
+	//     url: "api/bookings",
+	//     method: "GET",
+	//     success,
+	//     errors
+	//   });
+	// };
+	
+	var fetchBooking = exports.fetchBooking = function fetchBooking(booking, success, errors) {
+	  $.ajax({
+	    url: "api/bookings",
+	    method: "POST",
+	    data: { booking: booking },
+	    success: success,
+	    errors: errors
+	  });
+	};
+	
+	var deleteBooking = exports.deleteBooking = function deleteBooking(id, success, errors) {
+	  $.ajax({
+	    url: "api/bookings/" + id,
+	    method: "DELETE",
+	    success: success,
+	    errors: errors
+	  });
+	};
 
 /***/ }
 /******/ ]);

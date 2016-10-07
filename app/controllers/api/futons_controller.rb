@@ -2,8 +2,7 @@ class Api::FutonsController < ApplicationController
   def index()
 
     futons = bounds ? Futon.in_bounds(bounds) : []
-
-    futons = bounds ? Futon.in_bounds(bounds) : Futon.all
+    # byebug
     @futons = futons
     render :index
   end
@@ -33,10 +32,7 @@ class Api::FutonsController < ApplicationController
 
   private
   def futon_params()
-
     params.require(:futon).permit(:lat,:lng,:description,:futon_img_url,:address, :bookings, :user)
-
-    params.require(:futon).permit(:lat,:lng,:description,:futon_img_url,:address, :bookings)
   end
 
 

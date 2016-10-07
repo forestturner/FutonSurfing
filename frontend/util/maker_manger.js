@@ -10,20 +10,14 @@ export default class MarkerManager {
   }
 
   updateMarkers(futons){
-<<<<<<< HEAD
 
-=======
->>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     this.futons = futons;
     this._futonsToAdd().forEach(this._createMarkerFromFuton);
     this._markersToRemove().forEach(this._removeMarker);
   }
 
   _futonsToAdd(){
-<<<<<<< HEAD
 
-=======
->>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
     const currentFutonIds = this.markers.map( marker => marker.futonId );
     const newFutons = this.futons;
     const newFutonIds = Object.keys(newFutons);

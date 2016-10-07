@@ -6,10 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 # sf
 places = [
   "Thailand, United Kingdom, Germany, China",
@@ -321,59 +317,9 @@ Futon.create(address: "46-48 Rue du Couëdic, 75014 Paris, France", city: "Paris
 Futon.create(address: "2-6 Avenue Lucien Français, 94400 Vitry-sur-Seine, France", city: "Paris", lat: 48.785333, lng:2.388342, description:"Very friendly service, continental breakfast was excellent (JUICEBOXES!) and the room was great. Very clean and the haunted sink and screaming toilet gave the bathroom personality! Not sarcasm, I had a very enjoyable experience", user_id:41, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780290/cayo-espanto-belize-outside-bed_frzmb1.jpg")
 Futon.create(address: "8 Sentier des Torques, 92290 Châtenay-Malabry, France", city: "Paris", lat:  48.772664, lng:  2.281912, description:"The most disgusting and creepy place imaginable. Only place that had vacancies. Transvestite prostitute in lobby being paid by a man, dirty sheets, porn on the TV. weird screams in the morning, possible blood drips on plastic mattress covering. This was the most frightening experience, seriously debated sleeping in Central Park instead. This was worse than anything I’ve ever seen on television! Feared for my life!", user_id:42, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/2052641043_5489fbdc48_z_n3hiuw.jpg" )
 
-=======
->>>>>>> parent of da6e22e... add seed data
 
 
-User.create(username: "Guest", password: "password1",city: "San Francisco", firstname: "Edward", lastname: "Norton", email: "EdwardNorton@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473292366/profile_yozbyk.jpg" )
-User.create(username: "Luke", password: "password1",city: "San Francisco", firstname: "Luke", lastname: "Turner", email: "Luke@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782432/ford_4_yp0v9e.jpg")
-User.create(username: "Tyler", password: "password1",city: "San Francisco", firstname: "Tyler", lastname: "Sky", email: "TylerSky@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782432/ford_4_yp0v9e.jpg" )
-User.create(username: "Bob", password: "password1",city: "San Francisco", firstname: "Bob", lastname: "Singer", email: "BobTurner@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782442/grid-cell-27637-1389642560-41_bpsw5b.jpg" )
-User.create(username: "Forest", password: "password1",city: "San Francisco", firstname: "Forest", lastname: "Smith", email: "Forest.e.Turner@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782437/Neo_spoon_nem1hp.jpg" )
-User.create(username: "Greg", password: "password1",city: "San Francisco", firstname: "Greg", lastname: "GO", email: "GregTest@gmail.com", profile_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775467/960_nmpq7n.jpg" )
-User.create(username: "Marla", password: "password1",city: "San Francisco", firstname: "Marla", lastname: "Black", email: "MarlaTest@gmail.com", profile_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775331/marla_singer_by_tresdiasdegracia-d6ghfaz_vhtyot.jpg" )
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of da6e22e... add seed data
-=======
->>>>>>> parent of da6e22e... add seed data
-
-
-User.create(username: "Guest", password: "password1",city: "San Francisco", firstname: "Edward", lastname: "Norton", email: "EdwardNorton@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473292366/profile_yozbyk.jpg" )
-User.create(username: "Luke", password: "password1",city: "San Francisco", firstname: "Luke", lastname: "Turner", email: "Luke@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782432/ford_4_yp0v9e.jpg")
-User.create(username: "Tyler", password: "password1",city: "San Francisco", firstname: "Tyler", lastname: "Sky", email: "TylerSky@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782432/ford_4_yp0v9e.jpg" )
-User.create(username: "Bob", password: "password1",city: "San Francisco", firstname: "Bob", lastname: "Singer", email: "BobTurner@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782442/grid-cell-27637-1389642560-41_bpsw5b.jpg" )
-User.create(username: "Forest", password: "password1",city: "San Francisco", firstname: "Forest", lastname: "Smith", email: "Forest.e.Turner@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472782437/Neo_spoon_nem1hp.jpg" )
-User.create(username: "Greg", password: "password1",city: "San Francisco", firstname: "Greg", lastname: "GO", email: "GregTest@gmail.com", profile_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775467/960_nmpq7n.jpg" )
-User.create(username: "Marla", password: "password1",city: "San Francisco", firstname: "Marla", lastname: "Black", email: "MarlaTest@gmail.com", profile_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775331/marla_singer_by_tresdiasdegracia-d6ghfaz_vhtyot.jpg" )
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of da6e22e... add seed data
-=======
->>>>>>> parent of da6e22e... add seed data
-=======
->>>>>>> parent of da6e22e... add seed data
-Futon.create(address: "919 Clement St, San Francisco, CA 94118, USA",city: "San Francisco", lat: 37.782602, lng: -122.468987, description:"Great bed for a nap.", user_id:1, futon_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780292/futon_i8kscr.jpg")
-Futon.create(address: "658 25th Ave, San Francisco, CA 94121, USA", city: "San Francisco", lat: 37.777175, lng: -122.484436, description:"I am not sure", user_id:2, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780291/tmg-article_tall_ws6rcn.jpg")
-Futon.create(address: "3725 21st St, San Francisco, CA 94114, USA", city: "San Francisco", lat: 37.756005, lng: -122.430878, description:"try it out!", user_id:3, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/555f26ca_original_f0yu0a.webp")
-Futon.create(address: "Moraga Steps, San Francisco, CA 94122, USA", city: "San Francisco", lat: 37.756277, lng: -122.472763, description:"horrible for a nap", user_id:4, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780308/1-screen-shot-2016-07-10-at-11-42-33-am_crnta3.png")
-Futon.create(address: "135-149 Cargo Way, San Francisco, CA 94124 USA", city: "San Francisco", lat: 37.744332, lng: -122.383843, description:"great for a nap", user_id:5, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780287/download_gapork.jpg")
-Futon.create(address: "527 Athens St, San Francisco, CA 94112 USA", city: "San Francisco", lat: 37.719623, lng: -122.429848, description:"I love this thing!", user_id:6, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780290/cayo-espanto-belize-outside-bed_frzmb1.jpg")
-Futon.create(address: "1706 Waller St, San Francisco, CA 94117 USA", city: "San Francisco", lat: 37.76849, lng: -122.451821, description:"try it!", user_id:7, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/2052641043_5489fbdc48_z_n3hiuw.jpg" )
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
-=======
->>>>>>> parent of da6e22e... add seed data
-=======
->>>>>>> parent of da6e22e... add seed data
-=======
->>>>>>> parent of da6e22e... add seed data
 
 futon_pic_array =[
   "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780292/futon_i8kscr.jpg",
@@ -409,23 +355,7 @@ futon_pic_array =[
     lat: Faker::Address.latitude,
     lng: Faker::Address.longitude,
     description: Faker::ChuckNorris.fact,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     user_id: (i + 7 * 6),
-=======
-    user_id: (i + 7),
->>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
-=======
-    user_id: (i + 7),
->>>>>>> parent of da6e22e... add seed data
-=======
-    user_id: (i + 7),
->>>>>>> parent of da6e22e... add seed data
-=======
-    user_id: (i + 7),
->>>>>>> parent of da6e22e... add seed data
     futon_img_url:futon_pic_array[Faker::Number.between(1, 12)]
   })
 
