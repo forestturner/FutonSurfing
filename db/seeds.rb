@@ -8,6 +8,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # sf
 places = [
   "Thailand, United Kingdom, Germany, China",
@@ -333,6 +334,8 @@ User.create(username: "Marla", password: "password1",city: "San Francisco", firs
 
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of da6e22e... add seed data
 
 
 User.create(username: "Guest", password: "password1",city: "San Francisco", firstname: "Edward", lastname: "Norton", email: "EdwardNorton@gmail.com", profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473292366/profile_yozbyk.jpg" )
@@ -343,6 +346,9 @@ User.create(username: "Forest", password: "password1",city: "San Francisco", fir
 User.create(username: "Greg", password: "password1",city: "San Francisco", firstname: "Greg", lastname: "GO", email: "GregTest@gmail.com", profile_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775467/960_nmpq7n.jpg" )
 User.create(username: "Marla", password: "password1",city: "San Francisco", firstname: "Marla", lastname: "Black", email: "MarlaTest@gmail.com", profile_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472775331/marla_singer_by_tresdiasdegracia-d6ghfaz_vhtyot.jpg" )
 
+<<<<<<< HEAD
+=======
+>>>>>>> parent of da6e22e... add seed data
 =======
 >>>>>>> parent of da6e22e... add seed data
 Futon.create(address: "919 Clement St, San Francisco, CA 94118, USA",city: "San Francisco", lat: 37.782602, lng: -122.468987, description:"Great bed for a nap.", user_id:1, futon_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780292/futon_i8kscr.jpg")
@@ -353,7 +359,10 @@ Futon.create(address: "135-149 Cargo Way, San Francisco, CA 94124 USA", city: "S
 Futon.create(address: "527 Athens St, San Francisco, CA 94112 USA", city: "San Francisco", lat: 37.719623, lng: -122.429848, description:"I love this thing!", user_id:6, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780290/cayo-espanto-belize-outside-bed_frzmb1.jpg")
 Futon.create(address: "1706 Waller St, San Francisco, CA 94117 USA", city: "San Francisco", lat: 37.76849, lng: -122.451821, description:"try it!", user_id:7, futon_img_url:"http://res.cloudinary.com/dnuopy1ir/image/upload/v1472780289/2052641043_5489fbdc48_z_n3hiuw.jpg" )
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
+=======
+>>>>>>> parent of da6e22e... add seed data
 =======
 >>>>>>> parent of da6e22e... add seed data
 
@@ -393,10 +402,14 @@ futon_pic_array =[
     description: Faker::ChuckNorris.fact,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     user_id: (i + 7 * 6),
 =======
     user_id: (i + 7),
 >>>>>>> e4941b82c680c0d74294ceb469ed7ba97c52008e
+=======
+    user_id: (i + 7),
+>>>>>>> parent of da6e22e... add seed data
 =======
     user_id: (i + 7),
 >>>>>>> parent of da6e22e... add seed data
