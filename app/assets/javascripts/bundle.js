@@ -55974,7 +55974,7 @@
 	      var mapEl = document.getElementById('map');
 	      var options = {
 	        center: { lat: this.props.coords.lat, lng: this.props.coords.lng },
-	        zoom: 13
+	        zoom: 11
 	      };
 	      this.map = new google.maps.Map(mapEl, options);
 	      this.MarkerManager = new _maker_manger2.default(this.map);
