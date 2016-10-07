@@ -1,5 +1,6 @@
 /tmp
 node_modules/
-
+/log
+log/
 # Ignore application configuration
 /config/application.yml
