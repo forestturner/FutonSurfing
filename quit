@@ -1,0 +1,162 @@
+[33mcommit 151972603d9f8a98a4b0d46e7fafebd10459a7ef[m
+Merge: 09b9edb e4941b8
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Oct 7 00:49:06 2016 -0700
+
+    ignorea
+
+[33mcommit 09b9edb620f7e8f07295db02abe260070d042af2[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Oct 7 00:26:00 2016 -0700
+
+    ignore
+
+[33mcommit da6e22e36623ea865acb100c65cf21a4e3378eaa[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Oct 7 00:17:52 2016 -0700
+
+    add seed data
+
+[33mcommit 64cf444012e7e1f6c63cc22810b6a10ad0b37b5c[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Wed Oct 5 23:18:23 2016 -0700
+
+    added map and modal
+
+[33mcommit 157df4844a19f3dc6c0293d7d8330cbbc61335bf[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Wed Oct 5 12:20:17 2016 -0700
+
+    edited map
+
+[33mcommit 13b0e8935e6c471c1ff712093bb31f11bd817f01[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Tue Oct 4 12:49:10 2016 -0700
+
+    fixed fhow paged and edit single show page.
+
+[33mcommit e4941b82c680c0d74294ceb469ed7ba97c52008e[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 29 15:13:08 2016 -0700
+
+    fixed guest login
+
+[33mcommit 3c7b4e0c1d65ade241e2099615e98863fb7b6fca[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 29 15:13:08 2016 -0700
+
+    fixed guest login
+
+[33mcommit 05b455fc849ea258d33813f8846c4e7a75b36c42[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 29 10:42:16 2016 -0700
+
+    edit some colors for the buttons
+
+[33mcommit 9b807ca087e66f480c6770f0e0fc94a083dc0b87[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 29 10:42:16 2016 -0700
+
+    edit some colors for the buttons
+
+[33mcommit 04945cf8b0283d43e6b032fb090dbe66038aaf80[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 15:49:50 2016 -0700
+
+    nav to futons_show
+
+[33mcommit 413ec22624ffdc2e7caedbb14081e51c1955cc3c[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 15:49:50 2016 -0700
+
+    nav to futons_show
+
+[33mcommit ae91f396575c0047140939d0147254d45ea02547[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 12:32:00 2016 -0700
+
+    change some page rendering if you already have a futon, you can not make another.
+
+[33mcommit 9a218db62c7f689663f1a307a3160dc1b87ba3a6[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 12:32:00 2016 -0700
+
+    change some page rendering if you already have a futon, you can not make another.
+
+[33mcommit 0478bd2a8f2ff7eb14390f52e0dc0d4c96dd4b58[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 11:36:18 2016 -0700
+
+    edit readme
+
+[33mcommit 452ff84abc89831da6896eb967c8545cd04c5e37[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 11:36:18 2016 -0700
+
+    edit readme
+
+[33mcommit b9866eca6b38693c5fb0bff7f059065f24d8ee39[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 11:12:34 2016 -0700
+
+    edit readme and fix edit profile
+
+[33mcommit ca4d575ca188d5fb1b51e501de92bdc459f954fd[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 11:12:34 2016 -0700
+
+    edit readme and fix edit profile
+
+[33mcommit f863adb05bd2c46b59fd4b7e201ce171bef722a2[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 08:47:37 2016 -0700
+
+    removed byebug
+
+[33mcommit 0d306ddeae10452529de07286e76f4271b40b077[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Fri Sep 9 08:47:37 2016 -0700
+
+    removed byebug
+
+[33mcommit 5e291b5edcffb91b4d7668e9f2e815d0e0028fc3[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 8 23:36:15 2016 -0700
+
+    added Faker
+
+[33mcommit fdefb2db1608768497d250ae70b4b2b529666b7e[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 8 23:36:15 2016 -0700
+
+    added Faker
+
+[33mcommit 079420ad281afe88186e2ed504a3605a87b21f16[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 8 23:24:54 2016 -0700
+
+    done with MVP and adding css
+
+[33mcommit 8d5e5551bf6be0e314fbfb9f3923d93535e8953a[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 8 23:24:54 2016 -0700
+
+    done with MVP and adding css
+
+[33mcommit 6c2b0115e71ac0cfdab4caae198b1760f244e869[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 8 12:16:37 2016 -0700
+
+    stil have double bookingsgit add -A);
+
+[33mcommit fee01755bbf164380cdc210bbef8e09300ac688b[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Thu Sep 8 12:16:37 2016 -0700
+
+    stil have double bookingsgit add -A);
+
+[33mcommit af20fc18dcb5295c2d016c5862fa7d52b0d62b80[m
+Author: forestturner <mrforestranger@gmail.com>
+Date:   Wed Sep 7 12:18:11 2016 -0700
+
+    middleware is not working

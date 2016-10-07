@@ -567,8 +567,8 @@ color: gray;
 
 }
 .futonHost-img-show {
-  width:300px;
-  height: 200px;
+  width: 100%;
+  height: auto;
   border-bottom: 1px solid black;
 
 }
@@ -863,9 +863,8 @@ main {
   top: 60px;
   bottom: 0;
   right: 0;
-  left: 310px;
   position: absolute;
-  width: 100%;
+  width: 70%;
   z-index: 10;
 }
 .bookings-info h4 {
