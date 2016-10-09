@@ -19,7 +19,7 @@ const Guests = ({guests, deleteBooking}) => {
     <div>
       {
         guestKeys.map( key => (
-        <div><Guesting guest={guests[key]} key={key} deleteBooking={deleteBooking} /></div>
+        <div key={guests[key].id}><Guesting guest={guests[key]}  deleteBooking={deleteBooking} /></div>
         ))
       }
     </div>

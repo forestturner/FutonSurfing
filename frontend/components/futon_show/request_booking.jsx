@@ -24,7 +24,7 @@ class Request extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
     this.renderMethod = this.renderMethod.bind(this);
-
+    this.handleGuest = this.handleGuest.bind(this);
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleCloseLogin = this.handleCloseLogin.bind(this);
@@ -96,7 +96,6 @@ class Request extends React.Component {
 	}
 
   handleSubmitLoginForm(e){
-    debugger;
 		e.preventDefault();
 		const user = this.state;
 		this.props.logIn({user});
@@ -106,7 +105,8 @@ class Request extends React.Component {
  }
 
  handleGuest(e) {
-   debugger;
+
+   e.preventDefault();
    const user = {user: {username: "Guest",password:"password1"}};
    this.props.logIn(user);
  }
@@ -118,7 +118,8 @@ renderMethod(){
     content : {
       fontSize              : 14,
       top                   : '50%',
-      left                  : '15%',
+      left                  : '12%',
+      margin                : '10px',
       right                 : 'auto',
       bottom                : 'auto',
       marginRight           : '-50%',
@@ -174,7 +175,6 @@ renderMethod(){
 
 
   render() {
-    debugger;
     return (this.renderMethod());
   }
 }

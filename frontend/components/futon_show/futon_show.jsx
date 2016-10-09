@@ -27,7 +27,7 @@ class FutonShow extends React.Component {
         </div>
         <div className="futon-list-container">
           <FutonDetail futon={this.props.futon} user={this.props.host}/>
-          <Request logIn={this.props.LogIn} futonId= {this.props.futonId} user={this.props.currentUser} errors={this.props.errors} received={this.props.received}/>
+          <Request logIn={this.props.logIn} createBooking={this.props.createBooking} futonId= {this.props.futonId} currentUser={this.props.currentUser} errors={this.props.errors} received={this.props.received}/>
         </div>
 
       </div>

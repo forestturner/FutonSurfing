@@ -8,7 +8,12 @@ const BookingReducer = (state = defaultState, action) => {
     // debugger;
   switch (action.type) {
     case BookingConstants.RECEIVE_BOOKINGS:
-      newState = merge({}, state, { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] });
+      // debugger;
+      // if(action.bookings.bookings === undefined){
+      //   newState = merge({}, state, { bookings: action.bookings, guests: action.bookings.guests, errors: [] });
+      // } else {
+        newState = merge({}, state, { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] });
+      // }
       // newState = {bookings: action.bookings, guests: action.bookings.guests, errors: []};
       newState.received = false;
       return newState;

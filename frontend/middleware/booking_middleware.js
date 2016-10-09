@@ -16,7 +16,8 @@ const BookingMiddleware = ({getState, dispatch}) => next => action => {
     //   fetchGuests(success, errors);
     //   return next(action);
     case BookingConstants.CREATE_BOOKING:
-      success = (booking) => dispatch(receiveBooking(booking));
+      success = (bookings) => dispatch(receiveBookings(bookings));
+      // success = (booking) => dispatch(receiveBooking(booking));
       errors = (errors) => dispatch(receiveBookingErrors(errors.responseJSON));
       fetchBooking(action.booking, success, errors);
       return next(action);
