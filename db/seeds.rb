@@ -44,7 +44,7 @@ email: Faker::Internet.email,
 profile_img_url: "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473292366/profile_yozbyk.jpg" )
 
 
-User.create(username: Faker::Internet.user_name,
+User.create(username: "Tyler",
 password: "password1",
 city: "San Francisco",
 firstname: Faker::Name.first_name,
