@@ -29,7 +29,7 @@ const BookingReducer = (state = defaultState, action) => {
     case BookingConstants.RECEIVE_BOOKING_ERRORS:
 
       newState = merge({}, state);
-      console.log(action.errors);
+      // console.log(action.errors);
       newState.errors = action.errors;
       newState.received = false;
       return newState;

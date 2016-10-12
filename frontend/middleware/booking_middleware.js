@@ -18,9 +18,9 @@ const BookingMiddleware = ({getState, dispatch}) => next => action => {
     //   fetchGuests(success, errors);
     //   return next(action);
     case BookingConstants.CREATE_BOOKING:
-    debugger;
-    console.log(receiveBookingErrors);
-    console.log(receiveBookings);
+    // debugger;
+    // console.log(receiveBookingErrors);
+    // console.log(receiveBookings);
       success = (bookings) => {
         dispatch(receiveBookings(bookings));
         hashHistory.push("/profile");

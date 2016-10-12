@@ -68,7 +68,7 @@ class Profile extends React.Component {
     console.log("mounted1#E@agfas");
   //   this.props.requestBookings();
   //   this.props.requestGuests();
-    debugger;
+
   }
 
   handleSubmitFuton(e) {
@@ -178,10 +178,10 @@ class Profile extends React.Component {
     this.props.store.dispatch(requestBookings());
   }
 }
-componentWillReceiveProps(newProps){
-  debugger;
-  //console.log(newProps);
-}
+// componentWillReceiveProps(newProps){
+//   debugger;
+//   //console.log(newProps);
+// }
 
 // componentDidUpdate(){
   // this.props.requestBookings();
@@ -551,7 +551,7 @@ renderBookings(){
       transform             : 'translate(-50%, -50%)'
     }
   };
- debugger;
+ // debugger;
  let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
  let divStyle ={fontSize: 16,float:'right' };
  let h3Style = {display: 'initial', fontSize: 14};
@@ -636,16 +636,15 @@ handleOpenedit(){
 
 
   render() {
-    debugger;
     if(this.props.currentUser && this.state.showEdit){
-      console.log("1");
+      // console.log("1");
       return (<div className="profile-background">{this.renderProfileInfo()}</div>);
       // return (<div>{this.renderUserProfile()}</div>);
-    } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings.length >= 1) {
-      console.log('2');
+    } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings && this.props.bookings.length >= 1) {
+      // console.log('2');
       return (<div className="profile-background">{this.renderBookings()}</div>);
     } else {
-      console.log('3');
+      // console.log('3');
       return( <div> loading... </div>);
     }
   }

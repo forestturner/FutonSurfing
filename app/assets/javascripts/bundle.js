@@ -53349,7 +53349,6 @@
 	      console.log("mounted1#E@agfas");
 	      //   this.props.requestBookings();
 	      //   this.props.requestGuests();
-	      debugger;
 	    }
 	  }, {
 	    key: 'handleSubmitFuton',
@@ -53472,12 +53471,10 @@
 	        this.props.store.dispatch(requestBookings());
 	      }
 	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(newProps) {
-	      debugger;
-	      //console.log(newProps);
-	    }
+	    // componentWillReceiveProps(newProps){
+	    //   debugger;
+	    //   //console.log(newProps);
+	    // }
 	
 	    // componentDidUpdate(){
 	    // this.props.requestBookings();
@@ -54110,7 +54107,7 @@
 	          transform: 'translate(-50%, -50%)'
 	        }
 	      };
-	      debugger;
+	      // debugger;
 	      var profilePic = this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg";
 	      var divStyle = { fontSize: 16, float: 'right' };
 	      var h3Style = { display: 'initial', fontSize: 14 };
@@ -54268,24 +54265,23 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      debugger;
 	      if (this.props.currentUser && this.state.showEdit) {
-	        console.log("1");
+	        // console.log("1");
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'profile-background' },
 	          this.renderProfileInfo()
 	        );
 	        // return (<div>{this.renderUserProfile()}</div>);
-	      } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings.length >= 1) {
-	        console.log('2');
+	      } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings && this.props.bookings.length >= 1) {
+	        // console.log('2');
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'profile-background' },
 	          this.renderBookings()
 	        );
 	      } else {
-	        console.log('3');
+	        // console.log('3');
 	        return _react2.default.createElement(
 	          'div',
 	          null,
@@ -57271,7 +57267,7 @@
 	        end_date: to,
 	        futon_id: this.props.futonId
 	      };
-	      console.log("handling submit of createBooking");
+	      // console.log("handling submit of createBooking");
 	      this.props.createBooking(updates);
 	    }
 	  }, {
@@ -74901,7 +74897,7 @@
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING_ERRORS:
 	
 	      newState = (0, _lodash.merge)({}, state);
-	      console.log(action.errors);
+	      // console.log(action.errors);
 	      newState.errors = action.errors;
 	      newState.received = false;
 	      return newState;
@@ -76203,9 +76199,9 @@
 	        //   fetchGuests(success, errors);
 	        //   return next(action);
 	        case _booking_actions.BookingConstants.CREATE_BOOKING:
-	          debugger;
-	          console.log(_booking_actions.receiveBookingErrors);
-	          console.log(_booking_actions.receiveBookings);
+	          // debugger;
+	          // console.log(receiveBookingErrors);
+	          // console.log(receiveBookings);
 	          success = function success(bookings) {
 	            dispatch((0, _booking_actions.receiveBookings)(bookings));
 	            _reactRouter.hashHistory.push("/profile");

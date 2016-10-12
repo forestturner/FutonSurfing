@@ -40,7 +40,7 @@ class Request extends React.Component {
       end_date: to,
       futon_id: this.props.futonId
     }
-    console.log("handling submit of createBooking");
+    // console.log("handling submit of createBooking");
     this.props.createBooking(updates);
 
   }
