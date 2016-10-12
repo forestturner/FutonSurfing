@@ -14,6 +14,7 @@
 class Booking < ApplicationRecord
 
     validates :guest_id, :futon_id, :start_date, :end_date, presence: true
+    validate :test_date
 
    belongs_to :futon
 
@@ -25,6 +26,13 @@ class Booking < ApplicationRecord
      primary_key: :id,
      foreign_key: :guest_id,
      class_name: :User
-
+def test_date()
+  unless (self.start_date <= self.end_date)
+    errors.add(:futon,"Error : start date before end date")
+  end
+  unless (self.start_date > DateTime.now.to_date && self.end_date >  DateTime.now.to_date)
+    errors.add(:futon,"Error: start date or end date are before the current date")
+  end
+end
 
 end

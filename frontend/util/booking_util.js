@@ -1,37 +1,37 @@
-export const fetchBookings = (success, errors) => {
+export const fetchBookings = (success, error) => {
   $.ajax({
     url: "api/bookings",
     method: "GET",
     success,
-    errors
+    error
   });
 };
 
 
-// export const fetchGuests = (success, errors) => {
+// export const fetchGuests = (success, error) => {
 //   $.ajax({
 //     url: "api/bookings",
 //     method: "GET",
 //     success,
-//     errors
+//     error
 //   });
 // };
 
-export const fetchBooking = (booking, success, errors) => {
+export const fetchBooking = (booking, success, error) => {
   $.ajax({
     url: "api/bookings",
     method: "POST",
     data: {booking},
     success,
-    errors
+    error
   });
 };
 
-export const deleteBooking = (id, success, errors) => {
+export const deleteBooking = (id, success, error) => {
   $.ajax({
     url: `api/bookings/${id}`,
     method: "DELETE",
     success,
-    errors
+    error
   });
 };

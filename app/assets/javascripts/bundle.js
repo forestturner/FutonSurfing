@@ -23293,7 +23293,7 @@
 	          _react2.default.createElement(_reactRouter.Route, { path: '/futons/:futonId/request', component: _request_booking_container2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _users_show_container2.default, onEnter: this.getUsers }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'users/:userId', component: _user_show_container2.default, onEnter: this.getUser }),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile_container2.default, onEnter: this.getBookings }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'createfuton', component: _createFutonContainer2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'editprofile', component: _edit_profile_container2.default, onEnter: this.getFutons }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'editfuton', component: _edit_futon_container2.default, onEnter: this.getFutons })
@@ -53187,7 +53187,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  debugger;
 	  var currentUser = state.session.currentUser;
 	  var bookings = state.bookings.bookings;
 	  var guests = state.bookings.guests;
@@ -53340,7 +53339,19 @@
 	    return _this;
 	  }
 	
+	  // componentWillMount() {
+	  // }
+	
+	
 	  _createClass(Profile, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log("mounted1#E@agfas");
+	      //   this.props.requestBookings();
+	      //   this.props.requestGuests();
+	      debugger;
+	    }
+	  }, {
 	    key: 'handleSubmitFuton',
 	    value: function handleSubmitFuton(e) {
 	      e.preventDefault();
@@ -53464,14 +53475,13 @@
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(newProps) {
+	      debugger;
 	      //console.log(newProps);
 	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.props.requestBookings();
-	      this.props.requestGuests();
-	    }
+	
+	    // componentDidUpdate(){
+	    // this.props.requestBookings();
+	    // }
 	    // componentDidUpdate(){
 	    //   let input = document.getElementById('nav-search-profile')
 	    //   let options = {types: ['(cities)']};
@@ -54100,7 +54110,7 @@
 	          transform: 'translate(-50%, -50%)'
 	        }
 	      };
-	
+	      debugger;
 	      var profilePic = this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg";
 	      var divStyle = { fontSize: 16, float: 'right' };
 	      var h3Style = { display: 'initial', fontSize: 14 };
@@ -54112,7 +54122,6 @@
 	      var editFuton = '/editfuton';
 	      var editInfo = '/editprofile';
 	      var createFuton = '/createfuton';
-	      debugger;
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -54259,20 +54268,24 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      debugger;
 	      if (this.props.currentUser && this.state.showEdit) {
+	        console.log("1");
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'profile-background' },
 	          this.renderProfileInfo()
 	        );
 	        // return (<div>{this.renderUserProfile()}</div>);
-	      } else if (this.props.currentUser && !this.state.showEdit) {
+	      } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings.length >= 1) {
+	        console.log('2');
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'profile-background' },
 	          this.renderBookings()
 	        );
-	      }{
+	      } else {
+	        console.log('3');
 	        return _react2.default.createElement(
 	          'div',
 	          null,
@@ -54286,17 +54299,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = Profile;
-	
-	
-	{/* <article className="profile-section-main"> */}
-	{/* <section className="profile-section-heading">
-	  <h2> My Guests </h2> */}
-	{/* </section>
-	   <Guests guests={this.props.guests} deleteBooking={this.props.deleteBooking} />
-	   </article> */}
-	
-	{/*
-	    <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} /> */}
 
 /***/ },
 /* 626 */
@@ -54333,7 +54335,6 @@
 	  //   </section>
 	  // );
 	  var bookingKeys = Object.keys(bookings);
-	  debugger;
 	  if (bookingKeys) {
 	    return _react2.default.createElement(
 	      'div',
@@ -55127,6 +55128,7 @@
 	    filters: filters,
 	    host: host,
 	    currentUser: currentUser,
+	    errors: errors,
 	    // currentUserFutonId,
 	    futons: futons
 	  };
@@ -55710,6 +55712,20 @@
 	        }
 	      };
 	
+	      var errors = this.props.errors.map(function (error, idx) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: idx },
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'warning'
+	          ),
+	          ' ',
+	          error
+	        );
+	      });
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'padding' },
@@ -55717,7 +55733,15 @@
 	        _react2.default.createElement(
 	          'section',
 	          { className: 'request-form' },
-	          _react2.default.createElement('div', { className: 'errors' }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'errors' },
+	            _react2.default.createElement(
+	              'ul',
+	              null,
+	              errors
+	            )
+	          ),
 	          _react2.default.createElement(
 	            'h3',
 	            null,
@@ -74853,24 +74877,29 @@
 	  var action = arguments[1];
 	
 	  var newState = void 0;
-	  // debugger;
+	
 	  switch (action.type) {
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKINGS:
-	      debugger;
-	      if (action.bookings.bookings === undefined) {
-	        newState = (0, _lodash.merge)({}, state, { bookings: action.bookings, guests: action.bookings.guests, errors: [] });
-	      } else {
-	        newState = (0, _lodash.merge)({}, state, { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] });
-	      }
-	      // newState = {bookings: action.bookings, guests: action.bookings.guests, errors: []};
+	
+	      newState = { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] };
 	      newState.received = false;
 	      return newState;
+	    // debugger;
+	    // if(action.bookings.bookings === undefined){
+	    //   newState = merge({}, state, { bookings: action.bookings, guests: action.bookings.guests, errors: [] });
+	    // } else {
+	    // newState = merge({}, state, { bookings: action.bookings.bookings, guests: action.bookings.guests, errors: [] });
+	    // }
+	    // newState = {bookings: action.bookings, guests: action.bookings.guests, errors: []};
+	    // newState.received = false;
+	    // return newState;
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING:
 	      newState = (0, _lodash.merge)({}, state);
 	      newState.bookings.push(action.booking);
 	      newState.received = true;
 	      return newState;
 	    case _booking_actions.BookingConstants.RECEIVE_BOOKING_ERRORS:
+	
 	      newState = (0, _lodash.merge)({}, state);
 	      console.log(action.errors);
 	      newState.errors = action.errors;
@@ -75102,7 +75131,7 @@
 	      var loginSuccess = function loginSuccess(data) {
 	
 	        dispatch((0, _session_actions.receiveCurrentUser)(data));
-	        dispatch((0, _booking_actions.requestBookings)());
+	        // dispatch(requestBookings());
 	        _reactRouter.hashHistory.push("/profile");
 	      };
 	      var editSuccess = function editSuccess(data) {
@@ -76149,6 +76178,8 @@
 	
 	var _booking_util = __webpack_require__(690);
 	
+	var _reactRouter = __webpack_require__(198);
+	
 	var BookingMiddleware = function BookingMiddleware(_ref) {
 	  var getState = _ref.getState;
 	  var dispatch = _ref.dispatch;
@@ -76158,7 +76189,6 @@
 	      var errors = void 0;
 	      switch (action.type) {
 	        case _booking_actions.BookingConstants.REQUEST_BOOKINGS:
-	          debugger;
 	          success = function success(bookings) {
 	            return dispatch((0, _booking_actions.receiveBookings)(bookings));
 	          };
@@ -76174,10 +76204,12 @@
 	        //   return next(action);
 	        case _booking_actions.BookingConstants.CREATE_BOOKING:
 	          debugger;
+	          console.log(_booking_actions.receiveBookingErrors);
+	          console.log(_booking_actions.receiveBookings);
 	          success = function success(bookings) {
-	            return dispatch((0, _booking_actions.receiveBookings)(bookings));
-	          };
-	          // success = (booking) => dispatch(receiveBooking(booking));
+	            dispatch((0, _booking_actions.receiveBookings)(bookings));
+	            _reactRouter.hashHistory.push("/profile");
+	          }; // success = (booking) => dispatch(receiveBooking(booking));
 	          errors = function errors(_errors2) {
 	            return dispatch((0, _booking_actions.receiveBookingErrors)(_errors2.responseJSON));
 	          };
@@ -76210,40 +76242,40 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var fetchBookings = exports.fetchBookings = function fetchBookings(success, errors) {
+	var fetchBookings = exports.fetchBookings = function fetchBookings(success, error) {
 	  $.ajax({
 	    url: "api/bookings",
 	    method: "GET",
 	    success: success,
-	    errors: errors
+	    error: error
 	  });
 	};
 	
-	// export const fetchGuests = (success, errors) => {
+	// export const fetchGuests = (success, error) => {
 	//   $.ajax({
 	//     url: "api/bookings",
 	//     method: "GET",
 	//     success,
-	//     errors
+	//     error
 	//   });
 	// };
 	
-	var fetchBooking = exports.fetchBooking = function fetchBooking(booking, success, errors) {
+	var fetchBooking = exports.fetchBooking = function fetchBooking(booking, success, error) {
 	  $.ajax({
 	    url: "api/bookings",
 	    method: "POST",
 	    data: { booking: booking },
 	    success: success,
-	    errors: errors
+	    error: error
 	  });
 	};
 	
-	var deleteBooking = exports.deleteBooking = function deleteBooking(id, success, errors) {
+	var deleteBooking = exports.deleteBooking = function deleteBooking(id, success, error) {
 	  $.ajax({
 	    url: "api/bookings/" + id,
 	    method: "DELETE",
 	    success: success,
-	    errors: errors
+	    error: error
 	  });
 	};
 

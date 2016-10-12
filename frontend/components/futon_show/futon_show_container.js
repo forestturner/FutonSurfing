@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
     filters,
     host,
     currentUser,
+    errors,
     // currentUserFutonId,
     futons
   };

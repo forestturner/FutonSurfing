@@ -46,7 +46,6 @@ class NavBar extends React.Component {
      let options = {types: ['(cities)']};
      this.autocomplete = new google.maps.places.Autocomplete(input, options);
      this.autocomplete.addListener('place_changed', this.search);
-
    }
 
   search() {
@@ -209,7 +208,6 @@ class NavBar extends React.Component {
 
     return (
       <div>
-
       <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand pullLeft>

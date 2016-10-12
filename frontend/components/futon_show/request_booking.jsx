@@ -127,12 +127,20 @@ renderMethod(){
     }
   };
 
+  let errors = this.props.errors.map((error, idx) => (
+     <li key={idx}><i className="material-icons">warning</i> {error}</li>
+   ));
+
+
   return (
     <div className="padding">
       <div className="overlay"></div>
       <section className="request-form">
-        <div className="errors">
-        </div>
+      <div className="errors">
+           <ul>
+             {errors}
+           </ul>
+         </div>
         <h3>Request Booking</h3>
         <form className="request" onSubmit={this.handleSubmit}>
           <label className="request-label">

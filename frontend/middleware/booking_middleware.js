@@ -1,5 +1,7 @@
 import { BookingConstants, receiveBookings, receiveBooking, receiveBookingErrors, requestBookings } from '../actions/booking_actions';
 import { fetchBookings, fetchBooking, deleteBooking, fetchGuests } from '../util/booking_util';
+import { hashHistory } from 'react-router';
+
 
 const BookingMiddleware = ({getState, dispatch}) => next => action => {
   let success;
@@ -16,8 +18,13 @@ const BookingMiddleware = ({getState, dispatch}) => next => action => {
     //   fetchGuests(success, errors);
     //   return next(action);
     case BookingConstants.CREATE_BOOKING:
-      success = (bookings) => dispatch(receiveBookings(bookings));
-      // success = (booking) => dispatch(receiveBooking(booking));
+    debugger;
+    console.log(receiveBookingErrors);
+    console.log(receiveBookings);
+      success = (bookings) => {
+        dispatch(receiveBookings(bookings));
+        hashHistory.push("/profile");
+      }// success = (booking) => dispatch(receiveBooking(booking));
       errors = (errors) => dispatch(receiveBookingErrors(errors.responseJSON));
       fetchBooking(action.booking, success, errors);
       return next(action);

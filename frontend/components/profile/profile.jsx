@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
 class Profile extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -59,13 +60,16 @@ class Profile extends React.Component {
     this.addressClose = this.addressClose.bind(this);
     this.futonDescriptionClose = this.futonDescriptionClose.bind(this);
 
-
-
-
-
-
   }
 
+  // componentWillMount() {
+  // }
+  componentDidMount(){
+    console.log("mounted1#E@agfas");
+  //   this.props.requestBookings();
+  //   this.props.requestGuests();
+    debugger;
+  }
 
   handleSubmitFuton(e) {
     e.preventDefault();
@@ -175,13 +179,13 @@ class Profile extends React.Component {
   }
 }
 componentWillReceiveProps(newProps){
+  debugger;
   //console.log(newProps);
 }
-componentDidMount() {
-  this.props.requestBookings();
-  this.props.requestGuests();
 
-}
+// componentDidUpdate(){
+  // this.props.requestBookings();
+// }
 // componentDidUpdate(){
 //   let input = document.getElementById('nav-search-profile')
 //   let options = {types: ['(cities)']};
@@ -547,7 +551,7 @@ renderBookings(){
       transform             : 'translate(-50%, -50%)'
     }
   };
-
+ debugger;
  let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
  let divStyle ={fontSize: 16,float:'right' };
  let h3Style = {display: 'initial', fontSize: 14};
@@ -631,45 +635,19 @@ handleOpenedit(){
 }
 
 
-
-
-
   render() {
+    debugger;
     if(this.props.currentUser && this.state.showEdit){
+      console.log("1");
       return (<div className="profile-background">{this.renderProfileInfo()}</div>);
       // return (<div>{this.renderUserProfile()}</div>);
-    } else if (this.props.currentUser && !this.state.showEdit) {
+    } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings.length >= 1) {
+      console.log('2');
       return (<div className="profile-background">{this.renderBookings()}</div>);
-    } {
+    } else {
+      console.log('3');
       return( <div> loading... </div>);
     }
   }
 }
 export default Profile;
-
-
-
-
-
-
-
-{/* <article className="profile-section-main"> */}
-{/* <section className="profile-section-heading">
-<h2> My Guests </h2> */}
-{/* </section>
-  <Guests guests={this.props.guests} deleteBooking={this.props.deleteBooking} />
-  </article> */}
-
-
-
-
-
-
-
-
-
-
-
-  {/*
-
-    <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} /> */}

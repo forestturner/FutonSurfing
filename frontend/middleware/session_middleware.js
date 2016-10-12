@@ -8,7 +8,7 @@ export default ({getState, dispatch}) => next => action => {
   const loginSuccess = data => {
 
     dispatch(receiveCurrentUser(data));
-    dispatch(requestBookings());
+    // dispatch(requestBookings());
     hashHistory.push("/profile");
   }
   const editSuccess = data => {

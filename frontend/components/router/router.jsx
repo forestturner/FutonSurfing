@@ -63,7 +63,6 @@ getUsers(nextState,replace) {
 
 getBookings(nextState, replace) {
     this.props.requestBookings();
-
 }
 
 
@@ -83,7 +82,7 @@ getBookings(nextState, replace) {
           <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
           <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
 
-          <Route path="profile" component={ProfileContainer}/>
+          <Route path="profile" component={ProfileContainer} onEnter={this.getBookings}/>
           <Route path="createfuton" component={CreateFutonContainer}/>
           <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
           <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFutons}/>
