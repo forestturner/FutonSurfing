@@ -53346,9 +53346,10 @@
 	  _createClass(Profile, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      console.log("mounted1#E@agfas");
+	      // console.log("mounted1#E@agfas");
 	      //   this.props.requestBookings();
 	      //   this.props.requestGuests();
+	
 	    }
 	  }, {
 	    key: 'handleSubmitFuton',
@@ -54273,7 +54274,7 @@
 	          this.renderProfileInfo()
 	        );
 	        // return (<div>{this.renderUserProfile()}</div>);
-	      } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings && this.props.bookings.length >= 1) {
+	      } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings) {
 	        // console.log('2');
 	        return _react2.default.createElement(
 	          'div',

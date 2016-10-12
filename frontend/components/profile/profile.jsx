@@ -65,7 +65,7 @@ class Profile extends React.Component {
   // componentWillMount() {
   // }
   componentDidMount(){
-    console.log("mounted1#E@agfas");
+    // console.log("mounted1#E@agfas");
   //   this.props.requestBookings();
   //   this.props.requestGuests();
 
@@ -640,7 +640,7 @@ handleOpenedit(){
       // console.log("1");
       return (<div className="profile-background">{this.renderProfileInfo()}</div>);
       // return (<div>{this.renderUserProfile()}</div>);
-    } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings && this.props.bookings.length >= 1) {
+    } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings) {
       // console.log('2');
       return (<div className="profile-background">{this.renderBookings()}</div>);
     } else {
