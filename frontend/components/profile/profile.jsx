@@ -23,11 +23,11 @@ class Profile extends React.Component {
       editAddress: false,
       editFutonDescription: false,
       modalIsOpen: false,
-      firstname: this.props.currentUser.firstname,
-      lastname: this.props.currentUser.lastname,
-      description: this.props.currentUser.description,
-      places: this.props.currentUser.places,
-      languages: this.props.currentUser.languages
+      firstname: "",
+      lastname: "",
+      description: "",
+      places: "",
+      languages: ""
     };
     this.handleDone = this.handleDone.bind(this);
     this.handleOpenedit = this.handleOpenedit.bind(this);
@@ -59,18 +59,7 @@ class Profile extends React.Component {
     this.descriptionClose = this.descriptionClose.bind(this);
     this.addressClose = this.addressClose.bind(this);
     this.futonDescriptionClose = this.futonDescriptionClose.bind(this);
-
   }
-
-  // componentWillMount() {
-  // }
-  componentDidMount(){
-    // console.log("mounted1#E@agfas");
-  //   this.props.requestBookings();
-  //   this.props.requestGuests();
-
-  }
-
   handleSubmitFuton(e) {
     e.preventDefault();
     let newState = this.state
@@ -79,9 +68,6 @@ class Profile extends React.Component {
     this.addressClose();
     this.futonDescriptionClose();
   }
-
-
-
   handleSubmitUser(e) {
     e.preventDefault();
     let newInfo = this.state
@@ -93,21 +79,9 @@ class Profile extends React.Component {
     this.placeClose();
     this.descriptionClose();
   }
-
-        //
-        // handleSubmitUser(e) {
-        //   e.preventDefault();
-        //   let newState = this.state
-        //   const editfuton = merge({}, this.props.futon, this.state);
-        //   this.props.updateFuton(this.props.futon.id, editfuton);
-        //    hashHistory.push("/profile");
-        // }
-
-
   update(field){
       return e => { this.setState({[field]: e.currentTarget.value }); };
   }
-
   renderErrors(){
     return(
       <ul>
@@ -119,9 +93,6 @@ class Profile extends React.Component {
       </ul>
     );
   }
-
-
-
   updateProfilePic() {
     cloudinary.openUploadWidget(window.cloudinaryOptions, (error, images) => {
       if (error) {
@@ -136,10 +107,6 @@ class Profile extends React.Component {
       });
     }
 
-  // getInitialState() {
-  //   return { modalIsOpen: false };
-  // }
-
   componentWillMount() {
     Modal.setAppElement('body');
  }
@@ -149,18 +116,12 @@ class Profile extends React.Component {
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
     this.refs.subtitle.style.color = '#f00';
   }
 
   closeModal() {
     this.setState({modalIsOpen: false});
   }
-
-
-
-
-
 
   acceptGuests() {
     let newInfo;
@@ -178,23 +139,6 @@ class Profile extends React.Component {
     this.props.store.dispatch(requestBookings());
   }
 }
-// componentWillReceiveProps(newProps){
-//   debugger;
-//   //console.log(newProps);
-// }
-
-// componentDidUpdate(){
-  // this.props.requestBookings();
-// }
-// componentDidUpdate(){
-//   let input = document.getElementById('nav-search-profile')
-//   let options = {types: ['(cities)']};
-//   this.autocomplete = new google.maps.places.Autocomplete(input, options);
-//   this.autocomplete.addListener('place_changed', this.search);
-// }
-
-
-
 search() {
   let place = this.autocomplete.getPlace();
   this.setState({
@@ -208,44 +152,6 @@ search() {
 updateSearch(e) {
   this.setState({location: e.target.value});
 }
-// handleSubmitUser(e) {
-//   e.preventDefault();
-// }
-
-
-
-
-
-
-// handleProfileEditModel(fieldToEdited){
-//   // Get the modal
-//   var modal = document.getElementById('myModal');
-//
-//   // Get the button that opens the modal
-//   var btn = document.getElementById("myBtn");
-//
-//   // Get the <span> element that closes the modal
-//   var span = document.getElementsByClassName("close")[0];
-//
-//   // When the user clicks on the button, open the modal
-//   btn.onclick = function() {
-//       modal.style.display = "block";
-//   }
-//
-//   // When the user clicks on <span> (x), close the modal
-//   span.onclick = function() {
-//       modal.style.display = "none";
-//   }
-//
-//   // When the user clicks anywhere outside of the modal, close it
-//   window.onclick = function(event) {
-//       if (event.target == modal) {
-//           modal.style.display = "none";
-//       }
-//   }
-// }
-
-
 onClickEditFirstName() {
   this.setState({editFirstName: true});
 }
@@ -267,8 +173,6 @@ onClickEditAddress(){
 onClickEditFutonDescription(){
   this.setState({editFutonDescription: true});
 }
-
-
 nameFirstClose(){
   this.setState({editFirstName: false});
 }
@@ -292,8 +196,6 @@ futonDescriptionClose(){
 }
 
 renderUserProfile() {
-    // let guests = this.props.booking.guests
-
     let divStyle ={fontSize: 14 };
     let currentUser = this.props.currentUser;
     let listedFuton = `/futons/${currentUser.id}`
@@ -317,7 +219,6 @@ renderUserProfile() {
                 Welcome!
               </p>
             </div>
-
         <ul className="profile-nav">
           <li><Link to={listedFuton} >MY FUTON</Link></li>
           <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
@@ -326,14 +227,11 @@ renderUserProfile() {
           <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
           <li><Link to={createFuton} >CREATE FUTON</Link></li>
         </ul>
-
       </section>
       <section className="content-main">
-
         <h1 className="content-header">
           Hit the world's best Futons with FutonSurfers...
         </h1>
-
         <div className="bookings-container">
         <article className="profile-section-main">
           <section className="profile-section-heading">
@@ -344,18 +242,11 @@ renderUserProfile() {
           </div>
       </section>
     </main>
-
-
-
-
     <script src="js/jquery.min.js"></script>
     <script src="js/overlay.js"></script>
-
   </div>
     );
-
 }
-
 renderProfileInfo(){
   const customStyles = {
     content : {
@@ -368,8 +259,6 @@ renderProfileInfo(){
       transform             : 'translate(-50%, -50%)'
     }
   };
-  // let guests = this.props.booking.guests
-
  let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
  let divStyle ={fontSize: 16,float:'right' };
  let h3Style = {display: 'initial', fontSize: 14};
@@ -394,7 +283,6 @@ return (
             Welcome!
           </p>
         </div>
-
     <ul className="profile-nav">
       <li><Link to={listedFuton} >MY FUTON</Link></li>
       <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
@@ -402,18 +290,14 @@ return (
       <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
       <li><Link to={createFuton} >CREATE FUTON</Link></li>
     </ul>
-
   </section>
   <section className="content-main">
-
-
     <div className="bookings-container">
     <article className="profile-section-main">
       <section className="profile-section-heading">
         <h2>About Me</h2>
       </section>
       <div>
-
       <h3 style={h3Style}>*click on profile picture to upload new picture*</h3>
       </div>
       <h3 style={h3Style}>First Name: {this.state.firstname}</h3>
@@ -423,7 +307,6 @@ return (
          isOpen={this.state.editFirstName}
          onRequestClose={this.closeFirstName}
          style={customStyles} >
-
          <button onClick={this.nameFirstClose}>close</button>
          <div>Please input new first name.</div>
          <form>
@@ -432,8 +315,6 @@ return (
          </form>
        </Modal>
        </div>
-
-
        <h3 style={h3Style}>Last Name: {this.state.lastname}</h3>
        <i className="fa fa-pencil-square-o" style={divStyle} onClick={this.onClickEditLastName}></i>
        <div>
@@ -441,7 +322,6 @@ return (
           isOpen={this.state.editLastName}
           onRequestClose={this.closeLastName}
           style={customStyles} >
-
           <button onClick={this.nameLastClose}>close</button>
           <div>Please input new last name.</div>
           <form>
@@ -450,8 +330,6 @@ return (
           </form>
         </Modal>
         </div>
-
-
       <h3 style={h3Style}>languages: {this.state.languages}</h3>
       <i className="fa fa-pencil-square-o" style={divStyle} onClick={this.onClickEditLanguages}></i>
       <div>
@@ -459,7 +337,6 @@ return (
            isOpen={this.state.editLanguages}
            onRequestClose={this.closeLanguages}
            style={customStyles} >
-
            <button onClick={this.languagesClose}>close</button>
            <div>Please update your languages.</div>
            <form>
@@ -468,9 +345,6 @@ return (
            </form>
         </Modal>
         </div>
-
-
-
         <h3 style={h3Style}>Places I have visted: {this.state.places}</h3>
         <i className="fa fa-pencil-square-o" style={divStyle} onClick={this.onClickEditPlaceVisited}></i>
         <div>
@@ -487,9 +361,6 @@ return (
              </form>
           </Modal>
           </div>
-
-
-
           <h3 style={h3Style}>My description: {this.state.description}</h3>
           <i className="fa fa-pencil-square-o" style={divStyle} onClick={this.onClickEditDescription}></i>
           <div>
@@ -497,7 +368,6 @@ return (
                isOpen={this.state.editDescription}
                onRequestClose={this.closeDescription}
                style={customStyles} >
-
                <button onClick={this.descriptionClose}>close</button>
                <div>Please update your description.</div>
                <form>
@@ -507,12 +377,6 @@ return (
             </Modal>
             </div>
             <button className="done-button" onClick={this.handleDone} >Done</button>
-
-
-
-
-
-
     </article>
     <article className="profile-section-main">
       <section className="profile-section-heading">
@@ -520,25 +384,14 @@ return (
       </section>
         <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} />
     </article>
-
-
-
       </div>
   </section>
 </main>
-
-
-
-
 <script src="js/jquery.min.js"></script>
 <script src="js/overlay.js"></script>
-
 </div>
 );
-
 }
-
-
 renderBookings(){
   const customStyles = {
     content : {
@@ -551,7 +404,6 @@ renderBookings(){
       transform             : 'translate(-50%, -50%)'
     }
   };
- // debugger;
  let profilePic = ( this.props.currentUser.profile_img_url ? this.props.currentUser.profile_img_url : "http://res.cloudinary.com/dnuopy1ir/image/upload/v1473008869/facebook_blank_face3_ywa1j7.jpg");
  let divStyle ={fontSize: 16,float:'right' };
  let h3Style = {display: 'initial', fontSize: 14};
@@ -576,7 +428,6 @@ return (
             Welcome!
           </p>
         </div>
-
     <ul className="profile-nav">
       <li><Link to={'/profile'} onClick={this.handleOpenedit}>EDIT PROFILE INFORMATION</Link></li>
       <li><Link to={listedFuton} >MY FUTON</Link></li>
@@ -585,11 +436,8 @@ return (
       <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
       <li><Link to={createFuton} >CREATE FUTON</Link></li>
     </ul>
-
   </section>
   <section className="content-main">
-
-
     <div className="bookings-container">
     <article className="profile-section-main">
       <section className="profile-section-heading">
@@ -597,10 +445,7 @@ return (
       </section>
         <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} />
     </article>
-
-
       </div>
-
       <div className="bookings-container">
       <article className="profile-section-main">
         <section className="profile-section-heading">
@@ -608,17 +453,9 @@ return (
         </section>
           <Guests guests={this.props.guests} deleteBooking={this.props.deleteBooking} />
       </article>
-
-
         </div>
-
-
   </section>
 </main>
-
-
-
-
 <script src="js/jquery.min.js"></script>
 <script src="js/overlay.js"></script>
 
@@ -626,25 +463,17 @@ return (
 );
 
 }
-
-handleDone(){
+  handleDone(){
     this.setState({ showEdit: false })
-}
-handleOpenedit(){
+  }
+  handleOpenedit(){
     this.setState({ showEdit: true })
-}
-
-
+  }
   render() {
     if(this.props.currentUser && this.state.showEdit){
-      // console.log("1");
-      return (<div className="profile-background">{this.renderProfileInfo()}</div>);
-      // return (<div>{this.renderUserProfile()}</div>);
     } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings) {
-      // console.log('2');
       return (<div className="profile-background">{this.renderBookings()}</div>);
     } else {
-      // console.log('3');
       return( <div> loading... </div>);
     }
   }

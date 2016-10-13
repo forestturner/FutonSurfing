@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl,Button} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap'
 import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
@@ -132,16 +133,19 @@ class NavBar extends React.Component {
         <Navbar.Collapse>
           <Nav pullRight>
 
+            <NavItem>
+              <button className="btn btn-signup join" onClick={this.handleSignUp}> Sign up</button>
+            </NavItem>
 
-            <button className="btn btn-signup join" onClick={this.handleSignUp}> Sign up</button>
-            <div>
              <Modal
                isOpen={this.state.signUpModal}
                onRequestClose={this.handleCloseSignUp}
                style={customStyles} >
 
-               <Link to="/profile" className="btn btn-guest join" onClick={this.handleGuest}> Guest Login </Link>
-               <div>Pleas Sign Up.</div>
+
+              <div  className="btn btn-guest join" onClick={this.handleGuest}> Guest </div>
+
+               <div>Please Sign Up.</div>
                <div className="login-form">
                  <label> Username:
                    <input type="text" value={this.state.username}	onChange={this.update("username")} className="login-input" />
@@ -162,19 +166,24 @@ class NavBar extends React.Component {
                  <input type="submit" value="sign-up" onClick={this.handleSubmitSignUpForm}/>
                </div>
              </Modal>
-             </div>
 
 
-            <div  className="btn btn-guest join" onClick={this.handleGuest}> Guest </div>
+             <NavItem>
+               <Button className="btn btn-guest join" onClick={this.handleGuest}>Guest</Button>
+             </NavItem>
+             <NavItem>
+               <Button className="btn btn-login join" onClick={this.handleLogin}>Log In</Button>
+             </NavItem>
 
-            <button className="btn btn-login join" onClick={this.handleLogin}> Log in</button>
-            <div>
+
              <Modal
                isOpen={this.state.loginModal}
                onRequestClose={this.handleCloseLogin}
                style={customStyles} >
 
-               <Link to="/profile" className="btn btn-guest join" onClick={this.handleGuest}> Guest Login </Link>
+
+               <div className="btn btn-warning join" onClick={this.handleGuest}>Guest</div>
+
                <div>Please Login.</div>
                <div className="login-form">
                  <label> Username:
@@ -186,14 +195,20 @@ class NavBar extends React.Component {
                  <input type="submit" value="login" onClick= {this.handleSubmitLoginForm}/>
                </div>
              </Modal>
-             </div>
 
-            <Link to="/futons" className="btn btn-futons join">Futons</Link>
+
+             <LinkContainer to="/futons">
+             <NavItem>
+               <Button className="btn btn-futons join">Futons</Button>
+                 </NavItem>
+             </LinkContainer>
           </Nav>
           <Nav pullRight>
+          <NavItem>
             <form className="nav-search" onSubmit={this.handleSubmit} >
               <input type="text" id="nav-search" placeholder="Search by city.." value={this.state.location} onChange={this.updateSearch} />
             </form>
+          </NavItem>
           </Nav>
 
         </Navbar.Collapse>
@@ -211,30 +226,41 @@ class NavBar extends React.Component {
       <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand pullLeft>
-            <a href="#">FutonSurfing</a>
-
+            {/* <NavItem> */}
+              <a href="#">FutonSurfing</a>
+            {/* </NavItem> */}
           </Navbar.Brand>
           <Nav pullLeft >
-            <img className="img-nav" src={currentUser.profile_img_url} alt=""></img>
+            <NavItem>
+              <img className="img-nav" src={currentUser.profile_img_url} alt=""></img>
+            </NavItem>
           </Nav>
           <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav pullRight>
-            {/* <NavItem eventKey={1} >{currentUser.username}</NavItem> */}
-
-            <Link className="btn btn-guest join" to="/profile">Dashboard</Link>
-            <Link to="/" className="btn btn-warning join" onClick={logout}>Log Out</Link>
-            <Link to="/futons" className="btn btn-futons join">Futons</Link>
-            {/* <Button className="header-button" onClick={logout}>Log Out</Button> */}
-          </Nav>
-          <Nav pullRight>
-            <form className="nav-search" onSubmit={this.handleSubmit} >
-              <input type="text" id="nav-search" placeholder="Search by city.." value={this.state.location} onChange={this.updateSearch} />
-            </form>
-          </Nav>
-        </Navbar.Collapse>
-
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight>
+              <LinkContainer to="/profile">
+                <NavItem>
+                  <Button className="btn btn-guest join">Dashboard</Button>
+                </NavItem>
+              </LinkContainer>
+                <NavItem>
+                  <Button className="btn btn-warning join" onClick={logout}>Log Out</Button>
+                </NavItem>
+              <LinkContainer to="/futons">
+                <NavItem>
+                  <Button className="btn btn-futons join">Futons</Button>
+                </NavItem>
+              </LinkContainer>
+              </Nav>
+                <Nav pullRight>
+                  <NavItem>
+                    <form className="nav-search" onSubmit={this.handleSubmit} >
+                      <input type="text" id="nav-search" placeholder="Search by city.." value={this.state.location} onChange={this.updateSearch} />
+                    </form>
+                  </NavItem>
+                </Nav>
+          </Navbar.Collapse>
       </Navbar>
       </div>
     );

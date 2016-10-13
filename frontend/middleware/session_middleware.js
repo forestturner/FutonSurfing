@@ -15,6 +15,10 @@ export default ({getState, dispatch}) => next => action => {
     dispatch(receiveCurrentUser(data));
     hashHistory.push("/profile");
   }
+  // const logOutSuccess = () => {
+  //   // dispatch(receiveCurrentUser(data));
+  //   hashHistory.push("/");
+  // }
   // const successCallback = data => dispatch(signUp(data))
   const errorsCallback = xhr => {
     const errors  = xhr.responseJSON;
@@ -28,7 +32,11 @@ export default ({getState, dispatch}) => next => action => {
       return next(action);
       break;
     case SessionConstants.LOG_OUT:
-      logout(() => next(action));
+      let  success = () => {
+        next(action);
+        hashHistory.push("/");
+      }
+      logout(success,errorsCallback);
       break;
     case SessionConstants.SIGN_UP:
 

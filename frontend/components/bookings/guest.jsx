@@ -5,10 +5,10 @@ const Guesting = ({guest, deleteBooking}) => {
     <div>
       <article className="booking">
         <div className= "futonHost">
-        <img className="futonHost-img"src={guest.profile_img_url}/>
+        <img className="futonHost-img"src={guest.guest.profile_img_url}/>
         </div>
         <section className="guest-info" >
-          <h3 className="fontSize"><a href={"/#/users/" + guest.id}> with {guest.firstname} {guest.lastname}</a></h3>
+          <h3 className="fontSize"><a href={"/#/users/" + guest.id}> with {guest.guest.firstname} {guest.guest.lastname}</a></h3>
           <h4 className="fontSize">{guest.start_date} to {guest.end_date}</h4>
         </section>
         <button className="booking-button" onClick={() => deleteBooking(guest.booking.id)}>Cancel</button>

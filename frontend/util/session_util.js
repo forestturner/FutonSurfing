@@ -41,13 +41,11 @@ export const signup = function(user, success, error) {
 	});
 };
 
-export const logout = function(success){
+export const logout = function(success,error){
 	$.ajax({
 		method: 'delete',
 		url: '/api/session',
 		success,
-		error: () => {
-		  console.log("error in ajax");
-		}
+		error
 	});
 };

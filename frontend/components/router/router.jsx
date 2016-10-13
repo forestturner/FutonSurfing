@@ -15,9 +15,14 @@ import RequestBookingsContainer from '../request_booking/request_booking_contain
 import CreateFutonContainer from '../createFuton/createFutonContainer';
 
 
+
+
+
+
 class AppRouter extends React.Component{
   constructor(props){
     super(props);
+    this.count = 0;
     this._ensureLoggedIn = this._ensureLoggedIn.bind(this);
     this._redirectIfLoggedIn = this._redirectIfLoggedIn.bind(this);
     this.getFuton = this.getFuton.bind(this);
@@ -25,6 +30,7 @@ class AppRouter extends React.Component{
     this.getUser = this.getUser.bind(this);
     this.getUsers = this.getUsers.bind(this);
     this.getBookings = this.getBookings.bind(this);
+    this.routes = this.routes.bind(this);
   }
 
   _ensureLoggedIn(nextState, replace){
@@ -66,51 +72,44 @@ getBookings(nextState, replace) {
 }
 
 
+routes (){
+
+
+
+return(
+ <Route path="/" component={ App }>
+   <IndexRoute component= {SplashPageContainer}/>
+     <Route path="login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
+     <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
+     <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
+     <Route path="futons" component={ FutonsShowContainer} onEnter ={this.getFutons }/>
+     <Route path="futons/:futonId" component={FutonShowContainer} />
+
+     <Route path="/futons/:futonId/request" component={RequestBookingsContainer} />
+
+     <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
+     <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
+
+     <Route path="profile" component={ProfileContainer} onEnter={this.getBookings}/>
+     <Route path="createfuton" component={CreateFutonContainer}/>
+     <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
+     <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFutons}/>
+ </Route>
+ );
+}
+
+
   render(){
+    this.count = this.count + 1;
     return(
-      <Router history={ hashHistory }>
-        <Route path="/" component={ App }>
-          <IndexRoute component= {SplashPageContainer}/>
-          <Route path="login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
-          <Route path="signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
-          <Route path="guest" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
-          <Route path="futons" component={ FutonsShowContainer} onEnter ={this.getFutons }/>
-          <Route path="futons/:futonId" component={FutonShowContainer} />
-
-          <Route path="/futons/:futonId/request" component={RequestBookingsContainer} />
-
-          <Route path="users" component={ UsersShowContainer} onEnter ={this.getUsers }/>
-          <Route path="users/:userId" component={UserShowContainer} onEnter={this.getUser}/>
-
-          <Route path="profile" component={ProfileContainer} onEnter={this.getBookings}/>
-          <Route path="createfuton" component={CreateFutonContainer}/>
-          <Route path="editprofile" component={EditProfileContainer} onEnter = {this.getFutons}/>
-          <Route path="editfuton" component={EditFutonContainer} onEnter = {this.getFutons}/>
-        </Route>
+      <Router  history={ hashHistory } key={this.count}>
+        {this.routes()}
       </Router>
     );
   }
 }
 
-export default withRouter(AppRouter);
-
-
-// {/* <Route path="/navbar" component= { navbarContainer } /> */}
-
-
-
-
-
-
-
-// }
-{/* <Route path="/login" component={ SessionFormContainer }/> //onEnter={this.redirectIfLoggedIn}/>
-<Route path="/signup" component={ SessionFormContainer }/> //onEnter={this.redirectIfLoggedIn}/>
- */}
-
-
-
-
+export default AppRouter;
 
 
 

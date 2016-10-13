@@ -774,6 +774,11 @@ main {
 .padding{
   padding:10px;
 }
+.nav > li > a {
+  padding: 0px;
+  display: inline;
+
+}
 // .title-in-pic {
 //   display: block;
 //  position: absolute;
