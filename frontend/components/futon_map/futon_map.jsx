@@ -20,7 +20,7 @@ class FutonMap extends React.Component{
     let mapEl = document.getElementById('map');
     let options = {
      center: {lat: this.props.coords.lat, lng: this.props.coords.lng},
-     zoom: 11
+     zoom: 12
    };
    this.map = new google.maps.Map(mapEl, options);
    this.MarkerManager = new MarkerManager(this.map);
@@ -32,6 +32,7 @@ class FutonMap extends React.Component{
      bounds = {northEast: ne, southWest: sw};
      this.props.updateBounds(bounds);
    });
+
    if(this.props.singleFuton){
      this.map.setZoom(16);
    }

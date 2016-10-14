@@ -54305,10 +54305,24 @@
 	                  _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    'My Futon '
+	                    ' My Bookings '
 	                  )
 	                ),
 	                _react2.default.createElement(_bookings2.default, { bookings: this.props.bookings, deleteBooking: this.props.deleteBooking })
+	              ),
+	              _react2.default.createElement(
+	                'article',
+	                { className: 'profile-section-main' },
+	                _react2.default.createElement(
+	                  'section',
+	                  { className: 'profile-section-heading' },
+	                  _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' Guests '
+	                  )
+	                ),
+	                _react2.default.createElement(_guests2.default, { guests: this.props.guests, deleteBooking: this.props.deleteBooking })
 	              )
 	            )
 	          )
@@ -54488,7 +54502,13 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      if (this.props.currentUser && this.state.showEdit) {} else if (this.props.currentUser && !this.state.showEdit && this.props.bookings) {
+	      if (this.props.currentUser && this.state.showEdit) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'profile-background' },
+	          this.renderProfileInfo()
+	        );
+	      } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings) {
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'profile-background' },
@@ -55607,7 +55627,7 @@
 	      var mapEl = document.getElementById('map');
 	      var options = {
 	        center: { lat: this.props.coords.lat, lng: this.props.coords.lng },
-	        zoom: 11
+	        zoom: 12
 	      };
 	      this.map = new google.maps.Map(mapEl, options);
 	      this.MarkerManager = new _maker_manger2.default(this.map);
@@ -55619,6 +55639,7 @@
 	        bounds = { northEast: ne, southWest: sw };
 	        _this2.props.updateBounds(bounds);
 	      });
+	
 	      if (this.props.singleFuton) {
 	        this.map.setZoom(16);
 	      }

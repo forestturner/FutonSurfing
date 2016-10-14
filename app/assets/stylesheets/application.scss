@@ -120,7 +120,7 @@
 
  .content-main {
    float: right;
-   width: 60%;
+   width: 61%;
    padding: 20px 20px 20px 19px;
    border-left: 1px solid #ccc;
  }
@@ -778,6 +778,13 @@ main {
   padding: 0px;
   display: inline;
 
+}
+
+.navbar-inverse .navbar-nav>.active>a{
+  background-color: white;
+}
+.navbar-inverse .navbar-nav > .active > a:hover{
+  background-color: white;
 }
 // .title-in-pic {
 //   display: block;

@@ -380,9 +380,15 @@ return (
     </article>
     <article className="profile-section-main">
       <section className="profile-section-heading">
-        <h2>My Futon </h2>
+        <h2> My Bookings </h2>
       </section>
         <Bookings bookings={this.props.bookings} deleteBooking={this.props.deleteBooking} />
+    </article>
+    <article className="profile-section-main">
+      <section className="profile-section-heading">
+        <h2> Guests </h2>
+      </section>
+        <Guests guests={this.props.guests} deleteBooking={this.props.deleteBooking} />
     </article>
       </div>
   </section>
@@ -471,6 +477,7 @@ return (
   }
   render() {
     if(this.props.currentUser && this.state.showEdit){
+      return (<div className="profile-background">{this.renderProfileInfo()}</div>)
     } else if (this.props.currentUser && !this.state.showEdit && this.props.bookings) {
       return (<div className="profile-background">{this.renderBookings()}</div>);
     } else {
