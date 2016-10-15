@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Guesting = ({guest, deleteBooking}) => {
+
   return(
     <div>
       <article className="booking">
@@ -11,7 +12,7 @@ const Guesting = ({guest, deleteBooking}) => {
           <h3 className="fontSize"><a href={"/#/users/" + guest.id}> with {guest.guest.firstname} {guest.guest.lastname}</a></h3>
           <h4 className="fontSize">{guest.start_date} to {guest.end_date}</h4>
         </section>
-        <button className="booking-button" onClick={() => deleteBooking(guest.booking.id)}>Cancel</button>
+        <button className="booking-button" onClick={() => deleteBooking(guest.id)}>Cancel</button>
       </article>
     </div>
   );

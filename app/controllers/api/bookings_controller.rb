@@ -4,14 +4,14 @@ class Api::BookingsController < ApplicationController
   def index
     if current_user
       @bookings = Booking.where(guest_id: current_user.id).includes(:host)
-      if current_user.rented_futon
-        @guests = Booking.where(futon_id: current_user.rented_futon.id).includes(:guest)
+      if current_user.futon
+        @guests = Booking.where(futon_id: current_user.futon.id).includes(:guest)
       else
-        @guests ={}
+        @guests = {}
       end
     else
-      @bookings ={}
-      @guests ={}
+      @bookings = {}
+      @guests = {}
     end
       # byebug
   end
@@ -28,6 +28,7 @@ class Api::BookingsController < ApplicationController
   end
 
   def destroy
+
     @booking = Booking.find_by(id: params[:id])
     @booking.destroy
     render json: {}

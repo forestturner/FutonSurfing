@@ -53606,11 +53606,11 @@
 	      editAddress: false,
 	      editFutonDescription: false,
 	      modalIsOpen: false,
-	      firstname: "",
-	      lastname: "",
-	      description: "",
-	      places: "",
-	      languages: ""
+	      firstname: _this.props.currentUser.firstname,
+	      lastname: _this.props.currentUser.lastname,
+	      description: _this.props.currentUser.description,
+	      places: _this.props.currentUser.places,
+	      languages: _this.props.currentUser.languages
 	    };
 	    _this.handleDone = _this.handleDone.bind(_this);
 	    _this.handleOpenedit = _this.handleOpenedit.bind(_this);
@@ -54742,6 +54742,7 @@
 	  var guest = _ref.guest;
 	  var deleteBooking = _ref.deleteBooking;
 	
+	
 	  return _react2.default.createElement(
 	    "div",
 	    null,
@@ -54779,7 +54780,7 @@
 	      _react2.default.createElement(
 	        "button",
 	        { className: "booking-button", onClick: function onClick() {
-	            return deleteBooking(guest.booking.id);
+	            return deleteBooking(guest.id);
 	          } },
 	        "Cancel"
 	      )

@@ -10,6 +10,7 @@ class Profile extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       showEdit: false,
       lat: this.props.coords.lat,
@@ -23,11 +24,11 @@ class Profile extends React.Component {
       editAddress: false,
       editFutonDescription: false,
       modalIsOpen: false,
-      firstname: "",
-      lastname: "",
-      description: "",
-      places: "",
-      languages: ""
+      firstname: this.props.currentUser.firstname,
+      lastname: this.props.currentUser.lastname,
+      description: this.props.currentUser.description,
+      places: this.props.currentUser.places,
+      languages: this.props.currentUser.languages
     };
     this.handleDone = this.handleDone.bind(this);
     this.handleOpenedit = this.handleOpenedit.bind(this);
