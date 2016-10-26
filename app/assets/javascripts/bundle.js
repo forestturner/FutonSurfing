@@ -53886,15 +53886,6 @@
 	                null,
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
-	                  { to: listedFuton },
-	                  'MY FUTON'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
 	                  { to: allFutons },
 	                  'All FUTONS IN MY AREA'
 	                )
@@ -53924,15 +53915,6 @@
 	                  _reactRouter.Link,
 	                  { to: UserProfile },
 	                  'MY PUBLIC PROFILE'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: createFuton },
-	                  'CREATE FUTON'
 	                )
 	              )
 	            )
@@ -54031,44 +54013,8 @@
 	                null,
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
-	                  { to: listedFuton },
-	                  'MY FUTON'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
 	                  { to: allFutons },
 	                  'All FUTONS IN MY AREA'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: editFuton },
-	                  'EDIT MY FUTON'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: UserProfile },
-	                  'MY PUBLIC PROFILE'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: createFuton },
-	                  'CREATE FUTON'
 	                )
 	              )
 	            )
@@ -54402,44 +54348,8 @@
 	                null,
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
-	                  { to: listedFuton },
-	                  'MY FUTON'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
 	                  { to: allFutons },
 	                  'All FUTONS IN MY AREA'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: editFuton },
-	                  'EDIT MY FUTON'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: UserProfile },
-	                  'MY PUBLIC PROFILE'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: createFuton },
-	                  'CREATE FUTON'
 	                )
 	              )
 	            )

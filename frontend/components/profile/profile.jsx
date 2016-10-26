@@ -221,12 +221,10 @@ renderUserProfile() {
               </p>
             </div>
         <ul className="profile-nav">
-          <li><Link to={listedFuton} >MY FUTON</Link></li>
           <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
           <li><Link to={editFuton} >EDIT MY FUTON</Link></li>
           <li><Link to={editInfo} >EDIT MY INFO</Link></li>
           <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
-          <li><Link to={createFuton} >CREATE FUTON</Link></li>
         </ul>
       </section>
       <section className="content-main">
@@ -285,11 +283,8 @@ return (
           </p>
         </div>
     <ul className="profile-nav">
-      <li><Link to={listedFuton} >MY FUTON</Link></li>
+
       <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
-      <li><Link to={editFuton} >EDIT MY FUTON</Link></li>
-      <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
-      <li><Link to={createFuton} >CREATE FUTON</Link></li>
     </ul>
   </section>
   <section className="content-main">
@@ -437,11 +432,7 @@ return (
         </div>
     <ul className="profile-nav">
       <li><Link to={'/profile'} onClick={this.handleOpenedit}>EDIT PROFILE INFORMATION</Link></li>
-      <li><Link to={listedFuton} >MY FUTON</Link></li>
       <li><Link to={allFutons} >All FUTONS IN MY AREA</Link></li>
-      <li><Link to={editFuton} >EDIT MY FUTON</Link></li>
-      <li><Link to={UserProfile} >MY PUBLIC PROFILE</Link></li>
-      <li><Link to={createFuton} >CREATE FUTON</Link></li>
     </ul>
   </section>
   <section className="content-main">
