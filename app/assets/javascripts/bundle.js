@@ -56015,7 +56015,7 @@
 	        fontSize: "13px",
 	        lineHeight: "16px",
 	        cursor: "pointer",
-	        borderBottom: "1px solid gray"
+	        boxShadow: "0 1px rgba(0, 0, 0, 0.2)"
 	      };
 	      var imgStyle = {
 	        width: "80px",

@@ -20,7 +20,7 @@ class IndexItem extends React.Component {
       fontSize: "13px",
       lineHeight: "16px",
       cursor: "pointer",
-      borderBottom: "1px solid gray"
+      boxShadow: "0 1px rgba(0, 0, 0, 0.2)"
     }
     let imgStyle = {
       width: "80px",
