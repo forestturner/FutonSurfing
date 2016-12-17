@@ -1,4 +1,4 @@
-json.extract! futon, :id, :description, :lat, :lng, :address, :futon_img_url, :user_id, :bookings, :user
+json.extract! futon, :id, :description, :lat, :lng, :address, :futon_img_url, :user_id, :bookings, :user, :rating, :name, :futon_img_details
 #     t.string   "address",       null: false
 #     t.float    "lat",           null: false
 #     t.float    "lng",           null: false

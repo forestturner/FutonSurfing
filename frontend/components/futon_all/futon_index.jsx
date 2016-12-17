@@ -1,5 +1,6 @@
 import React from 'react';
 import FutonIndexItem from './futon_index_item';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const FutonIndex = function(props) {
   const futons = props.futons;
@@ -8,7 +9,7 @@ const FutonIndex = function(props) {
     <div className="index">
       {
         futonKeys.map( key => (
-        <div className="futon-index-item" key={futons[key].id} ><FutonIndexItem futon={futons[key]} key={futons[key].id} /></div>
+        <FutonIndexItem futon={futons[key]} key={futons[key].id} />
         ))
       }
     </div>

@@ -270,14 +270,14 @@
 
 .futon-list-container{
   font-family: 'Open Sans', sans-serif;
-    top: 70px;
+    top: 60px;
     left: 0;
     bottom: 0;
     position: absolute;
     display: flex;
     flex-wrap: wrap;
-    overflow-y: scroll;
-    width: 306px;
+
+    width: 315px;
     background: white;
 
 }
@@ -289,9 +289,10 @@
 .futon-index-item {
   box-sizing: border-box;
   display: inline;
-  margin: 0 auto;
-  height: 250px;
-  padding: 20px 5px;
+  margin: inherit;
+  width:302px;
+  height: 112px;
+  padding: 10px 18px 10px 24px;
   overflow: hidden;
   word-wrap: break-word;
   text-overflow: ellipsis;
@@ -387,12 +388,12 @@ ul {
   position: inherit;
 }
 
-.futon-image-container{
-  max-width: 300px;
-max-height: 200px;
-border: 1px solid lightgrey;
-display: block;
-}
+// .futon-image-container{
+//   max-width: 402px;
+// max-height: 112px;
+// border: 1px solid lightgrey;
+// display: block;
+// }
 
 .futon-info{
   position: relative;
@@ -401,8 +402,8 @@ display: block;
 }
 
 .index-item-image{
-  width: 300px;
-  height: 200px;
+  width: 80px;
+  height: 94px;
   border: 1px solid lightgrey;
   display: block
 }
@@ -414,8 +415,8 @@ display: block;
     cursor: pointer;
 }
 .index-item-copy futon-image {
-    width: 300px;
-    height: 200px;
+    width: 80px;
+    height: 94px;
     border: 1px solid lightgrey;
     display: block
 }
@@ -652,7 +653,7 @@ main {
 .featured-cities-header h2 {
   font-weight: 400;
   color: white;
-  width: 290px;
+  width: 300px;
   background: rgba(4,99,128,0.3);
   padding: 5px;
   font-size: 24px;
@@ -786,12 +787,20 @@ main {
   z-index: 10;
 }
 
-.navbar-inverse .navbar-nav>.active>a{
-  background-color: white;
+// .navbar-inverse .navbar-nav>.active>a{
+//   background-color: white;
+// }
+// .navbar-inverse .navbar-nav > .active > a:hover{
+//   background-color: white;
+// }
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus
+{
+  color:gray !important;
+  background-color: white  !important;
 }
-.navbar-inverse .navbar-nav > .active > a:hover{
-  background-color: white;
-}
+
+
 // .title-in-pic {
 //   display: block;
 //  position: absolute;

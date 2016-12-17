@@ -126,7 +126,7 @@ class NavBar extends React.Component {
       <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">FutonSurfing</a>
+            <h1>FutonSurfing</h1>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -134,7 +134,7 @@ class NavBar extends React.Component {
           <Nav pullRight>
 
             <NavItem>
-              <button className="btn btn-signup join" onClick={this.handleSignUp}> Sign up</button>
+              <Button className="btn btn-signup join" onClick={this.handleSignUp}> Sign up</Button>
             </NavItem>
 
              <Modal
@@ -227,7 +227,7 @@ class NavBar extends React.Component {
         <Navbar.Header>
           <Navbar.Brand pullLeft>
             {/* <NavItem> */}
-              <a href="#">FutonSurfing</a>
+              <a>FutonSurfing</a>
             {/* </NavItem> */}
           </Navbar.Brand>
           <Nav pullLeft >

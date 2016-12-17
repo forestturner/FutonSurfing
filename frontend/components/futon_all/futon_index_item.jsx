@@ -14,18 +14,48 @@ class IndexItem extends React.Component {
   }
 
   render() {
+    let divStyle = {
+      color: "#8c8c8c",
+      fontFamily: "Roboto, Arial, sans-serif",
+      fontSize: "13px",
+      lineHeight: "16px",
+      cursor: "pointer",
+      borderBottom: "1px solid gray"
+    }
+    let imgStyle = {
+      width: "80px",
+      height: "92px",
+      float: "right",
+      padding: "10px"
+
+    }
+    let starStyle = {
+    width:"80px",
+    height: "16px",
+    }
+    let star_pics =["0",
+     "http://res.cloudinary.com/dnuopy1ir/image/upload/c_scale,h_16,w_80/v1481847153/oneStar_gu9gv2.png",
+     "http://res.cloudinary.com/dnuopy1ir/image/upload/c_scale,h_16,w_80/v1481847151/twoStar_oxvp99.png",
+     "http://res.cloudinary.com/dnuopy1ir/image/upload/c_scale,h_16,w_80/v1481847151/threeStars_wtyrep.png",
+     "http://res.cloudinary.com/dnuopy1ir/image/upload/c_scale,h_16,w_80/v1481847154/fourStar_dxq4fc.png",
+     "http://res.cloudinary.com/dnuopy1ir/image/upload/c_scale,h_16,w_80/v1481847154/fiveStar_zpvina.png"
+   ]
+   let random = Math.random() * 10
+
+
     const futon = this.props.futon;
     return (
-      <div className="futon-image-container">
+      <div className="futon-index-item" onClick={this.handleClick} style={divStyle}>
 
-        <div className="index-item-image"
-             onClick={this.handleClick}>
-              <img src={futon.futon_img_url}/>
-        </div>
-        <div className="futon-info">
-            <h4>* click here to book *  Description: {futon.description}</h4>
-        </div>
+          <img style={imgStyle} src={futon.futon_img_url}/>
+          <img style={starStyle} src={star_pics[futon.rating]}/>
+            {futon.name}
+            {futon.address}
+
+
+
       </div>
+
     );
   }
 }
